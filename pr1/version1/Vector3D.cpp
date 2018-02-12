@@ -1,4 +1,4 @@
-/*! 
+/*!
    \file Vector3D.cpp
    \brief Fichero que contiene el código de las funciones de la clase Vector3D
 */
@@ -24,7 +24,14 @@
 
 // MODIFICADORES
 
-// COMPLETAR
+double ed::Vector3D::modulo() const {
+	double aux;
+	aux =powl(this->get1(),(double)2);
+	aux+=powl(this->get2(),(double)2);
+	aux+=powl(this->get3(),(double)2);
+
+	return sqrtl(aux);
+}
 
 
 
@@ -77,6 +84,6 @@ istream &operator>>(istream &stream, ed::Vector3D &objeto)
   // COMPLETAR
 
   return stream;
-} 
+}
 
 } // Fin del espacio de nombres ed
