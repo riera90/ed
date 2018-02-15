@@ -59,6 +59,7 @@ class Vector3D
 	inline double get2() const {return y_;};
 	inline double get3() const {return z_;};
 	double modulo() const ;
+	double angulo() const ;
 
 
 

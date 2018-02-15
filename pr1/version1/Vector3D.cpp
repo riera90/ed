@@ -33,6 +33,13 @@ double ed::Vector3D::modulo() const {
 	return sqrtl(aux);
 }
 
+double ed::Vector3D::angulo() const {
+	double aux=this->modulo()*vector->modulo();
+	aux/=abs(this->modulo()*vector->modulo());
+	return acos(aux);
+}
+
+
 
 
 ////////////////////////////////////////////////////////////////////////////////
