@@ -26,6 +26,18 @@
 */
 int main()
 {
+	//debug
+
+	//*
+
+	ed::Vector3D temp(1,1,1);
+	std::cin>>temp;
+	std::cout<<temp;
+	std::cout << "alfa: " <<temp.alfa(temp)<< '\n';
+	return 0;
+
+	//*/
+	//end debug
 
  // QUITAR LOS "COMENTARIOS DE BLOQUE" CUANDO SE HAYA CODIFICADO LA CLASE Vector3D
 
@@ -79,8 +91,8 @@ int main()
 				std::cout << RESET;
 
 // QUITAR EL COMENTARIOS CUANDO SE HAYA CODIFICADO LA CLASE Vector3D
-//				std::cout << "k = ";
-//				std::cin >> k;
+				std::cout << "k = ";
+				std::cin >> k;
 
 				break;
 

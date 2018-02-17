@@ -29,5 +29,3 @@ FILE_PATTERNS          =  *.hpp *.cpp
 
 # Para generar fórmulas en LaTeX
 USE_MATHJAX = YES
-
-

@@ -52,6 +52,6 @@ clean:
 	@echo "Borrando los ficheros superfluos"
 	@rm -f $(OBJECTS) *~
 
-.PHONY: e
+.PHONY: o
 o : $(NAME).exe
 	./$(NAME).exe
