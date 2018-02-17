@@ -100,9 +100,9 @@ class Vector3D
 	};
 
 	//vectorial product, is overloaded
-	Vector3D crossProduct(Vector3D const &v1, Vector3D const &v2) const;
+	Vector3D& crossProduct(Vector3D const &v1, Vector3D const &v2) const;
 	//overloaded version
-	inline Vector3D crossProduct(Vector3D const &vector) const{//v1 is *this
+	inline Vector3D& crossProduct(Vector3D const &vector) const{//v1 is *this
 		return crossProduct(*this,vector);
 	};
 
@@ -112,6 +112,15 @@ class Vector3D
 	inline double productoMixto(Vector3D const &v2, Vector3D const &v3) const{//v1 is *this
 		return productoMixto(*this,v2,v3);
 	};
+
+	//make the vectorial sum of v1 and v2 and returns it
+	inline Vector3D& sum(Vector3D const &v1, Vector3D const &v2)const{
+		Vector3D *aux=new Vector3D();
+		aux->set1(v1.get1()+v2.get1());
+		aux->set2(v1.get2()+v2.get2());
+		aux->set3(v1.get3()+v2.get3());
+		return *aux;
+	}
 
 
 
@@ -125,14 +134,19 @@ class Vector3D
 	inline void set3(double _z) {z_=_z;};
 
 	//sum overloaded
-	void sumConst(Vector3D vector, double diference);
+	void sumConst(Vector3D const &vector, double diference);
+	void sumConst(Vector3D const &v1, Vector3D const &v2);
 	//overloaded version
 	inline void sumConst(double diference){ sumConst(*this,diference); };
+	inline void sumConst(Vector3D const &v2){ sumConst(*this,v2); };
+
 
 	//mult overloaded
 	void multConst(Vector3D vector, double mult);
+	void multConst(Vector3D const &v1, Vector3D const &v2);
 	//overloaded version
 	inline void multConst(double mult){ multConst(*this,mult); };
+	inline void multConst(Vector3D const &vector){ multConst(*this,vector); };
 
 	//vectorial multiplication overloaded
 	void multVect(Vector3D v1, Vector3D const &v2);
@@ -141,7 +155,7 @@ class Vector3D
 
 
 	//reads the elements of the vector, is overloaded
-	inline void leeVector3D(Vector3D vector){
+	inline void leerVector3D(Vector3D &vector){
 		double temp;
 		std::cout << "enter x >> ";
 		std::cin>>temp;
@@ -156,7 +170,7 @@ class Vector3D
 		vector.set3(temp);
 	};
 	//overloaded version
-	inline void leeVector3D(){ leeVector3D(*this); };
+	inline void leerVector3D(){ leerVector3D(*this); };
 
 	//whrites the elements of the vector, is overloaded
 	inline void escribirVector3D(Vector3D const &vector)const{
@@ -186,10 +200,16 @@ class Vector3D
 	// COMPLETAR COMENTARIOS DE DOXYGEN
 	bool operator == (Vector3D const &objeto) const;
 
-	Vector3D& operator+(Vector3D const &v);
-	Vector3D& operator-(Vector3D const &v);
-	double operator* (ed::Vector3D const & v)const;
+	Vector3D& operator* (ed::Vector3D const & v)const;
+	Vector3D& operator*(double k)const;
+
 	Vector3D& operator^(ed::Vector3D const & v)const;
+
+	Vector3D& operator+(Vector3D const &v)const;
+	Vector3D& operator+(void)const;
+	Vector3D& operator-(Vector3D const &v)const;
+	//changes the sign of the vector
+	Vector3D& operator-(void)const;
 
 
 	//! \name Funciones lectura y escritura de la clase Vector3D
@@ -211,6 +231,7 @@ class Vector3D
 
 	// COMPLETAR COMENTARIOS DE DOXYGEN
 	ostream &operator<<(ostream &stream, Vector3D const &objeto);
+
 
 
 } // \brief Fin de namespace ed.
