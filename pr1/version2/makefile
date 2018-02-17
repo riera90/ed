@@ -1,7 +1,7 @@
 NAME=principal
 
 #
-OBJECTS = $(NAME).o funcionesAuxiliares.o Vector3D.o 
+OBJECTS = $(NAME).o funcionesAuxiliares.o Vector3D.o
 
 #
 CPPFLAGS = -c -g -Wall -ansi -O2
@@ -18,10 +18,10 @@ INCLUDES = funcionesAuxiliares.hpp Vector3D.hpp macros.hpp
 objetivo: $(NAME).exe
 
 #Opciones para NO depurar los asertos
-ndebug: CPPFLAGS += -DNDEBUG 
+ndebug: CPPFLAGS += -DNDEBUG
 ndebug: objetivo
 
-# Primer objetivo 
+# Primer objetivo
 $(NAME).exe: $(OBJECTS)
 			@echo "Generando " $@
 			@g++ $^ -o $@
@@ -42,13 +42,17 @@ Vector3D.o: Vector3D.cpp Vector3D.hpp macros.hpp
 
 
 # Generación de la documentación
-doc: Doxyfile 
+doc: Doxyfile
 	@echo "Generando la documentación con doxygen"
 	@doxygen
-  
+
 # Borrado
-.PHONY: clean  
+.PHONY: clean
 clean:
 	@echo "Borrando los ficheros superfluos"
-	@rm -f $(OBJECTS) *~ 
+	@rm -f $(OBJECTS) *~
+	@rm *.exe
 
+.PHONY: o
+o : $(NAME).exe
+	./$(NAME).exe
