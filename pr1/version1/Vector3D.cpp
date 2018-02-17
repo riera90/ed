@@ -194,9 +194,9 @@ ed::Vector3D & operator* (double k, ed::Vector3D const & objeto)
 // Se escriben por pantalla las coordenadas del vector 3D  de la forma (v1, v2, v3)
 ostream &operator<<(ostream &stream, ed::Vector3D const &objeto)
 {
-	stream<<"x:"<<objeto.get1()<<'\t';
-	stream<<"y:"<<objeto.get2()<<'\t';
-	stream<<"z:"<<objeto.get3()<<'\n';
+	stream<<'('<<		objeto.get1()<<',';
+	stream<<				objeto.get2()<<',';
+	stream<<				objeto.get3()<<')';
   return stream;
 }
 
@@ -204,7 +204,7 @@ ostream &operator<<(ostream &stream, ed::Vector3D const &objeto)
 istream &operator>>(istream &stream, ed::Vector3D &objeto)
 {
 	double temp;
-	std::cout << "enter x >> ";
+	std::cout << "\nenter x >> ";
 	stream>>temp;
 	objeto.set1(temp);
 
