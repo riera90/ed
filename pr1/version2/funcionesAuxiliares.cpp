@@ -134,7 +134,7 @@ void ed::observadoresDeVectores(ed::Vector3D const &u, ed::Vector3D const &v)
 {
  // QUITAR LOS "COMENTARIOS DE BLOQUE" CUANDO SE HAYA CODIFICADO LA CLASE Vector3D
 
-	// Usando la función de la clase
+	// Usado la función de la clase
 	std::cout  << BIYELLOW << "u = "  << RESET ;
 	u.escribirVector3D();
 	std::cout << std::endl;
@@ -188,24 +188,24 @@ void ed::observadoresDeVectores(ed::Vector3D const &u, ed::Vector3D const &v)
 
 	// //////////////////////
 
-	std::cout << BIBLUE << "Datos de v = " << RESET << u << std::endl;
- 	std::cout << BIYELLOW << "v.get1() = " << RESET << u.get1() << std::endl;
- 	std::cout << BIYELLOW << "v.get2() = " << RESET << u.get2() << std::endl;
- 	std::cout << BIYELLOW << "v.get3() = " << RESET << u.get3() << std::endl;
+	std::cout << BIBLUE << "Datos de v = " << RESET << v << std::endl;
+ 	std::cout << BIYELLOW << "v.get1() = " << RESET << v.get1() << std::endl;
+ 	std::cout << BIYELLOW << "v.get2() = " << RESET << v.get2() << std::endl;
+ 	std::cout << BIYELLOW << "v.get3() = " << RESET << v.get3() << std::endl;
 
-	std::cout << BIYELLOW << "v.modulo() = " << RESET << u.modulo() << std::endl;
+	std::cout << BIYELLOW << "v.modulo() = " << RESET << v.modulo() << std::endl;
 
 	if ( (v.modulo() != 0.0) )
 	{
-		std::cout << BIYELLOW << "v.alfa() = " << RESET << u.alfa() << std::endl;
-		std::cout << BIYELLOW << "v.beta() = " << RESET << u.beta() << std::endl;
-		std::cout << BIYELLOW << "v.gamma() = " << RESET << u.gamma() << std::endl;
+		std::cout << BIYELLOW << "v.alfa() = " << RESET << v.alfa() << std::endl;
+		std::cout << BIYELLOW << "v.beta() = " << RESET << v.beta() << std::endl;
+		std::cout << BIYELLOW << "v.gamma() = " << RESET << v.gamma() << std::endl;
 	}
 	else
 	{
 		std::cout << BIRED << "No se pueden calcular los ángulos de v: es un vector nulo"
 				  << RESET << std::endl;
-		std::cout << BIYELLOW << "u = " << RESET << u << std::endl;
+		std::cout << BIYELLOW << "v = " << RESET << v << std::endl;
 	}
 
 
@@ -255,7 +255,7 @@ void ed::modificarVector(ed::Vector3D &u, ed::Vector3D const &v, double k)
 	//
 	u.sumVect(v);
 
-  	std::cout << BIYELLOW << "u.sumConst(" << RESET
+  	std::cout << BIYELLOW << "u.sumVect(" << RESET
 			  << "v"
 			  << BIYELLOW << ") = " << RESET  << u << std::endl;
 
@@ -268,7 +268,7 @@ void ed::modificarVector(ed::Vector3D &u, ed::Vector3D const &v, double k)
 
 	u.multVect(v);
 
- 	std::cout << BIYELLOW << "u.multConst(" << RESET
+ 	std::cout << BIYELLOW << "u.multVect(" << RESET
 			  << "v"
 			  << BIYELLOW << ") = " << RESET  << u << std::endl;
 
@@ -311,8 +311,8 @@ void ed::mostrarProductoVectorial(ed::Vector3D const &u, ed::Vector3D const &v)
  // QUITAR LOS "COMENTARIOS DE BLOQUE" CUANDO SE HAYA CODIFICADO LA CLASE Vector3D
 
 
-	// Se comprueba si no son nulos
-	if ( (u.modulo() != 0.0) and  (v.modulo() != 0.0))
+	// Se comprueba si no son nulos ni paralelos
+	if ( (u.modulo() != 0.0) and  (v.modulo() != 0.0) and (u.angulo(v) > 0.0))
 	{
 		std::cout << BIBLUE;
 	  	std::cout << "Producto vectorial de dos vectores: u ^ v " << std::endl << std::endl;
@@ -339,7 +339,7 @@ void ed::mostrarProductoVectorial(ed::Vector3D const &u, ed::Vector3D const &v)
 	}
 	else
 	{
-		std::cout << BIRED << "No se puede calcular porque hay un vector nulo" << RESET << std::endl;
+		std::cout << BIRED << "No se puede calcular porque hay un vector nulo o los dos vectores son paralelos" << RESET << std::endl;
 		std::cout << BIYELLOW << "u = " << RESET << u << std::endl;
 		std::cout << BIYELLOW << "v = " << RESET << v << std::endl;
 	}
@@ -356,8 +356,8 @@ void ed::mostrarProductoMixto(ed::Vector3D const &u, ed::Vector3D const &v, ed::
  // QUITAR LOS "COMENTARIOS DE BLOQUE" CUANDO SE HAYA CODIFICADO LA CLASE Vector3D
 
 
-	// Se comprueba si no son nulos v y w
-	if ( (v.modulo() != 0.0) and  (w.modulo() != 0.0))
+	// Se comprueba si no son nulos v y w ni paralelos
+	if ( (v.modulo() != 0.0) and  (w.modulo() != 0.0) and (v.angulo(w) > 0.0))
 	{
 	  	std::cout << BIYELLOW << u << BIGREEN " * (" <<  v << " ^ " <<  w << ") = " << RESET
 				  << u.productoMixto(v,w) << std::endl;
@@ -367,7 +367,7 @@ void ed::mostrarProductoMixto(ed::Vector3D const &u, ed::Vector3D const &v, ed::
 	}
 	else
 	{
-		std::cout << BIRED << "No se puede calcular porque hay un vector nulo " << RESET << std::endl;
+		std::cout << BIRED << "No se puede calcular porque hay un vector nulo o los dos vectores son paralelos" << RESET << std::endl;
 		std::cout << BIYELLOW << "v = " << RESET << v << std::endl;
 		std::cout << BIYELLOW << "w = " << RESET << w << std::endl;
 	}

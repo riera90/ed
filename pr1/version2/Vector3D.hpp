@@ -302,7 +302,7 @@ class Vector3D
 	\param vector: vector a sumar con this
 	\return vector: vector con valor actualizado
 	*/
-	inline void sumConst(Vector3D const &v2){ sumConst(*this,v2); };
+	inline void sumVect(Vector3D const &v2){ sumConst(*this,v2); };
 
 
 	//mult overloaded
