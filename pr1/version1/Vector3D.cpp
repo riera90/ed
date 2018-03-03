@@ -48,9 +48,12 @@ double ed::Vector3D::dotProduct(ed::Vector3D const &v1,
 
 ed::Vector3D& ed::Vector3D::crossProduct(Vector3D const &v1, Vector3D const &v2) const{
 	ed::Vector3D *aux=new ed::Vector3D();
-	aux->set1( 		(v1.get2()	*	v2.get3()) - 		(v1.get3()	*	v2.get2()));
-	aux->set2( (-	(v1.get1())	*	v2.get3()) + 		(v1.get3()	*	v2.get1()));
-	aux->set3( 		(v1.get1()	*	v2.get2()) - (-	(v1.get2())	*	v2.get1()));
+	aux->set1(		(v1.get2()	*	v2.get3()) - (v1.get3()	*	v2.get2())	);
+	aux->set2(  -	(v1.get1()	*	v2.get3()) + (v1.get3()	*	v2.get1())	);
+	aux->set3( 		(v1.get1()	*	v2.get2()) - (v1.get2()	*	v2.get1())	);
+
+	assert(dotProduct(*aux) == 0 && v1.dotProduct(*aux) == 0);
+
 	return *aux;
 }
 
