@@ -256,7 +256,7 @@ class Vector3D
 
 
 ////////////////////////////////////////////////////////////////////////////
-	//! \name Modificadores: funciones de modificación de Vector3D
+//! \name Modificadores: funciones de modificación de Vector3D
 
 	//seters
 	/*!
@@ -283,27 +283,27 @@ class Vector3D
 	\return vector: vector con valor actualizado
 	*/
 	void sumConst(Vector3D const &vector, double diference);
-	/*!
-	\brief suma dos vectores componente a componente
-	\param vector: vector 1 a sumar constante
-	\param vector: vector 2 a sumar constante
-	\return vector: vector con valor actualizado
-	*/
-	void sumConst(Vector3D const &v1, Vector3D const &v2);
-	//overloaded version
+		//overloaded version
 	/*!
 	\brief suma una constante a los componentes de un vector this
 	\param real: constante a sumar
 	\return vector: vector con valor actualizado
 	*/
 	inline void sumConst(double diference){ sumConst(*this,diference); };
+
+	/*!
+	\brief suma dos vectores componente a componente
+	\param vector: vector 1 a sumar
+	\param vector: vector 2 a sumar
+	\return vector: vector con valor actualizado
+	*/
+	void sumVect(Vector3D const &v1, Vector3D const &v2);
 	/*!
 	\brief suma de un vector y los componentes de un vector this
 	\param vector: vector a sumar con this
 	\return vector: vector con valor actualizado
 	*/
-	inline void sumVect(Vector3D const &v2){ sumConst(*this,v2); };
-
+	inline void sumVect(Vector3D const &v2){ sumVect(*this,v2); };
 
 	//mult overloaded
 	/*!
@@ -313,13 +313,6 @@ class Vector3D
 	\return vector: vector con valor actualizado
 	*/
 	void multConst(Vector3D vector, double mult);
-	/*!
-	\brief multiplica dos vectores entre si
-	\param vector: vector 1 a multiplicar
-	\param vector: vector 2 a multiplicar
-	\return vector: vector con valor actualizado
-	*/
-	void multConst(Vector3D const &v1, Vector3D const &v2);
 	//overloaded version
 	/*!
 	\brief multiplica por constante los componentes de un vector This
@@ -327,12 +320,6 @@ class Vector3D
 	\return vector: vector con valor actualizado
 	*/
 	inline void multConst(double mult){ multConst(*this,mult); };
-	/*!
-	\brief multiplica un vector por this
-	\param vector: vector a multiplicar
-	\return vector: vector con valor actualizado
-	*/
-	inline void multConst(Vector3D const &vector){ multConst(*this,vector); };
 
 	//vectorial multiplication overloaded
 	/*!
@@ -396,9 +383,9 @@ class Vector3D
 	\return boolean: verdadero si se cumple la igualdad
 	*/
 	inline bool is_equal(Vector3D const &v1, Vector3D const &v2) const {
-		if (v1.get1()==v2.get1()
-		and v1.get2()==v2.get2()
-		and	v1.get3()==v2.get3()){
+		if(		abs(v1.get1()-v2.get1())<COTA_ERROR
+			and abs(v1.get2()-v2.get2())<COTA_ERROR
+			and abs(v1.get3()-v2.get3())<COTA_ERROR){
 			return true;
 		}else return false;
 	}
@@ -429,11 +416,11 @@ class Vector3D
 	\param vector: vector con el que operar
 	\return vector: vector con el valor actualizado
 	*/
-	Vector3D& operator* (ed::Vector3D const & v)const;
+	double operator* (ed::Vector3D const & v)const;
 	/*!
 	\brief calcula el producto de una cosntante por los componentes de un vector this
 	\param real: constante
-	\return vector: vector con el valor actualizado
+	\return real: valor con el valor relustante
 	*/
 	Vector3D& operator*(double k)const;
 	/*!

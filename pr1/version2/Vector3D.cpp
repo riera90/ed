@@ -48,9 +48,12 @@ double ed::Vector3D::dotProduct(ed::Vector3D const &v1,
 
 ed::Vector3D& ed::Vector3D::crossProduct(Vector3D const &v1, Vector3D const &v2) const{
 	ed::Vector3D *aux=new ed::Vector3D();
-	aux->set1( 		(v1.get2()	*	v2.get3()) - 		(v1.get3()	*	v2.get2()));
-	aux->set2( (-	(v1.get1())	*	v2.get3()) + 		(v1.get3()	*	v2.get1()));
-	aux->set3( 		(v1.get1()	*	v2.get2()) - (-	(v1.get2())	*	v2.get1()));
+	aux->set1(		(v1.get2()	*	v2.get3()) - (v1.get3()	*	v2.get2())	);
+	aux->set2(  -	(v1.get1()	*	v2.get3()) + (v1.get3()	*	v2.get1())	);
+	aux->set3( 		(v1.get1()	*	v2.get2()) - (v1.get2()	*	v2.get1())	);
+
+	assert(dotProduct(*aux) == 0 && v1.dotProduct(*aux) == 0);
+
 	return *aux;
 }
 
@@ -70,7 +73,7 @@ void ed::Vector3D::sumConst(ed::Vector3D const &vector, double diference){
 	this->set3(vector.get3()+diference);
 }
 
-void ed::Vector3D::sumConst(Vector3D const &v1, Vector3D const &v2){
+void ed::Vector3D::sumVect(ed::Vector3D const &v1, ed::Vector3D const &v2){
 	this->set1(v1.get1()+v2.get1());
 	this->set2(v1.get2()+v2.get2());
 	this->set3(v1.get3()+v2.get3());
@@ -80,12 +83,6 @@ void ed::Vector3D::multConst(ed::Vector3D vector, double mult){
 	this->set1(vector.get1()*mult);
 	this->set2(vector.get2()*mult);
 	this->set3(vector.get3()*mult);
-}
-
-void ed::Vector3D::multConst(Vector3D const &v1, Vector3D const &v2){
-	this->set1(v1.get1()*v2.get1());
-	this->set2(v1.get2()*v2.get2());
-	this->set3(v1.get3()*v2.get3());
 }
 
 void ed::Vector3D::multVect(ed::Vector3D v1, ed::Vector3D const &v2){
@@ -109,8 +106,8 @@ bool ed::Vector3D::operator == (ed::Vector3D const &objeto) const{
 	return is_equal(*this,objeto);
 }
 
-ed::Vector3D& ed::Vector3D::operator* (ed::Vector3D const & v)const{
-	return ed::Vector3D::crossProduct(*this,v);
+double ed::Vector3D::operator* (ed::Vector3D const & v)const{
+	return ed::Vector3D::dotProduct(*this,v);
 }
 
 ed::Vector3D& ed::Vector3D::operator* (double k)const{
@@ -128,7 +125,7 @@ ed::Vector3D& ed::Vector3D::operator^ (ed::Vector3D const & v)const{
 }
 
 ed::Vector3D& ed::Vector3D::operator+(ed::Vector3D const &v)const{
-	ed::Vector3D* aux=new ed::Vector3D();
+	ed::Vector3D* aux=new ed::Vector3D(v);
 	aux->set1(this->get1()+v.get1());
 	aux->set2(this->get2()+v.get2());
 	aux->set3(this->get3()+v.get3());
@@ -136,7 +133,7 @@ ed::Vector3D& ed::Vector3D::operator+(ed::Vector3D const &v)const{
 }
 
 ed::Vector3D& ed::Vector3D::operator+(void)const{
-	ed::Vector3D* aux=new ed::Vector3D();
+	ed::Vector3D* aux=new ed::Vector3D(*this);
 	return *aux;
 }
 
