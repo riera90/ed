@@ -26,23 +26,6 @@
 */
 int main()
 {
-	//debug
-
-	/*
-
-	ed::Vector3D temp(1,1,1);
-	ed::Vector3D temp_2(1,1,1);
-	// std::cin>>temp;
-	std::cout<<temp_2;
-	temp_2=-temp_2;
-	std::cout<<temp_2;
-
-	// std::cout<<temp+temp_2;
-
-	return 0;
-
-	//*/
-	//end debug
 
  // QUITAR LOS "COMENTARIOS DE BLOQUE" CUANDO SE HAYA CODIFICADO LA CLASE Vector3D
 
@@ -85,7 +68,7 @@ int main()
 				std::cout << "[1] Leer vectores" << std::endl;
 				std::cout << RESET;
 
-// QUITAR EL COMENTARIOS CUANDO SE HAYA CODIFICADO LA CLASE Vector3D
+// QUITAR LOS COMENTARIOS CUANDO SE HAYA CODIFICADO LA CLASE Vector3D
 				ed::leerVectores(u,v,w);
 
 				break;
@@ -95,7 +78,7 @@ int main()
 				std::cout << "[2] Leer número escalar " << std::endl;
 				std::cout << RESET;
 
-// QUITAR EL COMENTARIOS CUANDO SE HAYA CODIFICADO LA CLASE Vector3D
+// QUITAR LOS COMENTARIOS CUANDO SE HAYA CODIFICADO LA CLASE Vector3D
 				std::cout << "k = ";
 				std::cin >> k;
 
@@ -107,7 +90,7 @@ int main()
 				std::cout << "[3] Escribir número y vectores " << std::endl;
 				std::cout << RESET;
 
-// QUITAR EL COMENTARIOS CUANDO SE HAYA CODIFICADO LA CLASE Vector3D
+// QUITAR LOS COMENTARIOS CUANDO SE HAYA CODIFICADO LA CLASE Vector3D
 				// Número escalar
 				std::cout  << BIYELLOW << "k = " << RESET << k << std::endl;
 
@@ -122,7 +105,7 @@ int main()
 				std::cout << "[4] Observadores de los vectores: módulos y ángulos " << std::endl;
 				std::cout << RESET;
 
-// QUITAR EL COMENTARIOS CUANDO SE HAYA CODIFICADO LA CLASE Vector3D
+// QUITAR LOS COMENTARIOS CUANDO SE HAYA CODIFICADO LA CLASE Vector3D
 				ed::observadoresDeVectores(u,v);
 
 				break;
@@ -132,7 +115,7 @@ int main()
 			  	std::cout << "[5] Modificación del vector \"u\" usando v y k " << std::endl;
 				std::cout << RESET;
 
-// QUITAR EL COMENTARIOS CUANDO SE HAYA CODIFICADO LA CLASE Vector3D
+// QUITAR LOS COMENTARIOS CUANDO SE HAYA CODIFICADO LA CLASE Vector3D
 				ed::modificarVector(u,v,k);
 
 				break;
@@ -142,7 +125,7 @@ int main()
 				std::cout << "[6] Producto escalar de u y v " << std::endl;
 				std::cout << RESET;
 
-// QUITAR EL COMENTARIOS CUANDO SE HAYA CODIFICADO LA CLASE Vector3D
+// QUITAR LOS COMENTARIOS CUANDO SE HAYA CODIFICADO LA CLASE Vector3D
 				ed::mostrarProductoEscalar(u,v);
 
 				break;
@@ -153,7 +136,7 @@ int main()
 				std::cout << "[7] Producto vectorial de u y v " << std::endl;
 				std::cout << RESET;
 
-// QUITAR EL COMENTARIOS CUANDO SE HAYA CODIFICADO LA CLASE Vector3D
+// QUITAR LOS COMENTARIOS CUANDO SE HAYA CODIFICADO LA CLASE Vector3D
 				ed::mostrarProductoVectorial(u,v);
 
 				break;
@@ -164,7 +147,7 @@ int main()
 			  	std::cout << "[8] Producto mixto de tres vectores  u * (v ^ w) " << std::endl;
 				std::cout << RESET;
 
-// QUITAR EL COMENTARIOS CUANDO SE HAYA CODIFICADO LA CLASE Vector3D
+// QUITAR LOS COMENTARIOS CUANDO SE HAYA CODIFICADO LA CLASE Vector3D
 				ed::mostrarProductoMixto(u,v,w);
 
 				break;
@@ -174,7 +157,7 @@ int main()
 				std::cout << "[9] Mostrar el uso de los operadores con u y v (se modifica w)" << std::endl;
 				std::cout << RESET;
 
-// QUITAR EL COMENTARIOS CUANDO SE HAYA CODIFICADO LA CLASE Vector3D
+// QUITAR LOS COMENTARIOS CUANDO SE HAYA CODIFICADO LA CLASE Vector3D
 				ed::mostrarOperadores(u,v,w,k);
 
 				break;

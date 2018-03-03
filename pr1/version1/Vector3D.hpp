@@ -29,37 +29,39 @@ using std::ostream;
 
 // Se incluye la clase Vector3D dentro del espacio de nombre de la asigantura: ed
 namespace ed {
-
-
 //!  Definición de la clase Vector3D:  \f$ \vec{v} = (v_1, v_2, v_3) = v_1 \vec{i} + v_2 \vec{j} + v_3 \vec{k} \f$
 class Vector3D
 {
   //! \name Atributos privados de la clase Vector3D
-   private:
- 	//! \brief coordenada x
+  private:
+	//! \brief coordenadas del objeto
 	double x_;
-	//! \brief coordenada y
 	double y_;
-	//! \brief coordenada z
 	double z_;
 
-
-
-   //! \name Funciones o métodos públicos de la clase Vector3D
-   public:
+  //! \name Funciones o métodos públicos de la clase Vector3D
+  public:
 
 	//! \name Constructores de la clase Vector3D
 	/*!
 	\brief constructor sin parametros
 	*/
-	Vector3D() : x_(0), y_(0), z_(0) {};
+	Vector3D() {
+		x_=0;
+		y_=0;
+		z_=0;
+	};
 	/*!
 	\brief constructor com parametros
 	\param real: coordenada x del vector
 	\param real: coordenada y del vector
 	\param real: coordenada z del vector
 	*/
-	Vector3D(double _x ,double _y ,double _z) : x_(_x), y_(_y), z_(_z) {};
+	Vector3D(double _x ,double _y ,double _z) {
+		x_=_x;
+		y_=_y;
+		z_=_z;
+	};
 
 	/*!
 	\brief constructor de copia
@@ -291,7 +293,7 @@ class Vector3D
 	\param vector: vector a sumar con this
 	\return vector: vector con valor actualizado
 	*/
-	inline void sumConst(Vector3D const &v2){ sumConst(*this,v2); };
+	inline void sumVect(Vector3D const &v2){ sumConst(*this,v2); };
 
 
 	//mult overloaded
