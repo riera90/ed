@@ -253,7 +253,7 @@ void ed::modificarVector(ed::Vector3D &u, ed::Vector3D const &v, double k)
 
 
 	//
-	u.sumConst(v);
+	u.sumVect(v);
 
   	std::cout << BIYELLOW << "u.sumConst(" << RESET
 			  << "v"
@@ -266,7 +266,7 @@ void ed::modificarVector(ed::Vector3D &u, ed::Vector3D const &v, double k)
 	std::cout << BIYELLOW << "Valor de v = " << RESET  << v
 			  << std::endl << std::endl;
 
-	u.multConst(v);
+	u.multVect(v);
 
  	std::cout << BIYELLOW << "u.multConst(" << RESET
 			  << "v"
