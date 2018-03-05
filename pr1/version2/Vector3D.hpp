@@ -383,9 +383,9 @@ class Vector3D
 	\return boolean: verdadero si se cumple la igualdad
 	*/
 	inline bool is_equal(Vector3D const &v1, Vector3D const &v2) const {
-		if(		abs(v1.get1()-v2.get1())<COTA_ERROR
-			and abs(v1.get2()-v2.get2())<COTA_ERROR
-			and abs(v1.get3()-v2.get3())<COTA_ERROR){
+		if(		std::abs(v1.get1()-v2.get1())<COTA_ERROR
+			and std::abs(v1.get2()-v2.get2())<COTA_ERROR
+			and std::abs(v1.get3()-v2.get3())<COTA_ERROR){
 			return true;
 		}else return false;
 	}
