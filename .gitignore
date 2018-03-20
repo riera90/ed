@@ -1,4 +1,6 @@
 notpr/**
 **/*.o
+**/*.a
 **/*.out
 **/*.exe
+pr2_profesor
