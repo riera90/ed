@@ -8,7 +8,7 @@ OBJ_DIR=./temp
 OUTPUT_NAME=executable
 MAIN_NAME=main
 # MAIN_NAME=testProcincia
-FN_FILES_NAMES=clases/municipio clases/provincia
+FN_FILES_NAMES=clases/Municipio clases/Provincia
 LIB_NAME=lib_name
 HEADERS_LOCATION=auxiliares clases
 # where the headers are located inside of the BASE_DIR folder
@@ -101,14 +101,13 @@ OBJ_DIR:=$(addsuffix /,$(TEMP))
 TEMP := $(addsuffix .$(CODE_EXTENSION),$(FN_FILES_NAMES))
 CODE_FILES_W_ROUTE := $(addprefix $(BASE_DIR),$(TEMP))
 
-TEMP := $(addsuffix .o,$(FN_FILES_NAMES))
-temp:=$(shell echo "$(temp)" | grep -Eo [a-z\.\_\-]*$)
-TEMP:= $(addprefix $(OBJ_DIR),$(TEMP))
-OBJ_FILES_W_ROUTE:=
+# wip
+# TEMP := $(addsuffix .o,$(FN_FILES_NAMES))
+# TEMP:=$(shell for route in $(TEMP); echo $(route))#| grep -Eo [a-zA-Z\.\_\-]*$")
+# OBJ_FILES_W_ROUTE:= $(addprefix $(OBJ_DIR),$(TEMP))
 
 FLAGS :=$(addprefix -,$(COMPILATION_FLAGS))
 FLAGS += $(addprefix -I $(BASE_DIR),$(HEADERS_LOCATION))
-
 
 
 # BINARY EXECUTION
@@ -129,12 +128,14 @@ endif
 $(OUTPUT_DIR)$(OUTPUT_NAME) : $(BASE_DIR)$(MAIN_NAME).$(CODE_EXTENSION) $(LIB_DIR)$(LIB_NAME).a
 	$(COMPILER) -o $(OUTPUT_DIR)$(OUTPUT_NAME).out $(BASE_DIR)$(MAIN_NAME).$(CODE_EXTENSION) $(LIB_DIR)$(LIB_NAME).a $(FLAGS)
 
-# .o COMPILATION (gcc -c var.cc foo.cc)
-$(OBJ_FILES_W_ROUTE) : $(CODE_FILES_W_ROUTE)
 
-	cd $(OBJ_DIR)
-	$(COMPILER) -c $^
-	mv ./*.o $(OBJ_DIR)
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>WIP!!
+# .o COMPILATION (gcc -c var.cc foo.cc)
+# $(OBJ_FILES_W_ROUTE) : $(CODE_FILES_W_ROUTE)
+# 	@echo creating .os
+# 	cd $(OBJ_DIR)
+# 	$(COMPILER) -c $^
+# 	mv ./*.o $(OBJ_DIR)
 
 
 #.a COMPILATION (ar -rs .lib.a var.o foo.o)
