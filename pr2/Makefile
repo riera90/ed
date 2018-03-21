@@ -8,7 +8,7 @@ OBJ_DIR=./temp
 OUTPUT_NAME=executable
 MAIN_NAME=main_testing
 # MAIN_NAME=testProcincia
-FN_FILES_NAMES=clases/Municipio clases/Provincia
+FN_FILES_NAMES=clases/Municipio clases/Provincia wrapers/csv/CSV_reader
 LIB_NAME=lib_name
 HEADERS_LOCATION=auxiliares clases wrapers/csv
 # where the headers are located inside of the BASE_DIR folder
