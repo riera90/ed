@@ -1,6 +1,8 @@
 #ifndef _MUNICIPIO_H_
 #define _MUNICIPIO_H_
 
+#include"Municipio.hpp"
+#include <iostream>
 
 class Municipio{
 	private:
@@ -21,7 +23,7 @@ class Municipio{
 			\param     mujeres: valor por defecto 0.0
 			\pre       Ninguna
 			\post      Ninguna
-			\sa        set_name(), set_postal_code(),set_mans(), set_womans()
+			\sa        set_name(), set_postal_code(),set_mens(), set_womens()
 		*/
 		inline Municipio(std::string nombre = "",
 											int codigoPostal = 0,
@@ -29,8 +31,8 @@ class Municipio{
 											int mujeres = 0){
 				this->set_postal_code(codigoPostal);
 				this->set_name(nombre);
-				this->set_mans(hombres);
-				this->set_womans(mujeres);
+				this->set_mens(hombres);
+				this->set_womens(mujeres);
 		}
 
 			/*!
@@ -41,14 +43,14 @@ class Municipio{
 				\param     objeto de la clase Municipio que proporciona los valores iniciales
 				\pre       Ninguna
 				\post      Ninguna
-				\sa        set_name(), set_postal_code(), set_mans(), set_womans(),
-				\n		   get_name(), get_postal_code(), get_mans(), get_womens()
+				\sa        set_name(), set_postal_code(), set_mens(), set_womens(),
+				\n		   get_name(), get_postal_code(), get_mens(), get_womens()
 			*/
 		inline Municipio(Municipio const &objeto){
 			this->set_postal_code(objeto.get_postal_code());
 			this->set_name(objeto.get_name());
-			this->set_mans(objeto.get_mans());
-			this->set_womans(objeto.get_womens());
+			this->set_mens(objeto.get_mens());
+			this->set_womens(objeto.get_womens());
 		}
 
 		//! \name Observadores: funciones de consulta de Municipio
@@ -59,7 +61,7 @@ class Municipio{
 			\return  Nombre del municipio
 			\pre     Ninguna
 			\post    Ninguna
-			\sa      get_postal_code(), get_mans(), get_womens(), get_habitants()
+			\sa      get_postal_code(), get_mens(), get_womens(), get_habitants()
 		*/
 		inline std::string get_name()const{
 			return this->name_;
@@ -72,7 +74,7 @@ class Municipio{
 			\return  Código postal del municipio (tipo int)
 			\pre     Ninguna
 			\post    Ninguna
-			\sa      get_name(), get_mans(), get_womens(), get_habitants()
+			\sa      get_name(), get_mens(), get_womens(), get_habitants()
 		*/
 		inline int get_postal_code()const{
 				return this->postal_code_;
@@ -87,7 +89,7 @@ class Municipio{
 			\post    Ninguna
 			\sa      get_postal_code(), get_name(), get_womens(), get_habitants()
 			*/
-		inline int get_mans() const{
+		inline int get_mens() const{
 			return this->mens_;
 		}
 
@@ -99,7 +101,7 @@ class Municipio{
 			\return  Número total de mujeres del municipio (tipo int)
 			\pre     Ninguna
 			\post    Ninguna
-			\sa      get_postal_code(), get_name(), get_mans(), get_habitants()
+			\sa      get_postal_code(), get_name(), get_mens(), get_habitants()
 		*/
 		inline int get_womens() const{
 			return this->womens_;
@@ -112,11 +114,11 @@ class Municipio{
 			\note 	 El número total de habitantes es un atributo "derivado" que se calcula mediante la suma del número de hombres y el número de mujeres
 			\return  Número total de habitantes del municipio (tipo int)
 			\pre     Ninguna
-			\post    valorDevuelto == get_mans() + get_womens()
-			\sa      get_postal_code(), get_name(), get_mans(), get_womens()
+			\post    valorDevuelto == get_mens() + get_womens()
+			\sa      get_postal_code(), get_name(), get_mens(), get_womens()
 		*/
 		inline int get_habitants() const{
-			return this->get_mans() + this->get_womens();
+			return this->get_mens() + this->get_womens();
 		}
 
 
@@ -128,7 +130,7 @@ class Municipio{
 			\param v: nuevo valor del código postal
 			\pre   Ninguna
 			\post  El valor del código postal debe ser "v"
-			\sa    set_name, set_mans, set_womans
+			\sa    set_name, set_mens, set_womens
 		*/
 		inline void set_postal_code(int v){
 			this->postal_code_ = v;
@@ -153,9 +155,9 @@ class Municipio{
 			\param v: nuevo valor del número total de hombres
 			\pre   Ninguna
 			\post  El valor del número total de hombres debe ser "v"
-			\sa    set_name, set_postal_code, set_womans
+			\sa    set_name, set_postal_code, set_womens
 		*/
-		inline void set_mans(int v){
+		inline void set_mens(int v){
 			this->mens_ = v;
 		}
 
@@ -165,9 +167,9 @@ class Municipio{
 			\param v: nuevo valor del número total de mujeres
 			\pre   Ninguna
 			\post  El valor del número total de mujeres debe ser "v"
-			\sa    set_name, set_postal_code, set_mans
+			\sa    set_name, set_postal_code, set_mens
 		*/
-		inline void set_womans(int v){
+		inline void set_womens(int v){
 			this->womens_ = v;
 		}
 
@@ -182,16 +184,16 @@ class Municipio{
 			\param     objeto de la clase Municipio pasado como referencia constante
 			\pre       El Municipio "objeto" debe ser diferente del municipio actual
 			\post      Ninguna
-			\sa        set_postal_code, set_name, set_mans, set_womans,
-			\n		   get_postal_code, get_name, get_mans, get_womens
+			\sa        set_postal_code, set_name, set_mens, set_womens,
+			\n		   get_postal_code, get_name, get_mens, get_womens
 		*/
 		inline Municipio & operator=(Municipio const &objeto){
 			// Se comprueba que no sean el mismo objeto
 			if (this != &objeto){
 				this->set_postal_code(objeto.get_postal_code());
 				this->set_name(objeto.get_name());
-				this->set_mans(objeto.get_mans());
-				this->set_womans(objeto.get_womens());
+				this->set_mens(objeto.get_mens());
+				this->set_womens(objeto.get_womens());
 			}
 			return *this;
 		}
@@ -234,18 +236,18 @@ class Municipio{
 			\brief   Asigna a un Municipio las conombres "x" e "y" leídas desde el teclado
 			\pre     Ninguna
 			\post    Deben ser numéricos los atributos de los atributos código postal, hombre y mujeres
-			\sa      set_postal_code, set_name, set_mans, set_womans, escribirMunicipio
+			\sa      set_postal_code, set_name, set_mens, set_womens, escribirMunicipio
 		*/
-		void write_Municipio();
+		void write_Municipio() const;
 
 		/*!
 			\brief Escribe por pantalla los valores de los atributos de un Municipio
 			\note  Formato: código postal, nombre, habitantes, hombres, mujeres
 			\pre   Ninguna
 			\post  Ninguna
-			\sa    get_postal_code, get_name, get_mans, get_womens, get_habitants
+			\sa    get_postal_code, get_name, get_mens, get_womens, get_habitants
 		*/
-		void read_Municipio() const;
+		void read_Municipio();
 
 }; // Fin de la definición de la clase Municipio
 
@@ -261,7 +263,7 @@ class Municipio{
 	\post      Ninguna
 	\sa        operator<
 */
-bool compare_haitants (Municipio const &objeto1, Municipio const &objeto2) ;
+bool compare_haitants (Municipio const &objeto1, Municipio const &objeto2);
 
 /*!
 	\brief     Sobrecarga del operador de salida o escritura "<<"
@@ -272,7 +274,7 @@ bool compare_haitants (Municipio const &objeto1, Municipio const &objeto2) ;
 	\post      Ningguna
 	\sa        operator>>()
 */
-std::ostream &operator<<(std::ostream &stream, Municipio const &objeto);
+std::ofstream &operator<<(std::ofstream &stream, Municipio const &objeto);
 
 /*!
 	\brief     Sobrecarga del operador de entrada o lectura ">>"

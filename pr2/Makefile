@@ -6,11 +6,11 @@ OBJ_DIR=./temp
 #------------------------------
 # FILENAMES (without extension)
 OUTPUT_NAME=executable
-MAIN_NAME=main
+MAIN_NAME=main_testing
 # MAIN_NAME=testProcincia
 FN_FILES_NAMES=clases/Municipio clases/Provincia
 LIB_NAME=lib_name
-HEADERS_LOCATION=auxiliares clases
+HEADERS_LOCATION=auxiliares clases wrapers/csv
 # where the headers are located inside of the BASE_DIR folder
 #------------------------------
 # COMPILERS
@@ -102,49 +102,58 @@ TEMP := $(addsuffix .$(CODE_EXTENSION),$(FN_FILES_NAMES))
 CODE_FILES_W_ROUTE := $(addprefix $(BASE_DIR),$(TEMP))
 
 # wip
-# TEMP := $(addsuffix .o,$(FN_FILES_NAMES))
-# TEMP:=$(shell for route in $(TEMP); echo $(route))#| grep -Eo [a-zA-Z\.\_\-]*$")
-# OBJ_FILES_W_ROUTE:= $(addprefix $(OBJ_DIR),$(TEMP))
+TEMP := $(addsuffix .o,$(FN_FILES_NAMES))
+OBJ_FILES_W_ROUTE:= $(addprefix $(OBJ_DIR),$(FN_FILES_NAMES))
+OBJ_FILES_W_ROUTE_EXT:= $(addprefix $(OBJ_DIR),$(TEMP))
 
 FLAGS :=$(addprefix -,$(COMPILATION_FLAGS))
-FLAGS += $(addprefix -I $(BASE_DIR),$(HEADERS_LOCATION))
+FLAGS_DIN := $(addprefix -I $(BASE_DIR),$(HEADERS_LOCATION))
 
 
 # BINARY EXECUTION
 ifeq ($(EXECUTE_AFTER_COMPILATION), YES)
 execute : $(OUTPUT_DIR)$(OUTPUT_NAME)
 ifeq ($(EXECUTION_DATA), SIMPLE)
-	time "$(OUTPUT_DIR)$(OUTPUT_NAME).out"
+	@echo Executing
+	@echo
+	@time "$(OUTPUT_DIR)$(OUTPUT_NAME).out"
 endif
 ifeq ($(EXECUTION_DATA), COMPLETE)
+	@echo Executing
+	@echo
 	@echo WIP, try EXECUTION_DATA as simple
 endif
 ifeq ($(EXECUTION_DATA_RECOVERY), NO)
-	$(OUTPUT_DIR)$(OUTPUT_NAME).out
+	@echo Executing
+	@echo
+	@$(OUTPUT_DIR)$(OUTPUT_NAME).out
 endif
 endif
 
 # BINARY COMPILATION (gcc -o a.out main.cc lib.a -flags)
 $(OUTPUT_DIR)$(OUTPUT_NAME) : $(BASE_DIR)$(MAIN_NAME).$(CODE_EXTENSION) $(LIB_DIR)$(LIB_NAME).a
-	$(COMPILER) -o $(OUTPUT_DIR)$(OUTPUT_NAME).out $(BASE_DIR)$(MAIN_NAME).$(CODE_EXTENSION) $(LIB_DIR)$(LIB_NAME).a $(FLAGS)
+	@echo Building binaries
+	@$(COMPILER) -o $(OUTPUT_DIR)$(OUTPUT_NAME).out $(BASE_DIR)$(MAIN_NAME).$(CODE_EXTENSION) $(LIB_DIR)$(LIB_NAME).a $(FLAGS) $(FLAGS_DIN)
 
 
-#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>WIP!!
 # .o COMPILATION (gcc -c var.cc foo.cc)
-# $(OBJ_FILES_W_ROUTE) : $(CODE_FILES_W_ROUTE)
-# 	@echo creating .os
-# 	cd $(OBJ_DIR)
-# 	$(COMPILER) -c $^
-# 	mv ./*.o $(OBJ_DIR)
-
+#generates the .o's and moves them into their corresponding foldet in the OBJ_DIR
+$(OBJ_FILES_W_ROUTE_EXT) : $(CODE_FILES_W_ROUTE)
+	@echo Building objects.
+	@for file in $(FN_FILES_NAMES) ; do \
+			$(COMPILER) -c $(BASE_DIR)$$file.$(CODE_EXTENSION) $(FLAGS_DIN); \
+			mv ./*.o $(OBJ_DIR)$$file.o ; \
+	done
 
 #.a COMPILATION (ar -rs .lib.a var.o foo.o)
-$(LIB_DIR)$(LIB_NAME).a : $(OBJ_FILES_W_ROUTE)
-	ar -rs $@ $^
+$(LIB_DIR)$(LIB_NAME).a : $(OBJ_FILES_W_ROUTE_EXT)
+	@echo Building library.
+	@ar -rs $@ $^
 
 # CLEAN
 clean:
-	rm -f $(OUTPUT_DIR)*.out $(OBJ_DIR)*.o $(LIB_DIR)*.a
+	@echo cleaning.
+	@rm -rf $(OUTPUT_DIR)**/*.out $(OBJ_DIR)**/*.o $(LIB_DIR)**/*.a
 googletest : $(TESTS)
 
 ifeq ($GTEST,YES)

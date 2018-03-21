@@ -12,6 +12,9 @@
 
 #include "Municipio.hpp"
 
+void pr(){
+	std::cout << "test!!!" << '\n';
+}
 
 /*
  Definiciones de las funciones lectura y escritura de la clase Municipio
@@ -74,7 +77,7 @@ void Municipio::write_Municipio() const{
 
 }
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 
 bool compare_haitants (Municipio const &objeto1, Municipio const &objeto2){
    	return (   objeto1.get_mens() + objeto1.get_womens()
@@ -83,7 +86,7 @@ bool compare_haitants (Municipio const &objeto1, Municipio const &objeto2){
 
 
 // Sobrecarga del operador de salida
-ostream &operator<<(ostream &stream, Municipio const & objeto)
+std::ostream &operator<<(std::ostream &stream, Municipio const & objeto)
 {
   // Se escriben los datos teniendo en cuenta el formato: CP Nombre; hombres; mujeres;
   stream << objeto.get_postal_code();
@@ -99,7 +102,7 @@ ostream &operator<<(ostream &stream, Municipio const & objeto)
 }
 
 // Sobrecarga del operador de entrada
-istream &operator>>(istream &stream, Municipio & objeto){
+std::istream &operator>>(std::istream &stream, Municipio & objeto){
  	// Se leen los datos teniendo en cuenta el formato: CP Nombre; hombres; mujeres;
   std::string cadena;
 
