@@ -1,6 +1,6 @@
 #include "Municipio.hpp"
 #include "Provincia.hpp"
 
-void Provincia::read_csv(std::string file){
-	
+void Provincia::load_data(CSV_data data){
+	data.print();
 }

@@ -1,3 +1,6 @@
+#ifndef _CSV_reader_hpp_
+#define _CSV_reader_hpp_
+
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -88,3 +91,5 @@ class CSV_reader{
 			return data;
 		}
 };
+
+#endif

@@ -79,7 +79,7 @@ void Municipio::write_Municipio() const{
 
 //////////////////////////////////////////////////////////////////////////////
 
-bool compare_haitants (Municipio const &objeto1, Municipio const &objeto2){
+bool compare_habitants (Municipio const &objeto1, Municipio const &objeto2){
    	return (   objeto1.get_mens() + objeto1.get_womens()
              < objeto2.get_mens() + objeto2.get_womens() );
 }

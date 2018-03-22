@@ -12,6 +12,7 @@ class Provincia{
 
 		std::string name_;
 		int code_;
+		CSV_data data;
 		std::list<Municipio> municipios;
 
 	public://getters
@@ -27,7 +28,7 @@ class Provincia{
 		bool is_empty(){ return n_municipios()==0 ? true:false; };
 
 	public://csv reader
-		void read_csv(std::string file);
+		void load_data();
 };
 
 #endif
