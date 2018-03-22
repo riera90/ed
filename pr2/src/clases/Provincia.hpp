@@ -9,11 +9,12 @@
 void pr();
 class Provincia{
 	private:
-
 		std::string name_;
 		int code_;
-		CSV_data data;
-		std::list<Municipio> municipios;
+		CSV_data data_;
+
+	protected:
+		std::list<Municipio> municipios_;
 
 	public://getters
 		std::string get_name(){ return name_; };
@@ -24,11 +25,11 @@ class Provincia{
 		void set_code(int code){ code_=code; };
 
 	public://observers
-		int n_municipios(){ return municipios.size(); };
+		int n_municipios(){ return municipios_.size(); };
 		bool is_empty(){ return n_municipios()==0 ? true:false; };
 
 	public://csv reader
-		void load_data();
+		void load_data(std::string csv_file);
 };
 
 #endif

@@ -1,5 +1,5 @@
 # DIRECTORIES
-BASE_DIR=./main
+BASE_DIR=./src
 OUTPUT_DIR=./output
 LIB_DIR=./temp
 OBJ_DIR=./temp

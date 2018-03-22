@@ -5,12 +5,13 @@
 #include <fstream>
 #include <vector>
 #include <string>
-
+#define SEPARATOR ','
 class Line{//used in CSV_data class
 	private:
 		int fields_;
 		std::vector<std::string> field_;
 	public:
+		//biulder
 		Line(){ fields_=0; }
 		void push_field(std::string field){
 			field_.push_back(field);
@@ -25,6 +26,7 @@ class CSV_data{ //returned class for load_csv()
 		int lines_;
 		std::vector<Line> line_;
 	public:
+		//builder
 		CSV_data(){ lines_=0; }
 		void push_line(Line new_line){
 			line_.push_back(new_line);
@@ -62,15 +64,15 @@ class CSV_reader{
 			}
 			line=temp_line;
 			//substract the fiend from the string
-			field=line.substr(0,line.find(','));
+			field=line.substr(0,line.find(SEPARATOR));
 			//pushes the fiend into the line
 			complete_line.push_field(field);
 			//checks if thera are none fields to be read
-			while (line.find(',')!=std::string::npos) {
+			while (line.find(SEPARATOR)!=std::string::npos) {
 				//delete the fiend from the string
-				line=line.substr(line.find(',')+1);
+				line=line.substr(line.find(SEPARATOR)+1);
 				//gets the next field
-				field=line.substr(0,line.find(','));
+				field=line.substr(0,line.find(SEPARATOR));
 				//pushes the fiend into the line
 				complete_line.push_field(field);
 			}
