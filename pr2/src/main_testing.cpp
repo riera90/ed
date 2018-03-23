@@ -9,7 +9,6 @@ int main(){
 	std::string csv_file="/mnt/data_1/code/c++/ed/pr2/output/Cordoba.csv";
 
 	Provincia cordoba;
-	cordoba.load_data(csv_file);
 
 
 	return 0;

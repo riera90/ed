@@ -9,7 +9,7 @@ OUTPUT_NAME=executable
 MAIN_NAME=main_testing
 # MAIN_NAME=testProcincia
 FN_FILES_NAMES=clases/Municipio clases/Provincia wrapers/csv/CSV_reader
-LIB_NAME=lib_name
+LIB_NAME=gestor_de_provincias
 HEADERS_LOCATION=auxiliares clases wrapers/csv
 # where the headers are located inside of the BASE_DIR folder
 #------------------------------
@@ -57,7 +57,7 @@ GTEST=NO
 
 # Points to the root of Google Test, relative to where this file is.
 # Remember to tweak this if you move this file.
-GTEST_DIR = /googletest*
+GTEST_DIR = googletest/googletest
 
 # Where to find user code.
 # USER_DIR = ../samples
@@ -72,7 +72,7 @@ CXXFLAGS += -g -Wall -Wextra -pthread
 
 # All tests produced by this Makefile.  Remember to add new tests you
 # created to the list.
-TESTS = foo_unittest var_unittest
+TESTS = gtest/test_1
 
 # All Google Test headers.  Usually you shouldn't change this
 # definition.
@@ -154,9 +154,13 @@ $(LIB_DIR)$(LIB_NAME).a : $(OBJ_FILES_W_ROUTE_EXT)
 clean:
 	@echo cleaning.
 	@rm -rf $(OUTPUT_DIR)**/*.out $(OBJ_DIR)**/*.o $(LIB_DIR)**/*.a
+
+gt  : googletest
+
 googletest : $(TESTS)
 
 ifeq ($GTEST,YES)
+
 
 clean_googletest :
 	rm -f $(TESTS) gtest.a gtest_main.a *.o

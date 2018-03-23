@@ -12,13 +12,14 @@ class Provincia{
 		std::string name_;
 		int code_;
 		CSV_data data_;
-
-	protected:
 		std::list<Municipio> municipios_;
 
 	public://getters
 		std::string get_name(){ return name_; };
 		int get_code(){ return code_; };
+		void push_municipio(Municipio municipio){
+			municipios_.push_back(municipio);
+		}
 
 	public://setters
 		void set_name(std::string name){ name_=name; };
