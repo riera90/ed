@@ -11,10 +11,10 @@ void Provincia::load_data(std::string csv_file){
 
 		Line line=data.get_line(i);
 
-		municipio.set_postal_code	(line.get_field(0));
-		municipio.set_name				(line.get_field(1));
-		municipio.set_mens				(line.get_field(2));
-		municipio.set_womens			(line.get_field(3));
+		// municipio.set_postal_code	(line.get_field(0));
+		// municipio.set_name				(line.get_field(1));
+		// municipio.set_mens				(line.get_field(2));
+		// municipio.set_womens			(line.get_field(3));
 
 
 	}

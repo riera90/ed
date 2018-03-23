@@ -1,3 +1,6 @@
+#############################################################
+# Makefile configuration
+#############################################################
 # DIRECTORIES
 BASE_DIR=./src
 OUTPUT_DIR=./output
@@ -28,6 +31,25 @@ EXECUTION_DATA=SIMPLE
 COMPILATION_FLAGS=Wpedantic
 #the binary compilation flags without the "-"
 
+#############################################################
+# GTEST configuration
+#############################################################
+
+GTEST=YES
+#[YES/NO]
+
+# Please tweak the following variable definitions as needed by your
+# project.
+
+# Points to the root of Google Test, relative to where this file is.
+# Remember to tweak this if you move this file.
+GTEST_DIR=googletest/googletest
+
+# All tests produced by this Makefile.  Remember to add new tests you
+# created to the list.
+TESTS=prueba_unittest Municipio_unittest
+TESTS_DIR=./tests
+
 
 #############################################################
 # the previous configuration compiles the following tree
@@ -44,46 +66,13 @@ COMPILATION_FLAGS=Wpedantic
 #    └var.o
 # Unitest:
 #
-#
-#
 #############################################################
-#GTEST_DIR
+# Makefile: you should not touch here...
 #############################################################
-GTEST=NO
-#[YES/NO]
-# Please tweak the following variable definitions as needed by your
-# project, except GTEST_HEADERS, which you can use in your own targets
-# but shouldn't modify.
 
-# Points to the root of Google Test, relative to where this file is.
-# Remember to tweak this if you move this file.
-GTEST_DIR = googletest/googletest
-
-# Where to find user code.
-# USER_DIR = ../samples
-
-# Flags passed to the preprocessor.
-# Set Google Test's header directory as a system directory, such that
-# the compiler doesn't generate warnings in Google Test headers.
-CPPFLAGS += -isystem $(GTEST_DIR)/include
-
-# Flags passed to the C++ compiler.
-CXXFLAGS += -g -Wall -Wextra -pthread
-
-# All tests produced by this Makefile.  Remember to add new tests you
-# created to the list.
-TESTS = gtest/test_1
-
-# All Google Test headers.  Usually you shouldn't change this
-# definition.
-GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
-                $(GTEST_DIR)/include/gtest/internal/*.h
-
-# House-keeping build targets.
-
-
-#############################################################
-# Makefile
+###
+# gloval configuration
+###
 
 TEMP:=$(BASE_DIR)
 BASE_DIR:=$(addsuffix /,$(TEMP))
@@ -96,6 +85,9 @@ LIB_DIR:=$(addsuffix /,$(TEMP))
 
 TEMP:=$(OBJ_DIR)
 OBJ_DIR:=$(addsuffix /,$(TEMP))
+
+TEMP:=$(TESTS_DIR)
+TESTS_DIR:=$(addsuffix /,$(TEMP))
 
 # MAKEFILE VARIABLES ASSIGNATION
 TEMP := $(addsuffix .$(CODE_EXTENSION),$(FN_FILES_NAMES))
@@ -110,7 +102,10 @@ FLAGS :=$(addprefix -,$(COMPILATION_FLAGS))
 FLAGS_DIN := $(addprefix -I $(BASE_DIR),$(HEADERS_LOCATION))
 
 
+###
 # BINARY EXECUTION
+###
+
 ifeq ($(EXECUTE_AFTER_COMPILATION), YES)
 execute : $(OUTPUT_DIR)$(OUTPUT_NAME)
 ifeq ($(EXECUTION_DATA), SIMPLE)
@@ -139,7 +134,7 @@ $(OUTPUT_DIR)$(OUTPUT_NAME) : $(BASE_DIR)$(MAIN_NAME).$(CODE_EXTENSION) $(LIB_DI
 # .o COMPILATION (gcc -c var.cc foo.cc)
 #generates the .o's and moves them into their corresponding foldet in the OBJ_DIR
 $(OBJ_FILES_W_ROUTE_EXT) : $(CODE_FILES_W_ROUTE)
-	@echo Building objects.
+	@echo Building objects
 	@for file in $(FN_FILES_NAMES) ; do \
 			$(COMPILER) -c $(BASE_DIR)$$file.$(CODE_EXTENSION) $(FLAGS_DIN); \
 			mv ./*.o $(OBJ_DIR)$$file.o ; \
@@ -147,72 +142,50 @@ $(OBJ_FILES_W_ROUTE_EXT) : $(CODE_FILES_W_ROUTE)
 
 #.a COMPILATION (ar -rs .lib.a var.o foo.o)
 $(LIB_DIR)$(LIB_NAME).a : $(OBJ_FILES_W_ROUTE_EXT)
-	@echo Building library.
+	@echo Building library
 	@ar -rs $@ $^
 
 # CLEAN
 clean:
-	@echo cleaning.
-	@rm -rf $(OUTPUT_DIR)**/*.out $(OBJ_DIR)**/*.o $(LIB_DIR)**/*.a
+	@echo cleaning
+	@rm -rf $(OUTPUT_DIR)**/*.out $(OUTPUT_DIR)*.out $(OBJ_DIR)**/*.o $(OBJ_DIR)*.o $(LIB_DIR)**/*.a $(LIB_DIR)*.a
 
-gt  : googletest
+#############################################################
+# GTEST: you should not touch here
+#############################################################
 
-googletest : $(TESTS)
+googletest : gtest_build $($(TESTS_DIR)$$unittest.$(CODE_EXTENSION))
+	@for unittest in $(TESTS) ; do \
+		echo ; \
+		echo \	Running $$unittest; \
+		echo ; \
+		$(OUTPUT_DIR)$$unittest.out ; \
+	done
 
-ifeq ($GTEST,YES)
 
+gtest_build : $(LIB_DIR)libgtest.a
+	@for unittest in $(TESTS) ; do \
+		echo Building $$unittest ; \
+		g++ -isystem $(GTEST_DIR)/include -pthread $(FLAGS_DIN) $(TESTS_DIR)$$unittest.$(CODE_EXTENSION) $(LIB_DIR)libgtest.a -o $(OUTPUT_DIR)$$unittest.out ; \
+	done
 
-clean_googletest :
-	rm -f $(TESTS) gtest.a gtest_main.a *.o
+# gtest object creation (all.o)
+$(OBJ_DIR)gtest-all.o : $(GTEST_DIR)/src/gtest-all.cc
+	@echo Creating gtest-all.o
+	@g++ -isystem $(GTEST_DIR)/include -I$(GTEST_DIR) -pthread -c $(GTEST_DIR)/src/gtest-all.cc
+	@mv ./*.o $(OBJ_DIR)
 
-# Builds gtest.a and gtest_main.a.
+# gtest object creation (main.o)
+$(OBJ_DIR)gtest_main.o : $(GTEST_DIR)/src/gtest_main.cc
+	@echo creating gtest_main.o
+	@g++ -isystem $(GTEST_DIR)/include -I$(GTEST_DIR) -pthread -c $(GTEST_DIR)/src/gtest_main.cc
+	@mv ./*.o $(OBJ_DIR)
 
-# Usually you shouldn't tweak such internal variables, indicated by a
-# trailing _.
-GTEST_SRCS_ = $(GTEST_DIR)/src/*.cc $(GTEST_DIR)/src/*.h $(GTEST_HEADERS)
+# gtest library compilation
+$(LIB_DIR)libgtest.a : $(OBJ_DIR)gtest_main.o $(OBJ_DIR)gtest-all.o
+	@echo Building googletest library
+	@ar -rv $(LIB_DIR)libgtest.a $(OBJ_DIR)gtest-all.o $(OBJ_DIR)gtest_main.o > /dev/null
 
-# For simplicity and to avoid depending on Google Test's
-# implementation details, the dependencies specified below are
-# conservative and not optimized.  This is fine as Google Test
-# compiles fast and for ordinary users its source rarely changes.
-gtest-all.o : $(GTEST_SRCS_)
-	$(CXX) $(CPPFLAGS) -I$(GTEST_DIR) $(CXXFLAGS) -c \
-            $(GTEST_DIR)/src/gtest-all.cc
-
-gtest_main.o : $(GTEST_SRCS_)
-	$(CXX) $(CPPFLAGS) -I$(GTEST_DIR) $(CXXFLAGS) -c \
-            $(GTEST_DIR)/src/gtest_main.cc
-
-gtest.a : gtest-all.o
-	$(AR) $(ARFLAGS) $@ $^
-
-gtest_main.a : gtest-all.o gtest_main.o
-	$(AR) $(ARFLAGS) $@ $^
-
-# Builds a sample test.  A test should link with either gtest.a or
-# gtest_main.a, depending on whether it defines its own main()
-# function.
-
-foo.o : foo.cc foo.h $(GTEST_HEADERS)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c foo.cc
-
-foo_unittest.o : foo_unittest.cc \
-                     foo.h $(GTEST_HEADERS)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c foo_unittest.cc -o foo_unittest.o
-
-var.o : var.cc var.h $(GTEST_HEADERS)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c var.cc
-
-var_unittest.o : var_unittest.cc \
-                     var.h $(GTEST_HEADERS)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c var_unittest.cc -o var_unittest.o
-
-foo_unittest : foo.o foo_unittest.o gtest_main.a
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
-
-var_unittest : var.o var_unittest.o foo.o gtest_main.a
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
-endif
 
 help:
 	#                            _                        _         __ _ _
