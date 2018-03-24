@@ -1,5 +1,11 @@
 #include "Provincia_controler.hpp"
 
+bool way_to_short(const Municipio &a, const Municipio &b){
+	return a.get_postal_code()<b.get_postal_code();
+	// return true;
+	// return ( 0>(a.get_name().compare( b.get_name() )) );
+}
+
 void Provincia_controler::load_data(std::string csv_file){
 	CSV_reader csv(csv_file);
 	CSV_data data=csv.load_csv();
@@ -14,7 +20,18 @@ void Provincia_controler::load_data(std::string csv_file){
 		municipio.set_name(line.get_field(1));
 		municipio.set_mens(atoi(line.get_field(2).c_str()));
 		municipio.set_womens(atoi(line.get_field(3).c_str()));
-		push_municipio(municipio);
+		if (municipio.get_name()!="") {
+			push_municipio(municipio);
+		}
 	}
-	// short_list();
+	list_actialization();
+}
+
+
+void Provincia_controler::list_actialization(){
+	list_short();
+}
+
+void Provincia_controler::list_short(){
+	municipios_.sort(way_to_short);
 }

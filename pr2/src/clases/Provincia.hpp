@@ -17,6 +17,8 @@ class Provincia{
 	private:
 		std::string name_;
 		int code_;
+
+	protected:
 		std::list<Municipio> municipios_;
 
 	public://getters

@@ -12,13 +12,17 @@ OUTPUT_NAME=executable
 MAIN_NAME=main_testing
 # MAIN_NAME=testProcincia
 
-FN_FILES_NAMES = clases/Municipio clases/Provincia
+FN_FILES_NAMES = clases/Municipio
 FN_FILES_NAMES+= wrapers/csv/CSV_reader
 FN_FILES_NAMES+= controlers/Provincia_controler
 
-
 LIB_NAME=gestor_de_provincias
-HEADERS_LOCATION=auxiliares clases wrapers/csv controlers
+
+HEADERS_LOCATION = auxiliares clases
+HEADERS_LOCATION+= wrapers/csv
+HEADERS_LOCATION+= controlers
+HEADERS_LOCATION+= handlers
+
 # where the headers are located inside of the BASE_DIR folder
 #------------------------------
 # COMPILERS
@@ -45,7 +49,7 @@ GTEST=YES
 GTEST_DIR=googletest/googletest
 	# Points to the root of Google Test, relative to where this file is.
 	# Remember to tweak this if you move this file.
-TESTS=Municipio_unittest Provincia_unittest
+TESTS=Provincia_unittest
 TESTS_DIR=./tests
 
 
