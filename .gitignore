@@ -4,3 +4,4 @@ notpr/**
 **/*.out
 **/*.exe
 pr2_profesor
+**/googletest
