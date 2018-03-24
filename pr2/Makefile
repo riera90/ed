@@ -11,9 +11,14 @@ OBJ_DIR=./temp
 OUTPUT_NAME=executable
 MAIN_NAME=main_testing
 # MAIN_NAME=testProcincia
-FN_FILES_NAMES=clases/Municipio clases/Provincia wrapers/csv/CSV_reader
+
+FN_FILES_NAMES = clases/Municipio clases/Provincia
+FN_FILES_NAMES+= wrapers/csv/CSV_reader
+FN_FILES_NAMES+= controlers/Provincia_controler
+
+
 LIB_NAME=gestor_de_provincias
-HEADERS_LOCATION=auxiliares clases wrapers/csv
+HEADERS_LOCATION=auxiliares clases wrapers/csv controlers
 # where the headers are located inside of the BASE_DIR folder
 #------------------------------
 # COMPILERS
@@ -37,17 +42,10 @@ COMPILATION_FLAGS=Wpedantic
 
 GTEST=YES
 #[YES/NO]
-
-# Please tweak the following variable definitions as needed by your
-# project.
-
-# Points to the root of Google Test, relative to where this file is.
-# Remember to tweak this if you move this file.
 GTEST_DIR=googletest/googletest
-
-# All tests produced by this Makefile.  Remember to add new tests you
-# created to the list.
-TESTS=prueba_unittest Municipio_unittest
+	# Points to the root of Google Test, relative to where this file is.
+	# Remember to tweak this if you move this file.
+TESTS=Municipio_unittest Provincia_unittest
 TESTS_DIR=./tests
 
 
@@ -97,6 +95,12 @@ CODE_FILES_W_ROUTE := $(addprefix $(BASE_DIR),$(TEMP))
 TEMP := $(addsuffix .o,$(FN_FILES_NAMES))
 OBJ_FILES_W_ROUTE:= $(addprefix $(OBJ_DIR),$(FN_FILES_NAMES))
 OBJ_FILES_W_ROUTE_EXT:= $(addprefix $(OBJ_DIR),$(TEMP))
+
+TESTS_W_ROUTE:= $(addprefix $(TESTS_DIR),$(TESTS))
+TESTS_W_ROUTE_EXT:= $(addsuffix .$(CODE_EXTENSION),$(TESTS_W_ROUTE))
+
+EXEC_TESTS_W_ROUTE:= $(addprefix $(TESTS_DIR),$(TESTS))
+EXEC_TESTS_W_ROUTE_EXT:= $(addsuffix .out,$(TESTS_W_ROUTE))
 
 FLAGS :=$(addprefix -,$(COMPILATION_FLAGS))
 FLAGS_DIN := $(addprefix -I $(BASE_DIR),$(HEADERS_LOCATION))
@@ -154,7 +158,7 @@ clean:
 # GTEST: you should not touch here
 #############################################################
 
-googletest : gtest_build $($(TESTS_DIR)$$unittest.$(CODE_EXTENSION))
+googletest : $(LIB_DIR)libgtest.a $(LIB_DIR)$(LIB_NAME).a $(TESTS_W_ROUTE_EXT) gtest_build
 	@for unittest in $(TESTS) ; do \
 		echo ; \
 		echo \	Running $$unittest; \
@@ -163,10 +167,10 @@ googletest : gtest_build $($(TESTS_DIR)$$unittest.$(CODE_EXTENSION))
 	done
 
 
-gtest_build : $(LIB_DIR)libgtest.a
+gtest_build : $(LIB_DIR)libgtest.a $(LIB_DIR)$(LIB_NAME).a $(TESTS_W_ROUTE_EXT)
 	@for unittest in $(TESTS) ; do \
 		echo Building $$unittest ; \
-		g++ -isystem $(GTEST_DIR)/include -pthread $(FLAGS_DIN) $(TESTS_DIR)$$unittest.$(CODE_EXTENSION) $(LIB_DIR)libgtest.a -o $(OUTPUT_DIR)$$unittest.out ; \
+		g++ -isystem $(GTEST_DIR)/include -pthread $(FLAGS_DIN) $(TESTS_DIR)$$unittest.$(CODE_EXTENSION) $(LIB_DIR)$(LIB_NAME).a $(LIB_DIR)libgtest.a -o $(OUTPUT_DIR)$$unittest.out ; \
 	done
 
 # gtest object creation (all.o)

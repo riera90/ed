@@ -263,7 +263,7 @@ class Municipio{
 	\post      Ninguna
 	\sa        operator<
 */
-bool compare_haitants (Municipio const &objeto1, Municipio const &objeto2);
+bool compare_habitants (Municipio const &objeto1, Municipio const &objeto2);
 
 /*!
 	\brief     Sobrecarga del operador de salida o escritura "<<"

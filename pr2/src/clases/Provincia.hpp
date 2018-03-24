@@ -8,18 +8,20 @@
 
 void pr();
 class Provincia{
+	public:
+		Provincia(std::string name="", int code=0){
+			name_=name;
+			code_=code;
+		}
+
 	private:
 		std::string name_;
 		int code_;
-		CSV_data data_;
 		std::list<Municipio> municipios_;
 
 	public://getters
 		std::string get_name(){ return name_; };
 		int get_code(){ return code_; };
-		void push_municipio(Municipio municipio){
-			municipios_.push_back(municipio);
-		}
 
 	public://setters
 		void set_name(std::string name){ name_=name; };
@@ -29,8 +31,10 @@ class Provincia{
 		int n_municipios(){ return municipios_.size(); };
 		bool is_empty(){ return n_municipios()==0 ? true:false; };
 
-	public://csv reader
-		void load_data(std::string csv_file);
+	protected:
+		void push_municipio(Municipio municipio){
+			municipios_.push_back(municipio);
+		}
 };
 
 #endif
