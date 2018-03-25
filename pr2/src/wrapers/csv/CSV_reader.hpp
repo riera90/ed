@@ -17,8 +17,8 @@ class Line{//used in CSV_data class
 			field_.push_back(field);
 			fields_++;
 		};
-		int fields(){return fields_;}
-		std::string get_field(int index){return field_[index];}
+		int fields() const {return fields_;}
+		std::string get_field(int index) const {return field_[index];}
 };
 
 class CSV_data{ //returned class for load_csv()
@@ -32,9 +32,9 @@ class CSV_data{ //returned class for load_csv()
 			line_.push_back(new_line);
 			lines_++;
 		}
-		Line get_line(int index){return line_[index];}
-		int lines(){ return lines_; };
-		void print();
+		Line get_line(int index) const {return line_[index];}
+		int lines() const { return lines_; };
+		void print() const ;
 };
 
 class CSV_reader{

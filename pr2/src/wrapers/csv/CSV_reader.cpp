@@ -1,6 +1,6 @@
 #include "CSV_reader.hpp"
 
-void CSV_data::print(){
+void CSV_data::print() const {
 	for (size_t i = 0; i < lines(); i++) {
 		Line line=get_line(i);
 		for (size_t j = 0; j < line.fields(); j++) {

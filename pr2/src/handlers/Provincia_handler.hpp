@@ -6,7 +6,6 @@
 class Provincia_handler : public Provincia_controler{
 
 	private:
-		int index;
 		std::list<Municipio>::iterator it_municipios_;
 
 	public: //constructor
@@ -20,28 +19,28 @@ class Provincia_handler : public Provincia_controler{
 			return *it_municipios_;
 		}
 
-		void goto_head(){
+		inline void goto_head(){
 			it_municipios_=municipios_.begin();
 		}
 
-		void goto_last(){
+		inline void goto_last(){
 			it_municipios_=--(municipios_.end());
 		}
 
-		void goto_next(){
+		inline void goto_next(){
 			if (*it_municipios_==municipios_.back()) {
 				goto_head();
 			}else	it_municipios_++;
 		}
 
-		void goto_previous(){
+		inline void goto_previous(){
 			if (*it_municipios_==municipios_.front()) {
 				goto_last();
 			}else it_municipios_--;
 		}
 
 	public:
-		void add(Municipio municipio){
+		inline void add(Municipio municipio){
 			push_municipio(municipio);
 			list_actialization();
 		}

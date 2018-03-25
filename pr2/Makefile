@@ -13,12 +13,14 @@ MAIN_NAME=main_testing
 # MAIN_NAME=testProcincia
 
 FN_FILES_NAMES = clases/Municipio
+FN_FILES_NAMES+= clases/Provincia
 FN_FILES_NAMES+= wrapers/csv/CSV_reader
 FN_FILES_NAMES+= controlers/Provincia_controler
 
 LIB_NAME=gestor_de_provincias
 
-HEADERS_LOCATION = auxiliares clases
+HEADERS_LOCATION = auxiliares
+HEADERS_LOCATION+= clases
 HEADERS_LOCATION+= wrapers/csv
 HEADERS_LOCATION+= controlers
 HEADERS_LOCATION+= handlers

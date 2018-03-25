@@ -20,7 +20,7 @@ class Provincia_controler : public Provincia{
 		void load_data(std::string csv_file);
 
 	protected:
-		void push_municipio(Municipio municipio){
+		inline void push_municipio(Municipio municipio){
 			municipios_.push_back(municipio);
 		}
 

@@ -22,16 +22,23 @@ class Provincia{
 		std::list<Municipio> municipios_;
 
 	public://getters
-		std::string get_name(){ return name_; };
-		int get_code(){ return code_; };
+		inline std::string get_name() const { return name_; };
+		inline int get_code() const { return code_; };
 
 	public://setters
-		void set_name(std::string name){ name_=name; };
-		void set_code(int code){ code_=code; };
+		inline void set_name(std::string name){ name_=name; };
+		inline void set_code(int code){ code_=code; };
 
 	public://observers
-		int n_municipios(){ return municipios_.size(); };
-		bool is_empty(){ return n_municipios()==0 ? true:false; };
+		inline int n_municipios() const { return municipios_.size(); };
+		inline bool is_empty() const {
+			return n_municipios()==0 ? true:false;
+		};
+		int get_total_mans();
+		int get_total_womans();
+		inline int get_total_habitants(){
+			return get_total_mans()+get_total_womans();
+		};
 };
 
 #endif
