@@ -35,7 +35,7 @@ TEST(Provincia_controler, seters_and_geters){
 #include "Provincia_handler.hpp"
 
 
-TEST(Provincia_handler,laod_data_and_cursor_movenent){
+TEST(Provincia_handler,load_data_data_addition_and_cursor_movenent){
 	Provincia_handler a;
 	Municipio municipio;
 	Municipio municipio_head;
@@ -95,6 +95,36 @@ TEST(Provincia_handler,laod_data_and_cursor_movenent){
 	womens=318;
 	EXPECT_EQ(14075,municipio.get_postal_code());
 	EXPECT_EQ("Zuheros",municipio.get_name());
+	EXPECT_EQ(mens,municipio.get_mens());
+	EXPECT_EQ(womens,municipio.get_womens());
+	EXPECT_EQ(mens+womens,municipio.get_habitants());
+
+	municipio.set_name("zztop");
+	municipio.set_postal_code(11111);
+	municipio.set_mens(123);
+	municipio.set_womens(321);
+	a.add(municipio);
+	a.goto_last();
+	municipio=a.get_municipio();
+	mens=123;
+	womens=321;
+	EXPECT_EQ(11111,municipio.get_postal_code());
+	EXPECT_EQ("zztop",municipio.get_name());
+	EXPECT_EQ(mens,municipio.get_mens());
+	EXPECT_EQ(womens,municipio.get_womens());
+	EXPECT_EQ(mens+womens,municipio.get_habitants());
+
+	municipio.set_name("Aaztec");
+	municipio.set_postal_code(11111);
+	municipio.set_mens(123);
+	municipio.set_womens(321);
+	a.add(municipio);
+	a.goto_head();
+	municipio=a.get_municipio();
+	mens=123;
+	womens=321;
+	EXPECT_EQ(11111,municipio.get_postal_code());
+	EXPECT_EQ("Aaztec",municipio.get_name());
 	EXPECT_EQ(mens,municipio.get_mens());
 	EXPECT_EQ(womens,municipio.get_womens());
 	EXPECT_EQ(mens+womens,municipio.get_habitants());

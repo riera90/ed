@@ -33,5 +33,5 @@ void Provincia_controler::list_actialization(){
 }
 
 void Provincia_controler::list_short(){
-	municipios_.sort(way_to_short);
+	municipios_.sort();
 }

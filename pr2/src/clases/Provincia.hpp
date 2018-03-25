@@ -32,11 +32,6 @@ class Provincia{
 	public://observers
 		int n_municipios(){ return municipios_.size(); };
 		bool is_empty(){ return n_municipios()==0 ? true:false; };
-
-	protected:
-		void push_municipio(Municipio municipio){
-			municipios_.push_back(municipio);
-		}
 };
 
 #endif
