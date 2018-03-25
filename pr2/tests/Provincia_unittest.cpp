@@ -2,6 +2,9 @@
 #include "paths.hpp"
 
 #include "Provincia.hpp"
+#include "Provincia_handler.hpp"
+#include "Provincia_controler.hpp"
+
 
 TEST(Provincia, constructor){
 	Provincia a;
@@ -16,8 +19,15 @@ TEST(Provincia, seters_and_geters){
 	EXPECT_EQ("Córdoba",a.get_name());
 }
 
-#include "Provincia_controler.hpp"
-
+TEST(Provincia, observers){
+	Provincia_handler a;
+	Municipio municipio;
+	Municipio municipio_head;
+	a.load_data(csv_file_path);
+	EXPECT_EQ(386736,a.get_total_mens());
+	EXPECT_EQ(401483,a.get_total_womens());
+	EXPECT_EQ(401483+386736,a.get_total_habitants());
+}
 
 TEST(Provincia_controler, constructor){
 	Provincia_controler a;
@@ -32,8 +42,14 @@ TEST(Provincia_controler, seters_and_geters){
 	EXPECT_EQ("Córdoba",a.get_name());
 }
 
-#include "Provincia_handler.hpp"
-
+TEST(Provincia_handler, exists){
+	Provincia_handler a;
+	Municipio municipio;
+	Municipio municipio_head;
+	a.load_data(csv_file_path);
+	EXPECT_EQ(true,a.exists("Adamuz"));
+	EXPECT_EQ(false,a.exists("Ad"));
+}
 
 TEST(Provincia_handler,load_data_data_addition_and_cursor_movenent){
 	Provincia_handler a;
@@ -125,6 +141,44 @@ TEST(Provincia_handler,load_data_data_addition_and_cursor_movenent){
 	womens=321;
 	EXPECT_EQ(11111,municipio.get_postal_code());
 	EXPECT_EQ("Aaztec",municipio.get_name());
+	EXPECT_EQ(mens,municipio.get_mens());
+	EXPECT_EQ(womens,municipio.get_womens());
+	EXPECT_EQ(mens+womens,municipio.get_habitants());
+}
+
+TEST(Provincia_handler, locate_and_remove){
+	Provincia_handler a;
+	Municipio municipio_head;
+	a.load_data(csv_file_path);
+	a.goto_head();
+	municipio_head=a.get_municipio();
+	EXPECT_EQ(municipio_head,*(a.locate(municipio_head)));
+	a.erase(municipio_head);
+	a.goto_head();
+	EXPECT_EQ(false,a.exists(municipio_head.get_name()));
+	EXPECT_EQ(false,a.is_empty());
+	a.clear();
+	EXPECT_EQ(true,a.is_empty());
+}
+
+
+TEST(Provincia_handler, modify){
+	Provincia_handler a;
+	Municipio municipio_head;
+	Municipio municipio;
+	a.load_data(csv_file_path);
+	a.goto_head();
+	municipio.set_postal_code(123);
+	municipio.set_name("Zzz23");
+	municipio.set_mens(2);
+	municipio.set_womens(1);
+	a.modify(municipio);
+	a.goto_last();
+	municipio_head=a.get_municipio();
+	int mens=2;
+	int womens=1;
+	EXPECT_EQ(123,municipio.get_postal_code());
+	EXPECT_EQ("Zzz23",municipio.get_name());
 	EXPECT_EQ(mens,municipio.get_mens());
 	EXPECT_EQ(womens,municipio.get_womens());
 	EXPECT_EQ(mens+womens,municipio.get_habitants());

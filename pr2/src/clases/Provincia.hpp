@@ -34,10 +34,10 @@ class Provincia{
 		inline bool is_empty() const {
 			return n_municipios()==0 ? true:false;
 		};
-		int get_total_mans();
-		int get_total_womans();
+		int get_total_mens();
+		int get_total_womens();
 		inline int get_total_habitants(){
-			return get_total_mans()+get_total_womans();
+			return get_total_mens()+get_total_womens();
 		};
 };
 
