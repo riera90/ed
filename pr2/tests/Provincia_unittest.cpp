@@ -1,25 +1,25 @@
 #include "gtest/gtest.h"
 #include "paths.hpp"
 
-#include "Provincia.hpp"
+#include "Provincia_base.hpp"
 #include "Provincia_handler.hpp"
 #include "Provincia_controler.hpp"
 
 
-TEST(Provincia, constructor){
-	Provincia a;
+TEST(Provincia_base, constructor){
+	Provincia_base a;
 	EXPECT_EQ(0,a.n_municipios());
 }
 
-TEST(Provincia, seters_and_geters){
-	Provincia a;
+TEST(Provincia_base, seters_and_geters){
+	Provincia_base a;
 	a.set_code(1);
 	a.set_name("Córdoba");
 	EXPECT_EQ(1,a.get_code());
 	EXPECT_EQ("Córdoba",a.get_name());
 }
 
-TEST(Provincia, observers){
+TEST(Provincia_base, observers){
 	Provincia_handler a;
 	Municipio municipio;
 	Municipio municipio_head;

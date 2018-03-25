@@ -3,18 +3,18 @@
 
 #include <algorithm>
 
-#include "Provincia.hpp"
+#include "Provincia_base.hpp"
 #include "Municipio.hpp"
 
 
 bool way_to_short(const Municipio &a, const Municipio &b);
 
 
-class Provincia_controler : public Provincia{
+class Provincia_controler : public Provincia_base{
 
 	public: //constructor
 		Provincia_controler(std::string name="", int code=0)
-		: Provincia(name, code){};
+		: Provincia_base(name, code){};
 
 	public: //csv reader
 		void load_data(std::string csv_file);

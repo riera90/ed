@@ -1,6 +1,6 @@
-#include "Provincia.hpp"
+#include "Provincia_base.hpp"
 
-int Provincia::get_total_mens(){
+int Provincia_base::get_total_mens(){
 	std::list<Municipio>::iterator it_temp_municipios;
 	it_temp_municipios=municipios_.begin();
 	int total_mens=0;
@@ -12,7 +12,7 @@ int Provincia::get_total_mens(){
 }
 
 
-int Provincia::get_total_womens(){
+int Provincia_base::get_total_womens(){
 	std::list<Municipio>::iterator it_temp_municipios;
 	it_temp_municipios=municipios_.begin();
 	int total_womens=0;

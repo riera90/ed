@@ -7,9 +7,9 @@
 #include "CSV_reader.hpp"
 
 void pr();
-class Provincia{
+class Provincia_base{
 	public:
-		Provincia(std::string name="", int code=0){
+		Provincia_base(std::string name="", int code=0){
 			name_=name;
 			code_=code;
 		}

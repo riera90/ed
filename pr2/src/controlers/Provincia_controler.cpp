@@ -9,7 +9,7 @@ bool way_to_short(const Municipio &a, const Municipio &b){
 void Provincia_controler::load_data(std::string csv_file){
 	CSV_reader csv(csv_file);
 	CSV_data data=csv.load_csv();
-	Provincia provincia;
+	Provincia_base provincia;
 	Municipio municipio;
 	//dumps the data into the class
 	for (size_t i = 0; i < data.lines(); i++) {

@@ -1,4 +1,4 @@
-/*!
+1/*!
 
 	\file principalProvincia.cpp
 	\brief Programa principal de la práctica 2 de ED: provincia de municipios
