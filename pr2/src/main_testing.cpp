@@ -1,13 +1,18 @@
 #include <iostream>
 #include <string>
 
-#include "Provincia_controler.hpp"
-#include "macros.hpp"
-#include "paths.hpp"
+#include "Provincia.hpp"
+#include "CSV_reader.hpp"
+#include "CSV_writer.hpp"
+
 
 int main(){
-	Provincia_controler cordoba;
-	cordoba.load_data(csv_file_path);
+	std::cout << "main for testing" << '\n';
+	CSV_reader rcsv("output/Cordoba.csv");
+	CSV_writer wcsv("output/Cordoba_2.csv");
+	CSV_data data;
+	data=rcsv.load_csv();
+	wcsv.dump_csv(data);
 
 
 

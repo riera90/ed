@@ -1,4 +1,4 @@
-1/*!
+/*!
 
 	\file principalProvincia.cpp
 	\brief Programa principal de la práctica 2 de ED: provincia de municipios
@@ -15,15 +15,13 @@
 */
 
 // Para los flujos de entrada y salida y para usar locale
-#include <iostream>
 
+// #include <iostream>
 
-#include <string>
-
-#include "Provincia.hpp"
-#include "Municipio.hpp"
-
-#include "macros.hpp"
+#include "menu_wraper.hpp"
+// #include "macros.hpp"
+#include "funciones_auxiliares.hpp"
+// #include "Provincia.hpp"
 
 
 
@@ -32,14 +30,15 @@
 	\return  int
 */
 int main(){
+	std::cout << "test!!!" << '\n';
 
-	ed::Provincia provincia;
+	Provincia provincia;
 
 	int opcion;
 
 	do{
 		// Se elige la opción del menún
-		// opcion = ed::menu();
+		opcion = menu();
 
 		std::cout << CLEAR_SCREEN;
 		PLACE(3,1);
@@ -57,60 +56,105 @@ int main(){
 
 			case 1:
 					std::cout << "[1] Comprobar si la provincia tiene municipios" << std::endl;
-					// ed::comprobarProvinciaVacia(provincia);
+					comprobarProvinciaVacia(provincia);
 					break;
 
 			//////////////////////////////////////////////////////////////////////////////
 			case 2:
 					std::cout << "[2] Cargar la provincia desde un fichero" << std::endl;
-					// ed::cargarProvincia(provincia);
+					cargarProvincia(provincia);
 				break;
 
 			case 3:
 					std::cout << "[3] Grabar la provincia en un fichero" << std::endl;
-					// ed::grabarProvincia(provincia);
+					grabarProvincia(provincia);
 					break;
 
 			//////////////////////////////////////////////////////////////////////////////
 			case 4:
-				  	std::cout << "[4] Consultar datos de la provincia: " << std::endl;
-					// ed::consultarDatosDeProvincia(provincia);
+				  std::cout << "[4] Consultar datos de la provincia: " << std::endl;
+					consultarDatosDeProvincia(provincia);
 					break;
 
 			case 5:
-				  	std::cout << "[5] Mostrar municipios de la provincia: " << std::endl;
-					// ed::mostrarMunicipiosDeProvincia(provincia);
+				  std::cout << "[5] Mostrar municipios de la provincia: " << std::endl;
+					mostrarMunicipiosDeProvincia(provincia);
 					break;
 
 
 			//////////////////////////////////////////////////////////////////////////////
 			case 6:
-					std::cout << "[6] Modificar datos de la provincia: código o nombre"
-							  << std::endl;
-				  	// ed::modificarDatosDeProvincia(provincia);
+					std::cout << "[6] Modificar datos de la provincia: código o nombre"<< std::endl;
+				  modificarDatosDeProvincia(provincia);
 					break;
 
 
 			case 7:
 					std::cout << "[7] Borrar todos los municipios de una provincia" << std::endl;
-				 	// ed::borrarTodosLosMunicipiosDeProvincia(provincia);
+				 	borrarTodosLosMunicipiosDeProvincia(provincia);
 					break;
 
 			//////////////////////////////////////////////////////////////////////////////
 			case 8:
-					std::cout << "[8] Consultar un municipio" << std::endl;
-			    	// ed::consultarMunicipioDeProvincia(provincia);
+					std::cout << "[8] Consultar el municipio" << std::endl;
+			    consultarMunicipioDeProvincia(provincia);
 					break;
 
 			case 9:
 					std::cout << "[9] Insertar un municipio" << std::endl;
-				  	// ed::insertarMunicipioEnProvincia(provincia);
+				  insertarMunicipioEnProvincia(provincia);
 					break;
 
 			case 10:
-					std::cout << "[10] Borrar un municipio" << std::endl;
-					// ed::borrarMunicipioDeProvincia(provincia);
+					std::cout << "[10] Borrar el municipio" << std::endl;
+					borrarMunicipioDeProvincia(provincia);
 					break;
+
+			case 11:
+					std::cout << "[11] goto_next" << std::endl;
+					if (provincia.n_municipios()==0) {
+						std::cout << "nothing to do, please load at least 1 element" << '\n';
+					}else{
+						provincia.goto_next();
+					}
+					break;
+
+			case 12:
+					std::cout << "[12] goto_previous" << std::endl;
+					if (provincia.n_municipios()==0) {
+						std::cout << "nothing to do, please load at least 1 element" << '\n';
+					}else{
+						provincia.goto_previous();
+					}
+					break;
+
+			case 13:
+					std::cout << "[13] modify Municipio" << std::endl;
+					if (provincia.n_municipios()==0) {
+						std::cout << "nothing to do, please load at least 1 element" << '\n';
+					}else{
+						Municipio municipio;
+						municipio.read_Municipio();
+						provincia.modify(municipio);
+						provincia.list_actialization();
+					}
+					break;
+
+			case 14:{
+					std::cout << "[14] buscar un Municipio" << std::endl;
+					if (provincia.n_municipios()==0) {
+						std::cout << "nothing to do, please load at least 1 element" << '\n';
+					}else{
+						std::string name;
+						std::cout << "introduzca el nombre a buscar" << '\n';
+						getline(std::cin,name);
+						if (provincia.find(name)) {
+							std::cout << "encontrado!!\nAhora el puntero apunta a el." << '\n';
+						}else std::cout << "no encontrado..." << '\n';
+					}
+					std::cin.ignore();
+					break;
+				}
 
 			//////////////////////////////////////////////////////////////////////////////
 			default:

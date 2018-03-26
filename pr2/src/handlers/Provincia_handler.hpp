@@ -51,6 +51,8 @@ class Provincia_handler : public Provincia_controler{
 
 		bool exists(std::string municipio);
 		std::list<Municipio>::iterator locate(Municipio municipio);
+		bool find(std::string name);
+
 
 
 	public://modifiers
@@ -67,6 +69,12 @@ class Provincia_handler : public Provincia_controler{
 
 		inline void modify(Municipio municipio){
 			(*it_municipios_)=municipio;
+			list_actialization();
+		}
+
+		inline void insert(Municipio municipio){
+			push_municipio(municipio);
+			list_actialization();
 		}
 };
 

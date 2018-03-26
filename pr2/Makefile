@@ -13,16 +13,21 @@ MAIN_NAME=main_testing
 # MAIN_NAME=testProcincia
 
 FN_FILES_NAMES = clases/Municipio
-FN_FILES_NAMES+= clases/Provincia_base
+FN_FILES_NAMES+= clases/Provincia
+FN_FILES_NAMES+= base_clases/Provincia_base
 FN_FILES_NAMES+= handlers/Provincia_handler
 FN_FILES_NAMES+= wrapers/csv/CSV_reader
+FN_FILES_NAMES+= wrapers/menu/menu_wraper
 FN_FILES_NAMES+= controlers/Provincia_controler
+FN_FILES_NAMES+= auxiliares/funciones_auxiliares
 
 LIB_NAME=gestor_de_provincias
 
 HEADERS_LOCATION = auxiliares
 HEADERS_LOCATION+= clases
+HEADERS_LOCATION+= base_clases
 HEADERS_LOCATION+= wrapers/csv
+HEADERS_LOCATION+= wrapers/menu
 HEADERS_LOCATION+= controlers
 HEADERS_LOCATION+= handlers
 
@@ -160,6 +165,7 @@ $(LIB_DIR)$(LIB_NAME).a : $(OBJ_FILES_W_ROUTE_EXT)
 clean:
 	@echo cleaning
 	@rm -rf $(OUTPUT_DIR)**/*.out $(OUTPUT_DIR)*.out $(OBJ_DIR)**/*.o $(OBJ_DIR)*.o $(LIB_DIR)**/*.a $(LIB_DIR)*.a
+	@rm -r $(OBJ_DIR)*/*/*.o
 
 #############################################################
 # GTEST: you should not touch here

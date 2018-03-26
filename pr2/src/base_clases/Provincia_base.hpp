@@ -1,5 +1,5 @@
-#ifndef _PROVINCIA_H_
-#define _PROVINCIA_H_
+#ifndef _PROVINCIA_BASE_H_
+#define _PROVINCIA_BASE_H_
 
 #include <string>
 #include <list>

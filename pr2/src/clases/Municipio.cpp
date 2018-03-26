@@ -56,13 +56,13 @@ void Municipio::read_Municipio(){
 
 
 void Municipio::write_Municipio() const{
-/*
-  std::cout  << "Código postal: "  << this->get_postal_code() << std::endl;
-  std::cout  << "Nombre: "   << this->get_name() << std::endl;
-  std::cout  << "Habitantes: "  << this->getHabitantes() << std::endl;
-  std::cout  << "Hombres: " 	<< this->get_mens() << std::endl;
-  std::cout  << "Mujeres: " 	<< this->get_womens() << std::endl << std::endl;
-*/
+
+  // std::cout  << "Código postal: "  << this->get_postal_code() << std::endl;
+  // std::cout  << "Nombre: "   << this->get_name() << std::endl;
+  // std::cout  << "Habitantes: "  << this->getHabitantes() << std::endl;
+  // std::cout  << "Hombres: " 	<< this->get_mens() << std::endl;
+  // std::cout  << "Mujeres: " 	<< this->get_womens() << std::endl << std::endl;
+
 
   std::cout  << this->get_postal_code();
   std::cout  << "\t";
