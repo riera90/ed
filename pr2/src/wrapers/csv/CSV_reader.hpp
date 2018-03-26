@@ -12,14 +12,14 @@ class CSV_reader{
 			route=_route;
 		}
 	private://load a line of the file
-		Line load_csv_line(){
-			Line complete_line;
+		CSV_line load_csv_line(){
+			CSV_line complete_line;
 			char temp_line[256];
 			std::string line, field;
 			file_.getline(temp_line, 256);
 			//checks for end of file, if so, returns an empty line meaning the EOF
 			if (file_.eof()) {
-				Line empty;
+				CSV_line empty;
 				return empty;
 			}
 			line=temp_line;
@@ -47,7 +47,7 @@ class CSV_reader{
  			}
 			CSV_data data;
 			//gets the first line to launch the loop
-			Line line=load_csv_line();
+			CSV_line line=load_csv_line();
 			//checks for empty lines (if is empty it means the endo of file)
 			while (line.fields()){
 				//pushes the line into the data class (returned class)

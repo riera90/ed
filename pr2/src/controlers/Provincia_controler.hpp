@@ -11,6 +11,7 @@
 
 #include "Provincia_base.hpp"
 #include "Municipio.hpp"
+#include "CSV_writer.hpp"
 
 bool way_to_short(const Municipio &a, const Municipio &b);
 

@@ -18,14 +18,11 @@ class CSV_writer{
  				std::cout << "ERROR!! Could not open the file!" << '\n';
  				exit(1);
  			}
-			Line line;
+			CSV_line line;
 			for (size_t index_line = 0; index_line < data.lines(); index_line++) {
-				std::cout << "writing line "<<index_line << '\n';
 				line=data.get_line(index_line);
-				std::cout << "writing field 0"<< '\n';
 				file_<<line.get_field(0).c_str();
 				for (size_t index_field = 1; index_field < line.fields(); index_field++) {
-					std::cout << "writing field "<<index_field << '\n';
 					file_<<SEPARATOR<<line.get_field(index_field).c_str();
 				}
 				file_<<'\n';
