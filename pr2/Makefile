@@ -203,6 +203,9 @@ $(LIB_DIR)libgtest.a : $(OBJ_DIR)gtest_main.o $(OBJ_DIR)gtest-all.o
 	@echo Building googletest library
 	@ar -rv $(LIB_DIR)libgtest.a $(OBJ_DIR)gtest-all.o $(OBJ_DIR)gtest_main.o > /dev/null
 
+doc: Doxyfile
+	@echo "Generando la documentación con doxygen"
+	@doxygen
 
 help:
 	#                            _                        _         __ _ _

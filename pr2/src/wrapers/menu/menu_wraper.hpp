@@ -3,7 +3,14 @@
 
 #include "Provincia.hpp"
 #include "Municipio.hpp"
+/*!
+\file menu_wraper.hpp
+\brief contains the functions of menu_wraper
+*/
 
+/*!
+\brief wraper for the professor menu code
+*/
 
 void comprobarProvinciaVacia(Provincia &provincia);
 void cargarProvincia(Provincia &provincia);

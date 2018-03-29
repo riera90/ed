@@ -1,34 +1,27 @@
 /*!
 
-	\file principalProvincia.cpp
-	\brief Programa principal de la práctica 2 de ED: provincia de municipios
-	\author
-	\date
+	\file main.cpp
+	\brief Menu of the program
+	\author Nicolas Luis Fernandez Garcia
 	\version 1.0
 */
 
 /*!
- \mainpage Implementación de una provincia utilizando una lista doblemente enlazada y ordenada de municipios
- \author
- \date
+ \mainpage Double linked list implementation of Municipios
+ \author Diego Rodríguez Riera
+ \date 29/March/2018
  \version  1.0
 */
 
-// Para los flujos de entrada y salida y para usar locale
-
-// #include <iostream>
+/*!
+\brief Menu of the program
+\return  int
+*/
 
 #include "menu_wraper.hpp"
-// #include "macros.hpp"
 #include "funciones_auxiliares.hpp"
-// #include "Provincia.hpp"
 
 
-
-/*!
-	\brief   Programa principal de la práctica 1: provincia y municipios
-	\return  int
-*/
 int main(){
 	std::cout << "test!!!" << '\n';
 

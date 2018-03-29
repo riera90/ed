@@ -1,13 +1,4 @@
-/*!
-  \file   funcionesAuxiliares.cpp
-  \brief  Código de las funciones auxiliares del programa principal de la provincia
-  \author
-  \date
-*/
-
 #include "funciones_auxiliares.hpp"
-
-
 
 int menu()
 {

@@ -2,16 +2,32 @@
 #define _CSV_WRITER_HPP_
 
 #include "CSV_data.hpp"
+/*!
+\file CSV_writer.hpp
+\brief contains the class CSV_writer
+*/
 
+/*!
+\class CSV_writer CSV_writer.hpp "CSV_writer.hpp"
+\brief writer/dumper of data into a csv file
+*/
 class CSV_writer{
 	private:
 		std::ofstream file_;
 		std::string route;
 	public:
+		/*!
+		\brief constructor of the class
+		\param std::string : route of the file to be dump in
+		*/
 		CSV_writer(std::string _route){
 			route=_route;
 		}
 	public:
+		/*!
+		\brief dumper
+		\param CSV_data: data to be dumped into the file
+		*/
 		void dump_csv(CSV_data data){//dumps all the data into the cvs file
 			file_.open(route);
  			if (!file_.is_open()) {

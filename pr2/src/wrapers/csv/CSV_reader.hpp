@@ -3,15 +3,32 @@
 
 #include "CSV_data.hpp"
 
+/*!
+\file CSV_reader.hpp
+\brief contains the class CSV_reader
+*/
+
+/*!
+\class CSV_reader CSV_reader.hpp "CSV_reader.hpp"
+\brief reader of data of a csv file
+*/
 class CSV_reader{
 	private:
 		std::ifstream file_;
 		std::string route;
 	public:
+		/*!
+		\brief constructor of the class
+		\param std::string : route of the file to be read from
+		*/
 		CSV_reader(std::string _route){
 			route=_route;
 		}
 	private://load a line of the file
+		/*!
+		\brief line reader
+		\return CSV_line: readed line
+		*/
 		CSV_line load_csv_line(){
 			CSV_line complete_line;
 			char temp_line[256];
@@ -39,6 +56,11 @@ class CSV_reader{
 			return complete_line;
 		}
 	public:
+		/*!
+		\brief file reader
+		\return CSV_data: readed data
+		internally it calls read_line and pushes all the lines into the CSV_data class
+		*/
 		CSV_data load_csv(){//loads all the cvs file
 			file_.open(route);
  			if (!file_.is_open()) {
