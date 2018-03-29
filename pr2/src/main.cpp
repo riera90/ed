@@ -23,8 +23,6 @@
 
 
 int main(){
-	std::cout << "test!!!" << '\n';
-
 	Provincia provincia;
 
 	int opcion;
