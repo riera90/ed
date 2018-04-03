@@ -1,24 +1,23 @@
-/*!	
+/*!
 
 	\file  Provincia.cpp
 	\brief Definición de la clase Provincia
-	\author  
-	\date  
+	\author
+	\date
 	\version 1.0
 
 */
 //Para los flujos de entrada/salida en ficheros.
-#include <fstream>  
+#include <fstream>
 #include <iostream>
 
 // Para comprobar las pre y post condiciones
 #include <cassert>
 
 #include "Provincia.hpp"
+namespace ed{
 
-
-// DEBES CODIFICAR LAS FUNCIONES DE LA CLASE Provincia
-
+}
 ///////////////////////////////////////////////////////////////////////////////
 
 // OSBSERVADORES
@@ -41,5 +40,3 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 
 // OPERACIONES CON FICHEROS
-
-

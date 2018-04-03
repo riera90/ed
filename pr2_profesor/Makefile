@@ -6,9 +6,10 @@ OBJ_DIR=./temp
 #------------------------------
 # FILENAMES (without extension)
 OUTPUT_NAME=output
+
 # MAIN_NAME=main
 MAIN_NAME=test
-# MAIN_NAME=testProcincia
+# MAIN_NAME=principalProvincia
 
 FN_FILES_NAMES = auxiliares/funcionesAuxiliares
 FN_FILES_NAMES+= clases/Municipio

@@ -1,9 +1,9 @@
-/*!	
+/*!
 	\file  Provincia.hpp
 	\brief Definición de la clase Provincia
-	\author  
-	\date  
-	\version 
+	\author
+	\date
+	\version
 
 */
 
@@ -28,13 +28,13 @@
 // Hay que incluir los prototipos de las demás funciones
 
 
-/*!	
+/*!
 	\namespace ed
 	\brief Espacio de nombres para la Provincia Estructuras de Datos
 
 */
 namespace ed{
-/*!	
+/*!
 
   \class Provincia
   \brief Definición de la clase Provincia
@@ -45,29 +45,52 @@ class Provincia
 	//!	\name Métodos públicos de la clase Provincia
 
 	private:
-		std::string      _nombre;     //!<  \brief Nombre de la Provincia
-		int              _codigo;	  //!<  \brief Código de la Provincia
-
-	  	ed::ListaDoblementeEnlazadaOrdenadaMunicipios _listaMunicipios; //!<  \brief Lista de municipios de la Provincia
+		std::string _nombre;   //!<  \brief Nombre de la Provincia
+		int         _codigo;	  //!<  \brief Código de la Provincia
+		ed::ListaDoblementeEnlazadaOrdenadaMunicipios _listaMunicipios; //!<  \brief Lista de municipios de la Provincia
 
 
 	/////////////////////////////////////////////////////////////////////
 
 	//!	\name  Métodos públicos de la clase Provincia
 
-  public: 
+  public:
 
 	//!	\name Constructor
+	/*!
+	\brief constructor con parametros opcionales de la provincia
+	construye una provincia , la cual, si no tiene parametros tomará los valores
+	predeterminados nombre="" y codigo=1
+	\param nombre : nombre de la provincia (std::string)
+	\param codigo : código de la provincia (int)
+	*/
+	Provincia(std::string nombre="", int codigo=0)
+	: _nombre(nombre), _codigo(codigo) {};
 
 
 	/////////////////////////////////////////////////////////////////////
 
 	//!	\name Observadores
+	/*!
+	\brief observador de el nombre
+	\return nombre: nombre de la provincia (std::string)
+	*/
+	inline std::string getNombre() {return _nombre;};
 
+	/*!
+	\brief observador de el codigo
+	\return codigo: codigo de la provincia (integer)
+	*/
+	inline int getCodigo() {return _codigo;};
 
 	/////////////////////////////////////////////////////////////////////
 
 	//!	\name Modificadores
+
+	void gotoHead();
+	void gotoLast();
+	void gotoNext();
+	void gotoPrevious();
 
 
 

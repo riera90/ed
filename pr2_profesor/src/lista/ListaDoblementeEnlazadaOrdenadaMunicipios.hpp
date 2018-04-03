@@ -112,14 +112,21 @@ namespace ed {
 		*/
 	inline bool isEmpty() const{return (_head==NULL ? true:false);}
 
-	// COMPLETAR EL RESTO DE OBSERVADORES PÚBLICOS
+	int nItems();
 
-		//! \name Modificadores públicos
+	//! \name Modificadores públicos
+	void gotoHead();
+	void gotoLast();
+	void gotoNext();
+	void gotoPrevious();
+	void insert(Municipio municipio);
+	bool find(Municipio municipio);
+	void remove(Municipio municipio);
+	void removeAll();
 
-	// COMPLETAR EL RESTO DE MODIFICADORES PÚBLICOS
 
 
-
+	void print();
 }; // Fin de la clase ListaDoblementeEnlazadaOrdenadaMunicipios
 
 } //namespace ed

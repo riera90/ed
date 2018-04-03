@@ -3,6 +3,5 @@ notpr/**
 **/*.a
 **/*.out
 **/*.exe
-pr2_profesor
 **/googletest
 pr2/html
