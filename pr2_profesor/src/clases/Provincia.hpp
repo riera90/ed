@@ -74,30 +74,132 @@ class Provincia
 	/*!
 	\brief observador de el nombre
 	\return nombre: nombre de la provincia (std::string)
+	\note funcion const e inline
 	*/
-	inline std::string getNombre() {return _nombre;};
+	inline std::string getNombre() const {return _nombre;};
 
 	/*!
 	\brief observador de el codigo
 	\return codigo: codigo de la provincia (integer)
+	\note funcion const e inline
 	*/
-	inline int getCodigo() {return _codigo;};
+	inline int getCodigo() const {return _codigo;};
+
+	/*!
+	\brief  Comprueba si la lista no está vacía
+	\note   Función de tipo "const": no puede modificar al objeto actual
+	\return true, si la lista no está vacía; false, en caso contrario
+	\note   Función inline
+	\note internamente se llama a ListaDoblementeEnlazadaOrdenadaMunicipios::isEmpty()
+	*/
+	inline bool hayMunicipios() const {return !_listaMunicipios.isEmpty();};
+
+	/*!
+	\brief  observador para el numero de municipios de la provincia
+	\return entero: numero de municipios
+	\note   Función de tipo "const": no puede modificar al objeto actual
+	\note   Función inline
+	\note internamente se llama a ListaDoblementeEnlazadaOrdenadaMunicipios::isEmpty()
+	*/
+	inline int getNumeroMunicipios() const {return _listaMunicipios.nItems();}
+
+	/*!
+	\brief  observador para un municipio de la lista
+	\return Municipio: municipio de la lista de municipios
+	\note   Función inline
+	\note internamente se llama a ListaDoblementeEnlazadaOrdenadaMunicipios::find()
+	*/
+	inline Municipio getMunicipio(std::string nombre){
+		ListaDoblementeEnlazadaOrdenadaMunicipios* it=new ListaDoblementeEnlazadaOrdenadaMunicipios(_listaMunicipios);
+		Municipio municipio(nombre);
+		if (it->find(municipio)){
+			return it->getMunicipio();
+		}
+	}
 
 	/////////////////////////////////////////////////////////////////////
 
 	//!	\name Modificadores
 
-	void gotoHead();
-	void gotoLast();
-	void gotoNext();
-	void gotoPrevious();
+	/*!
+	\brief modifica el cursor para situarlo en primer municipio
+	\pre no isEmpty()
+	\post new.getCurrent()=old.getHead()
+	\note internamente llama a ListaDoblementeEnlazadaOrdenadaMunicipios::gotoHead()
+	\note function inline
+	*/
+	inline void gotoHead(){_listaMunicipios.gotoHead();};
 
+	/*!
+	\brief modifica el cursor para situarlo en el último municipio
+	\pre no isEmpty()
+	\post new.getCurrent()=old.getLast()
+	\note internamente llama a ListaDoblementeEnlazadaOrdenadaMunicipios::gotoLast()
+	\note function inline
+	*/
+	inline void gotoLast(){_listaMunicipios.gotoLast();};
 
+	/*!
+	\brief modifica el cursor para situarlo en el sigiente municipio
+	\pre no isEmpty()
+	\post new.getCurrent()=old.getNext()
+	\note internamente llama a ListaDoblementeEnlazadaOrdenadaMunicipios::gotoNext()
+	\note function inline
+	*/
+	inline void gotoNext(){_listaMunicipios.gotoNext();};
+
+	/*!
+	\brief modifica el cursor para situarlo en el anterior municipio
+	\pre no isEmpty()
+	\post new.getCurrent()=old.getPrevious()
+	\note internamente llama a ListaDoblementeEnlazadaOrdenadaMunicipios::gotoPrevious()
+	\note function inline
+	*/
+	inline void gotoPrevious(){_listaMunicipios.gotoPrevious();};
+
+	/*!
+	\brief inserta el municipio en lña lista
+	\param municipio: municipio a insertar
+	\note el elemento se insertará de forma que la lista este ordenada
+	\post getCurrent()->getItem()=municipio
+	\post old.nItems()+1=new.nItems()
+	\note internamente llama a ListaDoblementeEnlazadaOrdenadaMunicipios::insert(Municipio municipio)
+	\note function inline
+	*/
+	inline void insertarMunicipio(Municipio municipio){_listaMunicipios.insert(municipio);};
+
+	/*!
+	\brief borra un municipio de la lista de municipios de la provincia
+	\param municipio: municipio a borrar
+	\pre find(municipio)
+	\post no find(municipio)
+	\post old.nItems()+1=new.nItems()
+	\note internamente llama a ListaDoblementeEnlazadaOrdenadaMunicipios::remove(Municipio municipio)
+	\note function inline
+	*/
+	inline bool borrarMunicipio(std::string nombre){
+		std::cout <<"try to delete :"<< getMunicipio(nombre) << '\n';
+		bool retval=_listaMunicipios.find(getMunicipio(nombre));
+		if (retval) {
+			std::cout << "removing!!" << '\n';
+			_listaMunicipios.remove(getMunicipio(nombre));
+		}
+		return retval;
+	}
+
+	/*!
+	\brief borra toda al lista de Municipios
+	\post nItems()=0
+	\note internamente llama a ListaDoblementeEnlazadaOrdenadaMunicipios::removeAll()
+	\note function inline
+	*/
+	inline void borrarTodosLosMunicipios(){_listaMunicipios.removeAll();};
 
 	/////////////////////////////////////////////////////////////////////
 
 	//! \name Función de escritura de la clase Provincia
 
+	void escribirMunicipios(){_listaMunicipios.print();};
 
 
 	/////////////////////////////////////////////////////////////////////

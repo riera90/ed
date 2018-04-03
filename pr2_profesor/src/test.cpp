@@ -13,8 +13,8 @@ int main(int argc, char const *argv[]) {
 	ed::Municipio municipio4("d4",4,4,4);
 	ed::Municipio municipio6("g6",6,6,6);
 
-	// lista.insert(municipio1);
-	lista.insert(municipio2);
+	lista.insert(municipio1);
+	// lista.insert(municipio2);
 	// lista.insert(municipio5);
 	// lista.insert(municipio3);
 	// lista.insert(municipio4);
@@ -25,10 +25,10 @@ int main(int argc, char const *argv[]) {
 
 	lista.print();
 
-	// lista.remove(municipio1);
+	lista.remove(municipio1);
 
 
-	lista.removeAll();
+	// lista.removeAll();
 
 	lista.print();
 

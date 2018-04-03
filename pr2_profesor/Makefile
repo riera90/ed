@@ -8,7 +8,8 @@ OBJ_DIR=./temp
 OUTPUT_NAME=output
 
 # MAIN_NAME=main
-MAIN_NAME=test
+# MAIN_NAME=test
+MAIN_NAME=testProvincia
 # MAIN_NAME=principalProvincia
 
 FN_FILES_NAMES = auxiliares/funcionesAuxiliares

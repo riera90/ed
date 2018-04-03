@@ -16,17 +16,21 @@
 namespace ed{
 
 	ListaDoblementeEnlazadaOrdenadaMunicipios::~ListaDoblementeEnlazadaOrdenadaMunicipios(){
-		// while(_head->getNext()!=NULL){
-			// next=_head->getNext();
-		// }
+		this->removeAll();
 	}
 
-	// int ListaDoblementeEnlazadaOrdenadaMunicipios::nItems(){
-	// 	if(this->isEmpty())return 0;
-	// 	ListaDoblementeEnlazadaOrdenadaMunicipios iterator(*this);
-	// 	it.gotoNext()
-	// 	while()
-	// }
+	int ListaDoblementeEnlazadaOrdenadaMunicipios::nItems()const{
+		if(this->isEmpty())return 0;
+		ListaDoblementeEnlazadaOrdenadaMunicipios* it=new ListaDoblementeEnlazadaOrdenadaMunicipios(*this);
+		it->gotoHead();
+		if ( it->isEmpty() ) std::cout << "la lista esta vacia" << '\n';
+		else{
+			while(it->getCurrent()!=NULL){
+				std::cout << "name: <" << it->getCurrent()->getItem().getNombre()<< ">\n";
+				it->gotoNext();
+			}
+		}
+	}
 
 	void ListaDoblementeEnlazadaOrdenadaMunicipios::gotoHead(){
 		this->setCurrent(this->getHead());
@@ -46,14 +50,15 @@ namespace ed{
 
 	void ListaDoblementeEnlazadaOrdenadaMunicipios::insert(Municipio municipio){
 		NodoDoblementeEnlazadoMunicipio* nodo=new NodoDoblementeEnlazadoMunicipio(municipio,NULL,NULL);
-		if (this->isEmpty()){
+		if (this->isEmpty()){//checks for empty list
 			// std::cout << "nohead" << '\n';
 			this->setHead(nodo);
 			this->gotoHead();
-		}else{
-			// std::cout << "head" << '\n';
+		}else{//if it's not empty...
+			// std::cout << "head and... ";
 			this->gotoHead();
-			if (this->getCurrent()->getNext()==NULL) {
+			if (this->getCurrent()->getNext()==NULL) {//if there is only a head
+				//if the element to insert is the greatest, then
 				if (this->getCurrent()->getItem().getNombre() < municipio.getNombre()) {
 					//back insert
 					// std::cout << "back insert" << '\n';
@@ -61,7 +66,7 @@ namespace ed{
 					this->getCurrent()->setNext(nodo);
 					this->getCurrent()->setPrevious(nodo);
 					nodo->setPrevious(previous);
-				}else{
+				}else{//if it's the smallest
 					//front insert
 					// std::cout << "front insert" << '\n';
 					NodoDoblementeEnlazadoMunicipio* next = this->getCurrent();
@@ -70,12 +75,13 @@ namespace ed{
 					this->getCurrent()->setPrevious(nodo);
 					this->setHead(nodo);
 				}
-			}else{
+			}else{//if there is more than one element in the list
 				// std::cout << "testing" << '\n';
 				while(this->getCurrent()!=NULL){
 					// std::cout << "searching" << '\n';
 					if (this->getCurrent()->getItem().getNombre() > municipio.getNombre()) {
 						// std::cout << "found!!" << '\n';
+						// std::cout<<"cursor at: "1 <<this->getCurrent()->getItem().getNombre()<<'\n';
 						break;
 					}
 					this->gotoNext();
@@ -89,13 +95,25 @@ namespace ed{
 					nodo->setPrevious(previous);
 					this->getHead()->setPrevious(nodo);
 				}else{
-					// std::cout << this->getCurrent()->getItem().getNombre() <<" > "<< municipio.getNombre()<< '\n';
-					NodoDoblementeEnlazadoMunicipio* next     = this->getCurrent();
-					NodoDoblementeEnlazadoMunicipio* previous = this->getCurrent()->getPrevious();
-					nodo->setNext(next);
-					nodo->setPrevious(previous);
-					next->setPrevious(nodo);
-					previous->setNext(nodo);
+					std::cout << this->getCurrent()->getItem().getNombre() <<" > "<< municipio.getNombre()<< '\n';
+					if (this->getCurrent()==this->getHead()) {//inserts into the head
+						NodoDoblementeEnlazadoMunicipio* next     = this->getCurrent();
+						NodoDoblementeEnlazadoMunicipio* previous = this->getCurrent()->getPrevious();
+						// std::cout << "inserting into the head" << '\n';
+						nodo->setNext(next);
+						nodo->setPrevious(previous);
+						this->getCurrent()->setPrevious(nodo);
+						this->setHead(nodo);
+					}else{//inserts into inside the list (not head nor last)
+						NodoDoblementeEnlazadoMunicipio* next     = this->getCurrent();
+						NodoDoblementeEnlazadoMunicipio* previous = this->getCurrent()->getPrevious();
+						nodo->setNext(next);
+						nodo->setPrevious(previous);
+						next->setPrevious(nodo);
+						previous->setNext(nodo);
+						std::cout << this->getHead()->getPrevious()->getItem() << '\n';
+					}
+
 				}
 			}
 			// this->print();
@@ -108,11 +126,13 @@ namespace ed{
 		if ( it->isEmpty() ) std::cout << "la lista esta vacia" << '\n';
 		else{
 			while(it->getCurrent()!=NULL){
-				std::cout << "name: <" << it->getCurrent()->getItem().getNombre()<< ">\n";
+				std::cout<< "nombre: <" << it->getCurrent()->getItem().getNombre()
+				<<">\t\tcp: <" << it->getCurrent()->getItem().getCodigoPostal()
+				<<">\t\tv: <" << it->getCurrent()->getItem().getHombres()
+				<<">\t\tm: <" << it->getCurrent()->getItem().getMujeres()<<">\n";
 				it->gotoNext();
 			}
 		}
-		std::cout << "----------------------" << '\n';
 	}
 
 	bool ListaDoblementeEnlazadaOrdenadaMunicipios::find(Municipio municipio){
@@ -131,21 +151,27 @@ namespace ed{
 		if(!this->find(municipio)){//checks if it's empty
 			std::cout << "el municipio no esta en la lista" << '\n';
 		}else{//checks for the last element
-			if (this->getHead()==this->getCurrent()) {
-				this->setHead(this->getCurrent()->getNext());
-				this->getHead()->setPrevious(this->getCurrent()->getPrevious());
-			}else{//checks for the first element
-				NodoDoblementeEnlazadoMunicipio* next     = this->getCurrent()->getNext();
-				NodoDoblementeEnlazadoMunicipio* previous = this->getCurrent()->getPrevious();
-				if (this->getCurrent()->getNext()==NULL) {
-					this->getHead()->setPrevious(previous);
-					previous->setNext(NULL);
-				}else{
-					next->setPrevious(previous);
-					previous->setNext(next);
+			if (this->getHead()->getNext()==NULL) {//checks fot only one remaining element
+				// std::cout << "deleting last element!!" << '\n';
+				delete(this->getCurrent());
+				this->setHead(NULL);
+			}else{
+				if (this->getHead()==this->getCurrent()) {
+					this->setHead(this->getCurrent()->getNext());
+					this->getHead()->setPrevious(this->getCurrent()->getPrevious());
+				}else{//checks for the first element
+					NodoDoblementeEnlazadoMunicipio* next     = this->getCurrent()->getNext();
+					NodoDoblementeEnlazadoMunicipio* previous = this->getCurrent()->getPrevious();
+					if (this->getCurrent()->getNext()==NULL) {
+						this->getHead()->setPrevious(previous);
+						previous->setNext(NULL);
+					}else{
+						next->setPrevious(previous);
+						previous->setNext(next);
+					}
 				}
+				delete(this->getCurrent());
 			}
-			delete(this->getCurrent());
 		}
 	}
 
