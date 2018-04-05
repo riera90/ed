@@ -81,4 +81,24 @@ namespace ed{
 		// csv.dump_csv(data);
 		_listaMunicipios.grabarFichero(data,line,csv);
 	};
+
+
+	int Provincia::getTotalHombres(){
+		int count=0;
+		ListaDoblementeEnlazadaOrdenadaMunicipios* it= new ListaDoblementeEnlazadaOrdenadaMunicipios(_listaMunicipios);
+		for(it->gotoHead();it->existeSiguiente();it->gotoNext()){
+			count+=it->getMunicipio().getHombres();
+		}
+		return count;
+	}
+
+	int Provincia::getTotalMujeres(){
+		int count=0;
+		ListaDoblementeEnlazadaOrdenadaMunicipios* it= new ListaDoblementeEnlazadaOrdenadaMunicipios(_listaMunicipios);
+		for(it->gotoHead();it->existeSiguiente();it->gotoNext()){
+			count+=it->getMunicipio().getMujeres();
+		}
+		return count;
+	}
+
 }

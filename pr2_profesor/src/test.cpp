@@ -35,6 +35,7 @@ int main(int argc, char const *argv[]) {
 	provincia.grabarFichero(route2);
 
 	provincia.escribirMunicipios();
+	std::cout << "hombres: "<< provincia.getTotalHombres() << '\n';
 
 	// lista.removeAll();
 

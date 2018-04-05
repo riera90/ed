@@ -192,6 +192,11 @@ namespace ed {
 	*/
 	void print();
 
+	/*!
+	\brief observador que devielve el municipio al que apunta el cursor
+	\note funcion  inline y const
+	\return Municipio
+	*/
 	inline Municipio getMunicipio() const {return (this->getCurrent()->getItem());}
 
 	bool existeSiguiente(){
@@ -200,6 +205,12 @@ namespace ed {
 		}return true;
 	}
 
+	/*!
+	\brief hace "dump" (guarda) los datos (municipios) del programa en un csv
+	\param data: objero con los datos del programa
+	\param line: objero con datos del programa
+	\param csv: objeto (como servicio) para la esritura en el fichero
+	*/
 	bool grabarFichero(CSV_data &data,CSV_line &line,CSV_writer &csv);
 
 }; // Fin de la clase ListaDoblementeEnlazadaOrdenadaMunicipios

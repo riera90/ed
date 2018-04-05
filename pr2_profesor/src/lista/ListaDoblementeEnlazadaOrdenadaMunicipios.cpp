@@ -181,7 +181,7 @@ namespace ed{
 
 	void ListaDoblementeEnlazadaOrdenadaMunicipios::removeAll(){
 		if(this->getHead()==NULL){//checks if it's empty
-			std::cout << "el municipio no esta en la lista" << '\n';
+			// std::cout << "el municipio no esta en la lista" << '\n';
 		}else{//checks for the last element
 			if (this->getHead()->getPrevious()==NULL) {
 				delete(this->getHead());

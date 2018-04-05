@@ -148,6 +148,26 @@ class Provincia
 		return _listaMunicipios.existeSiguiente();
 	}
 
+	/*!
+	\brief  observador para el numerto de Hombres de la provincia
+	\return entero: numero de hombres de la provincia
+	*/
+	int getTotalHombres();
+
+	/*!
+	\brief  observador para el numerto de mujeres de la provincia
+	\return entero: numero de mujeres de la provincia
+	*/
+	int getTotalMujeres();
+
+	/*!
+	\brief  observador para el numerto de habitantes de la provincia
+	\return entero: numero de habitantes de la provincia
+	\note   Función inline
+	*/
+	int getTotalHabitantes(){return getTotalHombres()+getTotalMujeres();};
+
+
 	/////////////////////////////////////////////////////////////////////
 
 	//!	\name Modificadores
@@ -209,10 +229,8 @@ class Provincia
 	\note function inline
 	*/
 	inline bool borrarMunicipio(std::string nombre){
-		std::cout <<"try to delete :"<< getMunicipio(nombre) << '\n';
 		bool retval=_listaMunicipios.find(getMunicipio(nombre));
 		if (retval) {
-			std::cout << "removing!!" << '\n';
 			_listaMunicipios.remove(getMunicipio(nombre));
 		}
 		return retval;
@@ -229,15 +247,27 @@ class Provincia
 	/////////////////////////////////////////////////////////////////////
 
 	//! \name Función de escritura de la clase Provincia
-
+	/*!
+	\brief escribe por pantalla todos los municipios de la provincia
+	*/
 	void escribirMunicipios(){_listaMunicipios.print();};
 
 
 	/////////////////////////////////////////////////////////////////////
 
 	//! Operaciones con ficheros
+	/*!
+	\brief carga los datos de un csv con municipios en el programa
+	\param route: std::string ruta donde se encuantra el fichero
+	*/
 	bool cargarFichero(std::string route);
 	//
+
+	/*!
+	\brief hace "dump" (guarda) los datos (municipios) del programa en un csv
+	\param route: std::string ruta donde se desea guardar el fichero
+	\note internamente se llama a ListaOrdenadaMunicipiosInterfaz::grabarFichero()
+	*/
 	bool grabarFichero(std::string route);
 
 
