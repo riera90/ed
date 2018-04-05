@@ -1,12 +1,12 @@
 /*!
   \file   funcionesAuxiliares.cpp
   \brief  Código de las funciones auxiliares del programa principal de la provincia
-  \author 
-  \date   
+  \author
+  \date
 */
 
 #include <iostream>
-#include <string>  
+#include <string>
 
 // Para usar atoi
 #include <stdlib.h>
@@ -53,7 +53,7 @@ int ed::menu()
 
 	//////////////////////////////////////////////////////////////////////////////
 	posicion++;
- 
+
 	PLACE(posicion++,10);
 	std::cout << "[4] Consultar datos de la provincia";
 
@@ -106,7 +106,7 @@ int ed::menu()
 
 void ed::comprobarProvinciaVacia(ed::Provincia &provincia)
 {
-	std::cout << "SE DEBE COMPLETAR EL CÓDIGO DE ESTA FUNCIÓN " << std::endl;
+	std::cout << "la provincia "<<(provincia.hayMunicipios()?"contiene elementos":"esta vacia")<< '\n';
 
 	return;
 }
@@ -115,14 +115,16 @@ void ed::comprobarProvinciaVacia(ed::Provincia &provincia)
 
 void ed::cargarProvincia(ed::Provincia &provincia)
 {
-	 std::cout << "SE DEBE COMPLETAR EL CÓDIGO DE ESTA FUNCIÓN " << std::endl;
+	std::string route="/mnt/data_1/code/c++/ed/pr2_profesor/output/Cordoba.csv";
+	provincia.cargarFichero(route);
 
 	return;
 }
 
 void ed::grabarProvincia(ed::Provincia  &provincia)
 {
-	std::cout << "SE DEBE COMPLETAR EL CÓDIGO DE ESTA FUNCIÓN " << std::endl;
+	std::string route="/mnt/data_1/code/c++/ed/pr2_profesor/output/Cordoba2.csv";
+	provincia.grabarFichero(route);
 
 	return;
 }
@@ -131,7 +133,8 @@ void ed::grabarProvincia(ed::Provincia  &provincia)
 
 void ed::consultarDatosDeProvincia(ed::Provincia &provincia)
 {
-	std::cout << "SE DEBE COMPLETAR EL CÓDIGO DE ESTA FUNCIÓN " << std::endl;
+	std::cout << "nombre provincia:" << provincia.getNombre() <<'\n';
+	std::cout << "codigo provincia:" << provincia.getCodigo() <<'\n';
 
 	return;
 }
@@ -140,7 +143,7 @@ void ed::consultarDatosDeProvincia(ed::Provincia &provincia)
 //
 void ed::mostrarMunicipiosDeProvincia(ed::Provincia & provincia)
 {
-	std::cout << "SE DEBE COMPLETAR EL CÓDIGO DE ESTA FUNCIÓN " << std::endl;
+	provincia.escribirMunicipios();
 
 	return;
 }
@@ -150,17 +153,16 @@ void ed::mostrarMunicipiosDeProvincia(ed::Provincia & provincia)
 void ed::modificarDatosDeProvincia(ed::Provincia &provincia)
 {
 
-std::cout << "SE DEBE COMPLETAR EL CÓDIGO DE ESTA FUNCIÓN " << std::endl;
 
 // QUITAR LOS COMENTARIOS CUANDO SE HAYA CODIFICADO LA CLASE Provincia
 
-/*
+
 	int opcion, codigo;
-	std::string nombre; 
+	std::string nombre;
 
 	do{
-		std::cout << BIYELLOW  << "Nombre de la provincia: "  << RESET 
-				  << provincia.getNombre() << std::endl; 
+		std::cout << BIYELLOW  << "Nombre de la provincia: "  << RESET
+				  << provincia.getNombre() << std::endl;
 		std::cout << BIYELLOW << "Código de la provincia: " << RESET
 				  << provincia.getCodigo() << std::endl  << std::endl;
 
@@ -179,10 +181,10 @@ std::cout << "SE DEBE COMPLETAR EL CÓDIGO DE ESTA FUNCIÓN " << std::endl;
 	    std::cin.ignore();
 
 		std::cout << std::endl;
-			
+
 		switch(opcion)
 		{
-			case 0: 
+			case 0:
 					// Fin de las modificaciones
 					break;
 			case 1:
@@ -201,18 +203,18 @@ std::cout << "SE DEBE COMPLETAR EL CÓDIGO DE ESTA FUNCIÓN " << std::endl;
 					provincia.setCodigo(codigo);
 					break;
 			default:
-					std::cout << BIRED << "Opción incorrecta:" << RESET 
+					std::cout << BIRED << "Opción incorrecta:" << RESET
 							  << opcion << std::endl;
 		}
 	}while (opcion != 0);
-*/
+
 	return;
 }
 
 
 void ed::borrarTodosLosMunicipiosDeProvincia(ed::Provincia &provincia)
 {
-	std::cout << "SE DEBE COMPLETAR EL CÓDIGO DE ESTA FUNCIÓN " << std::endl;
+	provincia.borrarTodosLosMunicipios();
 
 	return;
 }
@@ -220,28 +222,49 @@ void ed::borrarTodosLosMunicipiosDeProvincia(ed::Provincia &provincia)
 
 void ed::consultarMunicipioDeProvincia(ed::Provincia &provincia)
 {
-	std::cout << "SE DEBE COMPLETAR EL CÓDIGO DE ESTA FUNCIÓN " << std::endl;
-
+	std::string name;
+	std::cout << "introduzca el nombre de la provincia " << std::endl;
+	std::cin >> name;
+	Municipio municipio;
+	municipio = provincia.getMunicipio(name);
+	if (municipio.getNombre()=="") {
+		std::cout << "no se ha encontrado.." << '\n';
+	}else{
+		std::cout << municipio << '\n';
+	}
+	std::cin.ignore();
 	return;
 }
 
 void ed::insertarMunicipioEnProvincia(ed::Provincia &provincia)
 {
-	std::cout << "SE DEBE COMPLETAR EL CÓDIGO DE ESTA FUNCIÓN " << std::endl;
-
+	Municipio municipio;
+	std::cout << "CP Nombre; hombres; mujeres;" << '\n';
+	std::cin>>municipio;
+	provincia.insertarMunicipio(municipio);
+	std::cin.ignore();
 	return;
 }
 
-  
+
 
 
 void ed::borrarMunicipioDeProvincia(ed::Provincia &provincia)
 {
-	std::cout << "SE DEBE COMPLETAR EL CÓDIGO DE ESTA FUNCIÓN " << std::endl;
+	std::string name;
+	std::cout << "introduzca el nombre de la provincia " << std::endl;
+	std::cin >> name;
+	Municipio municipio;
+	municipio = provincia.getMunicipio(name);
+	std::cout << municipio << '\n';
+	if (municipio.getNombre()=="") {
+		std::cout << "no se ha encontrado.." << '\n';
+	}else{
+		provincia.borrarMunicipio(name);
+		std::cout << "borrado satisfactoriamente" << '\n';
+	}
+	std::cin.ignore();
+	return;
 
 	return;
 }
-
-
-
-

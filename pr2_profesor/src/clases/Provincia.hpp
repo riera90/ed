@@ -17,6 +17,9 @@
 
 
 #include "ListaDoblementeEnlazadaOrdenadaMunicipios.hpp"
+#include "CSV_reader.hpp"
+#include "CSV_writer.hpp"
+#include "CSV_data.hpp"
 
 
 // DEBES COMPLETAR O MODIFICAR EL CÓDIGO DE LA CLASE Provincia
@@ -85,6 +88,22 @@ class Provincia
 	*/
 	inline int getCodigo() const {return _codigo;};
 
+	//!	\name Observadores
+	/*!
+	\brief modificador de el nombre
+	\param nombre: nombre de la provincia (std::string)
+	\note funcion inline
+	*/
+	inline void setNombre(std::string nombre) {_nombre=nombre;};
+
+	/*!
+	\brief modificador de el codigo
+	\param codigo: codigo de la provincia (integer)
+	\note funcion inline
+	*/
+	inline void setCodigo(int codigo) {_codigo=codigo;};
+
+
 	/*!
 	\brief  Comprueba si la lista no está vacía
 	\note   Función de tipo "const": no puede modificar al objeto actual
@@ -114,7 +133,19 @@ class Provincia
 		Municipio municipio(nombre);
 		if (it->find(municipio)){
 			return it->getMunicipio();
+		}else{
+			municipio.setNombre("");
+			return municipio;
 		}
+	}
+
+	/*!
+	\brief  observador logico para ver si existe otro elemento
+	\return boolean: true si existe, false si es el ultimo
+	\note   Función inline
+	*/
+	inline bool existeSiguiente(){
+		return _listaMunicipios.existeSiguiente();
 	}
 
 	/////////////////////////////////////////////////////////////////////
@@ -205,6 +236,9 @@ class Provincia
 	/////////////////////////////////////////////////////////////////////
 
 	//! Operaciones con ficheros
+	bool cargarFichero(std::string route);
+	//
+	bool grabarFichero(std::string route);
 
 
 }; //Fin de la clase  Provincia

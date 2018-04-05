@@ -6,7 +6,6 @@
 \file CSV_writer.hpp
 \brief contains the class CSV_writer
 */
-
 /*!
 \class CSV_writer CSV_writer.hpp "CSV_writer.hpp"
 \brief writer/dumper of data into a csv file

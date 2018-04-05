@@ -12,6 +12,9 @@
 #include "ListaDoblementeEnlazadaOrdenadaMunicipios.hpp"
 #include "NodoMunicipioInterfaz.hpp"
 #include "Municipio.hpp"
+#include "CSV_reader.hpp"
+#include "CSV_writer.hpp"
+#include "CSV_data.hpp"
 
 namespace ed{
 
@@ -95,7 +98,7 @@ namespace ed{
 					nodo->setPrevious(previous);
 					this->getHead()->setPrevious(nodo);
 				}else{
-					std::cout << this->getCurrent()->getItem().getNombre() <<" > "<< municipio.getNombre()<< '\n';
+					// std::cout << this->getCurrent()->getItem().getNombre() <<" > "<< municipio.getNombre()<< '\n';
 					if (this->getCurrent()==this->getHead()) {//inserts into the head
 						NodoDoblementeEnlazadoMunicipio* next     = this->getCurrent();
 						NodoDoblementeEnlazadoMunicipio* previous = this->getCurrent()->getPrevious();
@@ -111,7 +114,7 @@ namespace ed{
 						nodo->setPrevious(previous);
 						next->setPrevious(nodo);
 						previous->setNext(nodo);
-						std::cout << this->getHead()->getPrevious()->getItem() << '\n';
+						// std::cout << this->getHead()->getPrevious()->getItem() << '\n';
 					}
 
 				}
@@ -126,10 +129,11 @@ namespace ed{
 		if ( it->isEmpty() ) std::cout << "la lista esta vacia" << '\n';
 		else{
 			while(it->getCurrent()!=NULL){
-				std::cout<< "nombre: <" << it->getCurrent()->getItem().getNombre()
-				<<">\t\tcp: <" << it->getCurrent()->getItem().getCodigoPostal()
-				<<">\t\tv: <" << it->getCurrent()->getItem().getHombres()
-				<<">\t\tm: <" << it->getCurrent()->getItem().getMujeres()<<">\n";
+				std::cout << it->getCurrent()->getItem() << '\n';
+				// std::cout<< "nombre: <" << it->getCurrent()->getItem().getNombre()
+				// <<">\t\tcp: <" << it->getCurrent()->getItem().getCodigoPostal()
+				// <<">\t\tv: <" << it->getCurrent()->getItem().getHombres()
+				// <<">\t\tm: <" << it->getCurrent()->getItem().getMujeres()<<">\n";
 				it->gotoNext();
 			}
 		}
@@ -191,6 +195,25 @@ namespace ed{
 				delete(this->getHead());
 			}
 		}
+		this->setHead(NULL);
+	}
+
+	bool ListaDoblementeEnlazadaOrdenadaMunicipios::grabarFichero(CSV_data &data,CSV_line &line,CSV_writer &csv){
+
+		std::string postal_and_name;
+		Municipio municipio;
+
+		for (gotoHead(); existeSiguiente(); gotoNext()) {
+			line.clear();
+			municipio=getMunicipio();
+			postal_and_name=std::to_string(municipio.getCodigoPostal());
+			postal_and_name+=" "+municipio.getNombre();
+			line.push_field(postal_and_name);
+			line.push_field(std::to_string(municipio.getHombres()));
+			line.push_field(std::to_string(municipio.getMujeres()));
+			data.push_line(line);
+		}
+		csv.dump_csv(data);
 	}
 
 }

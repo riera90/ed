@@ -9,8 +9,8 @@ OUTPUT_NAME=output
 
 # MAIN_NAME=main
 # MAIN_NAME=test
-MAIN_NAME=testProvincia
-# MAIN_NAME=principalProvincia
+# MAIN_NAME=testProvincia
+MAIN_NAME=principalProvincia
 
 FN_FILES_NAMES = auxiliares/funcionesAuxiliares
 FN_FILES_NAMES+= clases/Municipio

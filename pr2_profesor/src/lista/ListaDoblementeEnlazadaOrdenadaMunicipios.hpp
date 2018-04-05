@@ -18,6 +18,9 @@
 #include "NodoDoblementeEnlazadoMunicipio.hpp"
 
 #include "Municipio.hpp"
+#include "CSV_reader.hpp"
+#include "CSV_writer.hpp"
+#include "CSV_data.hpp"
 
 // DEBES ESPECIFICAR LAS FUNCIONES DE LA CLASE ListaDoblementeEnlazadaOrdenadaMunicipios
 
@@ -190,6 +193,14 @@ namespace ed {
 	void print();
 
 	inline Municipio getMunicipio() const {return (this->getCurrent()->getItem());}
+
+	bool existeSiguiente(){
+		if (this->getCurrent()->getNext()==NULL) {
+			return false;
+		}return true;
+	}
+
+	bool grabarFichero(CSV_data &data,CSV_line &line,CSV_writer &csv);
 
 }; // Fin de la clase ListaDoblementeEnlazadaOrdenadaMunicipios
 
