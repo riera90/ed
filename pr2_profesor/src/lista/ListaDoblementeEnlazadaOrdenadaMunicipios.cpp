@@ -198,23 +198,23 @@ namespace ed{
 		this->setHead(NULL);
 	}
 
-	bool ListaDoblementeEnlazadaOrdenadaMunicipios::grabarFichero(CSV_data &data,CSV_line &line,CSV_writer &csv){
-
-		std::string postal_and_name;
-		Municipio municipio;
-
-		for (gotoHead(); existeSiguiente(); gotoNext()) {
-			line.clear();
-			municipio=getMunicipio();
-			postal_and_name=std::to_string(municipio.getCodigoPostal());
-			postal_and_name+=" "+municipio.getNombre();
-			line.push_field(postal_and_name);
-			line.push_field(std::to_string(municipio.getHombres()));
-			line.push_field(std::to_string(municipio.getMujeres()));
-			data.push_line(line);
-		}
-		csv.dump_csv(data);
-	}
+	// bool ListaDoblementeEnlazadaOrdenadaMunicipios::grabarFichero(CSV_data &data,CSV_line &line,CSV_writer &csv){
+	//
+	// 	std::string postal_and_name;
+	// 	Municipio municipio;
+	//
+	// 	for (gotoHead(); existeSiguiente(); gotoNext()) {
+	// 		line.clear();
+	// 		municipio=getMunicipio();
+	// 		postal_and_name=std::to_string(municipio.getCodigoPostal());
+	// 		postal_and_name+=" "+municipio.getNombre();
+	// 		line.push_field(postal_and_name);
+	// 		line.push_field(std::to_string(municipio.getHombres()));
+	// 		line.push_field(std::to_string(municipio.getMujeres()));
+	// 		data.push_line(line);
+	// 	}
+	// 	csv.dump_csv(data);
+	// }
 	bool ed::ListaDoblementeEnlazadaOrdenadaMunicipios::isLastItem() const{
     #ifndef NDEBUG
 		assert(!isEmpty());
