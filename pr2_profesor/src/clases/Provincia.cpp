@@ -72,16 +72,31 @@ namespace ed{
 		}
 	}
 
-	bool Provincia::grabarFichero(std::string route){
-		CSV_data data;
-		CSV_line line;
-		CSV_writer csv(route);
-		line.push_field(std::to_string(getCodigo())+" "+getNombre());
-		data.push_line(line);
-		// csv.dump_csv(data);
-		_listaMunicipios.grabarFichero(data,line,csv);
-	};
+	// bool Provincia::grabarFichero(std::string route){
+	// 	CSV_data data;
+	// 	CSV_line line;
+	// 	CSV_writer csv(route);
+	// 	line.push_field(std::to_string(getCodigo())+" "+getNombre());
+	// 	data.push_line(line);
+	// 	// csv.dump_csv(data);
+	// 	_listaMunicipios.grabarFichero(data,line,csv);
+	// };
+	bool ed::Provincia::grabarFichero(std::string route){
+    std::ofstream fichero;
+    fichero.open(route.c_str());
 
+	  if( (fichero.rdstate() & std::ofstream::failbit ) != 0 )return false;
+
+		fichero<<_codigo<<" "<<_nombre<<"\n";
+    _listaMunicipios.gotoHead();
+   	while(!_listaMunicipios.isLastItem()){
+    	fichero<<_listaMunicipios.getCurrentItem()<<"\n";
+    	_listaMunicipios.gotoNext();
+	 	}
+    fichero<<_listaMunicipios.getCurrentItem()<<"\n";
+    fichero.close();
+		return true;
+	}
 
 	int Provincia::getTotalHombres(){
 		int count=0;

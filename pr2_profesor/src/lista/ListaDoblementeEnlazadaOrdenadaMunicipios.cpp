@@ -215,5 +215,30 @@ namespace ed{
 		}
 		csv.dump_csv(data);
 	}
+	bool ed::ListaDoblementeEnlazadaOrdenadaMunicipios::isLastItem() const{
+    #ifndef NDEBUG
+		assert(!isEmpty());
+		#endif //NDEBUG
+    if(_current->getNext()==NULL) return true;
+    return false;
+	}
+
+	ed::Municipio const &ed::ListaDoblementeEnlazadaOrdenadaMunicipios::getPreviousItem() const{
+  #ifndef NDEBUG
+	assert(!isEmpty());
+	// assert(!isFirstItem());
+	#endif //NDEBUG
+  ed::NodoDoblementeEnlazadoMunicipio *it=_current->getPrevious();
+  return it->getItem();
+	}
+
+	ed::Municipio const &ed::ListaDoblementeEnlazadaOrdenadaMunicipios::getNextItem() const{
+  #ifndef NDEBUG
+	assert(!isEmpty());
+	// assert(!isLastItem());
+	#endif //NDEBUG
+  ed::NodoDoblementeEnlazadoMunicipio *it=_current->getNext();
+  return it->getItem();
+	}
 
 }

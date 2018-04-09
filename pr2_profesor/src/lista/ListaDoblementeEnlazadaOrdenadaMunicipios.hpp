@@ -213,6 +213,17 @@ namespace ed {
 	*/
 	bool grabarFichero(CSV_data &data,CSV_line &line,CSV_writer &csv);
 
+	bool isLastItem() const;
+
+	inline ed::Municipio const & getCurrentItem() const{
+    #ifndef NDEBUG
+		assert(!isEmpty());
+		#endif //NDEBUG	
+	return _current->getItem();
+  }
+  ed::Municipio const &getPreviousItem()const;
+	ed::Municipio const &getNextItem()const;
+
 }; // Fin de la clase ListaDoblementeEnlazadaOrdenadaMunicipios
 
 } //namespace ed
