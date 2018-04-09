@@ -1,14 +1,15 @@
 /*!
   \file   funcionesAuxiliares.hpp
   \brief  Funciones auxiliares para el programa principal de la práctica 2
-  \author 
-  \date  
+  \author
+  \date
 */
 
 #ifndef _FUNCIONESAUXILIARES_HPP_
 #define _FUNCIONESAUXILIARES_HPP_
 
 #include "Provincia.hpp"
+#include <string>
 
 
 // SE DEBEN INCLUIR LOS COMENTARIOS DE DOXYGEN DE CADA FUNCIÓN
@@ -64,4 +65,3 @@ namespace ed
 
 // Fin de _FUNCIONESAUXILIARES_HPP_
 #endif
-
