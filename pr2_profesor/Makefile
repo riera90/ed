@@ -16,7 +16,7 @@ FN_FILES_NAMES = auxiliares/funcionesAuxiliares
 FN_FILES_NAMES+= clases/Municipio
 FN_FILES_NAMES+= clases/Provincia
 FN_FILES_NAMES+= lista/ListaDoblementeEnlazadaOrdenadaMunicipios
-FN_FILES_NAMES+= wrapers/csv/CSV_data
+# FN_FILES_NAMES+= wrapers/csv/CSV_data
 
 LIB_NAME=lib_name
 
@@ -24,7 +24,7 @@ HEADERS_LOCATION = auxiliares
 HEADERS_LOCATION+= clases
 HEADERS_LOCATION+= lista
 HEADERS_LOCATION+= nodo
-HEADERS_LOCATION+= wrapers/csv
+# HEADERS_LOCATION+= wrapers/csv
 
 # where the headers are located inside of the BASE_DIR folder (for dinamic linking)
 #------------------------------

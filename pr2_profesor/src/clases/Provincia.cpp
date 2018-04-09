@@ -39,38 +39,54 @@ namespace ed{
 
 	// OPERACIONES CON FICHEROS
 
-	bool Provincia::cargarFichero(std::string route){
-		CSV_reader csv(route);
-		CSV_line line;
-		CSV_data data=csv.load_csv();
-		Municipio municipio;
-		std::string postal_and_name, name;
-		int separator, postal_code;
-		//dumps the data into the class
-		line=data.get_line(0);
-		std::string provincia_data=line.get_field(0);
-		separator=provincia_data.find(' ');
-		setCodigo(atoi(provincia_data.substr(0,separator).c_str()));
-		setNombre(provincia_data.substr(separator+1));
-		for (size_t i = 1; i < data.lines(); i++) {
+	// bool Provincia::cargarFichero(std::string route){
+	// 	CSV_reader csv(route);
+	// 	CSV_line line;
+	// 	CSV_data data=csv.load_csv();
+	// 	Municipio municipio;
+	// 	std::string postal_and_name, name;
+	// 	int separator, postal_code;
+	// 	//dumps the data into the class
+	// 	line=data.get_line(0);
+	// 	std::string provincia_data=line.get_field(0);
+	// 	separator=provincia_data.find(' ');
+	// 	setCodigo(atoi(provincia_data.substr(0,separator).c_str()));
+	// 	setNombre(provincia_data.substr(separator+1));
+	// 	for (size_t i = 1; i < data.lines(); i++) {
+	//
+	// 		line=data.get_line(i);
+	//
+	// 		postal_and_name = line.get_field(0);
+	// 		separator=postal_and_name.find(' ');
+	//
+	// 		postal_code=atoi(postal_and_name.substr(0,separator).c_str());
+	// 		municipio.setCodigoPostal(postal_code);
+	//
+	// 		municipio.setNombre(postal_and_name.substr(separator+1));
+	//
+	// 		municipio.setHombres(atoi(line.get_field(1).c_str()));
+	// 		municipio.setMujeres(atoi(line.get_field(2).c_str()));
+	// 		if (municipio.getNombre()!="") {
+	// 			insertarMunicipio(municipio);
+	// 		}
+	// 	}
+	// }
 
-			line=data.get_line(i);
-
-			postal_and_name = line.get_field(0);
-			separator=postal_and_name.find(' ');
-
-			postal_code=atoi(postal_and_name.substr(0,separator).c_str());
-			municipio.setCodigoPostal(postal_code);
-
-			municipio.setNombre(postal_and_name.substr(separator+1));
-
-			municipio.setHombres(atoi(line.get_field(1).c_str()));
-			municipio.setMujeres(atoi(line.get_field(2).c_str()));
-			if (municipio.getNombre()!="") {
-				insertarMunicipio(municipio);
-			}
-		}
-	}
+	bool ed::Provincia::cargarFichero(std::string nombre){
+    std::ifstream fichero;
+    fichero.open(nombre.c_str());
+      std::string cadena;
+      std::getline(fichero,cadena,' ');
+      setCodigo(atoi(cadena.c_str()));
+      std::getline(fichero,cadena,'\n');
+      setNombre(cadena);
+    if( (fichero.rdstate() & std::ifstream::failbit ) != 0 )return false;
+    ed::Municipio aux;
+   while(fichero>>aux){
+        _listaMunicipios.insert(aux);
+     }
+     return true;
+}
 
 	// bool Provincia::grabarFichero(std::string route){
 	// 	CSV_data data;
@@ -96,6 +112,7 @@ namespace ed{
     fichero<<_listaMunicipios.getCurrentItem()<<"\n";
     fichero.close();
 		return true;
+
 	}
 
 	int Provincia::getTotalHombres(){
