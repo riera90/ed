@@ -14,6 +14,7 @@
 #include <cassert>
 
 #include <string>
+#include <cstdlib>
 
 
 #include "ListaDoblementeEnlazadaOrdenadaMunicipios.hpp"
