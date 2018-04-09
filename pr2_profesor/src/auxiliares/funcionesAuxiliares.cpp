@@ -115,7 +115,7 @@ void ed::comprobarProvinciaVacia(ed::Provincia &provincia)
 
 void ed::cargarProvincia(ed::Provincia &provincia)
 {
-	std::string route="/mnt/data_1/code/c++/ed/pr2_profesor/output/Cordoba2.csv";
+	std::string route="output/Cordoba.csv";
 	provincia.cargarFichero(route);
 
 	return;
@@ -123,7 +123,7 @@ void ed::cargarProvincia(ed::Provincia &provincia)
 
 void ed::grabarProvincia(ed::Provincia  &provincia)
 {
-	std::string route="/mnt/data_1/code/c++/ed/pr2_profesor/output/Cordoba2.csv";
+	std::string route="output/Cordoba2.csv";
 	provincia.grabarFichero(route);
 
 	return;
