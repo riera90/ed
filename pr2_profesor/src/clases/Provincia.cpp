@@ -72,9 +72,9 @@ namespace ed{
 	// 	}
 	// }
 
-	bool ed::Provincia::cargarFichero(std::string nombre){
+	bool ed::Provincia::cargarFichero(std::string route){
     std::ifstream fichero;
-    fichero.open(nombre.c_str());
+    fichero.open(route.c_str());
       std::string cadena;
       std::getline(fichero,cadena,' ');
       setCodigo(atoi(cadena.c_str()));
