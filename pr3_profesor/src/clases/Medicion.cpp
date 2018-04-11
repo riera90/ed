@@ -1,4 +1,4 @@
-/*! 
+/*!
    \file  Medicion.cpp
    \brief Fichero que contiene el código de las funciones de la clase Medicion
 */
@@ -37,6 +37,6 @@ istream &operator>>(istream &stream, ed::Medicion &medicion)
  // COMPLETAR
 
   return stream;
-} 
+}
 
 } // Fin del espacio de nombres ed

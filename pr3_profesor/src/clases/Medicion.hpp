@@ -1,12 +1,12 @@
-/*! 
+/*!
    \file Medicion.hpp
-   \brief Fichero de la clase Medicion: medición de una estación meteorológica 
+   \brief Fichero de la clase Medicion: medición de una estación meteorológica
 */
 
 #ifndef _MEDICION_HPP_
 #define _MEDICION_HPP_
 
-// Entrada y salida 
+// Entrada y salida
 #include <iostream>
 
 // Para controlar las precondiciones y postcondiciones mediante asertos
@@ -26,11 +26,11 @@ using std::ostream;
 // Se incluye la clase Medicion dentro del espacio de nombres de la asigantura: ed
 namespace ed {
 
-//!  Definición de la clase Medicion 
+//!  Definición de la clase Medicion
 class Medicion
 {
   //! \name Atributos privados de la clase Medicion
-   private: 
+   private:
 
 		// COMPLETAR EL CÓDIGO E INCLUIR LOS COMENTARIOS DE DOXYGEN
 
@@ -52,7 +52,7 @@ class Medicion
 
 
 	//! \name Operadores
-   
+
 		// COMPLETAR EL CÓDIGO E INCLUIR LOS COMENTARIOS DE DOXYGEN
 
 
