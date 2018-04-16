@@ -1,4 +1,4 @@
-/*! 
+/*!
    \file  Fecha.cpp
    \brief Fichero que contiene el código de las funciones de la clase Fecha
 */
@@ -18,7 +18,7 @@
 
 bool ed::Fecha::esBisiesto() const
 {
-	if ( (this->getAgno() % 4 == 0) and 
+	if ( (this->getAgno() % 4 == 0) and
          ( (not (this->getAgno() % 100 == 0)) or  (this->getAgno() % 400 == 0) )
 	  )
 		return true;
@@ -56,7 +56,7 @@ bool ed::Fecha::esCorrecta() const
 				  {
 					if ( (this->getDia() >= 1) and (this->getDia() <= 29) )
 						return true;
-					else 
+					else
 						return false;
 				   }
 				  // No es bisiesto
@@ -64,7 +64,7 @@ bool ed::Fecha::esCorrecta() const
 					{
 					  if ( (this->getDia() >= 1) and (this->getDia() <= 28) )
 						return true;
-					  else 
+					  else
 						return false;
 					}
 					break;
@@ -96,9 +96,9 @@ bool ed::Fecha::esCorrecta() const
 
 void ed::Fecha::escribirFecha()const
 {
-  std::cout << this->getDia() << "-" 
+  std::cout << this->getDia() << "-"
             << this->getMes() << "-"
-            << this->getAgno() << std::endl; 
+            << this->getAgno() << std::endl;
 }
 
 
@@ -117,7 +117,7 @@ void ed::Fecha::leerFecha()
   std::cout << " Año --> ";
   std::cin >> agno;
 
-  // Se asignan los valores leídos a los atributos del vertice   
+  // Se asignan los valores leídos a los atributos del vertice
   this->setDia(dia);
   this->setMes(mes);
   this->setAgno(agno);
@@ -128,6 +128,11 @@ void ed::Fecha::leerFecha()
   #endif //NDEBUG
 }
 
+std::string ed::Fecha::getFechaString()const{
+	return (std::to_string(this->getDia())+"-"
+		+std::to_string(this->getMes())+"-"
+		+std::to_string(this->getAgno()));
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -164,6 +169,6 @@ istream &operator>>(istream &stream, ed::Fecha &fecha)
   fecha.setAgno(atoi(cadena.c_str()));
 
   return stream;
-} 
+}
 
 } // Fin del espacio de nombres ed

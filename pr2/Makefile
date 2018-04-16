@@ -77,12 +77,14 @@ TESTS_DIR=./tests
 # Unitest:
 #
 #############################################################
-# Makefile: you should not touch here...
+# Makefile: you should not touch nothing more...
 #############################################################
 
-###
-# gloval configuration
-###
+#############################################################
+# GLOBAL_CONFIGURATION
+#############################################################
+
+# MAKEFILE VARIABLES ASSIGNATION
 
 TEMP:=$(BASE_DIR)
 BASE_DIR:=$(addsuffix /,$(TEMP))
@@ -96,32 +98,24 @@ LIB_DIR:=$(addsuffix /,$(TEMP))
 TEMP:=$(OBJ_DIR)
 OBJ_DIR:=$(addsuffix /,$(TEMP))
 
-TEMP:=$(TESTS_DIR)
-TESTS_DIR:=$(addsuffix /,$(TEMP))
+TEMP := $(LIB_DIR)
+LIB_FILES_W_ROUTE := $(addprefix $(LIB_DIR),$(TEMP))
+TEMP := $(addsuffix .o,$(FN_FILES_NAMES))
+LIB_FILES_W_ROUTE:= $(addprefix $(LIB_DIR),$(LIB_NAME))
+LIB_FILES_W_ROUTE_EXT:= $(addprefix $(LIB_DIR),$(TEMP))
 
-# MAKEFILE VARIABLES ASSIGNATION
 TEMP := $(addsuffix .$(CODE_EXTENSION),$(FN_FILES_NAMES))
 CODE_FILES_W_ROUTE := $(addprefix $(BASE_DIR),$(TEMP))
 
-# wip
 TEMP := $(addsuffix .o,$(FN_FILES_NAMES))
 OBJ_FILES_W_ROUTE:= $(addprefix $(OBJ_DIR),$(FN_FILES_NAMES))
 OBJ_FILES_W_ROUTE_EXT:= $(addprefix $(OBJ_DIR),$(TEMP))
-
-TESTS_W_ROUTE:= $(addprefix $(TESTS_DIR),$(TESTS))
-TESTS_W_ROUTE_EXT:= $(addsuffix .$(CODE_EXTENSION),$(TESTS_W_ROUTE))
-
-EXEC_TESTS_W_ROUTE:= $(addprefix $(TESTS_DIR),$(TESTS))
-EXEC_TESTS_W_ROUTE_EXT:= $(addsuffix .out,$(TESTS_W_ROUTE))
 
 FLAGS :=$(addprefix -,$(COMPILATION_FLAGS))
 FLAGS_DIN := $(addprefix -I $(BASE_DIR),$(HEADERS_LOCATION))
 
 
-###
 # BINARY EXECUTION
-###
-
 ifeq ($(EXECUTE_AFTER_COMPILATION), YES)
 execute : $(OUTPUT_DIR)$(OUTPUT_NAME)
 ifeq ($(EXECUTION_DATA), SIMPLE)
@@ -150,7 +144,8 @@ $(OUTPUT_DIR)$(OUTPUT_NAME) : $(BASE_DIR)$(MAIN_NAME).$(CODE_EXTENSION) $(LIB_DI
 # .o COMPILATION (gcc -c var.cc foo.cc)
 #generates the .o's and moves them into their corresponding foldet in the OBJ_DIR
 $(OBJ_FILES_W_ROUTE_EXT) : $(CODE_FILES_W_ROUTE)
-	@echo Building objects
+	@./make-files/create_temp_folder.sh $(OBJ_FILES_W_ROUTE) $(LIB_FILES_W_ROUTE)
+	@echo Building objects.
 	@for file in $(FN_FILES_NAMES) ; do \
 			$(COMPILER) -c $(BASE_DIR)$$file.$(CODE_EXTENSION) $(FLAGS_DIN); \
 			mv ./*.o $(OBJ_DIR)$$file.o ; \
@@ -158,17 +153,21 @@ $(OBJ_FILES_W_ROUTE_EXT) : $(CODE_FILES_W_ROUTE)
 
 #.a COMPILATION (ar -rs .lib.a var.o foo.o)
 $(LIB_DIR)$(LIB_NAME).a : $(OBJ_FILES_W_ROUTE_EXT)
-	@echo Building library
+	@echo Building library.
 	@ar -rs $@ $^
 
 # CLEAN
 clean:
-	@echo cleaning
-	@rm -rf $(OUTPUT_DIR)**/*.out $(OUTPUT_DIR)*.out $(OBJ_DIR)**/*.o $(OBJ_DIR)*.o $(LIB_DIR)**/*.a $(LIB_DIR)*.a
-	@rm -r $(OBJ_DIR)*/*/*.o
+	@echo cleaning.
+	@rm -rf $(OUTPUT_DIR)**/*.out
+	rm -rf $(OBJ_DIR) $(LIB_DIR)
+
+create_temp:
+	@./make-files/create_temp_folder.sh $(OBJ_FILES_W_ROUTE) $(LIB_FILES_W_ROUTE)
+
 
 #############################################################
-# GTEST: you should not touch here
+# GTEST
 #############################################################
 
 googletest : $(LIB_DIR)libgtest.a $(LIB_DIR)$(LIB_NAME).a $(TESTS_W_ROUTE_EXT) gtest_build
@@ -186,26 +185,9 @@ gtest_build : $(LIB_DIR)libgtest.a $(LIB_DIR)$(LIB_NAME).a $(TESTS_W_ROUTE_EXT)
 		g++ -isystem $(GTEST_DIR)/include -pthread $(FLAGS_DIN) $(TESTS_DIR)$$unittest.$(CODE_EXTENSION) $(LIB_DIR)$(LIB_NAME).a $(LIB_DIR)libgtest.a -o $(OUTPUT_DIR)$$unittest.out ; \
 	done
 
-# gtest object creation (all.o)
-$(OBJ_DIR)gtest-all.o : $(GTEST_DIR)/src/gtest-all.cc
-	@echo Creating gtest-all.o
-	@g++ -isystem $(GTEST_DIR)/include -I$(GTEST_DIR) -pthread -c $(GTEST_DIR)/src/gtest-all.cc
-	@mv ./*.o $(OBJ_DIR)
-
-# gtest object creation (main.o)
-$(OBJ_DIR)gtest_main.o : $(GTEST_DIR)/src/gtest_main.cc
-	@echo creating gtest_main.o
-	@g++ -isystem $(GTEST_DIR)/include -I$(GTEST_DIR) -pthread -c $(GTEST_DIR)/src/gtest_main.cc
-	@mv ./*.o $(OBJ_DIR)
-
-# gtest library compilation
-$(LIB_DIR)libgtest.a : $(OBJ_DIR)gtest_main.o $(OBJ_DIR)gtest-all.o
-	@echo Building googletest library
-	@ar -rv $(LIB_DIR)libgtest.a $(OBJ_DIR)gtest-all.o $(OBJ_DIR)gtest_main.o > /dev/null
-
-doc: Doxyfile
-	@echo "Generando la documentación con doxygen"
-	@doxygen
+#############################################################
+# HELP_SECTION
+#############################################################
 
 help:
 	#                            _                        _         __ _ _

@@ -51,7 +51,7 @@ COMPILATION_FLAGS=Wpedantic
 #############################################################
 #GTEST_DIR
 #############################################################
-GTEST=NO
+GTEST=YES
 #[YES/NO]
 # Please tweak the following variable definitions as needed by your
 # project, except GTEST_HEADERS, which you can use in your own targets
@@ -74,7 +74,7 @@ CXXFLAGS += -g -Wall -Wextra -pthread
 
 # All tests produced by this Makefile.  Remember to add new tests you
 # created to the list.
-TESTS = foo_unittest var_unittest
+TESTS = FechaUnittest 
 
 # All Google Test headers.  Usually you shouldn't change this
 # definition.
