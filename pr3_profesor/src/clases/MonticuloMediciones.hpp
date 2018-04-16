@@ -1,28 +1,22 @@
 /*!
 	\file MonticuloMediciones.hpp
 	\brief Se define el TAD MonticuloMediciones.
-	\author 
-	\date 
+	\author Diego Rodriguez Riera
+	\date 17.04.2018
 */
 
 #ifndef _MONTICULO_MEDICIONES_HPP
 #define _MONTICULO_MEDICIONES_HPP
 
 #include <vector>
-
 #include <cassert>
 
 #include "Medicion.hpp"
-
 #include "MonticuloMedicionesInterfaz.hpp"
 
 
-// COMPLETAR EL CÓDIGO E INCLUIR LOS COMENTARIOS DE DOXYGEN
-
 namespace ed
 {
-
-// COMPLETAR EL CÓDIGO E INCLUIR LOS COMENTARIOS DE DOXYGEN
 
 class MonticuloMediciones : public MonticuloMedicionesInterfaz
 {
@@ -59,9 +53,9 @@ class MonticuloMediciones : public MonticuloMedicionesInterfaz
 
 
 		//! \name Operadores
-   
+
 		// COMPLETAR
- 
+
 
 		////////////////////////////////////////////////////////////////////
 

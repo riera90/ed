@@ -113,15 +113,18 @@ class Medicion
 
 		//! \name Funciones de lectura y escritura de la clase Medicion
 
-		void inline leerMedicion(){
-			std::cout << "introduzca la medicion con el siguiente formato:\n\tdia-mes-año precipitación" << '\n';
-			//std::cin >>(*this);//TODO
-		}
+		/*!
+		\brief     	funcion de lectura por pantalla de una medicion
+		\sa					setFecha(), setPrecipitacion()
+		*/
+		void leerMedicion();
 
-		void inline escribirMedicion() const {
-			// std::cout <<(*this)<< '\n';//TODO
-		}
-
+		/*!
+		\brief     	funcion de escritura por pantalla de una medicion
+		\sa					getFecha(), getPrecipitacion()
+		\note				funcion constante
+		*/
+		void escribirMedicion() const;
 
 }; // Fin de la definición de la clase Medicion
 

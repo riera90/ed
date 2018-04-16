@@ -43,7 +43,7 @@ class Fecha
 
 
    //! \name Funciones o métodos públicos de la clase Fecha
-   public:
+  public:
 
 	//! \name Constructores de la clase Fecha
 	/*!
