@@ -26,7 +26,10 @@ namespace ed{
 // Sobrecarga del operador de salida
 ostream &operator<<(ostream &stream, ed::Medicion const &medicion)
 {
-  // COMPLETAR
+	stream << medicion.getFecha().getFechaString();
+	stream << " ";
+	stream << medicion.getPrecipitacion();
+	stream << "\n";
 
   return stream;
 }
@@ -34,7 +37,15 @@ ostream &operator<<(ostream &stream, ed::Medicion const &medicion)
 // Sobrecarga del operador de entrada
 istream &operator>>(istream &stream, ed::Medicion &medicion)
 {
- // COMPLETAR
+	std::string cache;
+	std::getline(stream, cache, '-');
+	int dia=atoi(cache.c_str());
+	std::getline(stream, cache, '-');
+	int mes=atoi(cache.c_str());
+	std::getline(stream, cache, ' ');
+	int ano=atoi(cache.c_str());
+	Fecha fecha(dia,mes,ano);
+	std::getline(stream, cache, '\n');
 
   return stream;
 }

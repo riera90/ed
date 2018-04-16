@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
 		std::cout << "Modo de ejecución" << std::endl;
 		std::cout << argv[0] << "<fichero-de-mediciones>  <fichero-ordenado> "  << std::endl;
 
-		return -1;
+		return 0;
 	}
 
 	ed::MonticuloMediciones monticulo;

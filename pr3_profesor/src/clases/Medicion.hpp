@@ -115,11 +115,11 @@ class Medicion
 
 		void inline leerMedicion(){
 			std::cout << "introduzca la medicion con el siguiente formato:\n\tdia-mes-año precipitación" << '\n';
-			std::cin >>(*this);//TODO
+			//std::cin >>(*this);//TODO
 		}
 
 		void inline escribirMedicion() const {
-			std::cout <<(*this)<< '\n';//TODO
+			// std::cout <<(*this)<< '\n';//TODO
 		}
 
 
@@ -133,6 +133,9 @@ class Medicion
 
 
 } // \brief Fin de namespace ed.
+
+ostream &operator<<(ostream &stream, ed::Medicion const &medicion);
+istream &operator>>(istream &stream, ed::Medicion &medicion);
 
 //  _MEDICION_HPP_
 #endif
