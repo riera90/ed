@@ -137,7 +137,25 @@ class Medicion
 
 } // \brief Fin de namespace ed.
 
+/*!
+\brief     Sobrecarga del operador de salida o escritura "<<"
+		   \n Se escribe la medicion por pantalla con el formato <d-m-aaaa precipitacion>
+\param     stream Flujo de salida
+\param     Medicion pasada como referencia constante
+\pre       Ninguna
+\post      Ninguna
+\sa        operator>>()
+*/
 ostream &operator<<(ostream &stream, ed::Medicion const &medicion);
+
+/*!
+\brief     Sobrecarga del operador de entrada o lectura ">>"
+\param     stream Flujo de entrada
+\param     fecha Medicion como referencia
+\pre       Ninguna
+\post      Ninguna
+\sa        operator<<()
+*/
 istream &operator>>(istream &stream, ed::Medicion &medicion);
 
 //  _MEDICION_HPP_

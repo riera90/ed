@@ -37,7 +37,9 @@ GTEST=YES
 GTEST_DIR=googletest/googletest
 	# Points to the root of Google Test, relative to where this file is.
 	# Remember to tweak this if you move this file.
-TESTS=FechaUnittest MedicionUnittest
+# TESTS = FechaUnittest 
+# TESTS+= MedicionUnittest
+TESTS+= MonticuloMedicionUnittest
 TESTS_DIR=./tests
 
 

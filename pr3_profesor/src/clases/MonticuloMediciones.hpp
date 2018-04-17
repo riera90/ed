@@ -21,47 +21,34 @@ namespace ed
 class MonticuloMediciones : public MonticuloMedicionesInterfaz
 {
 	private:
-
 		//! \name Atributos privados de la clase MonticuloMediciones
-
-		// COMPLETAR EL CÓDIGO E INCLUIR LOS COMENTARIOS DE DOXYGEN
-
+		std::vector<Medicion> mediciones_; //!< vector de Mediciones
 
 		//! \name Métodos privados de la clase MonticuloMediciones
-
-		// COMPLETAR EL CÓDIGO E INCLUIR LOS COMENTARIOS DE DOXYGEN
-
-	  /////////////////////////////////////////////////////////////////////////////////////
 
 	//! \name Métodos públicos de la clase MonticuloMediciones
 	public:
 
 		//! \name Constructor
-
-		// COMPLETAR EL CÓDIGO E INCLUIR LOS COMENTARIOS DE DOXYGEN
-
+		MonticuloMediciones(){
+		}
 
 		//! \name Observadores
-
-		// COMPLETAR EL CÓDIGO E INCLUIR LOS COMENTARIOS DE DOXYGEN
-
-		////////////////////////////////////////////////////////////
+		bool isEmpty() const {
+			return mediciones_.size()==0 ? true:false;
+		}
 
 		//! \name Operaciones de modificación
-
-		// COMPLETAR EL CÓDIGO E INCLUIR LOS COMENTARIOS DE DOXYGEN
-
+		void insert(Medicion &medicion){
+			std::vector<Medicion>::iterator it;
+			it=mediciones_.begin();
+			//TODO search for the coresponding posicion to insert
+			mediciones_.insert(it,medicion);
+		}
 
 		//! \name Operadores
 
-		// COMPLETAR
-
-
-		////////////////////////////////////////////////////////////////////
-
 		//! \name Función de escritura
-
-		// COMPLETAR
 
 	}; // Clase MonticuloMediciones
 

@@ -23,28 +23,28 @@ namespace ed
 			\note      Función virtual pura
 			\return    logico: verdadero si la lista esta vacia, falso de ser al contrario
 			*/
-			bool isEpty() const = 0;
+			virtual bool isEmpty() const = 0;
 
 			/*!
 			\brief     observador del elemento de la cima del monticulo
 			\note      Función virtual pura
 			\return    Medicion: elemento de la cima del montuculo
 			*/
-			Medicion top() = 0;
+			// Medicion top() = 0;
 
 			/*!
 			\brief     modificador del montuculo, inserta un elemento en el monticulo
 			\note      Función virtual pura
 			\post 	   isEmpry()==falso
 			*/
-			void insert() = 0;
+			virtual void insert(Medicion &medicion) = 0;
 
 			/*!
 			\brief     modificador del monticulo, elimina el elemento de la cima del montuculo
 			\note      Función virtual pura
 			\pre 			 isEmpty()==falso
 			*/
-			void remove() = 0;
+			// void remove() = 0;
 	}; // Clase MonticuloMedicionesInterfaz
 
 } // Espacio de nombres ed
