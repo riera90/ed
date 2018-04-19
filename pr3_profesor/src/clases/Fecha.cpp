@@ -134,6 +134,20 @@ std::string ed::Fecha::getFechaString()const{
 		+std::to_string(this->getAgno()));
 }
 
+int ed::Fecha::fechaCompare(Fecha const &fecha) const {
+	if			(this->getAgno() > fecha.getAgno()) return  1;
+	else if (this->getAgno() < fecha.getAgno()) return -1;
+
+	if			(this->getMes()  > fecha.getMes() ) return  1;
+	else if (this->getMes()  < fecha.getMes() ) return -1;
+
+	if			(this->getDia()  > fecha.getDia() ) return  1;
+	else if (this->getDia()  < fecha.getDia() ) return -1;
+
+	return 0;
+}
+
+
 ////////////////////////////////////////////////////////////////////////////////
 
 

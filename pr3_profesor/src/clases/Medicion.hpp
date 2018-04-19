@@ -81,6 +81,10 @@ class Medicion
 		*/
 		void setPrecipitacion(float precipitacion){precipitacion_=precipitacion;}
 
+		bool equal(Medicion medicion){
+			return medicion==*this;
+		}
+
 
 
 		//! \name Operadores
@@ -94,7 +98,7 @@ class Medicion
 		inline bool operator==(Medicion const &medicion) const {
 			return (
 							( this->getFecha()==medicion.getFecha() )
-					and (this->getPrecipitacion()==medicion.getPrecipitacion())
+					and (this->getPrecipitacion()-medicion.getPrecipitacion() <= 0.00001)
 			);
 		}
 

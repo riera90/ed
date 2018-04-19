@@ -27,3 +27,21 @@ TEST(Fecha,seters_and_geters){
 	EXPECT_EQ(a.getAgno(),41);
 	EXPECT_EQ(a.getFechaString(),"2-3-41");
 }
+
+TEST(Fecha,fechaCompare){
+	ed::Fecha a(1,1,1);
+	ed::Fecha b(1,1,1);
+	ed::Fecha c(2,1,1);
+	ed::Fecha d(1,2,1);
+	ed::Fecha e(1,1,2);
+	EXPECT_EQ(a.fechaCompare(b),0);
+	EXPECT_EQ(a.fechaCompare(c),-1);
+	EXPECT_EQ(a.fechaCompare(d),-1);
+	EXPECT_EQ(a.fechaCompare(e),-1);
+
+	EXPECT_EQ(e.fechaCompare(e),0);
+	EXPECT_EQ(a.fechaCompare(a),0);
+	EXPECT_EQ(e.fechaCompare(a),1);
+	EXPECT_EQ(e.fechaCompare(c),1);
+	EXPECT_EQ(e.fechaCompare(d),1);
+}

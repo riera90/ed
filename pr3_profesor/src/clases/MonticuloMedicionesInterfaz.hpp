@@ -30,7 +30,7 @@ namespace ed
 			\note      Función virtual pura
 			\return    Medicion: elemento de la cima del montuculo
 			*/
-			// Medicion top() = 0;
+			// virtual Medicion top() = 0;
 
 			/*!
 			\brief     modificador del montuculo, inserta un elemento en el monticulo
@@ -44,7 +44,7 @@ namespace ed
 			\note      Función virtual pura
 			\pre 			 isEmpty()==falso
 			*/
-			// void remove() = 0;
+			// virtual void remove() = 0;
 	}; // Clase MonticuloMedicionesInterfaz
 
 } // Espacio de nombres ed

@@ -299,6 +299,15 @@ class Fecha
 	*/
 	std::string getFechaString() const;
 
+	/*!
+		\brief comparador para ordenacion de fechas para el monticulo
+		\pre   La fecha debe ser correcta
+		\post  Ninguna
+		\param fecha: fecha a comparar con
+		\sa    getDia(), getMes(), getAgno()
+		\return 1 si la fecha es mayor a el parametro, -1 si es el caso contrario, 0 si son iguales
+	*/
+	int fechaCompare(Fecha const &fecha) const ;
 
 }; // Fin de la definición de la clase Fecha
 
