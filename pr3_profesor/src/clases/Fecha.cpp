@@ -129,9 +129,11 @@ void ed::Fecha::leerFecha()
 }
 
 std::string ed::Fecha::getFechaString()const{
-	return (std::to_string(this->getDia())+"-"
-		+std::to_string(this->getMes())+"-"
-		+std::to_string(this->getAgno()));
+	std::ostringstream stream;
+	stream<< this->getDia() << "-"
+        << this->getMes() << "-"
+        << this->getAgno();
+				return stream.str();
 }
 
 int ed::Fecha::fechaCompare(Fecha const &fecha) const {

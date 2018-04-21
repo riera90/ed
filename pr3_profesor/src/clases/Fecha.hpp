@@ -12,6 +12,7 @@
 // Para controlar las precondiciones y postcondiciones mediante asertos
 #include <cassert>
 #include <string>
+#include <sstream>
 
 // Para la sobrecarga de los operadores de flujo: << y >>
 using std::istream;
