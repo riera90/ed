@@ -34,9 +34,7 @@ void ed::MonticuloMediciones::shiftUp(int index){
 		if(index_parent==-1){//the parent does not exist
 			exit_loop=true;
 		}else{//parent exists
-			if(getElement(index_parent).getFecha().fechaCompare(\
-			getElement(index).getFecha())\
-			>0){//paretn is greater than the children
+			if(compareMedicion(index_parent,index)>0){//paretn is greater than the children
 				swap(index,index_parent);
 				// std::cout << "\tswaping["<<index<<"]["<<index_parent<<"]" << '\n';
 				index=index_parent;
@@ -68,9 +66,7 @@ void ed::MonticuloMediciones::shiftDown(int index){
 				#endif
 				exit_loop=true;
 			}else{//there is only one left child
-				if(getElement(index).getFecha().fechaCompare(\
-				getElement(index_left_child).getFecha())\
-				>0){//parent is greater than child
+				if(compareMedicion(index,index_left_child)>0){//parent is greater than child
 					#ifdef DEBUG
 					std::cout << "swaping ["<<index<<"] ["<<index_left_child<<"]" << '\n';
 					#endif
@@ -83,9 +79,7 @@ void ed::MonticuloMediciones::shiftDown(int index){
 				}
 			}
 		}else{//there are two childrens
-			if(getElement(index_right_child).getFecha().fechaCompare(\
-			getElement(index_left_child).getFecha())\
-			>0){//right children is greater than left children
+			if(compareMedicion(index_right_child, index_left_child)>0){//right children is greater than left children
 				swap(index,index_left_child);
 				#ifdef DEBUG
 				std::cout << "swaping ["<<index<<"] ["<<index_left_child<<"]" << '\n';
@@ -116,4 +110,10 @@ void ed::MonticuloMediciones::remove(){
 	this->swap(0,size()-1);
 	mediciones_.erase(mediciones_.end());
 	this->shiftDown(0);
+}
+
+int ed::MonticuloMediciones::compareMedicion(int index_1, int index_2){
+	return \
+	getElement(index_1).getFecha().fechaCompare(\
+	getElement(index_2).getFecha());
 }

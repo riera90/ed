@@ -130,6 +130,14 @@ class MonticuloMediciones : public MonticuloMedicionesInterfaz
 
 		void remove();
 
+		/*!
+		\brief		comparador de mediciones para mantener el orden en el montuculo
+		\param index_1 (entero) indice del primer elemento a compar
+		\param index_2 (entero) indice del segundo elemento a comparar
+		\return		entero: 0 cuando son iguales, 1 cuando el primero es mayor que el segundo, -1 cuando el primero es menor que el segundo
+		*/
+		int compareMedicion(int index_1, int index_2);
+
 		//! \name Operadores
 
 		//! \name Función de escritura
