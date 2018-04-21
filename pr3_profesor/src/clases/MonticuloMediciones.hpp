@@ -70,8 +70,9 @@ class MonticuloMediciones : public MonticuloMedicionesInterfaz
 		\return		entero: indice de el hijo izquerdo al indice pasado
 		*/
 		int getLeftChild(int parent_index){
-			if (parent_index < 0) return 0;
-			return ((parent_index*2)+1);
+			if (parent_index < 0) return -1;
+			int child_index=((parent_index*2)+1);
+			return (size()<=child_index) ? -1:child_index;//out of boundries:correct
 		}
 
 		/*!
@@ -80,8 +81,9 @@ class MonticuloMediciones : public MonticuloMedicionesInterfaz
 		\return		entero: indice de el hijo de recho del indice pasado
 		*/
 		int getRightChild(int parent_index){
-			if (parent_index < 0) return 0;
-			return ((parent_index*2)+2);
+			if (parent_index < 0) return -1;
+			int child_index=((parent_index*2)+2);
+			return (size()<=child_index) ? -1:child_index;//out of boundries:correct
 		}
 
 		/*!
@@ -90,7 +92,8 @@ class MonticuloMediciones : public MonticuloMedicionesInterfaz
 		\return		entero: indice del padre del indice pasado
 		*/
 		int getParent(int child_index){
-			if (child_index <= 1) return 0;
+			if (child_index < 1) return -1;
+			// std::cout << "\t\tindex returned <"<<((child_index-1)/2)<<">" << '\n';
 			return ((child_index-1)/2);
 		}
 
@@ -122,6 +125,10 @@ class MonticuloMediciones : public MonticuloMedicionesInterfaz
 		\return		entero: tamaño del Monticulo
 		*/
 		int size(){return mediciones_.size();}
+
+		void modify(Medicion const &medicion);
+
+		void remove();
 
 		//! \name Operadores
 
