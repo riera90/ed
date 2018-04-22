@@ -15,7 +15,6 @@
 
 
 void ed::MonticuloMediciones::insert(Medicion &medicion){
-	std::vector<Medicion>::iterator it;
 	mediciones_.insert(mediciones_.end(),medicion);
 	shiftUp(size()-1);
 }

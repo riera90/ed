@@ -126,8 +126,16 @@ class MonticuloMediciones : public MonticuloMedicionesInterfaz
 		*/
 		int size(){return mediciones_.size();}
 
+		/*!
+		\brief		modifica el elemento raiz del montuculo y la reordena
+		\sa shiftDown()
+		*/
 		void modify(Medicion const &medicion);
 
+		/*!
+		\brief		elimina el elemento raiz del montuculo y la reodena
+		\sa shiftDown(), swap()
+		*/
 		void remove();
 
 		/*!

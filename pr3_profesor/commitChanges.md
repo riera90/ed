@@ -1,3 +1,4 @@
 # changes
-## Fecha
-- re factorize the getFechaString function with the intent of getting it working on g++ 5.3.0
+## MonticuloMediciones
+- removed obsolete variable
+- added doxygen commentary to functions modify and remove
