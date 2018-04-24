@@ -110,7 +110,7 @@ execute : $(OUTPUT_DIR)$(OUTPUT_NAME)
 ifeq ($(EXECUTION_DATA), SIMPLE)
 	@echo Executing
 	@echo
-	@$(OUTPUT_DIR)$(OUTPUT_NAME).out Palma_del_Rio.txt Palma_del_Rio_2.txt
+	@$(OUTPUT_DIR)$(OUTPUT_NAME).out Palma_del_Rio.txt.csv Palma_del_Rio_2.txt
 endif
 ifeq ($(EXECUTION_DATA), COMPLETE)
 	@echo Executing
@@ -120,7 +120,7 @@ endif
 ifeq ($(EXECUTION_DATA_RECOVERY), NO)
 	@echo Executing
 	@echo
-	@$(OUTPUT_DIR)$(OUTPUT_NAME).out  Palma_del_Rio.txt Palma_del_Rio_2.txt
+	@$(OUTPUT_DIR)$(OUTPUT_NAME).out  Palma_del_Rio.txt.csv Palma_del_Rio_2.txt
 endif
 endif
 

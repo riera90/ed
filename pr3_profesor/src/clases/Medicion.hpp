@@ -37,9 +37,9 @@ class Medicion
 		float temperaturaMinima_;
 		std::string horaTemperaturaMinima_;
 		float temperaturaMedia_;
-		float humedadRelativaMaxima_;
-		float humedadRelativaMinima_;
-		float humedadRelativaMedia_;
+		float humedaddRelativaMaxima_;
+		float humedaddRelativaMinima_;
+		float humedaddRelativaMedia_;
 		float velocidadVientoMedia_;
 		float direccionVientoMedia_;
 		float radiacionSolar_;
@@ -143,30 +143,30 @@ class Medicion
 		}
 
 
-		void setHumedadRelativaMaxima(float humedadRelativaMaxima){
-			humedadRelativaMaxima_=humedadRelativaMaxima;
+		void setHumedaddRelativaMaxima(float humedaddRelativaMaxima){
+			humedaddRelativaMaxima_=humedaddRelativaMaxima;
 		}
 
-		float getHumedadRelativaMaxima(){
-			return humedadRelativaMaxima_;
-		}
-
-
-		void setHumedadRelativaMinima(float humedadRelativaMinima){
-			humedadRelativaMinima_=humedadRelativaMinima;
-		}
-
-		float getHumedadRelativaMinima(){
-			return humedadRelativaMinima_;
+		float getHumedaddRelativaMaxima(){
+			return humedaddRelativaMaxima_;
 		}
 
 
-		void setHumedaRelativaMedia(float humedaRelativaMedia){
-			humedadRelativaMedia_=humedaRelativaMedia;
+		void setHumedaddRelativaMinima(float humedaddRelativaMinima){
+			humedaddRelativaMinima_=humedaddRelativaMinima;
 		}
 
-		float getHumedaRelativaMedia(){
-			return humedadRelativaMedia_;
+		float getHumedaddRelativaMinima(){
+			return humedaddRelativaMinima_;
+		}
+
+
+		void setHumedadRelativaMedia(float humedadRelativaMedia){
+			humedaddRelativaMedia_=humedadRelativaMedia;
+		}
+
+		float getHumedadRelativaMedia(){
+			return humedaddRelativaMedia_;
 		}
 
 
@@ -247,18 +247,23 @@ class Medicion
 		void leerMedicion();
 
 		/*!
+		\brief     	funcion de lectura de un fichero de una medicion
+		\sa					setFecha(), setPrecipitacion()
+		*/
+		void cargarMedicionDeFichero(std::istream &stream);
+
+		/*!
 		\brief     	funcion de escritura por pantalla de una medicion
 		\sa					getFecha(), getPrecipitacion()
 		\note				funcion constante
 		*/
-		void escribirMedicion() const;
+		void escribirMedicion();
 
 }; // Fin de la definición de la clase Medicion
 
 
    //! \name Funciones externas de la clase Medicion: sobrecarga de los operadores de flujo
 
-		// COMPLETAR EL CÓDIGO E INCLUIR LOS COMENTARIOS DE DOXYGEN
 
 
 
@@ -273,7 +278,7 @@ class Medicion
 \post      Ninguna
 \sa        operator>>()
 */
-ostream &operator<<(ostream &stream, ed::Medicion const &medicion);
+std::ostream& operator<<(std::ostream& stream, ed::Medicion const & medicion);
 
 /*!
 \brief     Sobrecarga del operador de entrada o lectura ">>"
@@ -283,7 +288,7 @@ ostream &operator<<(ostream &stream, ed::Medicion const &medicion);
 \post      Ninguna
 \sa        operator<<()
 */
-istream &operator>>(istream &stream, ed::Medicion &medicion);
+std::istream& operator>>(std::istream& stream, ed::Medicion& medicion);
 
 //  _MEDICION_HPP_
 #endif

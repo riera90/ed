@@ -31,9 +31,9 @@ Medicion::Medicion(Fecha fecha, float precipitacion){
 	setTemperaturaMinima(0);
 	setHoraTemperaturaMinima("nval");
 	setTemperaturaMedia(0);
-	setHumedadRelativaMaxima(0);
-	setHumedadRelativaMinima(0);
-	setHumedaRelativaMedia(0);
+	setHumedaddRelativaMaxima(0);
+	setHumedaddRelativaMinima(0);
+	setHumedadRelativaMedia(0);
 	setVelocidadVientoMedia(0);
 	setDireccionVientoMedia(0);
 	setRadiacionSolar(0);
@@ -77,16 +77,77 @@ void Medicion::leerMedicion(){
 		}
 	}
 
-void Medicion::escribirMedicion() const {
-	std::cout << "\t";
-	std::cout << this->getFecha().getFechaString();
-	std::cout << " ";
-	std::cout << this->getPrecipitacion();
-	std::cout << "\n";
+void Medicion::escribirMedicion() {
+	std::cout<<"\t ";
+	std::cout<<getFecha()<<",";
+	std::cout<<getTemperaturaMaxima()<<",";
+	std::cout<<getHoraTemperaturaMaxima()<<",";
+	std::cout<<getTemperaturaMinima()<<",";
+	std::cout<<getHoraTemperaturaMinima()<<",";
+	std::cout<<getTemperaturaMedia()<<",";
+	std::cout<<getHumedaddRelativaMaxima()<<",";
+	std::cout<<getHumedaddRelativaMinima()<<",";
+	std::cout<<getHumedadRelativaMedia()<<",";
+	std::cout<<getVelocidadVientoMedia()<<",";
+	std::cout<<getDireccionVientoMedia()<<",";
+	std::cout<<getRadiacionSolar()<<",";
+	std::cout<<getPrecipitacion()<<",";
+	std::cout<<getEto()<<"\n";
 }
 
+void Medicion::cargarMedicionDeFichero(std::istream &stream){
+	Medicion medicion;
+	char cache_char[1000];
+	stream.getline(cache_char, 10000, '\n');
+	std::string all_cache=cache_char;
+	std::cout << "cache:" <<all_cache<< '\n';
+
+
+	// -
+	// int dia=atoi(cache);
+	// -
+	// int mes=atoi(cache);
+	// -
+	// int ano=atoi(cache);
+	// Fecha fecha(dia,mes,ano);
+	// this->setFecha(fecha);
+	// +
+	// +
+	// this->setTemperaturaMaxima(atof(cache));
+	// +
+	// this->setHoraTemperaturaMaxima(cache);
+	// +
+	// this->setTemperaturaMinima(atof(cache));
+	// +
+	// this->setHoraTemperaturaMinima(cache);
+	// +
+	// this->setTemperaturaMedia(atof(cache));
+	// +
+	// this->setHumedaddRelativaMaxima(atof(cache));
+	// +
+	// this->setHumedaddRelativaMinima(atof(cache));
+	// +
+	// this->setHumedadRelativaMedia(atof(cache));
+	// +
+	// this->setVelocidadVientoMedia(atof(cache));
+	// +
+	// this->setDireccionVientoMedia(atof(cache));
+	// +
+	// this->setRadiacionSolar(atof(cache));
+	// +
+	// this->setPrecipitacion(atof(cache));
+	// +
+	// this->setEto(atof(cache));
+
+
+	this->setValid(true);
+}
+
+
+
+
 // Sobrecarga del operador de salida
-ostream &operator<<(ostream &stream, ed::Medicion const &medicion)
+std::ostream &operator<<(std::ostream &stream, Medicion const &medicion)
 {
 	stream << medicion.getFecha().getFechaString();
 	stream << " ";
@@ -97,26 +158,46 @@ ostream &operator<<(ostream &stream, ed::Medicion const &medicion)
 }
 
 // Sobrecarga del operador de entrada
-istream &operator>>(istream &stream, ed::Medicion &medicion)
+std::istream &operator>>(std::istream &stream, Medicion &medicion)
 {
-	// std::string cache;
-	// std::getline(stream, cache);
-	// if ( cache.size()> 20){
-	// 	std::cout << "[ok]" << '\n';
-	// }else{
-	// 	std::cout << ">>>>>>>>>>>>>[not ok]" << '\n';
-	// }
-  // return stream;
-
 	std::string cache;
 	std::getline(stream, cache, '-');
 	int dia=atoi(cache.c_str());
 	std::getline(stream, cache, '-');
 	int mes=atoi(cache.c_str());
-	std::getline(stream, cache, ' ');
+	std::getline(stream, cache, '-');
 	int ano=atoi(cache.c_str());
 	Fecha fecha(dia,mes,ano);
+	std::cout <<fecha.getFechaString()<< '\n';
+	medicion.setFecha(fecha);
+	std::getline(stream, cache, ';');
+	std::getline(stream, cache, ';');
+	medicion.setTemperaturaMaxima(atof(cache.c_str()));
+	std::getline(stream, cache, ';');
+	medicion.setHoraTemperaturaMaxima(cache.c_str());
+	std::getline(stream, cache, ';');
+	medicion.setTemperaturaMinima(atof(cache.c_str()));
+	std::getline(stream, cache, ';');
+	medicion.setHoraTemperaturaMinima(cache.c_str());
+	std::getline(stream, cache, ';');
+	medicion.setTemperaturaMedia(atof(cache.c_str()));
+	std::getline(stream, cache, ';');
+	medicion.setHumedaddRelativaMaxima(atof(cache.c_str()));
+	std::getline(stream, cache, ';');
+	medicion.setHumedaddRelativaMinima(atof(cache.c_str()));
+	std::getline(stream, cache, ';');
+	medicion.setHumedadRelativaMedia(atof(cache.c_str()));
+	std::getline(stream, cache, ';');
+	medicion.setVelocidadVientoMedia(atof(cache.c_str()));
+	std::getline(stream, cache, ';');
+	medicion.setDireccionVientoMedia(atof(cache.c_str()));
+	std::getline(stream, cache, ';');
+	medicion.setRadiacionSolar(atof(cache.c_str()));
+	std::getline(stream, cache, ';');
+	medicion.setPrecipitacion(atof(cache.c_str()));
 	std::getline(stream, cache, '\n');
+	medicion.setEto(atof(cache.c_str()));
+	medicion.setValid(true);
 
   return stream;
 }
