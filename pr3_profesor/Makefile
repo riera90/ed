@@ -6,8 +6,8 @@ OBJ_DIR=./temp
 #------------------------------
 # FILENAMES (without extension)
 OUTPUT_NAME=executable
-# MAIN_NAME=principalMonticulo
-MAIN_NAME=test
+MAIN_NAME=principalMonticulo
+# MAIN_NAME=test
 FN_FILES_NAMES=clases/Fecha clases/Medicion clases/MonticuloMediciones auxiliares/funcionesAuxiliares
 LIB_NAME=lib_heap
 HEADERS_LOCATION=clases auxiliares
@@ -38,9 +38,9 @@ GTEST_DIR=googletest/googletest
 	# Points to the root of Google Test, relative to where this file is.
 	# Remember to tweak this if you move this file.
 # TESTS = FechaUnittest
-TESTS+= MedicionUnittest
+# TESTS+= MedicionUnittest
 # TESTS+= MonticuloMedicionUnittest
-# TESTS+= allUnittest
+TESTS+= allUnittest
 TESTS_DIR=./tests
 
 
@@ -110,7 +110,7 @@ execute : $(OUTPUT_DIR)$(OUTPUT_NAME)
 ifeq ($(EXECUTION_DATA), SIMPLE)
 	@echo Executing
 	@echo
-	@time "$(OUTPUT_DIR)$(OUTPUT_NAME).out"
+	@$(OUTPUT_DIR)$(OUTPUT_NAME).out Palma_del_Rio.txt Palma_del_Rio_2.txt
 endif
 ifeq ($(EXECUTION_DATA), COMPLETE)
 	@echo Executing
@@ -120,7 +120,7 @@ endif
 ifeq ($(EXECUTION_DATA_RECOVERY), NO)
 	@echo Executing
 	@echo
-	@$(OUTPUT_DIR)$(OUTPUT_NAME).out
+	@$(OUTPUT_DIR)$(OUTPUT_NAME).out  Palma_del_Rio.txt Palma_del_Rio_2.txt
 endif
 endif
 

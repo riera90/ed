@@ -45,6 +45,7 @@ class Medicion
 		float radiacionSolar_;
 		float precipitacion_;	//!< cantidad de precipitacion
 		float eto_;
+		bool valid_;
 
 
    //! \name Funciones o métodos públicos de la clase Medicion
@@ -93,7 +94,9 @@ class Medicion
 		*/
 		void setPrecipitacion(float precipitacion){precipitacion_=precipitacion;}
 
+		void setValid(bool val){valid_=val;}
 
+		bool isValid(){return valid_;}
 
 		void setTemperaturaMaxima(float temperaturaMaxima){
 			temperaturaMaxima_=temperaturaMaxima;

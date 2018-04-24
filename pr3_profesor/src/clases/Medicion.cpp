@@ -38,6 +38,7 @@ Medicion::Medicion(Fecha fecha, float precipitacion){
 	setDireccionVientoMedia(0);
 	setRadiacionSolar(0);
 	setEto(0);
+	setValid(false);
 }
 
 void Medicion::leerMedicion(){
@@ -98,6 +99,15 @@ ostream &operator<<(ostream &stream, ed::Medicion const &medicion)
 // Sobrecarga del operador de entrada
 istream &operator>>(istream &stream, ed::Medicion &medicion)
 {
+	// std::string cache;
+	// std::getline(stream, cache);
+	// if ( cache.size()> 20){
+	// 	std::cout << "[ok]" << '\n';
+	// }else{
+	// 	std::cout << ">>>>>>>>>>>>>[not ok]" << '\n';
+	// }
+  // return stream;
+
 	std::string cache;
 	std::getline(stream, cache, '-');
 	int dia=atoi(cache.c_str());
