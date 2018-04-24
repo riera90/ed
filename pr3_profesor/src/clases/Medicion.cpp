@@ -23,6 +23,23 @@
 
 namespace ed{
 
+Medicion::Medicion(Fecha fecha, float precipitacion){
+	setFecha(fecha);
+	setPrecipitacion(precipitacion);
+	setTemperaturaMaxima(0);
+	setHoraTemperaturaMaxima("nval");
+	setTemperaturaMinima(0);
+	setHoraTemperaturaMinima("nval");
+	setTemperaturaMedia(0);
+	setHumedadRelativaMaxima(0);
+	setHumedadRelativaMinima(0);
+	setHumedaRelativaMedia(0);
+	setVelocidadVientoMedia(0);
+	setDireccionVientoMedia(0);
+	setRadiacionSolar(0);
+	setEto(0);
+}
+
 void Medicion::leerMedicion(){
 		std::cout << "Introduzca la medicion con el siguiente formato:\n\tdia-mes-año precipitación\n\t->";
 		int dia, mes, ano;

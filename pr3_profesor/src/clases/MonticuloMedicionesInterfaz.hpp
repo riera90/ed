@@ -44,7 +44,7 @@ namespace ed
 			\note      Función virtual pura
 			\pre 			 isEmpty()==falso
 			*/
-			// virtual void remove() = 0;
+			virtual void remove() = 0;
 	}; // Clase MonticuloMedicionesInterfaz
 
 } // Espacio de nombres ed

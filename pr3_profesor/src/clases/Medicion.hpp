@@ -32,11 +32,24 @@ class Medicion
   //! \name Atributos privados de la clase Medicion
   private:
 		Fecha fecha_;					//!< fecha de la medicion
+		float temperaturaMaxima_;
+		std::string horaTemperaturaMaxima_;
+		float temperaturaMinima_;
+		std::string horaTemperaturaMinima_;
+		float temperaturaMedia_;
+		float humedadRelativaMaxima_;
+		float humedadRelativaMinima_;
+		float humedadRelativaMedia_;
+		float velocidadVientoMedia_;
+		float direccionVientoMedia_;
+		float radiacionSolar_;
 		float precipitacion_;	//!< cantidad de precipitacion
+		float eto_;
 
 
    //! \name Funciones o métodos públicos de la clase Medicion
   public:
+
 		/*!
  		\brief     Constructor de la clase Medicion
  		\attention Función sobrecargada
@@ -46,8 +59,7 @@ class Medicion
  		\pre       Ninguna
  		\post      La fecha debe ser correcta
 	 	*/
-		Medicion(Fecha fecha=Fecha(1,1,1), float precipitacion=0)
-		:fecha_(fecha), precipitacion_(precipitacion){};
+		Medicion(Fecha fecha=Fecha(1,1,1), float precipitacion=0);
 
 		/*!
 		\brief     observador de la fecha de la medicion
@@ -81,10 +93,118 @@ class Medicion
 		*/
 		void setPrecipitacion(float precipitacion){precipitacion_=precipitacion;}
 
+
+
+		void setTemperaturaMaxima(float temperaturaMaxima){
+			temperaturaMaxima_=temperaturaMaxima;
+		}
+
+		float getTemperaturaMaxima(){
+			return temperaturaMaxima_;
+		}
+
+
+		void setHoraTemperaturaMaxima(std::string horaTemperaturaMaxima){
+			horaTemperaturaMaxima_=horaTemperaturaMaxima;
+		}
+
+		std::string getHoraTemperaturaMaxima(){
+			return horaTemperaturaMaxima_;
+		}
+
+
+		void setTemperaturaMinima(float temperaturaMinima){
+			temperaturaMinima_=temperaturaMinima;
+		}
+
+		float getTemperaturaMinima(){
+			return temperaturaMinima_;
+		}
+
+
+		void setHoraTemperaturaMinima(std::string horaTemperaturaMinima){
+			horaTemperaturaMinima_=horaTemperaturaMinima;
+		}
+
+		std::string getHoraTemperaturaMinima(){
+			return horaTemperaturaMinima_;
+		}
+
+
+		void setTemperaturaMedia(float temperaturaMedia){
+			temperaturaMedia_=temperaturaMedia;
+		}
+
+		float getTemperaturaMedia(){
+			return temperaturaMedia_;
+		}
+
+
+		void setHumedadRelativaMaxima(float humedadRelativaMaxima){
+			humedadRelativaMaxima_=humedadRelativaMaxima;
+		}
+
+		float getHumedadRelativaMaxima(){
+			return humedadRelativaMaxima_;
+		}
+
+
+		void setHumedadRelativaMinima(float humedadRelativaMinima){
+			humedadRelativaMinima_=humedadRelativaMinima;
+		}
+
+		float getHumedadRelativaMinima(){
+			return humedadRelativaMinima_;
+		}
+
+
+		void setHumedaRelativaMedia(float humedaRelativaMedia){
+			humedadRelativaMedia_=humedaRelativaMedia;
+		}
+
+		float getHumedaRelativaMedia(){
+			return humedadRelativaMedia_;
+		}
+
+
+		void setVelocidadVientoMedia(float velocidadVientoMedia){
+			velocidadVientoMedia_=velocidadVientoMedia;
+		}
+
+		float getVelocidadVientoMedia(){
+			return velocidadVientoMedia_;
+		}
+
+
+		void setDireccionVientoMedia(float direccionVientoMedia){
+			direccionVientoMedia_=direccionVientoMedia;
+		}
+
+		float getDireccionVientoMedia(){
+			return direccionVientoMedia_;
+		}
+
+
+		void setRadiacionSolar(float radiacionSolar){
+			radiacionSolar_=radiacionSolar;
+		}
+
+		float getRadiacionSolar(){
+			return radiacionSolar_;
+		}
+
+
+		void setEto(float eto){
+			eto_=eto;
+		}
+
+		float getEto(){
+			return eto_;
+		}
+
 		bool equal(Medicion medicion){
 			return medicion==*this;
 		}
-
 
 
 		//! \name Operadores

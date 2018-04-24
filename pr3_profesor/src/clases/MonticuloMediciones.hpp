@@ -133,7 +133,7 @@ class MonticuloMediciones : public MonticuloMedicionesInterfaz
 		void modify(Medicion const &medicion);
 
 		/*!
-		\brief		elimina el elemento raiz del montuculo y la reodena
+		\brief		elimina el elemento raiz del montuculo y la reordena
 		\sa shiftDown(), swap()
 		*/
 		void remove();
