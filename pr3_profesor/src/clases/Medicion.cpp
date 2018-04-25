@@ -199,8 +199,6 @@ void Medicion::cargarMedicionDeFichero(std::istream &stream){
 }
 
 
-
-
 // Sobrecarga del operador de salida
 std::ostream &operator<<(std::ostream &stream, Medicion const &medicion)
 {

@@ -30,7 +30,7 @@ namespace ed
 			\note      Función virtual pura
 			\return    Medicion: elemento de la cima del montuculo
 			*/
-			// virtual Medicion top() = 0;
+			virtual Medicion top() = 0;
 
 			/*!
 			\brief     modificador del montuculo, inserta un elemento en el monticulo

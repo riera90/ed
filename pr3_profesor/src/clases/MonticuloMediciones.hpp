@@ -103,7 +103,7 @@ class MonticuloMediciones : public MonticuloMedicionesInterfaz
 		\post			su padre (a no ser que sea cima) es igual o mayor que el
 		\post			sus hijos (todos los que tenga) son menores o iguales que el
 		*/
-		void shiftUp(int index); //TODO
+		void shiftUp(int index);
 
 		/*!
 		\brief		mueve hacia abajo un elemento hasta que este se encuentre en la posicion que hace el monticulo estable
@@ -111,7 +111,7 @@ class MonticuloMediciones : public MonticuloMedicionesInterfaz
 		\post			su padre (a no ser que sea cima) es igual o mayor que el
 		\post			sus hijos (todos los que tenga) son menores o iguales que el
 		*/
-		void shiftDown(int index); //TODO
+		void shiftDown(int index);
 
 		/*!
 		\brief		cambia de posicion dos elementos de el vector
@@ -138,6 +138,8 @@ class MonticuloMediciones : public MonticuloMedicionesInterfaz
 		*/
 		void remove();
 
+		Medicion top(){return mediciones_[0];}
+
 		/*!
 		\brief		comparador de mediciones para mantener el orden en el montuculo
 		\param index_1 (entero) indice del primer elemento a compar
@@ -145,6 +147,8 @@ class MonticuloMediciones : public MonticuloMedicionesInterfaz
 		\return		entero: 0 cuando son iguales, 1 cuando el primero es mayor que el segundo, -1 cuando el primero es menor que el segundo
 		*/
 		int compareMedicion(int index_1, int index_2);
+
+		bool has(Medicion medicion);
 
 		//! \name Operadores
 

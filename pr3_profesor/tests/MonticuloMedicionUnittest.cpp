@@ -34,11 +34,11 @@ TEST(MonticuloMediciones,ordered_insert){
 	h.insert(c);
 	h.insert(d);
 	h.insert(e);
-	EXPECT_TRUE(a.equal(h.getElement(0)));
-	EXPECT_TRUE(b.equal(h.getElement(1)));
-	EXPECT_TRUE(c.equal(h.getElement(2)));
-	EXPECT_TRUE(d.equal(h.getElement(3)));
-	EXPECT_TRUE(e.equal(h.getElement(4)));
+	EXPECT_TRUE(a.equal(h.getElement(3)));
+	EXPECT_TRUE(b.equal(h.getElement(2)));
+	EXPECT_TRUE(c.equal(h.getElement(4)));
+	EXPECT_TRUE(d.equal(h.getElement(1)));
+	EXPECT_TRUE(e.equal(h.getElement(0)));
 }
 
 
@@ -54,11 +54,11 @@ TEST(MonticuloMediciones,shift_up_and_disordered_insert){
 	h.insert(b);
 	h.insert(c);
 	h.insert(a);
-	EXPECT_TRUE(a.equal(h.getElement(0)));
-	EXPECT_TRUE(b.equal(h.getElement(1)));
-	EXPECT_TRUE(c.equal(h.getElement(4)));
-	EXPECT_TRUE(d.equal(h.getElement(2)));
-	EXPECT_TRUE(e.equal(h.getElement(3)));
+	EXPECT_TRUE(a.equal(h.getElement(4)));
+	EXPECT_TRUE(b.equal(h.getElement(2)));
+	EXPECT_TRUE(c.equal(h.getElement(3)));
+	EXPECT_TRUE(d.equal(h.getElement(1)));
+	EXPECT_TRUE(e.equal(h.getElement(0)));
 }
 
 
@@ -75,8 +75,8 @@ TEST(MonticuloMediciones,remove_and_shift_down){
 	h.insert(d);
 	h.insert(e);
 	h.remove();
-	EXPECT_TRUE(b.equal(h.getElement(0)));
-	EXPECT_TRUE(d.equal(h.getElement(1)));
-	EXPECT_TRUE(c.equal(h.getElement(2)));
-	EXPECT_TRUE(e.equal(h.getElement(3)));
+	EXPECT_TRUE(a.equal(h.getElement(3)));
+	EXPECT_TRUE(b.equal(h.getElement(2)));
+	EXPECT_TRUE(d.equal(h.getElement(0)));
+	EXPECT_TRUE(c.equal(h.getElement(1)));
 }

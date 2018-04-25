@@ -205,8 +205,11 @@ class Medicion
 			return eto_;
 		}
 
-		bool equal(Medicion medicion){
-			return medicion==*this;
+		bool const equal(Medicion const &medicion){
+			return \
+			this->getFecha().fechaCompare(\
+			medicion.getFecha())==0 ? \
+			true : false;
 		}
 
 

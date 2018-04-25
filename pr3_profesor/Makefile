@@ -41,6 +41,7 @@ GTEST_DIR=googletest/googletest
 # TESTS+= MedicionUnittest
 # TESTS+= MonticuloMedicionUnittest
 TESTS+= allUnittest
+# TESTS+= integrationUnittest
 TESTS_DIR=./tests
 
 
