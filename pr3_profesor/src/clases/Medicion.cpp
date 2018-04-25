@@ -100,45 +100,100 @@ void Medicion::cargarMedicionDeFichero(std::istream &stream){
 	char cache_char[1000];
 	stream.getline(cache_char, 10000, '\n');
 	std::string all_cache=cache_char;
-	std::cout << "cache:" <<all_cache<< '\n';
+	// std::cout << "cache:" <<all_cache<< '\n';
+	size_t position;
+	std::string cache;
 
+	position=all_cache.find("-",0);
+	cache=all_cache.substr(0,position);
+	all_cache=all_cache.substr(position+1,all_cache.size());
+	int dia=atoi(cache.c_str());
 
-	// -
-	// int dia=atoi(cache);
-	// -
-	// int mes=atoi(cache);
-	// -
-	// int ano=atoi(cache);
-	// Fecha fecha(dia,mes,ano);
-	// this->setFecha(fecha);
-	// +
-	// +
-	// this->setTemperaturaMaxima(atof(cache));
-	// +
-	// this->setHoraTemperaturaMaxima(cache);
-	// +
-	// this->setTemperaturaMinima(atof(cache));
-	// +
-	// this->setHoraTemperaturaMinima(cache);
-	// +
-	// this->setTemperaturaMedia(atof(cache));
-	// +
-	// this->setHumedaddRelativaMaxima(atof(cache));
-	// +
-	// this->setHumedaddRelativaMinima(atof(cache));
-	// +
-	// this->setHumedadRelativaMedia(atof(cache));
-	// +
-	// this->setVelocidadVientoMedia(atof(cache));
-	// +
-	// this->setDireccionVientoMedia(atof(cache));
-	// +
-	// this->setRadiacionSolar(atof(cache));
-	// +
-	// this->setPrecipitacion(atof(cache));
-	// +
-	// this->setEto(atof(cache));
+	position=all_cache.find("-",0);
+	cache=all_cache.substr(0,position);
+	all_cache=all_cache.substr(position+1,all_cache.size());
+	int mes=atoi(cache.c_str());
 
+	position=all_cache.find("-",0);
+	cache=all_cache.substr(0,position);
+	all_cache=all_cache.substr(position+1,all_cache.size());
+	int ano=atoi(cache.c_str());
+
+	Fecha fecha(dia,mes,ano);
+	this->setFecha(fecha);
+
+	//ignores the element of the day
+	position=all_cache.find(";",0);
+	cache=all_cache.substr(0,position);
+	all_cache=all_cache.substr(position+1,all_cache.size());
+	position=all_cache.find(";",0);
+	cache=all_cache.substr(0,position);
+	all_cache=all_cache.substr(position+1,all_cache.size());
+
+	position=all_cache.find(";",0);
+	cache=all_cache.substr(0,position);
+	all_cache=all_cache.substr(position+1,all_cache.size());
+	this->setTemperaturaMaxima(atof(cache.c_str()));
+
+	position=all_cache.find(";",0);
+	cache=all_cache.substr(0,position);
+	all_cache=all_cache.substr(position+1,all_cache.size());
+	this->setHoraTemperaturaMaxima(cache);
+
+	position=all_cache.find(";",0);
+	cache=all_cache.substr(0,position);
+	all_cache=all_cache.substr(position+1,all_cache.size());
+	this->setTemperaturaMinima(atof(cache.c_str()));
+
+	position=all_cache.find(";",0);
+	cache=all_cache.substr(0,position);
+	all_cache=all_cache.substr(position+1,all_cache.size());
+	this->setHoraTemperaturaMinima(cache);
+
+	position=all_cache.find(";",0);
+	cache=all_cache.substr(0,position);
+	all_cache=all_cache.substr(position+1,all_cache.size());
+	this->setTemperaturaMedia(atof(cache.c_str()));
+
+	position=all_cache.find(";",0);
+	cache=all_cache.substr(0,position);
+	all_cache=all_cache.substr(position+1,all_cache.size());
+	this->setHumedaddRelativaMaxima(atof(cache.c_str()));
+
+	position=all_cache.find(";",0);
+	cache=all_cache.substr(0,position);
+	all_cache=all_cache.substr(position+1,all_cache.size());
+	this->setHumedaddRelativaMinima(atof(cache.c_str()));
+
+	position=all_cache.find(";",0);
+	cache=all_cache.substr(0,position);
+	all_cache=all_cache.substr(position+1,all_cache.size());
+	this->setHumedadRelativaMedia(atof(cache.c_str()));
+
+	position=all_cache.find(";",0);
+	cache=all_cache.substr(0,position);
+	all_cache=all_cache.substr(position+1,all_cache.size());
+	this->setVelocidadVientoMedia(atof(cache.c_str()));
+
+	position=all_cache.find(";",0);
+	cache=all_cache.substr(0,position);
+	all_cache=all_cache.substr(position+1,all_cache.size());
+	this->setDireccionVientoMedia(atof(cache.c_str()));
+
+	position=all_cache.find(";",0);
+	cache=all_cache.substr(0,position);
+	all_cache=all_cache.substr(position+1,all_cache.size());
+	this->setRadiacionSolar(atof(cache.c_str()));
+
+	position=all_cache.find(";",0);
+	cache=all_cache.substr(0,position);
+	all_cache=all_cache.substr(position+1,all_cache.size());
+	this->setPrecipitacion(atof(cache.c_str()));
+
+	position=all_cache.find(";",0);
+	cache=all_cache.substr(0,position);
+	all_cache=all_cache.substr(position+1,all_cache.size());
+	this->setEto(atof(cache.c_str()));
 
 	this->setValid(true);
 }

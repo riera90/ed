@@ -30,14 +30,14 @@ void ed::cargarMonticuloDeFichero(std::string const & nombreFichero, ed::Monticu
 	}
 	//TODO chech for error
 	Medicion aux;
+	char trash[10000];
+	fichero.getline(trash,10000);
 	aux.cargarMedicionDeFichero(fichero);
-	aux.cargarMedicionDeFichero(fichero);
-
-	// while(aux.getFecha().getFechaString()!="0-0-0"){
-	// 	aux.escribirMedicion();
-	// 	monticulo.insert(aux);
-	// 	aux.cargarMedicionDeFichero(fichero);
-	// }
+	while(aux.getFecha().getFechaString()!="0-0-0"){
+		// aux.escribirMedicion();
+		monticulo.insert(aux);
+		aux.cargarMedicionDeFichero(fichero);
+	}
 	fichero.close();
 	return;
 
