@@ -14,7 +14,7 @@
 void ed::cargarMonticuloDeFichero(std::string const & nombreFichero, ed::MonticuloMediciones & monticulo)
 {
 	std::ifstream fichero;
-	fichero.open(nombreFichero);
+	fichero.open(nombreFichero.c_str());
 	if (!fichero.is_open()) {
 		std::cout << "el fichero no se pudo abrir" << '\n';
 		return;
