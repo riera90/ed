@@ -8,8 +8,7 @@
 
 // Entrada y salida
 #include <iostream>
-
-// Para controlar las precondiciones y postcondiciones mediante asertos
+#include <stdlib.h>
 #include <cassert>
 #include <string>
 #include <sstream>

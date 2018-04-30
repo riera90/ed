@@ -8,11 +8,9 @@
 
 // Entrada y salida
 #include <iostream>
-
-// Para controlar las precondiciones y postcondiciones mediante asertos
+#include <stdlib.h>
 #include <cassert>
 
-// Definición de la clase Fecha
 #include "Fecha.hpp"
 
 

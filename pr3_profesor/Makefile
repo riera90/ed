@@ -8,7 +8,8 @@ OBJ_DIR=./temp
 OUTPUT_NAME=executable
 MAIN_NAME=principalMonticulo
 # MAIN_NAME=test
-FN_FILES_NAMES=clases/Fecha clases/Medicion clases/MonticuloMediciones auxiliares/funcionesAuxiliares
+# MAIN_NAME=menu
+FN_FILES_NAMES=clases/Fecha clases/Medicion clases/MonticuloMediciones auxiliares/funcionesAuxiliares auxiliares/menu_selector clases/Hora
 LIB_NAME=lib_heap
 HEADERS_LOCATION=clases auxiliares
 # where the headers are located inside of the BASE_DIR folder (for dinamic linking)

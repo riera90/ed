@@ -4,11 +4,7 @@
 */
 
 
-// Ficheros de cabecera
-#include <iostream>
 
-// atoi, atof
-#include <stdlib.h>
 
 #include "Medicion.hpp"
 

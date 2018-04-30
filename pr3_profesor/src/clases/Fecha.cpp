@@ -5,10 +5,7 @@
 
 
 // Ficheros de cabecera
-#include <iostream>
 
-// atoi
-#include <stdlib.h>
 
 #include "Fecha.hpp"
 

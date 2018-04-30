@@ -6,19 +6,10 @@
 */
 
 
-#include <iostream>
-
-#include <fstream>
-
-#include <string>
 
 #include "funcionesAuxiliares.hpp"
 
-#include "MonticuloMediciones.hpp"
 
-#include "Medicion.hpp"
-
-#include "macros.hpp"
 
 void ed::cargarMonticuloDeFichero(std::string const & nombreFichero, ed::MonticuloMediciones & monticulo)
 {
@@ -61,3 +52,52 @@ void ed::grabarMonticuloEnFichero(std::string const & nombreFichero,
 
 	return;
 }
+
+// void agnadirMedicion(MonticuloMediciones heap){
+//
+// }
+//
+//
+// void modificarMedicion(MonticuloMediciones heap){
+//
+// }
+//
+//
+// void cargarDesdeFichero(MonticuloMediciones heap){
+//
+// }
+//
+//
+// void guardarEnFichero(MonticuloMediciones heap){
+//
+// }
+//
+//
+// void borrarRaiz(MonticuloMediciones heap){
+//
+// }
+//
+//
+// void borrarTodo(MonticuloMediciones heap){
+//
+// }
+//
+//
+// void buscarMedicionPorFecha(MonticuloMediciones heap){
+//
+// }
+//
+//
+// void imprimirMediciones(MonticuloMediciones heap){
+//
+// }
+//
+//
+// void imprimirRaiz(MonticuloMediciones heap){
+//
+// }
+//
+//
+// void getNumeroDeMediciones(MonticuloMediciones heap){
+//
+// }
