@@ -6,7 +6,6 @@
 #ifndef _FECHA_HPP_
 #define _FECHA_HPP_
 
-// Entrada y salida
 #include <iostream>
 #include <stdlib.h>
 #include <cassert>

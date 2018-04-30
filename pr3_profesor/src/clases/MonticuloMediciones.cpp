@@ -6,11 +6,7 @@
 */
 
 #include <vector>
-
 #include <cassert>
-
-#include "Medicion.hpp"
-
 #include "MonticuloMediciones.hpp"
 
 

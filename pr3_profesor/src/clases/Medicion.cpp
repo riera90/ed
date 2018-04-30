@@ -3,19 +3,7 @@
    \brief Fichero que contiene el código de las funciones de la clase Medicion
 */
 
-
-
-
 #include "Medicion.hpp"
-
-
-// COMPLETAR
-
-
-////////////////////////////////////////////////////////////////////////////////
-
-
-// Se incluyen los operadores sobrecargados dentro del espacio de nombres de ed
 
 namespace ed{
 
@@ -23,12 +11,12 @@ Medicion::Medicion(Fecha fecha, float precipitacion){
 	setFecha(fecha);
 	setPrecipitacion(precipitacion);
 	setTemperaturaMaxima(0);
-	setHoraTemperaturaMaxima("nval");
+	setHoraTemperaturaMaxima(Hora(0,0));
 	setTemperaturaMinima(0);
-	setHoraTemperaturaMinima("nval");
+	setHoraTemperaturaMinima(Hora(0,0));
 	setTemperaturaMedia(0);
-	setHumedaddRelativaMaxima(0);
-	setHumedaddRelativaMinima(0);
+	setHumedadRelativaMaxima(0);
+	setHumedadRelativaMinima(0);
 	setHumedadRelativaMedia(0);
 	setVelocidadVientoMedia(0);
 	setDireccionVientoMedia(0);
@@ -38,51 +26,64 @@ Medicion::Medicion(Fecha fecha, float precipitacion){
 }
 
 void Medicion::leerMedicion(){
-		std::cout << "Introduzca la medicion con el siguiente formato:\n\tdia-mes-año precipitación\n\t->";
-		int dia, mes, ano;
-		float precipitacion;
-		std::string cache;
-		std::getline(std::cin, cache, '-');
-		dia=atoi(cache.c_str());
-		std::getline(std::cin, cache, '-');
-		mes=atoi(cache.c_str());
-		std::getline(std::cin, cache, ' ');
-		ano=atoi(cache.c_str());
-		Fecha fecha(dia,mes,ano);
-		std::getline(std::cin, cache, '\n');
-		precipitacion=atof(cache.c_str());
-		if (std::cin.fail()) {
-			std::cout<<"Introduzca valores validos.\n";
+	int h,m,dp;
+	float val;
+	std::string cache;
+	char s=' ';
+	std::cout <<"Introduzca la fecha:\n\tdia-mes-año\n\t->";
+	int dia, mes, ano;
+	std::getline(std::cin, cache, '-');
+	dia=atoi(cache.c_str());
+	std::getline(std::cin, cache, '-');
+	mes=atoi(cache.c_str());
+	std::getline(std::cin, cache, '\n');
+	ano=atoi(cache.c_str());
+	Fecha fecha(dia,mes,ano);
+	if (!fecha.esCorrecta()) {
+		std::cout<<"Introduzca una fecha válida.\n";
+	}else{
+		if (0) {//exists TODO
+			std::cout <<"medicion ya registrada\n";
 		}else{
-			ed::Fecha fecha(dia,mes,ano);
-			if (!fecha.esCorrecta()) {
-				std::cout<<"Introduzca una fecha válida.\n";
-			}else{
-				if (precipitacion<0){
-					std::cout <<"Introduzca una precipitacion valida,\n\t(no se cuenta la evaporacion)\n";
-				}else{
-					if (0) {//exists TODO
-						std::cout <<"medicion ya registrada\n";
-					}else{
-						this->setFecha(ed::Fecha(dia,mes,ano));
-						this->setPrecipitacion(precipitacion);
-						std::cout << "Medicion leida correctamente!" << '\n';
-					}
-				}
-			}
+			this->setFecha(ed::Fecha(dia,mes,ano));
 		}
 	}
+
+
+	//precipitacion
+	for(cache="";cache=="";){
+		std::cout<<"Precipitacion "<<CYAN<<"[0]"<<RESET<<":\n\t->";
+		std::getline(std::cin,cache,'\n');
+		if(cache==""){cache="ok";val=0;
+		}else{
+			val=atof(cache.c_str());
+		}if(val<=-0.000001){
+			cache="";std::cout<<"introduzca"<<s<<"valor"<<s<<"valido"<<'\n';
+		}
+}
+	this->setPrecipitacion(val);
+
+
+
+	//hora temperaturaMaxima
+	for(h=m=-1;!Hora(h,m).isValid();){
+	std::cout<<"Hora temperatura maxima "<<CYAN<<"[00:00]"<<RESET<<":\n\t->";
+	std::getline(std::cin,cache,'\n');if(cache==""){h=m=0;}else{dp=cache.find(':');h=atoi(cache.substr(0,dp).c_str());m=atoi(cache.substr(dp+1,cache.size()).c_str());}if(!Hora(h,m).isValid()){cache="";
+	std::cout<<"introduzca"<<s<<"valor"<<s<<"valido"<<'\n';}}
+	this->setHoraTemperaturaMaxima(Hora(h,m));
+
+}
 
 void Medicion::escribirMedicion() {
 	std::cout<<"\t ";
 	std::cout<<getFecha()<<",";
 	std::cout<<getTemperaturaMaxima()<<",";
-	std::cout<<getHoraTemperaturaMaxima()<<",";
+	std::cout<<getHoraTemperaturaMaxima().getHoraString()<<",";
 	std::cout<<getTemperaturaMinima()<<",";
-	std::cout<<getHoraTemperaturaMinima()<<",";
+	std::cout<<getHoraTemperaturaMinima().getHoraString()<<",";
 	std::cout<<getTemperaturaMedia()<<",";
-	std::cout<<getHumedaddRelativaMaxima()<<",";
-	std::cout<<getHumedaddRelativaMinima()<<",";
+	std::cout<<getHumedadRelativaMaxima()<<",";
+	std::cout<<getHumedadRelativaMinima()<<",";
 	std::cout<<getHumedadRelativaMedia()<<",";
 	std::cout<<getVelocidadVientoMedia()<<",";
 	std::cout<<getDireccionVientoMedia()<<",";
@@ -93,6 +94,7 @@ void Medicion::escribirMedicion() {
 
 void Medicion::cargarMedicionDeFichero(std::istream &stream){
 	Medicion medicion;
+	int h,m,dp;
 	char cache_char[1000];
 	stream.getline(cache_char, 10000, '\n');
 	std::string all_cache=cache_char;
@@ -134,7 +136,10 @@ void Medicion::cargarMedicionDeFichero(std::istream &stream){
 	position=all_cache.find(";",0);
 	cache=all_cache.substr(0,position);
 	all_cache=all_cache.substr(position+1,all_cache.size());
-	this->setHoraTemperaturaMaxima(cache);
+	dp=cache.find(':');
+	h=atoi(cache.substr(0,dp).c_str());
+	m=atoi(cache.substr(dp+1,cache.size()).c_str());
+	this->setHoraTemperaturaMaxima(Hora(h,m));
 
 	position=all_cache.find(";",0);
 	cache=all_cache.substr(0,position);
@@ -144,7 +149,10 @@ void Medicion::cargarMedicionDeFichero(std::istream &stream){
 	position=all_cache.find(";",0);
 	cache=all_cache.substr(0,position);
 	all_cache=all_cache.substr(position+1,all_cache.size());
-	this->setHoraTemperaturaMinima(cache);
+	dp=cache.find(':');
+	h=atoi(cache.substr(0,dp).c_str());
+	m=atoi(cache.substr(dp+1,cache.size()).c_str());
+	this->setHoraTemperaturaMinima(Hora(h,m));
 
 	position=all_cache.find(";",0);
 	cache=all_cache.substr(0,position);
@@ -154,12 +162,12 @@ void Medicion::cargarMedicionDeFichero(std::istream &stream){
 	position=all_cache.find(";",0);
 	cache=all_cache.substr(0,position);
 	all_cache=all_cache.substr(position+1,all_cache.size());
-	this->setHumedaddRelativaMaxima(atof(cache.c_str()));
+	this->setHumedadRelativaMaxima(atof(cache.c_str()));
 
 	position=all_cache.find(";",0);
 	cache=all_cache.substr(0,position);
 	all_cache=all_cache.substr(position+1,all_cache.size());
-	this->setHumedaddRelativaMinima(atof(cache.c_str()));
+	this->setHumedadRelativaMinima(atof(cache.c_str()));
 
 	position=all_cache.find(";",0);
 	cache=all_cache.substr(0,position);
@@ -222,18 +230,28 @@ std::istream &operator>>(std::istream &stream, Medicion &medicion)
 	std::getline(stream, cache, ';');
 	std::getline(stream, cache, ';');
 	medicion.setTemperaturaMaxima(atof(cache.c_str()));
+
 	std::getline(stream, cache, ';');
-	medicion.setHoraTemperaturaMaxima(cache.c_str());
+	int dp=cache.find(':');
+	int h=atoi(cache.substr(0,dp).c_str());
+	int m=atoi(cache.substr(dp+1,cache.size()).c_str());
+	medicion.setHoraTemperaturaMaxima(Hora (h,m));
+
 	std::getline(stream, cache, ';');
 	medicion.setTemperaturaMinima(atof(cache.c_str()));
+
 	std::getline(stream, cache, ';');
-	medicion.setHoraTemperaturaMinima(cache.c_str());
+	dp=cache.find(':');
+	h=atoi(cache.substr(0,dp).c_str());
+	m=atoi(cache.substr(dp+1,cache.size()).c_str());
+	medicion.setHoraTemperaturaMinima(Hora (h,m));
+
 	std::getline(stream, cache, ';');
 	medicion.setTemperaturaMedia(atof(cache.c_str()));
 	std::getline(stream, cache, ';');
-	medicion.setHumedaddRelativaMaxima(atof(cache.c_str()));
+	medicion.setHumedadRelativaMaxima(atof(cache.c_str()));
 	std::getline(stream, cache, ';');
-	medicion.setHumedaddRelativaMinima(atof(cache.c_str()));
+	medicion.setHumedadRelativaMinima(atof(cache.c_str()));
 	std::getline(stream, cache, ';');
 	medicion.setHumedadRelativaMedia(atof(cache.c_str()));
 	std::getline(stream, cache, ';');

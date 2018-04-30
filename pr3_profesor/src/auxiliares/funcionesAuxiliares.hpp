@@ -9,22 +9,17 @@
 #define _FuncionesAuxiliares_HPP_
 
 #include <iostream>
-
 #include <fstream>
-
 #include <string>
 
 #include "MonticuloMediciones.hpp"
-
 #include "Medicion.hpp"
-
 #include "macros.hpp"
-// SE DEBEN INCLUIR LOS COMENTARIOS DE DOXYGEN
 
 namespace ed
 {
 	void cargarMonticuloDeFichero(std::string const & nombreFichero, MonticuloMediciones & monticulo);
-	
+
 
 	void grabarMonticuloEnFichero (std::string const & nombreFichero, ed::MonticuloMediciones const & monticulo);
 

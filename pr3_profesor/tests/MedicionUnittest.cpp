@@ -46,30 +46,31 @@ TEST(Medicion,seters){
 
 TEST(Medicion,seters_and_getters_extensive){
 	ed::Medicion a;
+	ed::Hora hora(1,1);
 	a.setFecha(ed::Fecha(3,2,3));
 	a.setPrecipitacion(0.5);
 	a.setTemperaturaMaxima(0.3);
-	a.setHoraTemperaturaMaxima("maxima");
+	a.setHoraTemperaturaMaxima(hora);
 	a.setTemperaturaMinima(0.1);
-	a.setHoraTemperaturaMinima("minima");
+	a.setHoraTemperaturaMinima(hora);
 	a.setTemperaturaMedia(0.2);
-	a.setHumedaddRelativaMaxima(1);
-	a.setHumedaddRelativaMinima(0);
+	a.setHumedadRelativaMaxima(1);
+	a.setHumedadRelativaMinima(0);
 	a.setHumedadRelativaMedia(0.5);
 	a.setVelocidadVientoMedia(30);
 	a.setDireccionVientoMedia(40);
 	a.setRadiacionSolar(2);
 	a.setEto(10);
 	EXPECT_EQ("3-2-3",a.getFecha().getFechaString());
-	EXPECT_EQ("maxima",a.getHoraTemperaturaMaxima());
-	EXPECT_EQ("minima",a.getHoraTemperaturaMinima());
+	EXPECT_EQ(hora	,a.getHoraTemperaturaMaxima());
+	EXPECT_EQ(hora	,a.getHoraTemperaturaMinima());
 	EXPECT_NEAR(0.5	,a.getPrecipitacion()					,0.000001);
 	EXPECT_NEAR(0.3	,a.getTemperaturaMaxima()			,0.000001);
 	EXPECT_NEAR(0.1	,a.getTemperaturaMinima()			,0.000001);
 	EXPECT_NEAR(0.2	,a.getTemperaturaMedia()			,0.000001);
-	EXPECT_NEAR(1		,a.getHumedaddRelativaMaxima()	,0.000001);
-	EXPECT_NEAR(0		,a.getHumedaddRelativaMinima()	,0.000001);
-	EXPECT_NEAR(0.5	,a.getHumedadRelativaMedia()		,0.000001);
+	EXPECT_NEAR(1		,a.getHumedadRelativaMaxima(),0.000001);
+	EXPECT_NEAR(0		,a.getHumedadRelativaMinima(),0.000001);
+	EXPECT_NEAR(0.5	,a.getHumedadRelativaMedia()	,0.000001);
 	EXPECT_NEAR(30	,a.getVelocidadVientoMedia()	,0.000001);
 	EXPECT_NEAR(40	,a.getDireccionVientoMedia()	,0.000001);
 	EXPECT_NEAR(2		,a.getRadiacionSolar()				,0.000001);
@@ -78,16 +79,17 @@ TEST(Medicion,seters_and_getters_extensive){
 
 TEST(Medicion,builder_extensive){
 	ed::Medicion a;
+	ed::Hora hora(0,0);
 	EXPECT_EQ("1-1-1",a.getFecha().getFechaString());
-	EXPECT_EQ("nval",a.getHoraTemperaturaMaxima());
-	EXPECT_EQ("nval",a.getHoraTemperaturaMinima());
+	EXPECT_EQ(hora,a.getHoraTemperaturaMaxima());
+	EXPECT_EQ(hora,a.getHoraTemperaturaMinima());
 	EXPECT_NEAR(0	,a.getPrecipitacion()					,0.000001);
 	EXPECT_NEAR(0	,a.getTemperaturaMaxima()			,0.000001);
 	EXPECT_NEAR(0	,a.getTemperaturaMinima()			,0.000001);
 	EXPECT_NEAR(0	,a.getTemperaturaMedia()			,0.000001);
-	EXPECT_NEAR(0	,a.getHumedaddRelativaMaxima()	,0.000001);
-	EXPECT_NEAR(0	,a.getHumedaddRelativaMinima()	,0.000001);
-	EXPECT_NEAR(0	,a.getHumedadRelativaMedia()		,0.000001);
+	EXPECT_NEAR(0	,a.getHumedadRelativaMaxima(),0.000001);
+	EXPECT_NEAR(0	,a.getHumedadRelativaMinima(),0.000001);
+	EXPECT_NEAR(0	,a.getHumedadRelativaMedia()	,0.000001);
 	EXPECT_NEAR(0	,a.getVelocidadVientoMedia()	,0.000001);
 	EXPECT_NEAR(0	,a.getDireccionVientoMedia()	,0.000001);
 	EXPECT_NEAR(0	,a.getRadiacionSolar()				,0.000001);

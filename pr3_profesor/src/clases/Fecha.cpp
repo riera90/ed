@@ -3,10 +3,6 @@
    \brief Fichero que contiene el código de las funciones de la clase Fecha
 */
 
-
-// Ficheros de cabecera
-
-
 #include "Fecha.hpp"
 
 /*

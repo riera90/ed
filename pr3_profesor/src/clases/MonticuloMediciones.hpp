@@ -159,4 +159,4 @@ class MonticuloMediciones : public MonticuloMedicionesInterfaz
 } // Espacio de nombres ed
 
 
-#endif // _MONTICULO_MEDICIONES_HPP
+#endif // _MONTICULO_MEDICIONES_HPP_

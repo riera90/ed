@@ -11,7 +11,9 @@
 #include <stdlib.h>
 #include <cassert>
 
+#include "Hora.hpp"
 #include "Fecha.hpp"
+#include "macros.hpp"
 
 
 // Para la sobrecarga de los operadores de flujo: << y >>
@@ -31,9 +33,9 @@ class Medicion
   private:
 		Fecha fecha_;					//!< fecha de la medicion
 		float temperaturaMaxima_;
-		std::string horaTemperaturaMaxima_;
+		Hora horaTemperaturaMaxima_;
 		float temperaturaMinima_;
-		std::string horaTemperaturaMinima_;
+		Hora horaTemperaturaMinima_;
 		float temperaturaMedia_;
 		float humedaddRelativaMaxima_;
 		float humedaddRelativaMinima_;
@@ -105,11 +107,11 @@ class Medicion
 		}
 
 
-		void setHoraTemperaturaMaxima(std::string horaTemperaturaMaxima){
+		void setHoraTemperaturaMaxima(Hora horaTemperaturaMaxima){
 			horaTemperaturaMaxima_=horaTemperaturaMaxima;
 		}
 
-		std::string getHoraTemperaturaMaxima(){
+		Hora getHoraTemperaturaMaxima(){
 			return horaTemperaturaMaxima_;
 		}
 
@@ -123,11 +125,11 @@ class Medicion
 		}
 
 
-		void setHoraTemperaturaMinima(std::string horaTemperaturaMinima){
+		void setHoraTemperaturaMinima(Hora horaTemperaturaMinima){
 			horaTemperaturaMinima_=horaTemperaturaMinima;
 		}
 
-		std::string getHoraTemperaturaMinima(){
+		Hora getHoraTemperaturaMinima(){
 			return horaTemperaturaMinima_;
 		}
 
@@ -141,20 +143,20 @@ class Medicion
 		}
 
 
-		void setHumedaddRelativaMaxima(float humedaddRelativaMaxima){
+		void setHumedadRelativaMaxima(float humedaddRelativaMaxima){
 			humedaddRelativaMaxima_=humedaddRelativaMaxima;
 		}
 
-		float getHumedaddRelativaMaxima(){
+		float getHumedadRelativaMaxima(){
 			return humedaddRelativaMaxima_;
 		}
 
 
-		void setHumedaddRelativaMinima(float humedaddRelativaMinima){
+		void setHumedadRelativaMinima(float humedaddRelativaMinima){
 			humedaddRelativaMinima_=humedaddRelativaMinima;
 		}
 
-		float getHumedaddRelativaMinima(){
+		float getHumedadRelativaMinima(){
 			return humedaddRelativaMinima_;
 		}
 

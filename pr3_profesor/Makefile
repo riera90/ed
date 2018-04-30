@@ -6,9 +6,9 @@ OBJ_DIR=./temp
 #------------------------------
 # FILENAMES (without extension)
 OUTPUT_NAME=executable
-MAIN_NAME=principalMonticulo
+# MAIN_NAME=principalMonticulo
 # MAIN_NAME=test
-# MAIN_NAME=menu
+MAIN_NAME=menu
 FN_FILES_NAMES=clases/Fecha clases/Medicion clases/MonticuloMediciones auxiliares/funcionesAuxiliares auxiliares/menu_selector clases/Hora
 LIB_NAME=lib_heap
 HEADERS_LOCATION=clases auxiliares
