@@ -38,7 +38,7 @@ void Medicion::leerMedicion(){
 		if(cache==""){
 			ok=true;val=0;
 		}else{
-			try{ok=true;val=std::stof(cache.c_str());}
+			try{ok=true;val=atoi(cache.c_str());}
 			catch(...){std::cout<<"introduzca"<<s<<"valor"<<s<<"valido"<<'\n';ok=false;}
 		}
 	}val3=val;
@@ -48,7 +48,7 @@ void Medicion::leerMedicion(){
 		if(cache==""){
 			ok=true;val=0;
 		}else{
-			try{ok=true;val=std::stof(cache.c_str());}
+			try{ok=true;val=atoi(cache.c_str());}
 			catch(...){std::cout<<"introduzca"<<s<<"valor"<<s<<"valido"<<'\n';ok=false;}
 		}
 	}val2=val;
@@ -58,7 +58,7 @@ void Medicion::leerMedicion(){
 		if(cache==""){
 			ok=true;val=0;
 		}else{
-			try{ok=true;val=std::stof(cache.c_str());}
+			try{ok=true;val=atoi(cache.c_str());}
 			catch(...){std::cout<<"introduzca"<<s<<"valor"<<s<<"valido"<<'\n';ok=false;}
 		}
 	}this->setFecha(Fecha(val3,val2,val));
@@ -71,7 +71,7 @@ void Medicion::leerMedicion(){
 		if(cache==""){
 			ok=true;val=0;
 		}else{
-			try{ok=true;val=std::stof(cache.c_str());}
+			try{ok=true;val=atoi(cache.c_str());}
 			catch(...){std::cout<<"introduzca"<<s<<"valor"<<s<<"valido"<<'\n';ok=false;}
 		}
 	}this->setPrecipitacion(val);
@@ -84,7 +84,7 @@ void Medicion::leerMedicion(){
 		if(cache==""){
 			ok=true;val=0;
 		}else{
-			try{ok=true;val=std::stof(cache.c_str());}
+			try{ok=true;val=atoi(cache.c_str());}
 			catch(...){std::cout<<"introduzca"<<s<<"valor"<<s<<"valido"<<'\n';ok=false;}
 		}
 	}this->setTemperaturaMaxima(val);
@@ -96,7 +96,7 @@ void Medicion::leerMedicion(){
 		if(cache==""){
 			ok=true;val=0;
 		}else{
-			try{ok=true;val=std::stof(cache.c_str());}
+			try{ok=true;val=atoi(cache.c_str());}
 			catch(...){std::cout<<"introduzca"<<s<<"valor"<<s<<"valido"<<'\n';ok=false;}
 		}
 	}val2=val;
@@ -106,7 +106,7 @@ void Medicion::leerMedicion(){
 		if(cache==""){
 			ok=true;val=0;
 		}else{
-			try{ok=true;val=std::stof(cache.c_str());}
+			try{ok=true;val=atoi(cache.c_str());}
 			catch(...){std::cout<<"introduzca"<<s<<"valor"<<s<<"valido"<<'\n';ok=false;}
 		}
 	}this->setHoraTemperaturaMaxima(Hora(val2,val));
@@ -118,7 +118,7 @@ void Medicion::leerMedicion(){
 		if(cache==""){
 			ok=true;val=0;
 		}else{
-			try{ok=true;val=std::stof(cache.c_str());}
+			try{ok=true;val=atoi(cache.c_str());}
 			catch(...){std::cout<<"introduzca"<<s<<"valor"<<s<<"valido"<<'\n';ok=false;}
 		}
 	}this->setTemperaturaMinima(val);
@@ -130,7 +130,7 @@ void Medicion::leerMedicion(){
 		if(cache==""){
 			ok=true;val=0;
 		}else{
-			try{ok=true;val=std::stof(cache.c_str());}
+			try{ok=true;val=atoi(cache.c_str());}
 			catch(...){std::cout<<"introduzca"<<s<<"valor"<<s<<"valido"<<'\n';ok=false;}
 		}
 	}val2=val;
@@ -140,7 +140,7 @@ void Medicion::leerMedicion(){
 		if(cache==""){
 			ok=true;val=0;
 		}else{
-			try{ok=true;val=std::stof(cache.c_str());}
+			try{ok=true;val=atoi(cache.c_str());}
 			catch(...){std::cout<<"introduzca"<<s<<"valor"<<s<<"valido"<<'\n';ok=false;}
 		}
 	}this->setHoraTemperaturaMinima(Hora(val2,val));
@@ -152,7 +152,7 @@ void Medicion::leerMedicion(){
 		if(cache==""){
 			ok=true;val=0;
 		}else{
-			try{ok=true;val=std::stof(cache.c_str());}
+			try{ok=true;val=atoi(cache.c_str());}
 			catch(...){std::cout<<"introduzca"<<s<<"valor"<<s<<"valido"<<'\n';ok=false;}
 		}
 	}this->setTemperaturaMedia(val);
@@ -164,7 +164,7 @@ void Medicion::leerMedicion(){
 		if(cache==""){
 			ok=true;val=0;
 		}else{
-			try{ok=true;val=std::stof(cache.c_str());}
+			try{ok=true;val=atoi(cache.c_str());}
 			catch(...){std::cout<<"introduzca"<<s<<"valor"<<s<<"valido"<<'\n';ok=false;}
 		}
 	}this->setHumedadRelativaMaxima(val);
@@ -176,7 +176,7 @@ void Medicion::leerMedicion(){
 		if(cache==""){
 			ok=true;val=0;
 		}else{
-			try{ok=true;val=std::stof(cache.c_str());}
+			try{ok=true;val=atoi(cache.c_str());}
 			catch(...){std::cout<<"introduzca"<<s<<"valor"<<s<<"valido"<<'\n';ok=false;}
 		}
 	}this->setHumedadRelativaMinima(val);
@@ -188,7 +188,7 @@ void Medicion::leerMedicion(){
 		if(cache==""){
 			ok=true;val=0;
 		}else{
-			try{ok=true;val=std::stof(cache.c_str());}
+			try{ok=true;val=atoi(cache.c_str());}
 			catch(...){std::cout<<"introduzca"<<s<<"valor"<<s<<"valido"<<'\n';ok=false;}
 		}
 	}this->setHumedadRelativaMedia(val);
@@ -200,7 +200,7 @@ void Medicion::leerMedicion(){
 		if(cache==""){
 			ok=true;val=0;
 		}else{
-			try{ok=true;val=std::stof(cache.c_str());}
+			try{ok=true;val=atoi(cache.c_str());}
 			catch(...){std::cout<<"introduzca"<<s<<"valor"<<s<<"valido"<<'\n';ok=false;}
 		}
 	}this->setVelocidadVientoMedia(val);
@@ -212,7 +212,7 @@ void Medicion::leerMedicion(){
 		if(cache==""){
 			ok=true;val=0;
 		}else{
-			try{ok=true;val=std::stof(cache.c_str());}
+			try{ok=true;val=atoi(cache.c_str());}
 			catch(...){std::cout<<"introduzca"<<s<<"valor"<<s<<"valido"<<'\n';ok=false;}
 		}
 	}this->setDireccionVientoMedia(val);
@@ -224,7 +224,7 @@ void Medicion::leerMedicion(){
 		if(cache==""){
 			ok=true;val=0;
 		}else{
-			try{ok=true;val=std::stof(cache.c_str());}
+			try{ok=true;val=atoi(cache.c_str());}
 			catch(...){std::cout<<"introduzca"<<s<<"valor"<<s<<"valido"<<'\n';ok=false;}
 		}
 	}this->setRadiacionSolar(val);
@@ -236,7 +236,7 @@ void Medicion::leerMedicion(){
 		if(cache==""){
 			ok=true;val=0;
 		}else{
-			try{ok=true;val=std::stof(cache.c_str());}
+			try{ok=true;val=atoi(cache.c_str());}
 			catch(...){std::cout<<"introduzca"<<s<<"valor"<<s<<"valido"<<'\n';ok=false;}
 		}
 	}this->setEto(val);
