@@ -5,15 +5,14 @@
 	\date
 */
 
-#include <vector>
-#include <cassert>
+
 #include "MonticuloMediciones.hpp"
 
 
 void ed::MonticuloMediciones::insert(Medicion &medicion){
 	if (this->has(medicion)){
-		// std::cout << "la medicion es duplicada!!" << '\n';
-		// std::cout << "\t->"; medicion.escribirMedicion();
+		std::cout << "la medicion es duplicada!!" << '\n';
+		std::cout << "\t->"; medicion.escribirMedicion();
 		return;
 	}
 	mediciones_.insert(mediciones_.end(),medicion);

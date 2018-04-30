@@ -34,13 +34,10 @@ namespace ed
 	// void imprimirRaiz(MonticuloMediciones heap);
 	// void getNumeroDeMediciones(MonticuloMediciones heap);
 
-	// inline bool is_number(const std::string& s){
-	// 	std::string::const_iterator it = s.begin();
-	// 	while (it != s.end() && std::isdigit(*it)) ++it;
-	// 	return !s.empty() && it == s.end();
-	// }
+
 
 } // Fin del espacio de nombre de la asignatura: ed
+
 
 
 // Fin de _FuncionesAuxiliares_HPP_

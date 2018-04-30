@@ -11,7 +11,6 @@
 #include <vector>
 #include <cassert>
 
-#include "Medicion.hpp"
 #include "MonticuloMedicionesInterfaz.hpp"
 
 

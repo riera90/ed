@@ -10,10 +10,12 @@
 #include <iostream>
 #include <stdlib.h>
 #include <cassert>
+#include <string>
 
 #include "Hora.hpp"
 #include "Fecha.hpp"
 #include "macros.hpp"
+// #include "utils.hpp"
 
 
 // Para la sobrecarga de los operadores de flujo: << y >>
@@ -294,4 +296,6 @@ std::ostream& operator<<(std::ostream& stream, ed::Medicion const & medicion);
 std::istream& operator>>(std::istream& stream, ed::Medicion& medicion);
 
 //  _MEDICION_HPP_
+
+
 #endif
