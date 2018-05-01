@@ -1,23 +1,23 @@
 #include "menu_selector.hpp"
 
 void print_menu(){
-	std::cout<<CYAN<<"\t1) "<<RESET<<UWHITE<<"Añadir medicion.\t"<<RESET;
+	std::cout<<CYAN<<"\t 1) "<<RESET<<UWHITE<<"Añadir medicion.\t"<<RESET;
 	std::cout<<"\t11) .\n";
-	std::cout<<CYAN<<"\t2) "<<RESET<<UWHITE<<"Modificar medicion.\t"<<RESET;
+	std::cout<<CYAN<<"\t 2) "<<RESET<<UWHITE<<"Modificar medicion.\t"<<RESET;
 	std::cout<<"\t12) .\n";
-	std::cout<<CYAN<<"\t3) "<<RESET<<UWHITE<<"Cargar desde fichero."<<RESET;
+	std::cout<<CYAN<<"\t 3) "<<RESET<<UWHITE<<"Cargar desde fichero."<<RESET;
 	std::cout<<"\t13) .\n";
-	std::cout<<CYAN<<"\t4) "<<RESET<<UWHITE<<"Guardar en fichero.\t"<<RESET;
+	std::cout<<CYAN<<"\t 4) "<<RESET<<UWHITE<<"Guardar en fichero.\t"<<RESET;
 	std::cout<<"\t14) .\n";
-	std::cout<<CYAN<<"\t5) "<<RESET<<UWHITE<<"Borrar raiz.\t\t"<<RESET;
+	std::cout<<CYAN<<"\t 5) "<<RESET<<UWHITE<<"Borrar raiz.\t"<<RESET;
 	std::cout<<"\t15) .\n";
-	std::cout<<CYAN<<"\t6) "<<RESET<<UWHITE<<"Borrar todo.\t\t"<<RESET;
+	std::cout<<CYAN<<"\t 6) "<<RESET<<UWHITE<<"Borrar todo.\t"<<RESET;
 	std::cout<<"\t16) .\n";
-	std::cout<<CYAN<<"\t7) "<<RESET<<UWHITE<<"Buscar medicion por fecha."<<RESET;
+	std::cout<<CYAN<<"\t 7) "<<RESET<<UWHITE<<"Buscar medicion por fecha."<<RESET;
 	std::cout<<"\t17) .\n";
-	std::cout<<CYAN<<"\t8) "<<RESET<<UWHITE<<"Imprimir mediciones.\t"<<RESET;
+	std::cout<<CYAN<<"\t 8) "<<RESET<<UWHITE<<"Imprimir mediciones."<<RESET;
 	std::cout<<"\t18) .\n";
-	std::cout<<CYAN<<"\t9) "<<RESET<<UWHITE<<"Imprimir raiz.\t"<<RESET;
+	std::cout<<CYAN<<"\t 9) "<<RESET<<UWHITE<<"Imprimir raiz.\t"<<RESET;
 	std::cout<<"\t19) .\n";
 	std::cout<<CYAN<<"\t10) "<<RESET<<UWHITE<<"Numero de Mediciones."<<RESET;
 	std::cout<<CYAN<<"\t20) "<<RESET<<UWHITE<<"Salir del programa.\n"<<RESET;
@@ -36,7 +36,8 @@ void menu_selector(ed::MonticuloMediciones &heap){
 			case 1:{// Añadir medicion
 				setup();
 				std::cin.ignore();
-				ed::Medicion medicion=new ed::Medicion;
+				ed::Medicion medicion;
+				medicion.clear();
 				medicion.leerMedicion();
 				heap.insert(medicion);
 				pause();

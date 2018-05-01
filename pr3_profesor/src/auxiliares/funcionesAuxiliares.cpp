@@ -13,7 +13,7 @@
 
 void ed::cargarMonticuloDeFichero(std::string const & nombreFichero, ed::MonticuloMediciones & monticulo){
 
-ed::MonticuloMediciones aux_(monticulo);
+			// ed::MonticuloMediciones aux_(monticulo);
 
 	std::ifstream fichero;
 	fichero.open(nombreFichero.c_str());
@@ -23,23 +23,23 @@ ed::MonticuloMediciones aux_(monticulo);
 	}
 	Medicion aux;
 	aux.cargarMedicionDeFichero(fichero);
-	
-			std::cout<<UWHITE;aux.escribirMedicion();std::cout<<RESET;
 
-			aux_=monticulo;for(;!(aux_.isEmpty());aux_.remove()){
-				if(aux_.size()%30==0){std::cout<<CLEAR_SCREEN;std::cout<<CYAN;}
-				aux_.top().escribirMedicion();}
+					// std::cout<<UWHITE;aux.escribirMedicion();std::cout<<RESET;
+					//
+					// aux_=monticulo;for(;!(aux_.isEmpty());aux_.remove()){
+					// 	if(aux_.size()%30==0){std::cout<<CLEAR_SCREEN;std::cout<<CYAN;}
+					// 	aux_.top().escribirMedicion();}
 
 	while(aux.getFecha().getFechaString()!="0-0-0"){
 		monticulo.insert(aux);
 		aux.clear();
 		aux.cargarMedicionDeFichero(fichero);
 
-					std::cout<<UWHITE;aux.escribirMedicion();std::cout<<RESET;
-
-					aux_=monticulo;for(;!(aux_.isEmpty());aux_.remove()){
-						if(aux_.size()%30==0){std::cout<<CLEAR_SCREEN;std::cout<<CYAN;}
-						aux_.top().escribirMedicion();}
+					// std::cout<<UWHITE;aux.escribirMedicion();std::cout<<RESET;
+					//
+					// aux_=monticulo;for(;!(aux_.isEmpty());aux_.remove()){
+					// 	if(aux_.size()%30==0){std::cout<<CLEAR_SCREEN;std::cout<<CYAN;}
+					// 	aux_.top().escribirMedicion();}
 
 	}
 	fichero.close();
@@ -58,7 +58,6 @@ void ed::grabarMonticuloEnFichero(std::string const & nombreFichero, ed::Monticu
 	for (; !(aux.isEmpty()); aux.remove()) {
 		file<<aux.top().getMedicionString()<<"\n";
 	}
-	file<<aux.top().getMedicionString()<<"\n";
   file.close();
 	return;
 }

@@ -272,19 +272,19 @@ void Medicion::escribirMedicion() const {
 
 std::string Medicion::getMedicionString() const {
 	std::ostringstream stream;
-	stream<<getFecha().getFechaString() << ",0,"
-				<<getTemperaturaMaxima()<<","
-				<<getHoraTemperaturaMaxima().getHoraString()<<","
-				<<getTemperaturaMinima()<<","
-				<<getHoraTemperaturaMinima().getHoraString()<<","
-				<<getTemperaturaMedia()<<","
-				<<getHumedadRelativaMaxima()<<","
-				<<getHumedadRelativaMinima()<<","
-				<<getHumedadRelativaMedia()<<","
-				<<getVelocidadVientoMedia()<<","
-				<<getDireccionVientoMedia()<<","
-				<<getRadiacionSolar()<<","
-				<<getPrecipitacion()<<","
+	stream<<getFecha().getFechaString() << ";0;"
+				<<getTemperaturaMaxima()<<";"
+				<<getHoraTemperaturaMaxima().getHoraString()<<";"
+				<<getTemperaturaMinima()<<";"
+				<<getHoraTemperaturaMinima().getHoraString()<<";"
+				<<getTemperaturaMedia()<<";"
+				<<getHumedadRelativaMaxima()<<";"
+				<<getHumedadRelativaMinima()<<";"
+				<<getHumedadRelativaMedia()<<";"
+				<<getVelocidadVientoMedia()<<";"
+				<<getDireccionVientoMedia()<<";"
+				<<getRadiacionSolar()<<";"
+				<<getPrecipitacion()<<";"
 				<<getEto();
 	return stream.str();
 }
@@ -298,7 +298,7 @@ void Medicion::cargarMedicionDeFichero(std::istream &stream){
 	size_t position;
 	std::string cache;
 
-		std::cout <<CYAN<< "fecha:" <<all_cache<< RESET<<'\n';
+		// std::cout <<CYAN<< "cache:" <<all_cache<< RESET<<'\n';
 	position=all_cache.find("-",0);
 	cache=all_cache.substr(0,position);
 	all_cache=all_cache.substr(position+1,all_cache.size());
@@ -318,7 +318,7 @@ void Medicion::cargarMedicionDeFichero(std::istream &stream){
 	this->setFecha(fecha);
 
 	//ignores the element of the day
-		std::cout <<CYAN<< "ignores:" <<all_cache<< RESET<<'\n';
+		// std::cout <<CYAN<< "ignores:" <<all_cache<< RESET<<'\n';
 	position=all_cache.find(";",0);
 	cache=all_cache.substr(0,position);
 	all_cache=all_cache.substr(position+1,all_cache.size());
@@ -326,14 +326,14 @@ void Medicion::cargarMedicionDeFichero(std::istream &stream){
 	cache=all_cache.substr(0,position);
 	all_cache=all_cache.substr(position+1,all_cache.size());
 
-		std::cout <<CYAN<< "tempmax:" <<all_cache<< RESET<<'\n';
+		// std::cout <<CYAN<< "tempmax:" <<all_cache<< RESET<<'\n';
 	position=all_cache.find(";",0);
 	cache=all_cache.substr(0,position);
 	all_cache=all_cache.substr(position+1,all_cache.size());
 	this->setTemperaturaMaxima(atof(cache.c_str()));
-		std::cout <<CYAN<< "\tval:<" <<atof(cache.c_str())<<">"<< RESET<<'\n';
+		// std::cout <<CYAN<< "\tval:<" <<atof(cache.c_str())<<">"<< RESET<<'\n';
 
-		std::cout <<CYAN<< "horatempmax:" <<all_cache<< RESET<<'\n';
+		// std::cout <<CYAN<< "horatempmax:" <<all_cache<< RESET<<'\n';
 	position=all_cache.find(";",0);
 	cache=all_cache.substr(0,position);
 	all_cache=all_cache.substr(position+1,all_cache.size());
@@ -341,16 +341,16 @@ void Medicion::cargarMedicionDeFichero(std::istream &stream){
 	h=atoi(cache.substr(0,dp).c_str());
 	m=atoi(cache.substr(dp+1,cache.size()).c_str());
 	this->setHoraTemperaturaMaxima(Hora(h,m));
-		std::cout <<CYAN<< "\tval:<" <<cache<<">"<< RESET<<'\n';
+		// std::cout <<CYAN<< "\tval:<" <<cache<<">"<< RESET<<'\n';
 
-		std::cout <<CYAN<< "tempmin:" <<all_cache<< RESET<<'\n';
+		// std::cout <<CYAN<< "tempmin:" <<all_cache<< RESET<<'\n';
 	position=all_cache.find(";",0);
 	cache=all_cache.substr(0,position);
 	all_cache=all_cache.substr(position+1,all_cache.size());
 	this->setTemperaturaMinima(atof(cache.c_str()));
-		std::cout <<CYAN<< "\tval:<" <<atof(cache.c_str())<<">"<< RESET<<'\n';
+		// std::cout <<CYAN<< "\tval:<" <<atof(cache.c_str())<<">"<< RESET<<'\n';
 
-		std::cout <<CYAN<< "horatempmin:" <<all_cache<< RESET<<'\n';
+		// std::cout <<CYAN<< "horatempmin:" <<all_cache<< RESET<<'\n';
 	position=all_cache.find(";",0);
 	cache=all_cache.substr(0,position);
 	all_cache=all_cache.substr(position+1,all_cache.size());
@@ -358,69 +358,69 @@ void Medicion::cargarMedicionDeFichero(std::istream &stream){
 	h=atoi(cache.substr(0,dp).c_str());
 	m=atoi(cache.substr(dp+1,cache.size()).c_str());
 	this->setHoraTemperaturaMinima(Hora(h,m));
-		std::cout <<CYAN<< "\tval:<" <<cache<<">"<< RESET<<'\n';
+		// std::cout <<CYAN<< "\tval:<" <<cache<<">"<< RESET<<'\n';
 
-		std::cout <<CYAN<< "tempmedia:" <<all_cache<< RESET<<'\n';
+		// std::cout <<CYAN<< "tempmedia:" <<all_cache<< RESET<<'\n';
 	position=all_cache.find(";",0);
 	cache=all_cache.substr(0,position);
 	all_cache=all_cache.substr(position+1,all_cache.size());
 	this->setTemperaturaMedia(atof(cache.c_str()));
-		std::cout <<CYAN<< "\tval:<" <<atof(cache.c_str())<<">"<< RESET<<'\n';
+		// std::cout <<CYAN<< "\tval:<" <<atof(cache.c_str())<<">"<< RESET<<'\n';
 
-		std::cout <<CYAN<< "humrelmax:" <<all_cache<< RESET<<'\n';
+		// std::cout <<CYAN<< "humrelmax:" <<all_cache<< RESET<<'\n';
 	position=all_cache.find(";",0);
 	cache=all_cache.substr(0,position);
 	all_cache=all_cache.substr(position+1,all_cache.size());
 	this->setHumedadRelativaMaxima(atof(cache.c_str()));
-		std::cout <<CYAN<< "\tval:<" <<atof(cache.c_str())<<">"<< RESET<<'\n';
+		// std::cout <<CYAN<< "\tval:<" <<atof(cache.c_str())<<">"<< RESET<<'\n';
 
-		std::cout <<CYAN<< "humrelmin:" <<all_cache<< RESET<<'\n';
+		// std::cout <<CYAN<< "humrelmin:" <<all_cache<< RESET<<'\n';
 	position=all_cache.find(";",0);
 	cache=all_cache.substr(0,position);
 	all_cache=all_cache.substr(position+1,all_cache.size());
 	this->setHumedadRelativaMinima(atof(cache.c_str()));
-		std::cout <<CYAN<< "\tval:<" <<atof(cache.c_str())<<">"<< RESET<<'\n';
+		// std::cout <<CYAN<< "\tval:<" <<atof(cache.c_str())<<">"<< RESET<<'\n';
 
-		std::cout <<CYAN<< "humrelmed:" <<all_cache<< RESET<<'\n';
+		// std::cout <<CYAN<< "humrelmed:" <<all_cache<< RESET<<'\n';
 	position=all_cache.find(";",0);
 	cache=all_cache.substr(0,position);
 	all_cache=all_cache.substr(position+1,all_cache.size());
 	this->setHumedadRelativaMedia(atof(cache.c_str()));
-		std::cout <<CYAN<< "\tval:<" <<atof(cache.c_str())<<">"<< RESET<<'\n';
+		// std::cout <<CYAN<< "\tval:<" <<atof(cache.c_str())<<">"<< RESET<<'\n';
 
-		std::cout <<CYAN<< "windspeed:" <<all_cache<< RESET<<'\n';
+		// std::cout <<CYAN<< "windspeed:" <<all_cache<< RESET<<'\n';
 	position=all_cache.find(";",0);
 	cache=all_cache.substr(0,position);
 	all_cache=all_cache.substr(position+1,all_cache.size());
 	this->setVelocidadVientoMedia(atof(cache.c_str()));
-		std::cout <<CYAN<< "\tval:<" <<atof(cache.c_str())<<">"<< RESET<<'\n';
+		// std::cout <<CYAN<< "\tval:<" <<atof(cache.c_str())<<">"<< RESET<<'\n';
 
-		std::cout <<CYAN<< "windangle:" <<all_cache<< RESET<<'\n';
+		// std::cout <<CYAN<< "windangle:" <<all_cache<< RESET<<'\n';
 	position=all_cache.find(";",0);
 	cache=all_cache.substr(0,position);
 	all_cache=all_cache.substr(position+1,all_cache.size());
 	this->setDireccionVientoMedia(atof(cache.c_str()));
-		std::cout <<CYAN<< "\tval:<" <<atof(cache.c_str())<<">"<< RESET<<'\n';
+		// std::cout <<CYAN<< "\tval:<" <<atof(cache.c_str())<<">"<< RESET<<'\n';
 
 	position=all_cache.find(";",0);
 	cache=all_cache.substr(0,position);
 	all_cache=all_cache.substr(position+1,all_cache.size());
 	this->setRadiacionSolar(atof(cache.c_str()));
-		std::cout <<CYAN<< "\tval:<" <<atof(cache.c_str())<<">"<< RESET<<'\n';
+		// std::cout <<CYAN<< "\tval:<" <<atof(cache.c_str())<<">"<< RESET<<'\n';
 
-		std::cout <<CYAN<< "precipit:" <<all_cache<< RESET<<'\n';
+		// std::cout <<CYAN<< "precipit:" <<all_cache<< RESET<<'\n';
 	position=all_cache.find(";",0);
 	cache=all_cache.substr(0,position);
 	all_cache=all_cache.substr(position+1,all_cache.size());
 	this->setPrecipitacion(atof(cache.c_str()));
-		std::cout <<CYAN<< "\tval:<" <<atof(cache.c_str())<<">"<< RESET<<'\n';
+		// std::cout <<CYAN<< "\tval:<" <<atof(cache.c_str())<<">"<< RESET<<'\n';
 
-		std::cout <<CYAN<< "eto:" <<all_cache<< RESET<<'\n';
+		// std::cout <<CYAN<< "eto:" <<all_cache<< RESET<<'\n';
 	position=all_cache.find(";",0);
 	cache=all_cache.substr(0,position);
 	all_cache=all_cache.substr(position+1,all_cache.size());
 	this->setEto(atof(cache.c_str()));
-		std::cout <<CYAN<< "\tval:<" <<atof(cache.c_str())<<">"<< RESET<<'\n';
+		// std::cout <<CYAN<< "\tval:<" <<atof(cache.c_str())<<">"<< RESET<<'\n';
 
 	this->setValid(true);
 

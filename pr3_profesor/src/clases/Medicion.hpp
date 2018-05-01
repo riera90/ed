@@ -239,6 +239,19 @@ class Medicion
 		inline Medicion& operator=(Medicion const &medicion){
 			this->setFecha(medicion.getFecha());
 			this->setPrecipitacion(medicion.getPrecipitacion());
+			this->setTemperaturaMaxima(medicion.getTemperaturaMaxima());
+			this->setHoraTemperaturaMaxima(medicion.getHoraTemperaturaMaxima());
+			this->setTemperaturaMinima(medicion.getTemperaturaMinima());
+			this->setHoraTemperaturaMinima(medicion.getHoraTemperaturaMinima());
+			this->setTemperaturaMedia(medicion.getTemperaturaMedia());
+			this->setHumedadRelativaMaxima(medicion.getHumedadRelativaMaxima());
+			this->setHumedadRelativaMinima(medicion.getHumedadRelativaMinima());
+			this->setHumedadRelativaMedia(medicion.getHumedadRelativaMedia());
+			this->setVelocidadVientoMedia(medicion.getVelocidadVientoMedia());
+			this->setDireccionVientoMedia(medicion.getDireccionVientoMedia());
+			this->setRadiacionSolar(medicion.getRadiacionSolar());
+			this->setEto(medicion.getEto());
+			this->setValid(medicion.isValid());
 		}
 
 
