@@ -1,7 +1,7 @@
 /*!
  \mainpage Implementación de un montículo de mediciones
- \author   Nicolás Luis Fernández García
- \date     2018-3-7
+ \author   Diego Rodriguez Riera
+ \date     1-May-2018
  \version  1.0
 */
 
