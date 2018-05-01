@@ -8,6 +8,7 @@
 void print_menu();
 void menu_selector(ed::MonticuloMediciones &heap);
 inline void pause(){
+	std::cout<<RESET;
 	std::cin.clear();
 	// std::cin.ignore(1000,'\n');
 	std::cout <<"pulse "<<BIWHITE<<"ENTER"<<RESET<<" para continuar"<< '\n';

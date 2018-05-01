@@ -98,13 +98,13 @@ class Medicion
 
 		void setValid(bool val){valid_=val;}
 
-		bool isValid(){return valid_;}
+		bool isValid() const {return valid_;}
 
 		void setTemperaturaMaxima(float temperaturaMaxima){
 			temperaturaMaxima_=temperaturaMaxima;
 		}
 
-		float getTemperaturaMaxima(){
+		float getTemperaturaMaxima() const {
 			return temperaturaMaxima_;
 		}
 
@@ -113,7 +113,7 @@ class Medicion
 			horaTemperaturaMaxima_=horaTemperaturaMaxima;
 		}
 
-		Hora getHoraTemperaturaMaxima(){
+		Hora getHoraTemperaturaMaxima() const {
 			return horaTemperaturaMaxima_;
 		}
 
@@ -122,7 +122,7 @@ class Medicion
 			temperaturaMinima_=temperaturaMinima;
 		}
 
-		float getTemperaturaMinima(){
+		float getTemperaturaMinima() const {
 			return temperaturaMinima_;
 		}
 
@@ -131,7 +131,7 @@ class Medicion
 			horaTemperaturaMinima_=horaTemperaturaMinima;
 		}
 
-		Hora getHoraTemperaturaMinima(){
+		Hora getHoraTemperaturaMinima() const {
 			return horaTemperaturaMinima_;
 		}
 
@@ -140,7 +140,7 @@ class Medicion
 			temperaturaMedia_=temperaturaMedia;
 		}
 
-		float getTemperaturaMedia(){
+		float getTemperaturaMedia() const {
 			return temperaturaMedia_;
 		}
 
@@ -149,7 +149,7 @@ class Medicion
 			humedaddRelativaMaxima_=humedaddRelativaMaxima;
 		}
 
-		float getHumedadRelativaMaxima(){
+		float getHumedadRelativaMaxima() const {
 			return humedaddRelativaMaxima_;
 		}
 
@@ -158,7 +158,7 @@ class Medicion
 			humedaddRelativaMinima_=humedaddRelativaMinima;
 		}
 
-		float getHumedadRelativaMinima(){
+		float getHumedadRelativaMinima() const {
 			return humedaddRelativaMinima_;
 		}
 
@@ -167,7 +167,7 @@ class Medicion
 			humedaddRelativaMedia_=humedadRelativaMedia;
 		}
 
-		float getHumedadRelativaMedia(){
+		float getHumedadRelativaMedia() const {
 			return humedaddRelativaMedia_;
 		}
 
@@ -176,7 +176,7 @@ class Medicion
 			velocidadVientoMedia_=velocidadVientoMedia;
 		}
 
-		float getVelocidadVientoMedia(){
+		float getVelocidadVientoMedia() const {
 			return velocidadVientoMedia_;
 		}
 
@@ -185,7 +185,7 @@ class Medicion
 			direccionVientoMedia_=direccionVientoMedia;
 		}
 
-		float getDireccionVientoMedia(){
+		float getDireccionVientoMedia() const {
 			return direccionVientoMedia_;
 		}
 
@@ -194,7 +194,7 @@ class Medicion
 			radiacionSolar_=radiacionSolar;
 		}
 
-		float getRadiacionSolar(){
+		float getRadiacionSolar() const {
 			return radiacionSolar_;
 		}
 
@@ -203,11 +203,11 @@ class Medicion
 			eto_=eto;
 		}
 
-		float getEto(){
+		float getEto() const {
 			return eto_;
 		}
 
-		bool const equal(Medicion const &medicion){
+		bool const equal(Medicion const &medicion)const{
 			return \
 			this->getFecha().fechaCompare(\
 			medicion.getFecha())==0 ? \
@@ -262,7 +262,11 @@ class Medicion
 		\sa					getFecha(), getPrecipitacion()
 		\note				funcion constante
 		*/
-		void escribirMedicion();
+		void escribirMedicion() const ;
+
+		std::string getMedicionString() const ;
+
+		void clear();
 
 }; // Fin de la definición de la clase Medicion
 

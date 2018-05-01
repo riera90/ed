@@ -10,12 +10,13 @@
 
 
 void ed::MonticuloMediciones::insert(Medicion &medicion){
-	if (this->has(medicion)){
+	ed::Medicion med(medicion);
+	if (this->has(med)){
 		std::cout << "la medicion es duplicada!!" << '\n';
-		std::cout << "\t->"; medicion.escribirMedicion();
+		std::cout << "\t->"; med.escribirMedicion();
 		return;
 	}
-	mediciones_.insert(mediciones_.end(),medicion);
+	mediciones_.insert(mediciones_.end(),med);
 	shiftUp(size()-1);
 }
 

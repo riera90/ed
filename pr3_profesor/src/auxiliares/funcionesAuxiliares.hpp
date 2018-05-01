@@ -11,6 +11,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cstdlib>
 
 #include "MonticuloMediciones.hpp"
 #include "Medicion.hpp"

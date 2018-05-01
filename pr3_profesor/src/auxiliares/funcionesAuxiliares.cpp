@@ -11,33 +11,54 @@
 
 
 
-void ed::cargarMonticuloDeFichero(std::string const & nombreFichero, ed::MonticuloMediciones & monticulo)
-{
+void ed::cargarMonticuloDeFichero(std::string const & nombreFichero, ed::MonticuloMediciones & monticulo){
+
+ed::MonticuloMediciones aux_(monticulo);
+
 	std::ifstream fichero;
 	fichero.open(nombreFichero.c_str());
 	if (!fichero.is_open()) {
 		std::cout << "el fichero no se pudo abrir" << '\n';
 		return;
 	}
-	//TODO chech for error
 	Medicion aux;
-	char trash[10000];
-	fichero.getline(trash,10000);
 	aux.cargarMedicionDeFichero(fichero);
+	
+			std::cout<<UWHITE;aux.escribirMedicion();std::cout<<RESET;
+
+			aux_=monticulo;for(;!(aux_.isEmpty());aux_.remove()){
+				if(aux_.size()%30==0){std::cout<<CLEAR_SCREEN;std::cout<<CYAN;}
+				aux_.top().escribirMedicion();}
+
 	while(aux.getFecha().getFechaString()!="0-0-0"){
-		// aux.escribirMedicion();
 		monticulo.insert(aux);
+		aux.clear();
 		aux.cargarMedicionDeFichero(fichero);
+
+					std::cout<<UWHITE;aux.escribirMedicion();std::cout<<RESET;
+
+					aux_=monticulo;for(;!(aux_.isEmpty());aux_.remove()){
+						if(aux_.size()%30==0){std::cout<<CLEAR_SCREEN;std::cout<<CYAN;}
+						aux_.top().escribirMedicion();}
+
 	}
 	fichero.close();
 	return;
 }
 
 
-void ed::grabarMonticuloEnFichero(std::string const & nombreFichero,
-							      ed::MonticuloMediciones const & monticulo)
-{
- std::cout << "SE DEBE CODIFICAR ESTA FUNCIÓN" << std::endl << std::endl;
-
+void ed::grabarMonticuloEnFichero(std::string const & nombreFichero, ed::MonticuloMediciones const & monticulo){
+	std::ofstream file;
+  file.open(nombreFichero.c_str());
+  if( (file.rdstate() & std::ofstream::failbit ) != 0 ){
+		std::cout << "ERROR el fichero no se pudo abrir" << '\n';
+		return;
+	}
+  ed::MonticuloMediciones aux(monticulo);
+	for (; !(aux.isEmpty()); aux.remove()) {
+		file<<aux.top().getMedicionString()<<"\n";
+	}
+	file<<aux.top().getMedicionString()<<"\n";
+  file.close();
 	return;
 }
