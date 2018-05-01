@@ -23,19 +23,6 @@ namespace ed
 
 	void grabarMonticuloEnFichero (std::string const & nombreFichero, ed::MonticuloMediciones const & monticulo);
 
-	// void agnadirMedicion(MonticuloMediciones heap);
-	// void modificarMedicion(MonticuloMediciones heap);
-	// void cargarDesdeFichero(MonticuloMediciones heap);
-	// void guardarEnFichero(MonticuloMediciones heap);
-	// void borrarRaiz(MonticuloMediciones heap);
-	// void borrarTodo(MonticuloMediciones heap);
-	// void buscarMedicionPorFecha(MonticuloMediciones heap);
-	// void imprimirMediciones(MonticuloMediciones heap);
-	// void imprimirRaiz(MonticuloMediciones heap);
-	// void getNumeroDeMediciones(MonticuloMediciones heap);
-
-
-
 } // Fin del espacio de nombre de la asignatura: ed
 
 
