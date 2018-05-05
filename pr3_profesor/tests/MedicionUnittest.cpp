@@ -95,3 +95,41 @@ TEST(Medicion,builder_extensive){
 	EXPECT_NEAR(0	,a.getRadiacionSolar()				,0.000001);
 	EXPECT_NEAR(0	,a.getEto()										,0.000001);
 }
+
+TEST(Medicion,validity){
+	ed::Medicion a;
+	EXPECT_TRUE(a.isValid());
+
+	a.setTemperaturaMaxima(-1);
+	EXPECT_FALSE(a.isValid());
+	a.setTemperaturaMaxima(0);
+	EXPECT_TRUE(a.isValid());
+
+	a.setFecha(ed::Fecha(0,0,0));
+	EXPECT_FALSE(a.isValid());
+	a.setFecha(ed::Fecha(1,1,1));
+	EXPECT_TRUE(a.isValid());
+
+	a.setHoraTemperaturaMaxima(ed::Hora(24,0));
+	EXPECT_FALSE(a.isValid());
+	a.setHoraTemperaturaMaxima(ed::Hora(0,0));
+	EXPECT_TRUE(a.isValid());
+	a.setHoraTemperaturaMaxima(ed::Hora(0,61));
+	EXPECT_FALSE(a.isValid());
+	a.setHoraTemperaturaMaxima(ed::Hora(0,0));
+	EXPECT_TRUE(a.isValid());
+
+	a.setHoraTemperaturaMinima(ed::Hora(24,0));
+	EXPECT_FALSE(a.isValid());
+	a.setHoraTemperaturaMinima(ed::Hora(0,0));
+	EXPECT_TRUE(a.isValid());
+	a.setHoraTemperaturaMinima(ed::Hora(0,61));
+	EXPECT_FALSE(a.isValid());
+	a.setHoraTemperaturaMinima(ed::Hora(0,0));
+	EXPECT_TRUE(a.isValid());
+
+	a.setPrecipitacion(-1);
+	EXPECT_FALSE(a.isValid());
+	a.setPrecipitacion(0);
+	EXPECT_TRUE(a.isValid());
+}
