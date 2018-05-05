@@ -15,7 +15,7 @@ void ed::MonticuloMediciones::insert(Medicion &medicion){
 		std::cout << "\t->"; medicion.escribirMedicion();
 		return;
 	}
-	mediciones_.insert(mediciones_.end(),medicion);
+	mediciones_.push_back(medicion);
 	shiftUp(size()-1);
 }
 
@@ -122,4 +122,9 @@ bool ed::MonticuloMediciones::has(Medicion medicion){
 		if (mediciones_[i].equal(medicion)) return true;
 	}
 	return false;
+}
+
+ed::MonticuloMediciones& ed::MonticuloMediciones::operator=(MonticuloMediciones const &heap){
+	this->mediciones_=heap.getHeap();
+	return *this;
 }

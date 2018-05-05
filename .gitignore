@@ -4,4 +4,4 @@ notpr/**
 **/*.out
 **/*.exe
 **/googletest
-pr2/html
+html

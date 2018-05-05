@@ -1,26 +1,26 @@
 #include "menu_selector.hpp"
 
 void print_menu(){
-	std::cout<<"\t1) Añadir medicion.\t";
+	std::cout<<CYAN<<"\t 1) "<<RESET<<UWHITE<<"Añadir medicion.\t"<<RESET;
 	std::cout<<"\t11) .\n";
-	std::cout<<"\t2) Modificar medicion.\t";
+	std::cout<<CYAN<<"\t 2) "<<RESET<<UWHITE<<"Modificar medicion.\t"<<RESET;
 	std::cout<<"\t12) .\n";
-	std::cout<<"\t3) Cargar desde fichero.";
+	std::cout<<CYAN<<"\t 3) "<<RESET<<UWHITE<<"Cargar desde fichero."<<RESET;
 	std::cout<<"\t13) .\n";
-	std::cout<<"\t4) Guardar en fichero.\t";
+	std::cout<<CYAN<<"\t 4) "<<RESET<<UWHITE<<"Guardar en fichero.\t"<<RESET;
 	std::cout<<"\t14) .\n";
-	std::cout<<"\t5) Borrar raiz.\t\t";
+	std::cout<<CYAN<<"\t 5) "<<RESET<<UWHITE<<"Borrar raiz.\t"<<RESET;
 	std::cout<<"\t15) .\n";
-	std::cout<<"\t6) Borrar todo.\t\t";
+	std::cout<<CYAN<<"\t 6) "<<RESET<<UWHITE<<"Borrar todo.\t"<<RESET;
 	std::cout<<"\t16) .\n";
-	std::cout<<"\t7) Buscar medicion por fecha.";
+	std::cout<<CYAN<<"\t 7) "<<RESET<<UWHITE<<"Buscar medicion por fecha."<<RESET;
 	std::cout<<"\t17) .\n";
-	std::cout<<"\t8) Imprimir mediciones.\t";
+	std::cout<<CYAN<<"\t 8) "<<RESET<<UWHITE<<"Imprimir mediciones."<<RESET;
 	std::cout<<"\t18) .\n";
-	std::cout<<"\t9) Imprimir raiz.\t";
+	std::cout<<CYAN<<"\t 9) "<<RESET<<UWHITE<<"Imprimir raiz.\t"<<RESET;
 	std::cout<<"\t19) .\n";
-	std::cout<<"\t10) Numero de Mediciones.";
-	std::cout<<"\t20) Salir del programa.\n";
+	std::cout<<CYAN<<"\t10) "<<RESET<<UWHITE<<"Numero de Mediciones."<<RESET;
+	std::cout<<CYAN<<"\t20) "<<RESET<<UWHITE<<"Salir del programa.\n"<<RESET;
 	std::cout<<'\n';
 }
 
@@ -37,6 +37,7 @@ void menu_selector(ed::MonticuloMediciones &heap){
 				setup();
 				std::cin.ignore();
 				ed::Medicion medicion;
+				medicion.clear();
 				medicion.leerMedicion();
 				heap.insert(medicion);
 				pause();
@@ -51,7 +52,7 @@ void menu_selector(ed::MonticuloMediciones &heap){
 					medicion.leerMedicion();
 					heap.modify(medicion);
 				}else{
-					std::cout << "No hay medicion que modificar" << '\n';
+					std::cout <<UWHITE<< "\tNo hay medicion que modificar\n\n";
 				}
 				pause();
 				break;
@@ -72,6 +73,12 @@ void menu_selector(ed::MonticuloMediciones &heap){
 			case 4:{// Guardar en fichero
 				setup();
 				std::cin.ignore();
+				std::string filename;
+				std::cout<<"ruta a cargar "<<CYAN<<"[./output/Palma_del_Rio.txt.csv]"<<RESET<<":\n\t->";
+				std::getline(std::cin, filename);
+				if(filename=="")filename="./output/Palma_del_Rio.txt.csv";
+				grabarMonticuloEnFichero(filename,heap);
+				std::cout<<UWHITE<<"Volcado completado"<<"\n\n";
 				pause();
 				break;
 			}
@@ -79,6 +86,11 @@ void menu_selector(ed::MonticuloMediciones &heap){
 			case 5:{// Borrar raiz
 				setup();
 				std::cin.ignore();
+				if (heap.isEmpty())std::cout << "\tEl monticulo esta vacio\n\n";
+				else{
+					heap.remove();
+					std::cout <<UWHITE<<"\tRaiz borrada con exito!\n\n";
+				}
 				pause();
 				break;
 			}
@@ -86,11 +98,13 @@ void menu_selector(ed::MonticuloMediciones &heap){
 			case 6:{// Borrar todo
 				setup();
 				std::cin.ignore();
+				for (; !(heap.isEmpty()); heap.remove())
+				std::cout <<UWHITE<< "\tMontuculo borrado con exito!" << '\n';
 				pause();
 				break;
 			}
 
-			case 7:{// Buscar medicion por fecha
+			case 7:{// Buscar medicion por fecha TODO
 				setup();
 				std::cin.ignore();
 				pause();
@@ -100,9 +114,14 @@ void menu_selector(ed::MonticuloMediciones &heap){
 			case 8:{// Imprimir mediciones
 				setup();
 				std::cin.ignore();
-				std::cout<<IBLUE;
+				std::cout<<CYAN;
 				ed::MonticuloMediciones aux(heap);
 				for (; !(aux.isEmpty()); aux.remove()) {
+					if (aux.size()%30==0) {
+						pause();
+						std::cout<<CLEAR_SCREEN;
+						std::cout<<CYAN;
+					}
 					aux.top().escribirMedicion();
 				}
 				std::cout<<RESET;
@@ -112,10 +131,13 @@ void menu_selector(ed::MonticuloMediciones &heap){
 
 			case 9:{// Imprimir raiz
 				setup();
-				std::cin.ignore();
-				std::cout<<IBLUE;
-				heap.top().escribirMedicion();
-				std::cout<<RESET;
+				if (heap.isEmpty())std::cout << "\tEl monticulo esta vacio\n\n";
+				else{
+					std::cin.ignore();
+					std::cout<<IBLUE;
+					heap.top().escribirMedicion();
+					std::cout<<RESET;
+				}
 				pause();
 				break;
 			}
@@ -123,28 +145,22 @@ void menu_selector(ed::MonticuloMediciones &heap){
 			case 10:{// Numero de Mediciones
 				setup();
 				std::cin.ignore();
+				std::cout <<UWHITE<< "\thay "<<RESET<<IBLUE<<heap.size()<<RESET<<UWHITE<<" mediciones en el monticulo\n\n";
 				pause();
 				break;
 			}
 
-			case 19:{// Imprimir mediciones
+			case 20:{// exit
 				setup();
 				std::cin.ignore();
-				pause();
-				break;
-			}
-
-			case 20:{// Numero de Mediciones
-				setup();
-				std::cin.ignore();
-				std::cout << "exiting!" << '\n';
+				std::cout <<UWHITE<< "exiting!" <<RESET<< '\n';
 				break;
 			}
 
 			default:{// default
 				setup();
 				std::cin.ignore();
-				std::cout << "\nIntroduzca un valor valido, \""<<ITALIC<<BBLUE<<option<<RESET<<"\" no es un valor apto."<< '\n';
+				std::cout <<UWHITE<< "\nIntroduzca un valor valido, \""<<RESET<<ITALIC<<BBLUE<<option<<RESET<<UWHITE<<"\" no es un valor apto."<< '\n';
 				pause();
 				break;
 			}

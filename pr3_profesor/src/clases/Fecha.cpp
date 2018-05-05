@@ -121,7 +121,7 @@ void ed::Fecha::leerFecha()
   #endif //NDEBUG
 }
 
-std::string ed::Fecha::getFechaString()const{
+std::string ed::Fecha::getFechaString() const {
 	std::ostringstream stream;
 	stream<< this->getDia() << "-"
         << this->getMes() << "-"

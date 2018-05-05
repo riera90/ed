@@ -137,6 +137,10 @@ class MonticuloMediciones : public MonticuloMedicionesInterfaz
 		*/
 		void remove();
 
+		/*!
+		\brief		observador del elemento que ocupa la posicion de la raiz en el monticulo
+		\return 	Medicion: elemento raiz del monticulo (maxheap)
+		*/
 		Medicion top(){return mediciones_[0];}
 
 		/*!
@@ -147,11 +151,26 @@ class MonticuloMediciones : public MonticuloMedicionesInterfaz
 		*/
 		int compareMedicion(int index_1, int index_2);
 
+		/*!
+		\brief		observador logico de exixtencia de una medicion en el montuculo
+		\param		medicion: medicion a comprarar con el resto del montuculo
+		\return 	booleano: verdadero si el montuculo cuenta con una medicion con fecha igual a la medicion pasada, falso en el caso contrario
+		*/
 		bool has(Medicion medicion);
 
-		//! \name Operadores
+		/*!
+		\brief		observador logico del montuculo
+		\return 	std::vector<ed::Mediciones>: vector de mediciones (heapified/monticulizado)
+		\note funcion constante
+		*/
+		std::vector<Medicion> getHeap() const {return mediciones_;}
 
-		//! \name Función de escritura
+		/*!
+		\brief		observador logico del montuculo
+		\param 		heap: MonticuloMediciones a copiar (constante)
+		\return		MonticuloMediciones
+		*/
+		MonticuloMediciones& operator=(MonticuloMediciones const &heap);
 
 	}; // Clase MonticuloMediciones
 

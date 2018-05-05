@@ -15,7 +15,6 @@
 #include "Hora.hpp"
 #include "Fecha.hpp"
 #include "macros.hpp"
-// #include "utils.hpp"
 
 
 // Para la sobrecarga de los operadores de flujo: << y >>
@@ -33,21 +32,20 @@ class Medicion
 {
   //! \name Atributos privados de la clase Medicion
   private:
-		Fecha fecha_;					//!< fecha de la medicion
-		float temperaturaMaxima_;
-		Hora horaTemperaturaMaxima_;
-		float temperaturaMinima_;
-		Hora horaTemperaturaMinima_;
-		float temperaturaMedia_;
-		float humedaddRelativaMaxima_;
-		float humedaddRelativaMinima_;
-		float humedaddRelativaMedia_;
-		float velocidadVientoMedia_;
-		float direccionVientoMedia_;
-		float radiacionSolar_;
-		float precipitacion_;	//!< cantidad de precipitacion
-		float eto_;
-		bool valid_;
+		Fecha fecha_;									//!< fecha de la medicion
+		float temperaturaMaxima_;			//!< temperatura maxima
+		Hora horaTemperaturaMaxima_;	//!< hora de la temperatura maxima
+		float temperaturaMinima_;			//!< temepratira minima
+		Hora horaTemperaturaMinima_;	//!< hora de la temperatura minima
+		float temperaturaMedia_;			//!< temperatura media
+		float humedaddRelativaMaxima_;//!< humedad relativa maxima
+		float humedaddRelativaMinima_;//!< humedad relativa minima
+		float humedaddRelativaMedia_;	//!< humedad relativa media
+		float velocidadVientoMedia_;	//!< velocidad media del viento
+		float direccionVientoMedia_;	//!< angulo medio del viento
+		float radiacionSolar_;				//!< radiacion solar media
+		float precipitacion_;					//!< cantidad de precipitacion
+		float eto_;										//!< ETO (evaporacion en el campo)
 
 
    //! \name Funciones o métodos públicos de la clase Medicion
@@ -67,6 +65,7 @@ class Medicion
 		/*!
 		\brief     observador de la fecha de la medicion
 		\note      Función inline
+		\note 		 funcion constante
 		\return    fecha; fecha de la medicion
 		\pre       Ninguna
 		*/
@@ -75,8 +74,8 @@ class Medicion
 		/*!
 		\brief     observador de la precipitacion de la medicion
 		\note      Función inline
+		\note			 funcion constante
 		\return    precipitacion; cantidad de lluvia de la medicion
-		\pre       Ninguna
 		*/
 		float getPrecipitacion() const {return precipitacion_;}
 
@@ -96,118 +95,249 @@ class Medicion
 		*/
 		void setPrecipitacion(float precipitacion){precipitacion_=precipitacion;}
 
-		void setValid(bool val){valid_=val;}
+		/*!
+		\brief     observador de validez de una fecha
+		\note      Función inline
+		\note			 funcion cosntante
+		\return		 booleano; verdadero si la fecha es valida, falso en el caso contrario
+		*/
+		bool isValid() const ;
 
-		bool isValid(){return valid_;}
-
+		/*!
+		\brief     modificador de la temperatura maxima de una precipitacion
+		\note      Función inline
+		\note 		 funcion constante
+		\param     temperaturaMaxima; temperatura maxima de una medicion
+		*/
 		void setTemperaturaMaxima(float temperaturaMaxima){
 			temperaturaMaxima_=temperaturaMaxima;
 		}
 
-		float getTemperaturaMaxima(){
+		/*!
+		\brief     observador de la temperatura maxima de la medicion
+		\note      Función inline
+		\return    temperaturaMaxima; temperatura maxima de una medicion
+		*/
+		float getTemperaturaMaxima() const {
 			return temperaturaMaxima_;
 		}
 
-
+		/*!
+		\brief     modificador de la temperatura maxima de una precipitacion
+		\note      Función inline
+		\param     horaTemperaturaMaxima; hora de la temperatura maxima de una medicion
+		*/
 		void setHoraTemperaturaMaxima(Hora horaTemperaturaMaxima){
 			horaTemperaturaMaxima_=horaTemperaturaMaxima;
 		}
 
-		Hora getHoraTemperaturaMaxima(){
+		/*!
+		\brief     observador de la hora de la temperatura maxima de la medicion
+		\note      Función inline
+		\note 		funcion constante
+		\return    horaTemperaturaMaxima; hora de la temperatura maxima de una medicion
+		*/
+		Hora getHoraTemperaturaMaxima() const {
 			return horaTemperaturaMaxima_;
 		}
 
-
+		/*!
+		\brief     modificador de la temperatura minima de una precipitacion
+		\note      Función inline
+		\param     temperaturaMinima; temperatura minima de una medicion
+		*/
 		void setTemperaturaMinima(float temperaturaMinima){
 			temperaturaMinima_=temperaturaMinima;
 		}
 
-		float getTemperaturaMinima(){
+		/*!
+		\brief     observador de la  temperatura minima de la medicion
+		\note      Función inline
+		\note			 funcion constante
+		\return    temperaturaMinima; temperatura minima de una medicion
+		*/
+		float getTemperaturaMinima() const {
 			return temperaturaMinima_;
 		}
 
-
+		/*!
+		\brief     modificador de la temperatura minima de una precipitacion
+		\note      Función inline
+		\param     horaTemperaturaMinima; hora de la temperatura minima de una medicion
+		*/
 		void setHoraTemperaturaMinima(Hora horaTemperaturaMinima){
 			horaTemperaturaMinima_=horaTemperaturaMinima;
 		}
 
-		Hora getHoraTemperaturaMinima(){
+		/*!
+		\brief     observador de la hora de la temperatura minima de la medicion
+		\note      Función inline
+		\note			 funcion constante
+		\return    horaTemperaturaMinima; hora de la temperatura minima de una medicion
+		*/
+		Hora getHoraTemperaturaMinima() const {
 			return horaTemperaturaMinima_;
 		}
 
-
+		/*!
+		\brief     modificador de la temperatura media de una precipitacion
+		\note      Función inline
+		\param     temperaturaMedia; temperatura media de una medicion
+		*/
 		void setTemperaturaMedia(float temperaturaMedia){
 			temperaturaMedia_=temperaturaMedia;
 		}
 
-		float getTemperaturaMedia(){
+		/*!
+		\brief     observador de la temperatura media de la medicion
+		\note      Función inline
+		\note			 funcion constante
+		\return    temperaturaMedia; temperatura media de una medicion
+		*/
+		float getTemperaturaMedia() const {
 			return temperaturaMedia_;
 		}
 
-
+		/*!
+		\brief     modificador de la humedad relativa maxima de una medicion
+		\note      Función inline
+		\param     humedaddRelativaMaxima; humedad relativa maxima de una medicion
+		*/
 		void setHumedadRelativaMaxima(float humedaddRelativaMaxima){
 			humedaddRelativaMaxima_=humedaddRelativaMaxima;
 		}
 
-		float getHumedadRelativaMaxima(){
+		/*!
+		\brief     observador de la humedad relativa maxima de la medicion
+		\note      Función inline
+		\note			 funcion constante
+		\return    humedaddRelativaMaxima; humedad relativa maxima de una medicion
+		*/
+		float getHumedadRelativaMaxima() const {
 			return humedaddRelativaMaxima_;
 		}
 
-
+		/*!
+		\brief     modificador de la humedad relativa minima de una medicion
+		\note      Función inline
+		\param     humedaddRelativaMinima; humedad relativa minima de una medicion
+		*/
 		void setHumedadRelativaMinima(float humedaddRelativaMinima){
 			humedaddRelativaMinima_=humedaddRelativaMinima;
 		}
 
-		float getHumedadRelativaMinima(){
+		/*!
+		\brief     observador de la humedad relativa minima de la medicion
+		\note      Función inline
+		\note			 funcion constante
+		\return    humedaddRelativaMinima; humedad relativa minima de una medicion
+		*/
+		float getHumedadRelativaMinima() const {
 			return humedaddRelativaMinima_;
 		}
 
-
+		/*!
+		\brief     modificador de la humedad relativa media de una medicion
+		\note      Función inline
+		\param     humedaddRelativaMedia; humedad relativa media de una medicion
+		*/
 		void setHumedadRelativaMedia(float humedadRelativaMedia){
 			humedaddRelativaMedia_=humedadRelativaMedia;
 		}
 
-		float getHumedadRelativaMedia(){
+		/*!
+		\brief     observador de la humedad relativa media de la medicion
+		\note      Función inline
+		\note			 funcion constante
+		\return    humedadRelativaMedia; humedad relativa media de una medicion
+		*/
+		float getHumedadRelativaMedia() const {
 			return humedaddRelativaMedia_;
 		}
 
-
+		/*!
+		\brief     modificador de la velocidad media de una medicion
+		\note      Función inline
+		\param     velocidadVientoMedia: velocidad media del viento de una medicion
+		*/
 		void setVelocidadVientoMedia(float velocidadVientoMedia){
 			velocidadVientoMedia_=velocidadVientoMedia;
 		}
 
-		float getVelocidadVientoMedia(){
+		/*!
+		\brief     observador de la velocidad media del vieto de la medicion
+		\note      Función inline
+		\note			 funcion constante
+		\return    velocidadVientoMedia; velocidad media del vieto de una medicion
+		*/
+		float getVelocidadVientoMedia() const {
 			return velocidadVientoMedia_;
 		}
 
-
+		/*!
+		\brief     modificador del angulo medio del viento de una medicion
+		\note      Función inline
+		\param     direccionVientoMedia: angulo medio del viento de una medicion
+		*/
 		void setDireccionVientoMedia(float direccionVientoMedia){
 			direccionVientoMedia_=direccionVientoMedia;
 		}
 
-		float getDireccionVientoMedia(){
+		/*!
+		\brief     observador del angulo medio del viento de la medicion
+		\note      Función inline
+		\note			 funcion constante
+		\return    direccionVientoMedia; angulo medio del viento de una medicion
+		*/
+		float getDireccionVientoMedia() const {
 			return direccionVientoMedia_;
 		}
 
-
+		/*!
+		\brief     modificador de la radiacion solar media de una medicion
+		\note      Función inline
+		\param     radiacionSolar: radiacion solar media del viento de una medicion
+		*/
 		void setRadiacionSolar(float radiacionSolar){
 			radiacionSolar_=radiacionSolar;
 		}
 
-		float getRadiacionSolar(){
+		/*!
+		\brief     observador de la radiacion solar media de la medicion
+		\note      Función inline
+		\note			 funcion constante
+		\return    radiacionSolar; radiacion solar media de una medicion
+		*/
+		float getRadiacionSolar() const {
 			return radiacionSolar_;
 		}
 
-
+		/*!
+		\brief     modificador del ETO medio de una medicion
+		\note      Función inline
+		\param     ETO: ETO medio de una medicion
+		*/
 		void setEto(float eto){
 			eto_=eto;
 		}
 
-		float getEto(){
+		/*!
+		\brief     observador de la evaporacion media en el campo de la medicion
+		\note      Función inline
+		\note			 funcion constante
+		\return    eto; evaporacion media en el campo de una medicion
+		*/
+		float getEto() const {
 			return eto_;
 		}
 
-		bool const equal(Medicion const &medicion){
+		/*!
+		\brief     observador de igualdad
+		\note      Función inline
+		\param     medicion: (constante y por referencia) medicion a comparar con
+		\return booleano: verdadero si las dos mediciones son iguales (misma hora) falso en el caso contrario
+		*/
+		bool const equal(Medicion const &medicion)const{
 			return \
 			this->getFecha().fechaCompare(\
 			medicion.getFecha())==0 ? \
@@ -239,6 +369,18 @@ class Medicion
 		inline Medicion& operator=(Medicion const &medicion){
 			this->setFecha(medicion.getFecha());
 			this->setPrecipitacion(medicion.getPrecipitacion());
+			this->setTemperaturaMaxima(medicion.getTemperaturaMaxima());
+			this->setHoraTemperaturaMaxima(medicion.getHoraTemperaturaMaxima());
+			this->setTemperaturaMinima(medicion.getTemperaturaMinima());
+			this->setHoraTemperaturaMinima(medicion.getHoraTemperaturaMinima());
+			this->setTemperaturaMedia(medicion.getTemperaturaMedia());
+			this->setHumedadRelativaMaxima(medicion.getHumedadRelativaMaxima());
+			this->setHumedadRelativaMinima(medicion.getHumedadRelativaMinima());
+			this->setHumedadRelativaMedia(medicion.getHumedadRelativaMedia());
+			this->setVelocidadVientoMedia(medicion.getVelocidadVientoMedia());
+			this->setDireccionVientoMedia(medicion.getDireccionVientoMedia());
+			this->setRadiacionSolar(medicion.getRadiacionSolar());
+			this->setEto(medicion.getEto());
 		}
 
 
@@ -262,7 +404,11 @@ class Medicion
 		\sa					getFecha(), getPrecipitacion()
 		\note				funcion constante
 		*/
-		void escribirMedicion();
+		void escribirMedicion() const ;
+
+		std::string getMedicionString() const ;
+
+		void clear();
 
 }; // Fin de la definición de la clase Medicion
 
