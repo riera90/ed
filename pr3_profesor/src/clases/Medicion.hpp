@@ -46,7 +46,6 @@ class Medicion
 		float radiacionSolar_;				//!< radiacion solar media
 		float precipitacion_;					//!< cantidad de precipitacion
 		float eto_;										//!< ETO (evaporacion en el campo)
-		bool valid_;									//!< bit de validez de la medicion
 
 
    //! \name Funciones o métodos públicos de la clase Medicion
@@ -97,19 +96,12 @@ class Medicion
 		void setPrecipitacion(float precipitacion){precipitacion_=precipitacion;}
 
 		/*!
-		\brief     modificador de la validez de una modificacion
-		\note      Función inline
-		\param     val; bit de validez (booleano)
-		*/
-		void setValid(bool val){valid_=val;}
-
-		/*!
 		\brief     observador de validez de una fecha
 		\note      Función inline
 		\note			 funcion cosntante
 		\return		 booleano; verdadero si la fecha es valida, falso en el caso contrario
 		*/
-		bool isValid() const {return valid_;}
+		bool isValid() const ;
 
 		/*!
 		\brief     modificador de la temperatura maxima de una precipitacion
@@ -389,7 +381,6 @@ class Medicion
 			this->setDireccionVientoMedia(medicion.getDireccionVientoMedia());
 			this->setRadiacionSolar(medicion.getRadiacionSolar());
 			this->setEto(medicion.getEto());
-			this->setValid(medicion.isValid());
 		}
 
 
