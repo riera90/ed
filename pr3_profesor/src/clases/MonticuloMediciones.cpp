@@ -123,3 +123,8 @@ bool ed::MonticuloMediciones::has(Medicion medicion){
 	}
 	return false;
 }
+
+ed::MonticuloMediciones& ed::MonticuloMediciones::operator=(MonticuloMediciones const &heap){
+	this->mediciones_=heap.getHeap();
+	return *this;
+}

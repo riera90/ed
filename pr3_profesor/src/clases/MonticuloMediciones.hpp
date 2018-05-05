@@ -158,6 +158,20 @@ class MonticuloMediciones : public MonticuloMedicionesInterfaz
 		*/
 		bool has(Medicion medicion);
 
+		/*!
+		\brief		observador logico del montuculo
+		\return 	std::vector<ed::Mediciones>: vector de mediciones (heapified/monticulizado)
+		\note funcion constante
+		*/
+		std::vector<Medicion> getHeap() const {return mediciones_;}
+
+		/*!
+		\brief		observador logico del montuculo
+		\param 		heap: MonticuloMediciones a copiar (constante)
+		\return		MonticuloMediciones
+		*/
+		MonticuloMediciones& operator=(MonticuloMediciones const &heap);
+
 	}; // Clase MonticuloMediciones
 
 } // Espacio de nombres ed

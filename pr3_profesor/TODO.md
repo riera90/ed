@@ -1,3 +1,1 @@
 # TODO
-## MonticuloMediciones
-- create operator=
