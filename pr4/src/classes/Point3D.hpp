@@ -12,8 +12,7 @@ private:
 
 public:
 
-	Point3D (float x, float y, float z) : _x(x), _y(y), _z(z);
-	virtual ~Point3D ();
+	Point3D (float x=0, float y=0, float z=0) : _x(x), _y(y), _z(z) {};
 
 	void setX(float x) { _x=x; }
 	float getX() const { return _x; }

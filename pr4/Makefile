@@ -1,13 +1,13 @@
 # DIRECTORIES
 BASE_DIR=./src
 OUTPUT_DIR=./output
-LIB_DIR=./lib
-OBJ_DIR=./obj
+LIB_DIR=./temp
+OBJ_DIR=./temp
 #------------------------------
 # FILENAMES (without extension)
 OUTPUT_NAME=executable
 MAIN_NAME=main
-FN_FILES_NAMES=Point
+FN_FILES_NAMES=classes/Point3D
 LIB_NAME=graph_lib
 HEADERS_LOCATION=classes
 # where the headers are located inside of the BASE_DIR folder (for dinamic linking)
@@ -38,7 +38,7 @@ GTEST_DIR=googletest/googletest
 	# Points to the root of Google Test, relative to where Makefile is.
 	# Remember to tweak this if you move this file.
 TESTS_DIR=g_tests
-TESTS=PointUnittest
+TESTS=Point3DUnittest
 
 #############################################################
 # the previous configuration compiles the following tree
@@ -126,7 +126,7 @@ $(OUTPUT_DIR)$(OUTPUT_NAME) : $(BASE_DIR)$(MAIN_NAME).$(CODE_EXTENSION) $(LIB_DI
 # .o COMPILATION (gcc -c var.cc foo.cc)
 #generates the .o's and moves them into their corresponding foldet in the OBJ_DIR
 $(OBJ_FILES_W_ROUTE_EXT) : $(CODE_FILES_W_ROUTE)
-	@./make-files/create_temp_folder.sh $(OBJ_FILES_W_ROUTE) $(LIB_FILES_W_ROUTE)
+	./make-files/create_temp_folder.sh $(OBJ_FILES_W_ROUTE) $(LIB_FILES_W_ROUTE)
 	@echo Building objects.
 	@for file in $(FN_FILES_NAMES) ; do \
 			$(COMPILER) -c $(BASE_DIR)$$file.$(CODE_EXTENSION) $(FLAGS_DIN); \
@@ -171,8 +171,8 @@ $(LIB_DIR)libgtest.a:
 	@./make-files/create_temp_folder.sh $(OBJ_FILES_W_ROUTE) $(LIB_FILES_W_ROUTE)
 	g++ -isystem $(GTEST_DIR)/include -I $(GTEST_DIR) -pthread -c $(GTEST_DIR)/src/gtest-all.cc $(GTEST_DIR)/src/gtest_main.cc
 	ar -rv libgtest.a gtest-all.o gtest_main.o
-	mv gtest-all.o temp/gtest-all.o
-	mv gtest_main.o temp/gtest_main.o
+	mv gtest-all.o $(OBJ_DIR)/gtest-all.o
+	mv gtest_main.o $(OBJ_DIR)/gtest_main.o
 	mv libgtest.a $(LIB_DIR)libgtest.a
 
 #############################################################
