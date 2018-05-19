@@ -3,6 +3,7 @@
 
 #include <string>
 #include <sstream>
+#include <iostream>
 
 class Point3D {
 private:
@@ -23,7 +24,13 @@ public:
 	void setZ(float z) { _z=z; }
 	float getZ() const { return _z; }
 
+	void SetPointString(std::string point);
 	std::string getPointString() const ;
+
+	void readPointStdin();
+	void writePointStdout() const ;
+
+	//asignation operators and copy constructor are not necesary as dinamic memory is not used.
 };
 
 #endif
