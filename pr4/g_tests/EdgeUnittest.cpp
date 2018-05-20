@@ -3,8 +3,8 @@
 
 
 TEST(Edge, Parametrized_builder){
-	Vertex* v1=new Vertex(Point3D(1,1,1));
-	Vertex* v2=new Vertex(Point3D(2,2,2));
+	Vertex* v1=new Vertex(Point2D(1,1));
+	Vertex* v2=new Vertex(Point2D(2,2));
 	Edge e(v1,v2);
 	EXPECT_TRUE(e.getVertex1()==v1);
 	EXPECT_TRUE(e.getVertex2()==v2);
@@ -12,8 +12,8 @@ TEST(Edge, Parametrized_builder){
 }
 
 TEST(Edge, copy_builder){
-	Vertex* v1=new Vertex(Point3D(1,1,1));
-	Vertex* v2=new Vertex(Point3D(2,2,2));
+	Vertex* v1=new Vertex(Point2D(1,1));
+	Vertex* v2=new Vertex(Point2D(2,2));
 	Edge e1(v1,v2);
 	Edge e2(e1);
 	EXPECT_TRUE(e2.getVertex1()==v1);
@@ -22,19 +22,19 @@ TEST(Edge, copy_builder){
 }
 
 TEST(Edge, seters_and_geters){
-	Vertex* v1=new Vertex(Point3D(1,1,1));
-	Vertex* v2=new Vertex(Point3D(2,2,2));
-	Vertex* v3=new Vertex(Point3D(3,3,3));
+	Vertex* v1=new Vertex(Point2D(1,1));
+	Vertex* v2=new Vertex(Point2D(2,2));
+	Vertex* v3=new Vertex(Point2D(3,3));
 	Edge e1(v1,v2);
 	Edge e2(e1);
-	e1.getVertex1()->setPoint(Point3D(3,3,3));
+	e1.getVertex1()->setPoint(Point2D(3,3));
 	EXPECT_TRUE(e1==e2);
 }
 
 TEST(Edge, operators){
-	Vertex* v1=new Vertex(Point3D(1,1,1));
-	Vertex* v2=new Vertex(Point3D(2,2,2));
-	Vertex* v3=new Vertex(Point3D(3,3,3));
+	Vertex* v1=new Vertex(Point2D(1,1));
+	Vertex* v2=new Vertex(Point2D(2,2));
+	Vertex* v3=new Vertex(Point2D(3,3));
 	Edge e1(v1,v2);
 	Edge e2(v2,v3);
 	Edge e3(v1,v2);
@@ -48,9 +48,9 @@ TEST(Edge, operators){
 }
 
 TEST(Edge, extra_operators){
-	Vertex* v1=new Vertex(Point3D(1,1,1));
-	Vertex* v2=new Vertex(Point3D(2,2,2));
-	Vertex* v3=new Vertex(Point3D(3,3,3));
+	Vertex* v1=new Vertex(Point2D(1,1));
+	Vertex* v2=new Vertex(Point2D(2,2));
+	Vertex* v3=new Vertex(Point2D(3,3));
 	Edge e1(v1,v2);
 	Edge e2(v2,v3);
 	Edge e3(v1,v2);

@@ -1,4 +1,5 @@
-# DIRECTORIES
+# DIRECTORIES	EXPECT_NEAR(1,p.getZ(),00000001);
+
 BASE_DIR=./src
 OUTPUT_DIR=./output
 LIB_DIR=./temp
@@ -7,7 +8,7 @@ OBJ_DIR=./temp
 # FILENAMES (without extension)
 OUTPUT_NAME=executable
 MAIN_NAME=main
-FN_FILES_NAMES=classes/Point3D
+FN_FILES_NAMES=classes/Point2D
 FN_FILES_NAMES+= classes/Edge
 FN_FILES_NAMES+= classes/Vertex
 LIB_NAME=graph_lib
