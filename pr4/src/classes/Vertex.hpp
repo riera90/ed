@@ -15,7 +15,6 @@ private:
 public:
 	inline Vertex (Point3D point=Point3D()) {_point=point;};
 
-	//Point3D point=Point3D(), std::list<Edge*> edges=std::list<Edge*>()
 	inline void setPoint(Point3D point) {
 		_point=point;
 	};
