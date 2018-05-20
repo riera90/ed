@@ -46,3 +46,19 @@ TEST(Edge, operators){
 	EXPECT_FALSE(e1==e2);
 	EXPECT_FALSE(e1==e3);
 }
+
+TEST(Edge, extra_operators){
+	Vertex* v1=new Vertex(Point3D(1,1,1));
+	Vertex* v2=new Vertex(Point3D(2,2,2));
+	Vertex* v3=new Vertex(Point3D(3,3,3));
+	Edge e1(v1,v2);
+	Edge e2(v2,v3);
+	Edge e3(v1,v2);
+	EXPECT_FALSE(e1!=e3);
+	EXPECT_TRUE(e1!=e2);
+	EXPECT_TRUE(e3!=e2);;
+	e3=e2;
+	EXPECT_FALSE(e2!=e3);
+	EXPECT_TRUE(e1!=e2);
+	EXPECT_TRUE(e1!=e3);
+}

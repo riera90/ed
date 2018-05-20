@@ -26,15 +26,19 @@ public:
 	bool setOtherVertex(Vertex* baseVertex, Vertex* vertex);
 
 	bool operator==(Edge& edge);
+	inline bool operator!=(Edge& edge){
+		return (!(*this==edge));
+	};
+
 	Edge& operator=(Edge& edge);
 
 
-	void dump(){
-		std::cout<<"edge dump:";
-		std::cout<<"\n\tvertex1: "<<getVertex1()->getPoint().getPointString();
-		std::cout<<"\n\tvertex2: "<<getVertex2()->getPoint().getPointString();
-		std::cout<<'\n';
-	}
+	// inline void dump(){
+	// 	std::cout<<"edge dump:";
+	// 	std::cout<<"\n\tvertex1: "<<this->getVertex1()->getPoint().getPointString();
+	// 	std::cout<<"\n\tvertex2: "<<this->getVertex2()->getPoint().getPointString();
+	// 	std::cout<<'\n';
+	// }
 };
 
 #endif

@@ -31,6 +31,10 @@ public:
 	void writePointStdout() const ;
 
 	bool operator==(const Point3D& point) const ;
+	inline bool operator!=(const Point3D& point) const {
+		return (!(*this==point));
+	};
+	
 	Point3D& operator=(const Point3D& point);
 
 	float distance(const Point3D& point) const ;
