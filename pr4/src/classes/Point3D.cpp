@@ -32,21 +32,21 @@ void Point3D::writePointStdout() const {
 	std::cout <<this->getPointString()<<"\n";
 }
 
-bool Point3D::operator==(Point3D const point) const {
+bool Point3D::operator==(const Point3D &point) const {
 	if (point.getX()!=this->getX()) return false;
 	if (point.getY()!=this->getY()) return false;
 	if (point.getZ()!=this->getZ()) return false;
 	return true;
 }
 
-Point3D Point3D::operator=(Point3D const point){
+Point3D& Point3D::operator=(const Point3D &point){
 	this->setX(point.getX());
 	this->setY(point.getY());
 	this->setZ(point.getZ());
 	return *this;
 }
 
-float Point3D::distance(Point3D const point) const {
+float Point3D::distance(const Point3D& point) const {
 	float difX,difY,difZ;
 
 	difX=pow(this->getX()-point.getX(),2);

@@ -45,3 +45,13 @@ TEST(Point3D, string_seters_and_geters){
 // 	std::cin >> ok;
 // 	EXPECT_EQ("y",ok);
 // }
+
+TEST(Point3D, operators){
+	Point3D p1(1,2,3);
+	Point3D p2;
+	p2=p1;
+	EXPECT_NEAR(1,p2.getX(),00000001);
+	EXPECT_NEAR(2,p2.getY(),00000001);
+	EXPECT_NEAR(3,p2.getZ(),00000001);
+	EXPECT_TRUE(p1==p2);
+}

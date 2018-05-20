@@ -30,10 +30,10 @@ public:
 	void readPointStdin();
 	void writePointStdout() const ;
 
-	bool operator==(const Point3D point) const ;
-	Point3D operator=(const Point3D point);
+	bool operator==(const Point3D& point) const ;
+	Point3D& operator=(const Point3D& point);
 
-	float distance(const Point3D point) const ;
+	float distance(const Point3D& point) const ;
 };
 
 #endif
