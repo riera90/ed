@@ -7,7 +7,9 @@ OBJ_DIR=./temp
 # FILENAMES (without extension)
 OUTPUT_NAME=executable
 MAIN_NAME=main
-FN_FILES_NAMES=classes/Point3D 
+FN_FILES_NAMES=classes/Point3D
+FN_FILES_NAMES+= classes/Edge
+# FN_FILES_NAMES+= classes/Vertex
 LIB_NAME=graph_lib
 HEADERS_LOCATION=classes
 # where the headers are located inside of the BASE_DIR folder (for dinamic linking)
@@ -38,7 +40,7 @@ GTEST_DIR=googletest/googletest
 	# Points to the root of Google Test, relative to where Makefile is.
 	# Remember to tweak this if you move this file.
 TESTS_DIR=g_tests
-TESTS=Point3DUnittest
+TESTS=AllUnittest
 
 #############################################################
 # the previous configuration compiles the following tree
