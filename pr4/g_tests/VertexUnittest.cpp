@@ -23,7 +23,6 @@ TEST(Vertex, edges){
 	Vertex v(p);
 	EXPECT_EQ(v.getEdges().size(),0);
 	v.addEdge(&e1);
-	std::cout << "test" << '\n';
 	v.addEdge(&e1);
 	EXPECT_EQ(v.getEdges().size(),1);
 	EXPECT_EQ(v.getEdges()[0],&e1);

@@ -29,5 +29,8 @@ bool Vertex::operator==(const Vertex& vertex) const {
 
 Vertex& Vertex::operator=(const Vertex& vertex){
 	this->setPoint(vertex.getPoint());
+	for (size_t i = 0; i < vertex.getEdges().size(); i++) {
+		this->addEdge(vertex.getEdges()[i]);
+	}
 	return *this;
 }

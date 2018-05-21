@@ -16,14 +16,14 @@ private:
 public:
 	inline Vertex (Point2D point=Point2D()) {_point=point;}
 
-	// inline setIndex(int index){_index=index;}
-	// inline getIndex() const {return _index;}
+	inline void setIndex(int index){_index=index;}
+	inline int getIndex() const {return _index;}
 
 	inline void setPoint(Point2D point) {_point=point;}
 
 	inline Point2D getPoint() const {return _point;}
 
-	inline std::vector<Edge*> getEdges() {return _edges;}
+	inline std::vector<Edge*> getEdges() const {return _edges;}
 
 	bool addEdge(Edge* edge);
 	bool removeEdge(Edge* Edge);

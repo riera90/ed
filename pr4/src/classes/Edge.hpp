@@ -31,14 +31,6 @@ public:
 	};
 
 	Edge& operator=(Edge& edge);
-
-
-	// inline void dump(){
-	// 	std::cout<<"edge dump:";
-	// 	std::cout<<"\n\tvertex1: "<<this->getVertex1()->getPoint().getPointString();
-	// 	std::cout<<"\n\tvertex2: "<<this->getVertex2()->getPoint().getPointString();
-	// 	std::cout<<'\n';
-	// }
 };
 
 #endif
