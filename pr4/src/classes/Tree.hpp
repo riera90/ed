@@ -19,8 +19,9 @@ public:
 		_root=NULL;
 		_current=NULL;
 	}
-	Vertex* getRoot() const {return _root;}
-	Vertex* getParent(Vertex* SonNode) const ;
+	Vertex* getRoot() {return _root;}
+	void setRoot(Vertex* root) {_root=root;}
+	Vertex* getParent(Vertex* SonNode) ;
 	std::vector<Vertex*> getSons(Vertex* parentNode);
 	void addSon(Vertex* ParentNode, Vertex* newSonNode);
 	void printTree() const ;
