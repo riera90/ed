@@ -1,23 +1,24 @@
 #include "Edge.hpp"
 
-Vertex* Edge::getOtherVertex(Vertex* baseVertex){
-	if (baseVertex==NULL) return NULL;
-	if (baseVertex==getVertex1()) return getVertex2();
-	if (baseVertex==getVertex2()) return getVertex1();
+Vertex* Edge::getOtherVertex(Vertex baseVertex){
+	if (baseVertex==*getVertex1()) return getVertex2();
+	if (baseVertex==*getVertex2()) return getVertex1();
 }
 
-bool Edge::setOtherVertex(Vertex* baseVertex, Vertex* vertex){
-	if (baseVertex==NULL) return false;
-
-	if (baseVertex==getVertex1()){
+bool Edge::setOtherVertex(Vertex baseVertex, Vertex* vertex){
+	if (baseVertex==*getVertex1()){
 		setVertex2(vertex);
 		return true;
 	}
-	if (baseVertex==getVertex2()){
+	if (baseVertex==*getVertex2()){
 		setVertex1(vertex);
 		return true;
 	}
 	return false;
+}
+
+float Edge::getDistance(){
+	return getVertex1()->getPoint().distance(getVertex2()->getPoint());
 }
 
 bool Edge::operator==(Edge& edge){

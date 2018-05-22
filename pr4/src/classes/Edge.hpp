@@ -22,8 +22,16 @@ public:
 	inline void setVertex1(Vertex* vertex) {_vertex1=vertex;};
 	inline void setVertex2(Vertex* vertex) {_vertex2=vertex;};
 
-	Vertex* getOtherVertex(Vertex* baseVertex);
-	bool setOtherVertex(Vertex* baseVertex, Vertex* vertex);
+	inline Vertex* getVertexParent() {return _vertex1;};
+	inline Vertex* getVertexSon() {return _vertex2;};
+
+	inline void setVertexParent(Vertex* vertex) {_vertex1=vertex;};
+	inline void setVertexSon(Vertex* vertex) {_vertex2=vertex;};
+
+	Vertex* getOtherVertex(Vertex baseVertex);
+	bool setOtherVertex(Vertex baseVertex, Vertex* vertex);
+
+	float getDistance();
 
 	bool operator==(Edge& edge);
 	inline bool operator!=(Edge& edge){

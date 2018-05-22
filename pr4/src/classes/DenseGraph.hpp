@@ -6,15 +6,16 @@
 
 class DenseGrpah {
 private:
-	std::vector<Vertex> _vertexes;
+	std::vector<Vertex*> _vertexes;
 
 private:
-	void remove_links(std::vector<Vertex>::iterator);
+	bool remove_links(std::vector<Vertex*>::iterator);
 
 public:
-	DenseGrpah ();
-	void addVertex(Vertex vertex);
-	bool RemoveVertex(Vertex vertex);
+	inline DenseGrpah () {}
+	std::vector<Vertex*> getVertexes(){return _vertexes;}
+	bool addVertex(Vertex* vertex);
+	bool RemoveVertex(Vertex* vertex);
 	// void minTreePrim();
 	// void minTreeKruskal();
 	// void minTreeFloyd();

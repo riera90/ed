@@ -1,4 +1,4 @@
-#include "Vertex.hpp"
+#include "Tree.hpp"
 
 bool Vertex::addEdge(Edge* edge){
 	//checks if the MemAddress of an edge is in the list
