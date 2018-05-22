@@ -18,3 +18,24 @@ std::vector<Vertex*> Tree::getSons(Vertex* parentNode){
 	}
 	return sons;
 }
+
+void Tree::printTree(){
+	int level=0;
+	iPrint(_root);
+}
+
+void Tree::iPrint(Vertex* vertex){
+	//for edge in base
+	for (size_t i = 0; i < vertex->getEdges().size(); i++) {
+		if (vertex->getEdges()[i]->getVertexSon()!=vertex) {
+			std::cout<<vertex->getPoint().getPointString();
+			std::cout<<" -> ";
+			std::cout<<vertex->getEdges()[i]->getVertexSon()->getPoint().getPointString();
+			std::cout<<"\t";
+		}
+	}
+	std::cout<<"\n";
+	for (size_t i = 1; i < vertex->getEdges().size(); i++) {
+		iPrint(vertex->getEdges()[i]->getVertexSon());
+	}
+}

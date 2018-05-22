@@ -24,7 +24,8 @@ public:
 	Vertex* getParent(Vertex* SonNode) ;
 	std::vector<Vertex*> getSons(Vertex* parentNode);
 	void addSon(Vertex* ParentNode, Vertex* newSonNode);
-	void printTree() const ;
+	void printTree();
+	void iPrint(Vertex* base);
 };
 
 #endif
