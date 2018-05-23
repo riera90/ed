@@ -9,18 +9,18 @@ class Edge;
 
 class Vertex {
 private:
-	std::string _tag;
+	std::string _flag;
 	Point2D _point;
 	std::vector<Edge*> _edges;
 
 public:
 	inline Vertex (Point2D point=Point2D()) {
 		_point=point;
-		_tag="";
+		_flag="";
 	}
 
-	inline void setTag(std::string tag){_tag=tag;}
-	inline std::string getTag() const {return _tag;}
+	inline void setFlag(std::string flag){_flag=flag;}
+	inline std::string getFlag() const {return _flag;}
 
 	inline void setPoint(Point2D point) {_point=point;}
 

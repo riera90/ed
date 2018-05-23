@@ -21,9 +21,17 @@ public:
 	}
 	Vertex* getRoot() {return _root;}
 	void setRoot(Vertex* root) {_root=root;}
+
 	Vertex* getParent(Vertex* SonNode) ;
 	std::vector<Vertex*> getSons(Vertex* parentNode);
+
 	void addSon(Vertex* ParentNode, Vertex* newSonNode);
+
+	std::vector<Vertex*> getAllVertexes();
+	std::vector<Vertex*> iGetAllVertexes(Vertex* base);
+
+	Vertex* SearchVertex(Vertex* vertex);
+
 	void printTree();
 	void iPrint(Vertex* base);
 };

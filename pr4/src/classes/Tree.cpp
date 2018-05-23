@@ -19,9 +19,47 @@ std::vector<Vertex*> Tree::getSons(Vertex* parentNode){
 	return sons;
 }
 
+std::vector<Vertex*> Tree::getAllVertexes(){
+	std::vector<Vertex*> list1;
+	std::vector<Vertex*> list2 = iGetAllVertexes(getRoot());
+	list1.push_back(getRoot());
+	list1.insert(list1.end(),list2.begin(),list2.end());
+	return list1;
+}
+
+std::vector<Vertex*> Tree::iGetAllVertexes(Vertex* base){
+	std::vector<Vertex*> list;
+	std::vector<Vertex*> list_temp;
+	for (size_t i = 0; i < base->getEdges().size(); i++) {
+		if (base->getEdges()[i]->getVertexSon()!=base) {
+			list.push_back(base->getEdges()[i]->getVertexSon());
+		}
+	}
+	for (size_t i = 1; i < base->getEdges().size(); i++) {
+		if (base->getEdges()[i]->getVertexSon()!=base){
+			list_temp=iGetAllVertexes(base->getEdges()[i]->getVertexSon());
+			list.insert(list.end(),list_temp.begin(),list_temp.end());
+		}
+	}
+
+	return list;
+}
+
+Vertex* Tree::SearchVertex(Vertex* vertex){
+	for (std::vector<Vertex*>::iterator it = getAllVertexes().begin() ;\
+	it != getAllVertexes().end() ; it++)
+	{
+
+	}
+}
+
 void Tree::printTree(){
 	int level=0;
-	iPrint(_root);
+	if (_root==NULL) {
+		std::cout <<"the tree is empty!"<< '\n';
+	}else{
+		iPrint(_root);
+	}
 }
 
 void Tree::iPrint(Vertex* vertex){
@@ -34,8 +72,12 @@ void Tree::iPrint(Vertex* vertex){
 			std::cout<<"\t";
 		}
 	}
+
 	std::cout<<"\n";
+
 	for (size_t i = 1; i < vertex->getEdges().size(); i++) {
-		iPrint(vertex->getEdges()[i]->getVertexSon());
+		if (vertex->getEdges()[i]->getVertexSon()!=vertex) {
+			iPrint(vertex->getEdges()[i]->getVertexSon());
+		}
 	}
 }

@@ -85,3 +85,24 @@ TEST(DenseGraph, edges_with_detete_extended){
 	EXPECT_EQ(g.getVertexes()[2]->getEdges()[0]->getOtherVertex(*g.getVertexes()[2])->getPoint(), g.getVertexes()[0]->getPoint());
 	EXPECT_EQ(g.getVertexes()[2]->getEdges()[1]->getOtherVertex(*g.getVertexes()[2])->getPoint(), g.getVertexes()[1]->getPoint());
 }
+
+
+// TEST(DenseGraph, minTreePrim){
+// 	DenseGrpah g;
+// 	Vertex* v0=new Vertex(Point2D(0,0));
+// 	Vertex* v1=new Vertex(Point2D(1,5));
+// 	Vertex* v2=new Vertex(Point2D(2,1));
+// 	Vertex* v3=new Vertex(Point2D(3,2));
+// 	Vertex* v4=new Vertex(Point2D(4,4));
+// 	Vertex* v5=new Vertex(Point2D(5,5));
+//
+// 	g.addVertex(v0);
+// 	g.addVertex(v1);
+// 	g.addVertex(v2);
+// 	g.addVertex(v3);
+// 	g.addVertex(v4);
+// 	g.addVertex(v5);
+//
+// 	Tree t=g.minTreePrim();
+// 	t.printTree();
+// }

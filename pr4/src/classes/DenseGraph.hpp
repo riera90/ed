@@ -3,6 +3,7 @@
 
 #include "Vertex.hpp"
 #include "Edge.hpp"
+#include "Tree.hpp"
 
 class DenseGrpah {
 private:
@@ -16,9 +17,10 @@ public:
 	std::vector<Vertex*> getVertexes(){return _vertexes;}
 	bool addVertex(Vertex* vertex);
 	bool RemoveVertex(Vertex* vertex);
-	// void minTreePrim();
-	// void minTreeKruskal();
-	// void minTreeFloyd();
+	
+	Tree minTreePrim();
+	Tree minTreeKruskal();
+	Tree minTreeFloyd();
 };
 
 #endif
