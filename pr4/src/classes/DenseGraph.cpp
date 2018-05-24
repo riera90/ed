@@ -190,8 +190,12 @@ Tree DenseGraph::minTreeKruskal(){
 		temp->setRoot(new Vertex((*itVertexG)->getPoint()));
 		headsT.push_back(temp);
 	}
+	#ifdef DEBUG
 	printListTrees(headsT);
+	#endif
+	#ifdef DEBUG
 	std::cout << "\n\nstarting algorithm!!!\n\n";
+	#endif
 
 
 	// edge=new Edge(headsT[0]->getRoot(), headsT[1]->getRoot());
@@ -200,16 +204,22 @@ Tree DenseGraph::minTreeKruskal(){
 
 
 
-	while (!isDone && timer<10)
+	while (!isDone)
 	{
+		#ifdef DEBUG
 		std::cout << "\t\titeration!!" << '\n';
+		#endif
 
 
 		//chechs if there are edges left
 		if (headsT.size()==1) {
+			#ifdef DEBUG
 			std::cout << "is done!!" << '\n';
+			#endif
 			isDone=true;
+			#ifdef DEBUG
 			std::cout << "final size: " << headsT[0]->getAllVertexes().size() << '\n';
+			#endif
 			return *headsT[0];
 		}else{
 			isDone=false;
@@ -250,7 +260,9 @@ Tree DenseGraph::minTreeKruskal(){
 						}
 						if (valid)
 						{
+							#ifdef DEBUG
 							std::cout << "new shortest edge found! "<< edge->getDistance() <<"" << '\n';
+							#endif
 							shortestEdge=edge;
 						}else{
 							// std::cout << "not valid!!!!!" << '\n';
@@ -272,16 +284,20 @@ Tree DenseGraph::minTreeKruskal(){
 		//adds the edge to the tree
 		if (shortestEdge==NULL)
 		{
+			#ifdef DEBUG
 			std::cout << "ERROR NULL edge, finished" << '\n';
+			#endif
 			break;
 		}
 		else
 		{
+			#ifdef DEBUG
 			std::cout << "\t\t\tthe shortest edge is "<< shortestEdge->getDistance()<< '\n';
+			#endif
 
 			Vertex* v1G=shortestEdge->getVertex1();
 			Vertex* v2G=shortestEdge->getVertex2();
-
+			#ifdef DEBUG
 			if (v1G==NULL) {
 				std::cout << "NULL alert-" << '\n';
 			}else{
@@ -293,6 +309,7 @@ Tree DenseGraph::minTreeKruskal(){
 			}else{
 				std::cout << "v2G= "<< v2G->getPoint().getPointString() << "\n\n";
 			}
+			#endif
 
 			Vertex* v1T=NULL;
 			Vertex* v2T=NULL;
@@ -308,7 +325,9 @@ Tree DenseGraph::minTreeKruskal(){
 				if (v1T_temp!=NULL) {
 					found=true;
 					v1T=v1T_temp;
+					#ifdef DEBUG
 					std::cout << "v1T= "<< v1T->getPoint().getPointString() << '\n';
+					#endif
 				}else{
 					// std::cout << "NULL alert1!" << '\n';
 				}
@@ -321,13 +340,19 @@ Tree DenseGraph::minTreeKruskal(){
 				if (v2T_temp!=NULL) {
 					found=true;
 					v2T=v2T_temp;
+					#ifdef DEBUG
 					std::cout << "v2T= "<< v2T->getPoint().getPointString() << '\n';
+					#endif
 				}
 			}
 			if (v1T==NULL || v2T==NULL) {
+				#ifdef DEBUG
 				std::cout << "NULL alert in v1T or v2T" << '\n';
+				#endif
 			}else{
+				#ifdef DEBUG
 				std::cout << "adding edge" << '\n';
+				#endif
 				Edge* edge_temp=new Edge(v1T,v2T);
 				v1T->addEdge(edge_temp);
 				v2T->addEdge(edge_temp);
@@ -338,40 +363,13 @@ Tree DenseGraph::minTreeKruskal(){
 
 
 		tree.tryConnect(headsT);
+		#ifdef DEBUG
 		printListTrees(headsT);
+		#endif
 		timer++;
 	}
 	return *headsT[0];
 }
-
-
-
-
-/*	while (!isDone && timer<10)
-	{
-
-
-
-
-		std::cout << "tryConnect" << '\n';
-		std::cout << "\t\t\tsize: " << headsT.size() << '\n';
-		while(tree.tryConnect(headsT)){
-			std::cout << "conected!!!" << '\n';
-			std::cout << "\t\t\t\tnew size: " << headsT.size() << '\n';
-		}
-
-
-		//chechs if there are edges left
-		if (headsT.size()==1) {
-			std::cout << "is done!!" << '\n';
-			isDone=true;
-			std::cout << "final size: " << headsT[0]->getAllVertexes().size() << '\n';
-		}else{
-			isDone=false;
-		}
-	}
-
-	return *headsT[0];*/
 
 
 void DenseGraph::printListTrees(std::vector<Tree*> headsT){
