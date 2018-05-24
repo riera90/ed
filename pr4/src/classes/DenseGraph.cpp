@@ -1,6 +1,6 @@
 #include "DenseGraph.hpp"
 
-bool DenseGrpah::remove_links(std::vector<Vertex*>::iterator base_it){
+bool DenseGraph::remove_links(std::vector<Vertex*>::iterator base_it){
 	Vertex* other;
 	Vertex* base;
 	Edge* edge;
@@ -20,7 +20,7 @@ bool DenseGrpah::remove_links(std::vector<Vertex*>::iterator base_it){
 	return true;
 }
 
-bool DenseGrpah::addVertex(Vertex* vertex){
+bool DenseGraph::addVertex(Vertex* vertex){
 	for (size_t i = 0; i < _vertexes.size(); i++) {
 		if (_vertexes[i]==vertex) {
 			return false;
@@ -36,7 +36,7 @@ bool DenseGrpah::addVertex(Vertex* vertex){
 	return true;
 }
 
-bool DenseGrpah::RemoveVertex(Vertex* vertex){
+bool DenseGraph::RemoveVertex(Vertex* vertex){
 	std::vector<Vertex*>::iterator it;
 	for (it=_vertexes.begin() ; it!=_vertexes.end() ; it++){
 		if ( (*it) == vertex ) {
@@ -53,7 +53,7 @@ bool DenseGrpah::RemoveVertex(Vertex* vertex){
 
 
 
-Tree DenseGrpah::minTreePrim(){
+Tree DenseGraph::minTreePrim(){
 	int timer=0;
 	int totalTimer=0;
 
@@ -157,7 +157,7 @@ Tree DenseGrpah::minTreePrim(){
 
 
 
-bool DenseGrpah::tryConnect(std::vector<Tree*>& headsT)
+bool DenseGraph::tryConnect(std::vector<Tree*>& headsT)
 {
 	std::vector<Tree*>::iterator itTree;
 	std::vector<Tree*>::iterator itTreeInner;
@@ -174,25 +174,14 @@ bool DenseGrpah::tryConnect(std::vector<Tree*>& headsT)
 		{
 			if (itTree!=itTreeInner)
 			{
-
-				list = (*itTree)->getAllVertexes();
-				listInner = (*itTreeInner)->getAllVertexes();
-
-				for (itList = list.begin(); itList < list.end(); itList++)
+				if (areConnected(**itTree, **itTreeInner))
 				{
-					for (itListInner = listInner.begin(); itListInner < listInner.end(); itListInner++)
-					{
-						if((*itList)->getPoint()==(*itListInner)->getPoint())
-						{
-							#ifdef DEBUG
-							std::cout << "Vertice duplicado, eliminando entrada doble" << '\n';
-							#endif
-							headsT.erase(itTreeInner);
-							return true;
-						}
-					}
+					#ifdef DEBUG
+					std::cout << "Vertice duplicado, eliminando entrada doble" << '\n';
+					#endif
+					headsT.erase(itTreeInner);
+					return true;
 				}
-
 			}
 		}
 	}
@@ -200,10 +189,34 @@ bool DenseGrpah::tryConnect(std::vector<Tree*>& headsT)
 }
 
 
+bool DenseGraph::areConnected(Tree t1, Tree t2)
+{
+	std::vector<Vertex*> list;
+	std::vector<Vertex*> listInner;
+
+	std::vector<Vertex*>::iterator itList;
+	std::vector<Vertex*>::iterator itListInner;
+
+
+	list = t1.getAllVertexes();
+	listInner = t2.getAllVertexes();
+
+	for (itList = list.begin(); itList < list.end(); itList++)
+	{
+		for (itListInner = listInner.begin(); itListInner < listInner.end(); itListInner++)
+		{
+			if((*itList)->getPoint()==(*itListInner)->getPoint())
+			{
+				return true;
+			}
+		}
+	}
+}
 
 
 
-Tree DenseGrpah::minTreeKruskal(){
+
+Tree DenseGraph::minTreeKruskal(){
 	int timer=0;
 	int totalTimer=0;
 
@@ -216,18 +229,10 @@ Tree DenseGrpah::minTreeKruskal(){
 	std::vector<Tree*> headsT;
 	std::vector<Vertex*> vertexG;
 
-	while(tryConnect(headsT));
+	while (headsT.size()>1) {
 
-	// std::vector<Vertex*> temp=getVertexes();
-	// std::vector<Vertex*>::iterator it;
-	//
-	// for ( it = temp.begin(); it < temp.end(); it++) {
-	// }
-	//
-	// while(!isDone)
-	// {
-	// 	isDone=true;
-	// }
+		while(tryConnect(headsT));
+	}
 
 	return tree;
 }
@@ -236,7 +241,7 @@ Tree DenseGrpah::minTreeKruskal(){
 
 
 
-Tree DenseGrpah::minTreeFloyd(){
+Tree DenseGraph::minTreeFloyd(){
 	Tree tree;
 	for (size_t i = 0; i < this->getVertexes().size(); i++) {
 	}

@@ -2,12 +2,12 @@
 #include "DenseGraph.hpp"
 
 TEST(DenseGraph, Builder){
-	DenseGrpah g;
+	DenseGraph g;
 	EXPECT_EQ(g.getVertexes().size(),0);
 }
 
 TEST(DenseGraph, add_with_duplicated_values){
-	DenseGrpah g;
+	DenseGraph g;
 	Vertex* v0=new Vertex(Point2D(0,0));
 	Vertex* v1=new Vertex(Point2D(1,1));
 	Vertex* v2=new Vertex(Point2D(2,2));
@@ -23,7 +23,7 @@ TEST(DenseGraph, add_with_duplicated_values){
 }
 
 TEST(DenseGraph, delete){
-	DenseGrpah g;
+	DenseGraph g;
 	Vertex* v0=new Vertex(Point2D(0,0));
 	Vertex* v1=new Vertex(Point2D(1,1));
 	Vertex* v2=new Vertex(Point2D(2,2));
@@ -38,7 +38,7 @@ TEST(DenseGraph, delete){
 }
 
 TEST(DenseGraph, edges){
-	DenseGrpah g;
+	DenseGraph g;
 	Vertex* v0=new Vertex(Point2D(0,0));
 	Vertex* v1=new Vertex(Point2D(1,1));
 	Vertex* v2=new Vertex(Point2D(2,2));
@@ -50,7 +50,7 @@ TEST(DenseGraph, edges){
 }
 
 TEST(DenseGraph, edges_with_detete){
-	DenseGrpah g;
+	DenseGraph g;
 	Vertex* v0=new Vertex(Point2D(0,0));
 	Vertex* v1=new Vertex(Point2D(1,1));
 	Vertex* v2=new Vertex(Point2D(2,2));
@@ -64,7 +64,7 @@ TEST(DenseGraph, edges_with_detete){
 }
 
 TEST(DenseGraph, edges_with_detete_extended){
-	DenseGrpah g;
+	DenseGraph g;
 	Vertex* v0=new Vertex(Point2D(0,0));
 	Vertex* v1=new Vertex(Point2D(1,1));
 	Vertex* v2=new Vertex(Point2D(2,2));
@@ -88,7 +88,7 @@ TEST(DenseGraph, edges_with_detete_extended){
 
 
 TEST(DenseGraph, minTreePrim){
-	DenseGrpah g;
+	DenseGraph g;
 	Vertex* v0=new Vertex(Point2D(0,0));
 	Vertex* v1=new Vertex(Point2D(1,5));
 	Vertex* v2=new Vertex(Point2D(2,1));
@@ -115,7 +115,7 @@ TEST(DenseGraph, minTreePrim){
 }
 
 TEST(DenseGraph, minTreeKruskal){
-	DenseGrpah g;
+	DenseGraph g;
 	Vertex* v0=new Vertex(Point2D(0,0));
 	Vertex* v1=new Vertex(Point2D(1,5));
 	Vertex* v2=new Vertex(Point2D(2,1));
