@@ -2,4 +2,4 @@
 #include "VertexUnittest.cpp"
 #include "EdgeUnittest.cpp"
 #include "TreeUnittest.cpp"
-// #include "DenseGraphUnittest.cpp"
+#include "DenseGraphUnittest.cpp"

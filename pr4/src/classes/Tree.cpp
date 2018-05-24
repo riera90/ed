@@ -246,7 +246,7 @@ bool Tree::tryConnect(std::vector<Tree*>& headsT)
 
 bool Tree::areConnected(Tree t)
 {
-	std::cout << "begin!" << '\n';
+	// std::cout << "begin!" << '\n';
 	std::vector<Vertex*> list;
 	std::vector<Vertex*> listInner;
 
@@ -257,32 +257,32 @@ bool Tree::areConnected(Tree t)
 	list = this->getAllVertexes();
 	listInner = t.getAllVertexes();
 
-	std::cout << "set 1: ";
-	for (itList = list.begin(); itList < list.end(); itList++)
-	{
-		std::cout << "("<<(*itList)->getPoint().getPointString()<<")  -  ";
-	}
-	std::cout << "\nset 2: ";
-	for (itListInner = listInner.begin(); itListInner < listInner.end(); itListInner++)
-	{
-		std::cout << "("<<(*itListInner)->getPoint().getPointString()<<")  -  ";
-	}
-	std::cout << '\n';
+	// std::cout << "set 1: ";
+	// for (itList = list.begin(); itList < list.end(); itList++)
+	// {
+	// 	std::cout << "("<<(*itList)->getPoint().getPointString()<<")  -  ";
+	// }
+	// std::cout << "\nset 2: ";
+	// for (itListInner = listInner.begin(); itListInner < listInner.end(); itListInner++)
+	// {
+	// 	std::cout << "("<<(*itListInner)->getPoint().getPointString()<<")  -  ";
+	// }
+	// std::cout << '\n';
 
 
 	for (itList = list.begin(); itList < list.end(); itList++)
 	{
 		for (itListInner = listInner.begin(); itListInner < listInner.end(); itListInner++)
 		{
-			std::cout<<(*itList)->getPoint().getPointString()<<" = "<<(*itListInner)->getPoint().getPointString()<<"\n";
+			// std::cout<<(*itList)->getPoint().getPointString()<<" = "<<(*itListInner)->getPoint().getPointString()<<"\n";
 			if((*itList)->getPoint()==(*itListInner)->getPoint())
 			{
 				// std::cout<<(*itList)->getPoint().getPointString()<<" = "<<(*itListInner)->getPoint().getPointString()<<"\n";
-				std::cout << "are conected!" << '\n';
+				// std::cout << "are conected!" << '\n';
 				return true;
 			}
 		}
 	}
-	std::cout << "are NOT connected" << '\n';
+	// std::cout << "are NOT connected" << '\n';
 		return false;
 }
