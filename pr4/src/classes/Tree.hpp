@@ -35,6 +35,9 @@ public:
 
 	void printTree();
 	void iPrint(Vertex* base);
+
+	bool tryConnect(std::vector<Tree*>& headsT);
+	bool areConnected(Tree t);
 };
 
 #endif

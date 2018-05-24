@@ -63,7 +63,7 @@ std::vector<Vertex*> Tree::iGetAllVertexes(Vertex* base){
 	}
 	return finalList;
 }
-
+#define DEBUG
 Vertex* Tree::SearchVertex(Vertex* vertex){
 	std::vector<Vertex*> list = getAllVertexes();
 	std::vector<Vertex*>::iterator it;
@@ -96,7 +96,7 @@ Vertex* Tree::SearchVertex(Vertex* vertex){
 	#endif
 	return NULL;
 }
-
+#undef DEBUG
 void Tree::printTree(){
 	std::vector<Vertex*> list = getAllVertexes();
 	std::vector<Vertex*>::iterator it;
@@ -111,4 +111,66 @@ void Tree::printTree(){
 			}
 		}
 	}
+}
+
+
+bool Tree::tryConnect(std::vector<Tree*>& headsT)
+{
+	std::vector<Tree*>::iterator itTree;
+	std::vector<Tree*>::iterator itTreeInner;
+
+	std::vector<Vertex*> list;
+	std::vector<Vertex*> listInner;
+
+	std::vector<Vertex*>::iterator itList;
+	std::vector<Vertex*>::iterator itListInner;
+
+	for (itTree = headsT.begin(); itTree != headsT.end(); itTree++)
+	{
+		for (itTreeInner = headsT.begin(); itTreeInner != headsT.end(); itTreeInner++)
+		{
+			if (itTree!=itTreeInner)
+			{
+				if ((**itTree).areConnected(**itTreeInner))
+				{
+					#ifdef DEBUG
+					std::cout << "Vertice duplicado, eliminando entrada doble" << '\n';
+					#endif
+					std::cout << "Vertice duplicado, eliminando entrada doble" << '\n';
+					headsT.erase(itTree);
+					return true;
+				}
+			}
+		}
+	}
+	return false;
+}
+
+
+bool Tree::areConnected(Tree t)
+{
+	std::vector<Vertex*> list;
+	std::vector<Vertex*> listInner;
+
+	std::vector<Vertex*>::iterator itList;
+	std::vector<Vertex*>::iterator itListInner;
+
+
+	list = this->getAllVertexes();
+	listInner = t.getAllVertexes();
+
+	for (itList = list.begin()+1; itList < list.end(); itList++)
+	{
+		for (itListInner = listInner.begin()+1; itListInner < listInner.end(); itListInner++)
+		{
+			if((*itList)->getPoint()==(*itListInner)->getPoint())
+			{
+				// std::cout<<(*itList)->getPoint().getPointString()<<" = "<<(*itListInner)->getPoint().getPointString()<<"\n";
+				// std::cout << "are conected!" << '\n';
+				return true;
+			}
+		}
+	}
+	// std::cout << "are NOT connected" << '\n';
+		return false;
 }

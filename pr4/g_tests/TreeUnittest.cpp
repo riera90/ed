@@ -131,3 +131,129 @@ TEST(Tree, getAllVertexes){
 // 	std::cin >> response;
 // 	EXPECT_EQ(response,"y");
 // }
+
+
+TEST(Tree, areConnected){
+	std::vector<Tree*> headsT;
+	Vertex* v0=new Vertex(Point2D(0,0));
+	Vertex* v1=new Vertex(Point2D(1,5));
+	Vertex* v2=new Vertex(Point2D(2,1));
+	Vertex* v3=new Vertex(Point2D(3,2));
+	Vertex* v4=new Vertex(Point2D(4,4));
+	Vertex* v5=new Vertex(Point2D(5,5));
+
+	headsT.push_back(new Tree());
+	headsT.push_back(new Tree());
+
+	headsT[0]->setRoot(v0);
+	headsT[1]->setRoot(v1);
+
+	EXPECT_FALSE(headsT[0]->areConnected(*headsT[1]));
+
+	headsT[0]->addSon(v0,v2);
+	headsT[0]->addSon(v0,v4);
+	headsT[1]->addSon(v1,v3);
+	headsT[1]->addSon(v1,v5);
+
+	EXPECT_FALSE(headsT[0]->areConnected(*headsT[1]));
+
+	headsT[0]->addSon(v4,v5);
+
+	EXPECT_TRUE(headsT[0]->areConnected(*headsT[1]));
+}
+
+
+TEST(Tree, tryConnect){
+	std::vector<Tree*> headsT;
+	Vertex* v0=new Vertex(Point2D(0,0));
+	Vertex* v1=new Vertex(Point2D(1,5));
+	Vertex* v2=new Vertex(Point2D(2,1));
+	Vertex* v3=new Vertex(Point2D(3,2));
+	Vertex* v4=new Vertex(Point2D(4,4));
+	Vertex* v5=new Vertex(Point2D(5,5));
+
+	headsT.push_back(new Tree());
+	headsT.push_back(new Tree());
+
+	headsT[0]->setRoot(v0);
+	headsT[1]->setRoot(v1);
+
+	headsT[0]->addSon(v0,v2);
+	headsT[0]->addSon(v0,v4);
+	headsT[1]->addSon(v1,v3);
+	headsT[1]->addSon(v1,v5);
+
+	headsT[0]->tryConnect(headsT);
+
+	EXPECT_EQ(headsT.size(),2);
+
+	headsT[0]->addSon(v4,v5);
+
+	EXPECT_EQ(headsT.size(),2);
+
+	headsT[0]->tryConnect(headsT);
+
+	EXPECT_EQ(headsT.size(),1);
+}
+
+
+TEST(Tree, areConnected_2){
+	std::vector<Tree*> headsT;
+	Vertex* v0=new Vertex(Point2D(0,0));
+	Vertex* v1=new Vertex(Point2D(1,5));
+	Vertex* v2=new Vertex(Point2D(2,1));
+	Vertex* v3=new Vertex(Point2D(3,2));
+	Vertex* v4=new Vertex(Point2D(4,4));
+	Vertex* v5=new Vertex(Point2D(5,5));
+
+	headsT.push_back(new Tree());
+	headsT.push_back(new Tree());
+
+	headsT[0]->setRoot(v2);
+	headsT[1]->setRoot(v4);
+
+	headsT[0]->addSon(v2,v3);
+	headsT[1]->addSon(v4,v5);
+
+	EXPECT_FALSE(headsT[0]->areConnected(*headsT[1]));
+
+	headsT[0]->addSon(v3,v4);
+
+	EXPECT_TRUE(headsT[0]->areConnected(*headsT[1]));
+}
+
+
+TEST(Tree, areConnected_3){
+	std::vector<Tree*> headsT;
+	Vertex* v0=new Vertex(Point2D(0,0));
+	Vertex* v1=new Vertex(Point2D(1,5));
+	Vertex* v2=new Vertex(Point2D(2,1));
+	Vertex* v3=new Vertex(Point2D(3,2));
+	Vertex* v4=new Vertex(Point2D(4,4));
+	Vertex* v5=new Vertex(Point2D(5,5));
+
+	headsT.push_back(new Tree());
+	headsT.push_back(new Tree());
+	headsT.push_back(new Tree());
+	headsT.push_back(new Tree());
+	headsT.push_back(new Tree());
+	headsT.push_back(new Tree());
+
+	headsT[0]->setRoot(v0);
+	headsT[1]->setRoot(v1);
+	headsT[2]->setRoot(v2);
+	headsT[3]->setRoot(v3);
+	headsT[4]->setRoot(v4);
+	headsT[5]->setRoot(v5);
+
+	EXPECT_FALSE(headsT[0]->areConnected(*headsT[1]));
+
+	v0->addEdge(new Edge(v0,v2));
+	v2->addEdge(new Edge(v0,v2));
+
+	EXPECT_TRUE(headsT[0]->areConnected(*headsT[2]));
+	EXPECT_FALSE(headsT[0]->areConnected(*headsT[1]));
+	EXPECT_FALSE(headsT[0]->areConnected(*headsT[3]));
+	EXPECT_FALSE(headsT[0]->areConnected(*headsT[4]));
+	EXPECT_FALSE(headsT[0]->areConnected(*headsT[5]));
+}

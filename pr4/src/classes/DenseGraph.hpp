@@ -18,12 +18,11 @@ public:
 	bool addVertex(Vertex* vertex);
 	bool RemoveVertex(Vertex* vertex);
 
-	bool tryConnect(std::vector<Tree*>& headsT);
-	bool areConnected(Tree t1, Tree t2);
-
 	Tree minTreePrim();
 	Tree minTreeKruskal();
 	Tree minTreeFloyd();
+
+	void printListTrees(std::vector<Tree*> headsT);
 };
 
 #endif

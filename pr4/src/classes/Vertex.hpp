@@ -19,6 +19,11 @@ public:
 		_point=point;
 		_flag="";
 	}
+	inline Vertex (const Vertex &vertex) {
+		_point=vertex.getPoint();
+		_flag=vertex.getFlag();
+		_edges=std::vector<Edge*>();
+	}
 
 	inline void setFlag(std::string flag){_flag=flag;}
 	inline std::string getFlag() const {return _flag;}
@@ -31,6 +36,12 @@ public:
 
 	bool addEdge(Edge* edge);
 	bool removeEdge(Edge* Edge);
+	
+	inline void connect(Vertex* v1, Vertex* v2){
+		Edge* edge=new Edge(v1,v2);
+		v1->addEdge(edge);
+		v2->addEdge(edge);
+	}
 
 	bool operator==(const Vertex& vertex) const ;
 	inline bool operator!=(const Vertex& vertex) const {
