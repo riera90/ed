@@ -1,0 +1,5 @@
+#include "Point3DUnittest.cpp"
+#include "VertexUnittest.cpp"
+#include "EdgeUnittest.cpp"
+#include "TreeUnittest.cpp"
+#include "DenseGraphUnittest.cpp"
