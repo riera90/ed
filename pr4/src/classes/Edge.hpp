@@ -1,6 +1,7 @@
 #ifndef _EDGE_HPP_
 #define _EDGE_HPP_
 
+#include "common.hpp"
 #include "Vertex.hpp"
 
 class Vertex;
@@ -9,12 +10,16 @@ class Edge {
 private:
 	Vertex* _vertex1;
 	Vertex* _vertex2;
+	std::string _flag;
 
 public:
 	inline Edge (Vertex* vertex1=NULL, Vertex* vertex2=NULL)
-	:_vertex1(vertex1), _vertex2(vertex2) {};
+	:_vertex1(vertex1), _vertex2(vertex2) {_flag="";};
 	inline Edge (Edge& edge)
-	:_vertex1(edge.getVertex1()), _vertex2(edge.getVertex2()) {};
+	:_vertex1(edge.getVertex1()), _vertex2(edge.getVertex2()) {_flag=getFlag();};
+
+	inline void setFlag(std::string flag){_flag=flag;}
+	inline std::string getFlag() const {return _flag;}
 
 	inline Vertex* getVertex1() {return _vertex1;};
 	inline Vertex* getVertex2() {return _vertex2;};

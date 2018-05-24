@@ -1,6 +1,7 @@
 #ifndef _TREE_HPP_
 #define _TREE_HPP_
 
+#include "common.hpp"
 #include "Vertex.hpp"
 #include "Edge.hpp"
 

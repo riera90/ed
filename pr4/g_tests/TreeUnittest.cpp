@@ -66,38 +66,31 @@ TEST(Tree, getAllVertexes){
 	Point2D p2(2,2);
 	Point2D p3(3,3);
 	Point2D p4(4,4);
+	Point2D p5(5,5);
 	Vertex* v0=new Vertex(p0);
 	Vertex* v1=new Vertex(p1);
 	Vertex* v2=new Vertex(p2);
 	Vertex* v3=new Vertex(p3);
 	Vertex* v4=new Vertex(p4);
+	Vertex* v5=new Vertex(p5);
 	t.setRoot(v0);
 	EXPECT_TRUE(t.getParent(t.getRoot())==NULL);
 	EXPECT_EQ(t.getSons(t.getRoot()).size(),0);
 
-	Edge* e0=new Edge(t.getRoot(), v1);
-	t.getRoot()->addEdge(e0);
-	v1->addEdge(e0);
+	t.addSon(t.getRoot(),v2);
+	t.addSon(v2,v3);
+	t.addSon(v3,v4);
+	t.addSon(v4,v5);
+	t.addSon(v4,v1);
 
-	Edge* e1=new Edge(t.getRoot(), v2);
-	t.getRoot()->addEdge(e1);
-	v1->addEdge(e1);
-
-	Edge* e2=new Edge(v2, v3);
-	v2->addEdge(e2);
-	v3->addEdge(e2);
-
-	Edge* e3=new Edge(v2, v4);
-	v2->addEdge(e3);
-	v4->addEdge(e3);
 	std::vector<Vertex*> list = t.getAllVertexes();
-	EXPECT_EQ(list.size(),5);
-	EXPECT_NE(list[0],v2);
+	EXPECT_EQ(list.size(),6);
 	EXPECT_EQ(list[0],v0);
-	EXPECT_EQ(list[1],v1);
-	EXPECT_EQ(list[2],v2);
-	EXPECT_EQ(list[3],v3);
-	EXPECT_EQ(list[4],v4);
+	EXPECT_EQ(list[1],v2);
+	EXPECT_EQ(list[2],v3);
+	EXPECT_EQ(list[3],v4);
+	EXPECT_EQ(list[4],v5);
+	EXPECT_EQ(list[5],v1);
 }
 
 // TEST(Tree, print){

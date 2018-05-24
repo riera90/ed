@@ -87,22 +87,56 @@ TEST(DenseGraph, edges_with_detete_extended){
 }
 
 
-// TEST(DenseGraph, minTreePrim){
-// 	DenseGrpah g;
-// 	Vertex* v0=new Vertex(Point2D(0,0));
-// 	Vertex* v1=new Vertex(Point2D(1,5));
-// 	Vertex* v2=new Vertex(Point2D(2,1));
-// 	Vertex* v3=new Vertex(Point2D(3,2));
-// 	Vertex* v4=new Vertex(Point2D(4,4));
-// 	Vertex* v5=new Vertex(Point2D(5,5));
-//
-// 	g.addVertex(v0);
-// 	g.addVertex(v1);
-// 	g.addVertex(v2);
-// 	g.addVertex(v3);
-// 	g.addVertex(v4);
-// 	g.addVertex(v5);
-//
-// 	Tree t=g.minTreePrim();
-// 	t.printTree();
-// }
+TEST(DenseGraph, minTreePrim){
+	DenseGrpah g;
+	Vertex* v0=new Vertex(Point2D(0,0));
+	Vertex* v1=new Vertex(Point2D(1,5));
+	Vertex* v2=new Vertex(Point2D(2,1));
+	Vertex* v3=new Vertex(Point2D(3,2));
+	Vertex* v4=new Vertex(Point2D(4,4));
+	Vertex* v5=new Vertex(Point2D(5,5));
+
+	g.addVertex(v0);
+	g.addVertex(v1);
+	g.addVertex(v2);
+	g.addVertex(v3);
+	g.addVertex(v4);
+	g.addVertex(v5);
+
+	Tree t=g.minTreePrim();
+	std::vector<Vertex*> list = t.getAllVertexes();
+	EXPECT_EQ(list.size(),6);
+	EXPECT_EQ(*list[0],*v0);
+	EXPECT_EQ(*list[1],*v2);
+	EXPECT_EQ(*list[2],*v3);
+	EXPECT_EQ(*list[3],*v4);
+	EXPECT_EQ(*list[4],*v5);
+	EXPECT_EQ(*list[5],*v1);
+}
+
+TEST(DenseGraph, minTreeKruskal){
+	DenseGrpah g;
+	Vertex* v0=new Vertex(Point2D(0,0));
+	Vertex* v1=new Vertex(Point2D(1,5));
+	Vertex* v2=new Vertex(Point2D(2,1));
+	Vertex* v3=new Vertex(Point2D(3,2));
+	Vertex* v4=new Vertex(Point2D(4,4));
+	Vertex* v5=new Vertex(Point2D(5,5));
+
+	g.addVertex(v0);
+	g.addVertex(v1);
+	g.addVertex(v2);
+	g.addVertex(v3);
+	g.addVertex(v4);
+	g.addVertex(v5);
+
+	Tree t=g.minTreeKruskal();
+	std::vector<Vertex*> list = t.getAllVertexes();
+	EXPECT_EQ(list.size(),6);
+	// EXPECT_EQ(*list[0],*v0);
+	// EXPECT_EQ(*list[1],*v2);
+	// EXPECT_EQ(*list[2],*v3);
+	// EXPECT_EQ(*list[3],*v4);
+	// EXPECT_EQ(*list[4],*v5);
+	// EXPECT_EQ(*list[5],*v1);
+}

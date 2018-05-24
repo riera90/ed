@@ -19,6 +19,13 @@ std::vector<Vertex*> Tree::getSons(Vertex* parentNode){
 	return sons;
 }
 
+void Tree::addSon(Vertex* ParentNode, Vertex* newSonNode){
+	Edge* edge=new Edge(ParentNode, newSonNode);
+	newSonNode->addEdge(edge);
+	ParentNode->addEdge(edge);
+}
+
+
 std::vector<Vertex*> Tree::getAllVertexes(){
 	std::vector<Vertex*> list1;
 	std::vector<Vertex*> list2 = iGetAllVertexes(getRoot());
@@ -28,56 +35,80 @@ std::vector<Vertex*> Tree::getAllVertexes(){
 }
 
 std::vector<Vertex*> Tree::iGetAllVertexes(Vertex* base){
-	std::vector<Vertex*> list;
-	std::vector<Vertex*> list_temp;
-	for (size_t i = 0; i < base->getEdges().size(); i++) {
-		if (base->getEdges()[i]->getVertexSon()!=base) {
-			list.push_back(base->getEdges()[i]->getVertexSon());
-		}
-	}
-	for (size_t i = 1; i < base->getEdges().size(); i++) {
-		if (base->getEdges()[i]->getVertexSon()!=base){
-			list_temp=iGetAllVertexes(base->getEdges()[i]->getVertexSon());
-			list.insert(list.end(),list_temp.begin(),list_temp.end());
-		}
-	}
+	std::vector<Vertex*>::iterator it;
+	std::vector<Vertex*> directSons;
+	std::vector<Vertex*> listTemp;
+	std::vector<Vertex*> finalList;
 
-	return list;
+	if (base==NULL){
+		#ifdef DEBUG
+		std::cout << "NULL passed, returning empty list" << '\n';
+		#endif
+		return std::vector<Vertex*>();
+	}
+	#ifdef DEBUG
+	std::cout << "base: ("<<base->getPoint().getPointString()<<")" << '\n';
+	#endif
+
+	directSons=getSons(base);
+	finalList=directSons;
+	for (it = directSons.begin(); it != directSons.end() ; it++){
+		if (*it!=base){
+			#ifdef DEBUG
+			std::cout << "\tson: ("<<(*it)->getPoint().getPointString()<<")" << '\n';
+			#endif
+			listTemp=iGetAllVertexes(*it);
+			finalList.insert(finalList.end(),listTemp.begin()+1,listTemp.end());
+		}
+	}
+	return finalList;
 }
 
 Vertex* Tree::SearchVertex(Vertex* vertex){
-	for (std::vector<Vertex*>::iterator it = getAllVertexes().begin() ;\
-	it != getAllVertexes().end() ; it++)
-	{
-
+	std::vector<Vertex*> list = getAllVertexes();
+	std::vector<Vertex*>::iterator it;
+	#ifdef DEBUG
+	std::cout << "size for search: "<< list.size() << '\n';
+	#endif
+	#ifdef DEBUG
+	std::cout << "returned values: \n";
+	for (it = list.begin() ; it != list.end(); it++){
+		if (it != list.begin()) {
+			std::cout <<"   -   ";
+		}
+		std::cout << (*it)->getPoint().getPointString();
 	}
+	std::cout <<'\n';
+	#endif
+	for (it = list.begin() ; it != list.end(); it++) {
+		#ifdef DEBUG
+		std::cout << "compare " <<(*it)->getPoint().getPointString()<<" - "<<vertex->getPoint().getPointString()<< '\n';
+		#endif
+		if ((*it)->getPoint()==vertex->getPoint()) {
+			#ifdef DEBUG
+			std::cout << "\tvertex found in tree!!" << '\n';
+			#endif
+			return (*it);
+		}
+	}
+	#ifdef DEBUG
+	std::cout << "\tsearch failed!!" << '\n';
+	#endif
+	return NULL;
 }
 
 void Tree::printTree(){
-	int level=0;
-	if (_root==NULL) {
-		std::cout <<"the tree is empty!"<< '\n';
-	}else{
-		iPrint(_root);
-	}
-}
-
-void Tree::iPrint(Vertex* vertex){
-	//for edge in base
-	for (size_t i = 0; i < vertex->getEdges().size(); i++) {
-		if (vertex->getEdges()[i]->getVertexSon()!=vertex) {
-			std::cout<<vertex->getPoint().getPointString();
-			std::cout<<" -> ";
-			std::cout<<vertex->getEdges()[i]->getVertexSon()->getPoint().getPointString();
-			std::cout<<"\t";
-		}
-	}
-
-	std::cout<<"\n";
-
-	for (size_t i = 1; i < vertex->getEdges().size(); i++) {
-		if (vertex->getEdges()[i]->getVertexSon()!=vertex) {
-			iPrint(vertex->getEdges()[i]->getVertexSon());
+	std::vector<Vertex*> list = getAllVertexes();
+	std::vector<Vertex*>::iterator it;
+	Vertex* vertexCurrParent;
+	Vertex* vertexCurrSon;
+	for (it = list.begin() ; it != list.end(); it++) {
+		for (size_t i = 0; i < (*it)->getEdges().size(); i++) {
+			vertexCurrParent=(*it);
+			vertexCurrSon=(*it)->getEdges()[i]->getVertexSon();
+			if (vertexCurrParent!=vertexCurrSon) {
+				std::cout << vertexCurrParent->getPoint().getPointString() << " -> " << vertexCurrSon->getPoint().getPointString() << '\n';
+			}
 		}
 	}
 }

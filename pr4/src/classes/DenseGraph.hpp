@@ -17,7 +17,9 @@ public:
 	std::vector<Vertex*> getVertexes(){return _vertexes;}
 	bool addVertex(Vertex* vertex);
 	bool RemoveVertex(Vertex* vertex);
-	
+
+	bool tryConnect(std::vector<Tree*>& headsT);
+
 	Tree minTreePrim();
 	Tree minTreeKruskal();
 	Tree minTreeFloyd();

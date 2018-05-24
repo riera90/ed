@@ -5,6 +5,8 @@
 #include <iostream>
 #include <cmath>
 
+#include "common.hpp"
+
 class Point2D {
 private:
 	float _x;

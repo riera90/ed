@@ -1,6 +1,7 @@
 #ifndef _VERTEX_HPP_
 #define _VERTEX_HPP_
 
+#include "common.hpp"
 #include "Point2D.hpp"
 #include "Edge.hpp"
 #include <vector>
