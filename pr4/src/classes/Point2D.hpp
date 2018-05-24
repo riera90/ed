@@ -4,6 +4,7 @@
 #include <sstream> //string included in this library
 #include <iostream>
 #include <cmath>
+#include <cstdlib>
 
 #include "common.hpp"
 
