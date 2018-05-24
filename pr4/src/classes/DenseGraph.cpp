@@ -194,9 +194,9 @@ Tree DenseGraph::minTreeKruskal(){
 	std::cout << "\n\nstarting algorithm!!!\n\n";
 
 
-	edge=new Edge(headsT[0]->getRoot(), headsT[1]->getRoot());
-	headsT[0]->getRoot()->addEdge(edge);
-	headsT[1]->getRoot()->addEdge(edge);
+	// edge=new Edge(headsT[0]->getRoot(), headsT[1]->getRoot());
+	// headsT[0]->getRoot()->addEdge(edge);
+	// headsT[1]->getRoot()->addEdge(edge);
 
 
 
@@ -205,25 +205,19 @@ Tree DenseGraph::minTreeKruskal(){
 		std::cout << "\t\titeration!!" << '\n';
 
 
-		tree.tryConnect(headsT);
-		printListTrees(headsT);
-		timer++;
-	}
-
-	return *headsT[0];
-}
-
-
-
-
-/*	while (!isDone && timer<10)
-	{
-		timer++;
-
-		shortestEdge=NULL;
-
+		//chechs if there are edges left
+		if (headsT.size()==1) {
+			std::cout << "is done!!" << '\n';
+			isDone=true;
+			std::cout << "final size: " << headsT[0]->getAllVertexes().size() << '\n';
+			return *headsT[0];
+		}else{
+			isDone=false;
+		}
 
 		//checks for the shortest edge
+
+		shortestEdge=NULL;
 		for (itVertexG = vertexG.begin(); itVertexG < vertexG.end(); itVertexG++)
 		{
 			EdgesG = (*itVertexG)->getEdges();
@@ -246,7 +240,7 @@ Tree DenseGraph::minTreeKruskal(){
 						valid=true;
 						for (it = headsT.begin(); it != headsT.end(); it++)
 						{
-							//if ((edge->getVertex1()->getEdges().size()>0) && (edge->getVertex2()->getEdges().size()>0))
+							// if ((edge->getVertex1()->getEdges().size()>0) && (edge->getVertex2()->getEdges().size()>0))
 							if (t1.areConnected(t2))
 							{
 								// std::cout << "not valid, marking as visited" << '\n';
@@ -267,6 +261,12 @@ Tree DenseGraph::minTreeKruskal(){
 				}
 			}
 		}
+
+
+
+
+
+
 
 
 		//adds the edge to the tree
@@ -322,36 +322,36 @@ Tree DenseGraph::minTreeKruskal(){
 					found=true;
 					v2T=v2T_temp;
 					std::cout << "v2T= "<< v2T->getPoint().getPointString() << '\n';
-				}else{
-					// std::cout << "NULL alert2!" << '\n';
 				}
 			}
 			if (v1T==NULL || v2T==NULL) {
 				std::cout << "NULL alert in v1T or v2T" << '\n';
-				// if (v1T==NULL) {
-				// 	Tree* t=new Tree;
-				// 	t->setRoot(new Vertex(*v1G));
-				// 	headsT.push_back(t);
-				// }
-				// if (v2T==NULL) {
-				// 	Tree* t=new Tree;
-				// 	t->setRoot(new Vertex(*v2G));
-				// 	headsT.push_back(t);
-				// }
 			}else{
 				std::cout << "adding edge" << '\n';
 				Edge* edge_temp=new Edge(v1T,v2T);
 				v1T->addEdge(edge_temp);
 				v2T->addEdge(edge_temp);
 			}
-
-
-
-
-
 			shortestEdge->setFlag("visited");
-
 		}
+
+
+
+		tree.tryConnect(headsT);
+		printListTrees(headsT);
+		timer++;
+	}
+	return *headsT[0];
+}
+
+
+
+
+/*	while (!isDone && timer<10)
+	{
+
+
+
 
 		std::cout << "tryConnect" << '\n';
 		std::cout << "\t\t\tsize: " << headsT.size() << '\n';
