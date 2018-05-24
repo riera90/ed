@@ -1,5 +1,6 @@
 #include "gtest/gtest.h"
 #include "Tree.hpp"
+#include "DenseGraph.hpp"
 
 TEST(Tree, Builder){
 	Tree t;
@@ -61,36 +62,34 @@ TEST(Tree, tree_build){
 
 TEST(Tree, getAllVertexes){
 	Tree t;
-	Point2D p0(0,0);
-	Point2D p1(1,1);
-	Point2D p2(2,2);
-	Point2D p3(3,3);
-	Point2D p4(4,4);
-	Point2D p5(5,5);
-	Vertex* v0=new Vertex(p0);
-	Vertex* v1=new Vertex(p1);
-	Vertex* v2=new Vertex(p2);
-	Vertex* v3=new Vertex(p3);
-	Vertex* v4=new Vertex(p4);
-	Vertex* v5=new Vertex(p5);
+	std::vector<Tree*> headsT;
+	std::vector<Vertex*> list;
+	Vertex* v0=new Vertex(Point2D(0,0));
+	Vertex* v1=new Vertex(Point2D(1,5));
+	Vertex* v2=new Vertex(Point2D(2,1));
+	Vertex* v3=new Vertex(Point2D(3,2));
+	Vertex* v4=new Vertex(Point2D(4,4));
+	Vertex* v5=new Vertex(Point2D(5,5));
 	t.setRoot(v0);
 	EXPECT_TRUE(t.getParent(t.getRoot())==NULL);
 	EXPECT_EQ(t.getSons(t.getRoot()).size(),0);
 
+	t.addSon(t.getRoot(),v1);
 	t.addSon(t.getRoot(),v2);
-	t.addSon(v2,v3);
-	t.addSon(v3,v4);
-	t.addSon(v4,v5);
-	t.addSon(v4,v1);
 
-	std::vector<Vertex*> list = t.getAllVertexes();
+	list = t.getAllVertexes();
+	EXPECT_EQ(list.size(),3);
+
+	t.addSon(v1,v3);
+	t.addSon(v2,v4);
+
+	list = t.getAllVertexes();
+	EXPECT_EQ(list.size(),5);
+
+	t.addSon(v4,v5);
+
+	list = t.getAllVertexes();
 	EXPECT_EQ(list.size(),6);
-	EXPECT_EQ(list[0],v0);
-	EXPECT_EQ(list[1],v2);
-	EXPECT_EQ(list[2],v3);
-	EXPECT_EQ(list[3],v4);
-	EXPECT_EQ(list[4],v5);
-	EXPECT_EQ(list[5],v1);
 }
 
 // TEST(Tree, print){
@@ -225,6 +224,7 @@ TEST(Tree, areConnected_2){
 
 TEST(Tree, areConnected_3){
 	std::vector<Tree*> headsT;
+	Edge* edge;
 	Vertex* v0=new Vertex(Point2D(0,0));
 	Vertex* v1=new Vertex(Point2D(1,5));
 	Vertex* v2=new Vertex(Point2D(2,1));
@@ -246,14 +246,75 @@ TEST(Tree, areConnected_3){
 	headsT[4]->setRoot(v4);
 	headsT[5]->setRoot(v5);
 
-	EXPECT_FALSE(headsT[0]->areConnected(*headsT[1]));
+	EXPECT_FALSE(headsT[0]->areConnected(*(headsT[1])));
+	EXPECT_FALSE(headsT[0]->areConnected(*(headsT[2])));
+	EXPECT_FALSE(headsT[0]->areConnected(*(headsT[3])));
+	EXPECT_FALSE(headsT[0]->areConnected(*(headsT[4])));
+	EXPECT_FALSE(headsT[0]->areConnected(*(headsT[5])));
 
-	v0->addEdge(new Edge(v0,v2));
-	v2->addEdge(new Edge(v0,v2));
+	edge=new Edge(headsT[1]->getRoot(), headsT[2]->getRoot());
+	headsT[1]->getRoot()->addEdge(edge);
+	headsT[2]->getRoot()->addEdge(edge);
 
-	EXPECT_TRUE(headsT[0]->areConnected(*headsT[2]));
+	EXPECT_FALSE(headsT[0]->areConnected(*(headsT[1])));
+	EXPECT_FALSE(headsT[0]->areConnected(*(headsT[2])));
+	EXPECT_FALSE(headsT[0]->areConnected(*(headsT[3])));
+	EXPECT_FALSE(headsT[0]->areConnected(*(headsT[4])));
+	EXPECT_FALSE(headsT[0]->areConnected(*(headsT[5])));
+
+	EXPECT_FALSE(headsT[1]->areConnected(*(headsT[0])));
+	EXPECT_TRUE (headsT[1]->areConnected(*(headsT[2])));
+	EXPECT_FALSE(headsT[1]->areConnected(*(headsT[3])));
+	EXPECT_FALSE(headsT[1]->areConnected(*(headsT[4])));
+	EXPECT_FALSE(headsT[1]->areConnected(*(headsT[5])));
+
+
 	EXPECT_FALSE(headsT[0]->areConnected(*headsT[1]));
 	EXPECT_FALSE(headsT[0]->areConnected(*headsT[3]));
 	EXPECT_FALSE(headsT[0]->areConnected(*headsT[4]));
 	EXPECT_FALSE(headsT[0]->areConnected(*headsT[5]));
 }
+
+
+// TEST(Tree, areConnected_4){
+	// std::vector<Tree*> headsT;
+	// DenseGraph g;
+	// Edge* edge;
+	// Vertex* v0=new Vertex(Point2D(0,0));
+	// Vertex* v1=new Vertex(Point2D(1,5));
+	// Vertex* v2=new Vertex(Point2D(2,1));
+	// Vertex* v3=new Vertex(Point2D(3,2));
+	// Vertex* v4=new Vertex(Point2D(4,4));
+	// Vertex* v5=new Vertex(Point2D(5,5));
+	//
+	// headsT.push_back(new Tree());
+	// headsT.push_back(new Tree());
+	// headsT.push_back(new Tree());
+	// headsT.push_back(new Tree());
+	// headsT.push_back(new Tree());
+	// headsT.push_back(new Tree());
+	//
+	// headsT[0]->setRoot(v0);
+	// headsT[1]->setRoot(v1);
+	// headsT[2]->setRoot(v2);
+	// headsT[3]->setRoot(v3);
+	// headsT[4]->setRoot(v4);
+	// headsT[5]->setRoot(v5);
+	//
+	// edge=new Edge(v0,v2);
+	//
+	//
+	// v0->addEdge(edge);
+	// v2->addEdge(edge);
+	//
+	// g.printListTrees(headsT);
+	//
+	// EXPECT_TRUE(headsT[0]->areConnected(*headsT[2]));
+	// EXPECT_FALSE(headsT[0]->areConnected(*headsT[1]));
+	// EXPECT_FALSE(headsT[0]->areConnected(*headsT[3]));
+	// EXPECT_FALSE(headsT[0]->areConnected(*headsT[4]));
+	// EXPECT_FALSE(headsT[0]->areConnected(*headsT[5]));
+
+	// v0->addEdge(new Edge(v2,v2));
+	// v2->addEdge(new Edge(v2,v2));
+// }

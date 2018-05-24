@@ -176,18 +176,13 @@ Tree DenseGraph::minTreeKruskal(){
 	std::vector<Tree*> headsT;
 	std::vector<Tree*>::iterator itHeads;
 	std::vector<Tree*>::iterator itHeadsInner;
-
 	std::vector<Vertex*> vertexG;
 	std::vector<Vertex*>::iterator itVertexG;
-
 	std::vector<Edge*> EdgesG;
 	std::vector<Edge*>::iterator itEdgesG;
-
 	Edge* edge;
 	Edge* shortestEdge;
-
 	vertexG=getVertexes();
-
 	//initial setup
 	for (itVertexG = vertexG.begin(); itVertexG != vertexG.end(); itVertexG++)
 	{
@@ -195,13 +190,15 @@ Tree DenseGraph::minTreeKruskal(){
 		temp->setRoot(new Vertex((*itVertexG)->getPoint()));
 		headsT.push_back(temp);
 	}
-
-
 	printListTrees(headsT);
-
 	std::cout << "\n\nstarting algorithm!!!\n\n";
 
-	connect(headsT[0]->getRoot(),headsT[1]->getRoot())
+
+	edge=new Edge(headsT[0]->getRoot(), headsT[1]->getRoot());
+	headsT[0]->getRoot()->addEdge(edge);
+	headsT[1]->getRoot()->addEdge(edge);
+
+
 
 	while (!isDone && timer<10)
 	{
@@ -209,26 +206,13 @@ Tree DenseGraph::minTreeKruskal(){
 
 
 		tree.tryConnect(headsT);
+		printListTrees(headsT);
 		timer++;
 	}
 
 	return *headsT[0];
 }
 
-
-void DenseGraph::printListTrees(std::vector<Tree*> headsT){
-	std::vector<Tree*>::iterator itHeads;
-
-	for (itHeads = headsT.begin(); itHeads != headsT.end(); itHeads++)
-	{
-		std::cout << "lista size("<< (*itHeads)->getAllVertexes().size() <<")\n\t";
-		(*itHeads)->printTree();
-		for (size_t i = 0; i < (*itHeads)->getAllVertexes().size(); i++) {
-			if (i!=0) std::cout << "   -    "; std::cout<<(*itHeads)->getAllVertexes()[i]->getPoint().getPointString();
-		}
-		std::cout << "\n";
-	}
-}
 
 
 
@@ -388,6 +372,22 @@ void DenseGraph::printListTrees(std::vector<Tree*> headsT){
 	}
 
 	return *headsT[0];*/
+
+
+void DenseGraph::printListTrees(std::vector<Tree*> headsT){
+	std::vector<Tree*>::iterator itHeads;
+
+	for (itHeads = headsT.begin(); itHeads != headsT.end(); itHeads++)
+	{
+		std::cout << "lista size("<< (*itHeads)->getAllVertexes().size() <<")\n\t";
+		// (*itHeads)->printTree();
+		for (size_t i = 0; i < (*itHeads)->getAllVertexes().size(); i++) {
+			if (i!=0) std::cout << "   -    "; std::cout<<(*itHeads)->getAllVertexes()[i]->getPoint().getPointString();
+		}
+		std::cout << "\n";
+	}
+}
+
 
 
 Tree DenseGraph::minTreeFloyd(){
