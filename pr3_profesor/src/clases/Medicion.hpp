@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include <cassert>
 #include <string>
+#include <cstdlib>
 
 #include "Hora.hpp"
 #include "Fecha.hpp"
