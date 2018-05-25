@@ -197,15 +197,27 @@ Vertex* Tree::SearchVertex(Vertex* vertex){
 // #undef DEBUG
 void Tree::printTree(){
 	std::vector<Vertex*> list = getAllVertexes();
+	std::vector<Vertex*> list_printed;
 	std::vector<Vertex*>::iterator it;
+	std::vector<Vertex*>::iterator it_pr;
 	Vertex* vertexCurrParent;
 	Vertex* vertexCurrSon;
+	bool isPrinted;
 	for (it = list.begin() ; it != list.end(); it++) {
 		for (size_t i = 0; i < (*it)->getEdges().size(); i++) {
 			vertexCurrParent=(*it);
 			vertexCurrSon=(*it)->getEdges()[i]->getOtherVertex(*vertexCurrParent);
-			if (vertexCurrParent!=vertexCurrSon) {
-				std::cout << vertexCurrParent->getPoint().getPointString() << " -> " << vertexCurrSon->getPoint().getPointString() << '\n';
+			isPrinted=false;
+			for (it_pr = list_printed.begin() ; it_pr != list_printed.end(); it_pr++) {
+				if(*it_pr==vertexCurrSon){
+					isPrinted=true;
+				}
+			}
+			if (!isPrinted) {
+				if (vertexCurrParent!=vertexCurrSon){
+					list_printed.push_back(vertexCurrParent);
+					std::cout << vertexCurrParent->getPoint().getPointString() << " -> " << vertexCurrSon->getPoint().getPointString() << '\n';
+				}
 			}
 		}
 	}

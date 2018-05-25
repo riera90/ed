@@ -13,6 +13,7 @@ FN_FILES_NAMES+= classes/Edge
 FN_FILES_NAMES+= classes/Vertex
 FN_FILES_NAMES+= classes/DenseGraph
 FN_FILES_NAMES+= classes/Tree
+FN_FILES_NAMES+= FileWrapper
 LIB_NAME=graph_lib
 HEADERS_LOCATION= . classes
 # where the headers are located inside of the BASE_DIR folder (for dinamic linking)

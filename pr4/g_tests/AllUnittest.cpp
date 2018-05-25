@@ -3,3 +3,4 @@
 #include "EdgeUnittest.cpp"
 #include "TreeUnittest.cpp"
 #include "DenseGraphUnittest.cpp"
+#include "FileWrapperUnittest.cpp"

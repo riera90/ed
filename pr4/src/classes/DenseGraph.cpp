@@ -202,6 +202,8 @@ Tree DenseGraph::minTreeKruskal(){
 	// headsT[0]->getRoot()->addEdge(edge);
 	// headsT[1]->getRoot()->addEdge(edge);
 
+	// int max_timer=minTreePrim().getAllVertexes().size()-1;
+
 
 
 	while (!isDone)

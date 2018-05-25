@@ -12,14 +12,14 @@
 class Tree {
 private:
 	Vertex* _root;
-	Vertex* _current;
+	// Vertex* _current; //not in use
 
 private:
 
 public:
 	inline Tree () {
 		_root=NULL;
-		_current=NULL;
+		// _current=NULL;
 	}
 	Vertex* getRoot() {return _root;}
 	void setRoot(Vertex* root) {_root=root;}
