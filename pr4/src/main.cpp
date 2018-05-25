@@ -1,3 +1,18 @@
+/*!
+ \mainpage Implementación de un montículo de mediciones
+ \author   Diego Rodriguez Riera
+ \date     1-May-2018
+ \version  1.0
+*/
+
+
+/*!
+
+	\file principalMediciones.cpp
+	\brief Programa principal de la practica 3 de Estructuras de Datos
+*/
+
+
 #include <iostream>
 
 #include "DenseGraph.hpp"
@@ -34,7 +49,8 @@ int main(int argc, char const *argv[]) {
 
 			case 2:
 				std::cout << "imprimir grafo" << '\n';
-
+				g_temp=f.read();
+				g_temp.print();
 				std::cin.ignore();
 				std::cin.ignore();
 				break;

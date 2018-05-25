@@ -23,6 +23,8 @@ public:
 	Tree minTreeFloyd();
 
 	void printListTrees(std::vector<Tree*> headsT);
+	void print();
+	std::vector<std::vector<Edge*>> getEdgesMatrix();
 };
 
 #endif

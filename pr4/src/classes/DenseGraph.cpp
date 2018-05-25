@@ -396,3 +396,43 @@ Tree DenseGraph::minTreeFloyd(){
 	}
 	return tree;
 }
+
+void DenseGraph::print(){
+	std::vector<std::vector<Edge*>> matrix;
+	matrix=getEdgesMatrix();
+	std::cout << "matriz de adyacencias ("<<matrix.size()<<"x"<<matrix.size()<<")" << '\n';
+	for (size_t i = 0; i < matrix.size(); i++) {
+		std::cout<<"\n";
+		for (size_t j = 0; j < matrix[i].size(); j++) {
+			if (matrix[i][j]==NULL) {
+				std::cout << "0\t";
+			}else{
+				if (i==j) {
+					std::cout << "0\t";
+				}
+				if (j<i) {
+					std::cout<<matrix[i][j]->getDistance()<<"\t" ;
+				}
+			}
+		}
+	}
+	std::cout << "0\n";
+}
+
+
+std::vector<std::vector<Edge*>> DenseGraph::getEdgesMatrix(){
+	std::vector<std::vector<Edge*>> matrix;
+	std::vector<Edge*> sub_matrix;
+	std::vector<Vertex*>::iterator it_v;
+	std::vector<Vertex*> v=getVertexes();
+	int i=0;
+	for (it_v = v.begin(); it_v != v.end(); it_v++) {
+		sub_matrix.clear();
+		for (int j = 0; j < (*it_v)->getEdges().size(); j++) {
+			sub_matrix.push_back((*it_v)->getEdges()[j]);
+		}
+		matrix.push_back(sub_matrix);
+		i++;
+	}
+	return matrix;
+}
