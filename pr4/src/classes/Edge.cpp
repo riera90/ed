@@ -1,3 +1,9 @@
+/*!
+	\file Edge.cpp
+	\brief cpp de la clase Edge
+*/
+
+
 #include "Edge.hpp"
 
 Vertex* Edge::getOtherVertex(Vertex baseVertex){

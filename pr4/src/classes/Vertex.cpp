@@ -1,3 +1,9 @@
+/*!
+	\file Vertex.cpp
+	\brief cpp de la clase Vertex
+*/
+
+
 #include "Tree.hpp"
 
 bool Vertex::addEdge(Edge* edge){

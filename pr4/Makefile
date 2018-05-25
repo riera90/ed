@@ -207,3 +207,6 @@ help:
 	#
 	# For a more extense manual prease, refer to README.md
 	#
+doc:
+	doxygen
+	firefox ./output/html/index.html

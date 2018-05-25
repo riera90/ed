@@ -1,15 +1,14 @@
 /*!
  \mainpage Implementación de un montículo de mediciones
  \author   Diego Rodriguez Riera
- \date     1-May-2018
+ \date     26-May-2018
  \version  1.0
 */
 
 
 /*!
-
-	\file principalMediciones.cpp
-	\brief Programa principal de la practica 3 de Estructuras de Datos
+	\file main.cpp
+	\brief Programa principal de la practica 4 de Estructuras de Datos
 */
 
 

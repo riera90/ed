@@ -1,3 +1,9 @@
+/*!
+	\file FileWrapper.hpp
+	\brief clase FileWrapper
+*/
+
+
 #ifndef _FILE_WRAPPER_
 #define _FILE_WRAPPER_
 

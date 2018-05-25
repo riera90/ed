@@ -1,3 +1,9 @@
+/*!
+	\file Vertex.hpp
+	\brief clase Vertex
+*/
+
+
 #ifndef _VERTEX_HPP_
 #define _VERTEX_HPP_
 

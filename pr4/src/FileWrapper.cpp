@@ -1,3 +1,8 @@
+/*!
+	\file FileWrapper.cpp
+	\brief cpp de la clase FileWrapper
+*/
+
 #include "FileWrapper.hpp"
 
 bool FileWrapper::write(DenseGraph graph){

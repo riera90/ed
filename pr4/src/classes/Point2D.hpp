@@ -1,3 +1,8 @@
+/*!
+	\file Point2D.hpp
+	\brief clase Point2D
+*/
+
 #ifndef _POINT_HPP_
 #define _POINT_HPP_
 

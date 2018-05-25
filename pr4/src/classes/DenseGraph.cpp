@@ -1,3 +1,8 @@
+/*!
+	\file DenseGraph.cpp
+	\brief cpp de la clase DenseGraph
+*/
+
 #include "DenseGraph.hpp"
 
 bool DenseGraph::remove_links(std::vector<Vertex*>::iterator base_it){

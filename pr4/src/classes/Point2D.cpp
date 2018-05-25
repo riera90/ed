@@ -1,3 +1,8 @@
+/*!
+	\file Point2D.cpp
+	\brief cpp de la clase Point2D
+*/
+
 #include "Point2D.hpp"
 
 void Point2D::SetPointString(std::string point){

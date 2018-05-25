@@ -1,3 +1,8 @@
+/*!
+	\file Edge.hpp
+	\brief clase Edge
+*/
+
 #ifndef _EDGE_HPP_
 #define _EDGE_HPP_
 

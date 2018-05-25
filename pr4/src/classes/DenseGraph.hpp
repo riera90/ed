@@ -1,3 +1,9 @@
+/*!
+	\file DenseGraph.hpp
+	\brief clase DenseGraph
+*/
+
+
 #ifndef _DENSE_GRAPH_HPP_
 #define _DENSE_GRAPH_HPP_
 

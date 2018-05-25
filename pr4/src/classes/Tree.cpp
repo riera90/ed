@@ -1,3 +1,9 @@
+/*!
+	\file Tree.cpp
+	\brief cpp de la clase Tree
+*/
+
+
 #include "Tree.hpp"
 
 Vertex* Tree::getParent(Vertex* SonNode) {
