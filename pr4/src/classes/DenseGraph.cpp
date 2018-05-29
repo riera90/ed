@@ -395,13 +395,6 @@ void DenseGraph::printListTrees(std::vector<Tree*> headsT){
 
 
 
-Tree DenseGraph::minTreeFloyd(){
-	Tree tree;
-	for (size_t i = 0; i < this->getVertexes().size(); i++) {
-	}
-	return tree;
-}
-
 void DenseGraph::print(){
 	std::vector<std::vector<Edge*>> matrix;
 	matrix=getEdgesMatrix();
