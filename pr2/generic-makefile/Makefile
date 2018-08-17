@@ -1,10 +1,10 @@
 # DIRECTORIES
 # src directory
-SRC_DIR:=./src
-GTEST_DIR=./g_tests
+SRC_DIR:=./example
+GTEST_DIR=./gtests
 OUTPUT_DIR:=./output
 # aditional project libs directory
-EXTRA_LIB_DIR:=
+EXTRA_LIB_DIR:=./extra_libs
 # temporal files directory
 TMP_DIR:=./tmp
 
