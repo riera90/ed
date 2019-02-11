@@ -1,9 +1,0 @@
-PROJECT_NAME    = "Provincia"
-OUTPUT_LANGUAGE = English
-EXTRACT_PRIVATE = YES
-SOURCE_BROWSER  = YES
-GENERATE_LATEX  = NO
-RECURSIVE       = YES
-INPUT           = ./src
-FILE_PATTERNS   = *.hpp *.cpp
-USE_MATHJAX     = YES
