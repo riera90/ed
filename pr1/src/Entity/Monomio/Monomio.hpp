@@ -1,4 +1,4 @@
-/*! 
+/*!
 	\file Monomio.hpp
 	\brief Definición de la clase Monomio
 */
@@ -12,18 +12,20 @@
 // Para controlar las pre y post condiciones mediante asertos
 #include <cassert>
 
+
+
 #define COTA_ERROR 1.0e-6  //!< Cota de error para la comparación números reales
 
 // Se incluye la clase Monomio dentro del espacio de nombre de la asigantura: ed
 namespace ed
 {
-//!  Definición de la clase Monomio:  \f$ coeficiente \hspace{1ex} X^{grado} \f$ 
+//!  Definición de la clase Monomio:  \f$ coeficiente \hspace{1ex} X^{grado} \f$
 class Monomio
 {
 	//! \name Atributos privados de la clase Monomio
 	private:
-
-	// COMPLETAR
+	float coeficiente_;
+	int grado_;
 
 
 	//! \name Funciones o métodos públicos de la clase Monomio
@@ -31,19 +33,22 @@ class Monomio
 
 	//! \name Constructores de la clase Monomio
 
-	// COMPLETAR
+	Monomio(float coeficiente = 0, int grado = 0);
+	Monomio(const Monomio &monomio);
 
 
 
 	//! \name Observadores: funciones de consulta de la clase Monomio
 
-	// COMPLETAR
+	float getCoeficiente() const;
+	int getGrado() const;
 
 
 
 	//! \name Funciones de modificación de la clase Monomio
 
-	// COMPLETAR
+	bool setCoeficiente(float coeficiente);
+	bool setGrado(int grado);
 
 
 

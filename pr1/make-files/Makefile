@@ -2,23 +2,23 @@
 
 .PHONY : target
 target : banner run
-
-
+	
+	
 .PHONY : run
 run : ./output/bin.out
 	@echo "\tExecuting binary.\n"
-	@time "./output/bin.out"
-
-
+	@time "./output/bin.out" 
+	
+	
 ./output/bin.out : ./src/main.cpp  ./tmp/libproject.a
 	@echo "\tCompiling binary."
 	@mkdir -p ./output
 	@g++ ./src/main.cpp -Wpedantic -DNDEBUG -g -I ./src -I ./src/Entity -I ./src/Entity/Monomio -I ./src/Auxiliar -I ./src/Auxiliar/AuxiliarFunctions -I ./src/Controller -I ./src/Controller/Monomio  -o ./output/bin.out ./tmp/libproject.a 
 
 
-./tmp/libproject.a : ./tmp/Entity/Monomio/Monomio.o ./tmp/Auxiliar/AuxiliarFunctions/funcionesAuxiliares.o ./tmp/Controller/Monomio/operadoresExternosMonomios.o
+./tmp/libproject.a : ./tmp/Entity/Monomio/Monomio.o ./tmp/Auxiliar/AuxiliarFunctions/funcionesAuxiliares.o ./tmp/Controller/Monomio/operadoresExternosMonomios.o ./tmp/Controller/Monomio/auxiliarFunctions.o 
 	@echo "\tBuilding project library."
-	@ar -rsc ./tmp/libproject.a ./tmp/Entity/Monomio/Monomio.o ./tmp/Auxiliar/AuxiliarFunctions/funcionesAuxiliares.o ./tmp/Controller/Monomio/operadoresExternosMonomios.o
+	@ar -rsc ./tmp/libproject.a ./tmp/Entity/Monomio/Monomio.o ./tmp/Auxiliar/AuxiliarFunctions/funcionesAuxiliares.o ./tmp/Controller/Monomio/operadoresExternosMonomios.o ./tmp/Controller/Monomio/auxiliarFunctions.o 
 
 
 ./tmp/Entity/Monomio/Monomio.o : ./src/Entity/Monomio/Monomio.cpp ./src/Entity/Monomio/Monomio.hpp
@@ -39,6 +39,12 @@ run : ./output/bin.out
 	@g++ -c ./src/Controller/Monomio/operadoresExternosMonomios.cpp -I ./src -I ./src/Entity -I ./src/Entity/Monomio -I ./src/Auxiliar -I ./src/Auxiliar/AuxiliarFunctions -I ./src/Controller -I ./src/Controller/Monomio  -o ./tmp/Controller/Monomio/operadoresExternosMonomios.o;
 
 
+./tmp/Controller/Monomio/auxiliarFunctions.o : ./src/Controller/Monomio/auxiliarFunctions.cpp ./src/Controller/Monomio/auxiliarFunctions.hpp
+	@echo "\tPrecompiling object for ./src/Controller/Monomio/auxiliarFunctions.cpp."
+	@mkdir -p ./tmp/Controller/Monomio
+	@g++ -c ./src/Controller/Monomio/auxiliarFunctions.cpp -I ./src -I ./src/Entity -I ./src/Entity/Monomio -I ./src/Auxiliar -I ./src/Auxiliar/AuxiliarFunctions -I ./src/Controller -I ./src/Controller/Monomio  -o ./tmp/Controller/Monomio/auxiliarFunctions.o;
+
+
 .PHONY: gdb
 gdb : clean ./output/bin.out
 	@echo "\tLaunching gdb.\n"
@@ -46,7 +52,7 @@ gdb : clean ./output/bin.out
 
 
 .PHONY : googletest
-googletest : banner ./output/MonomioUnittest.out
+googletest : banner ./output/MonomioUnittest.out 
 	@echo "\n\tRunning ./output/MonomioUnittest.out"
 	./output/MonomioUnittest.out
 
