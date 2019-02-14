@@ -77,7 +77,7 @@ TEST(Monomio, operator_assignation)
 	m2 = ed::Monomio(3, 4);
 	EXPECT_EQ(m2, (m1 = m2));
 	EXPECT_EQ(m1, m2);
-	
+
 	m3 = ed::Monomio(5, 0);
 	EXPECT_EQ(m3, (m1 = 5));
 }
@@ -118,7 +118,7 @@ TEST(Monomio, operator_multiply)
 	m2 = ed::Monomio(5, 3);
 	m3 = ed::monomio(25, 5);
 	EXPECT_EQ(m3, (m1 * m2));
-	
+
 	m4 = ed::monomio(25, 2);
 	EXPECT_EQ(m4, (5 * m1));
 	// EXPECT_EQ(m4, (m1 * 5)); // it would be nice to implement
@@ -130,10 +130,10 @@ TEST(Monomio, operator_division)
 	m2 = ed::Monomio(5, 2);
 	m3 = ed::monomio(1, 1);
 	EXPECT_EQ(m3, (m1 / m2));
-	
+
 	m4 = ed::monomio(2, 3);
 	EXPECT_EQ(m4, (m1 / 5));
-	
+
 	m5 = ed::monomio(0.5, 0);
 	EXPECT_EQ(m5, (5 / m1));
 }
@@ -160,6 +160,9 @@ TEST(Monomio, operator_multiply_equal)
 	m2 = ed::Monomio(5, 3);
 	m3 = ed::monomio(50, 6);
 	EXPECT_EQ(m3, (m1 *= m2));
+
+	m4 = ed::monomio(50, 3);
+	EXPECT_EQ(m4, (m1 *= 5));
 }
 
 TEST(Monomio, operator_division_equal)
@@ -168,6 +171,9 @@ TEST(Monomio, operator_division_equal)
 	m2 = ed::Monomio(5, 3);
 	m3 = ed::monomio(5, 6);
 	EXPECT_EQ(m3, (m1 /= m2));
+
+	m4 = ed::monomio(5, 3);
+	EXPECT_EQ(m4, (m1 /= 2));
 }
 
 TEST(Monomio, calcularValor)

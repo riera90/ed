@@ -2,23 +2,23 @@
 
 .PHONY : target
 target : banner run
-	
-	
+
+
 .PHONY : run
 run : ./output/bin.out
 	@echo "\tExecuting binary.\n"
-	@time "./output/bin.out" 
-	
-	
+	@time "./output/bin.out"
+
+
 ./output/bin.out : ./src/main.cpp  ./tmp/libproject.a
 	@echo "\tCompiling binary."
 	@mkdir -p ./output
-	@g++ ./src/main.cpp -Wpedantic -g -I ./src -I ./src/Entity -I ./src/Entity/Monomio -I ./src/Auxiliar -I ./src/Auxiliar/AuxiliarFunctions -I ./src/Controller -I ./src/Controller/Monomio  -o ./output/bin.out ./tmp/libproject.a 
+	@g++ ./src/main.cpp -Wpedantic -DNDEBUG -g -I ./src -I ./src/Entity -I ./src/Entity/Monomio -I ./src/Auxiliar -I ./src/Auxiliar/AuxiliarFunctions -I ./src/Controller -I ./src/Controller/Monomio  -o ./output/bin.out ./tmp/libproject.a 
 
 
-./tmp/libproject.a : ./tmp/Entity/Monomio/Monomio.o ./tmp/Auxiliar/AuxiliarFunctions/funcionesAuxiliares.o ./tmp/Controller/Monomio/operadoresExternosMonomios.o 
+./tmp/libproject.a : ./tmp/Entity/Monomio/Monomio.o ./tmp/Auxiliar/AuxiliarFunctions/funcionesAuxiliares.o ./tmp/Controller/Monomio/operadoresExternosMonomios.o
 	@echo "\tBuilding project library."
-	@ar -rsc ./tmp/libproject.a ./tmp/Entity/Monomio/Monomio.o ./tmp/Auxiliar/AuxiliarFunctions/funcionesAuxiliares.o ./tmp/Controller/Monomio/operadoresExternosMonomios.o 
+	@ar -rsc ./tmp/libproject.a ./tmp/Entity/Monomio/Monomio.o ./tmp/Auxiliar/AuxiliarFunctions/funcionesAuxiliares.o ./tmp/Controller/Monomio/operadoresExternosMonomios.o
 
 
 ./tmp/Entity/Monomio/Monomio.o : ./src/Entity/Monomio/Monomio.cpp ./src/Entity/Monomio/Monomio.hpp
@@ -46,14 +46,14 @@ gdb : clean ./output/bin.out
 
 
 .PHONY : googletest
-googletest : banner ./output/monomioUnittest.out 
-	@echo "\n\tRunning ./output/monomioUnittest.out"
-	./output/monomioUnittest.out
+googletest : banner ./output/MonomioUnittest.out
+	@echo "\n\tRunning ./output/MonomioUnittest.out"
+	./output/MonomioUnittest.out
 
-./output/monomioUnittest.out : ./tmp/libgtest.a ./tmp/libproject.a ./gtests/monomioUnittest.cpp
+./output/MonomioUnittest.out : ./tmp/libgtest.a ./tmp/libproject.a ./gtests/MonomioUnittest.cpp
 	@mkdir -p ./output
-	@echo "\tBuilding googletest ./gtests/monomioUnittest.cpp."
-	@g++ -isystem ./make-files/googletest/googletest/include -pthread -I ./src -I ./src/Entity -I ./src/Entity/Monomio -I ./src/Auxiliar -I ./src/Auxiliar/AuxiliarFunctions -I ./src/Controller -I ./src/Controller/Monomio  -Wpedantic -g ./gtests/monomioUnittest.cpp ./tmp/libproject.a ./tmp/libgtest.a -o ./output/monomioUnittest.out
+	@echo "\tBuilding googletest ./gtests/MonomioUnittest.cpp."
+	@g++ -isystem ./make-files/googletest/googletest/include -pthread -I ./src -I ./src/Entity -I ./src/Entity/Monomio -I ./src/Auxiliar -I ./src/Auxiliar/AuxiliarFunctions -I ./src/Controller -I ./src/Controller/Monomio  -Wpedantic -DNDEBUG -g ./gtests/MonomioUnittest.cpp ./tmp/libproject.a ./tmp/libgtest.a -o ./output/MonomioUnittest.out
 
 
 ./tmp/libgtest.a : ./tmp/gtest_main.o ./tmp/gtest-all.o
