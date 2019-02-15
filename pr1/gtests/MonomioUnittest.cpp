@@ -5,6 +5,9 @@
 
 #define FLOAT_PRESICION 0.0003
 
+    /////////////////
+  // Constructor //
+/////////////////
 
 TEST(Monomio, default_constructor)
 {
@@ -37,6 +40,10 @@ TEST(Monomio, copy_constructor)
 	EXPECT_EQ(m2.getGrado(), m1.getGrado());
 }
 
+    /////////////////////////
+  // getters_and_setters //
+/////////////////////////
+
 TEST(Monomio, getters_and_setters)
 {
 	ed::Monomio m = ed::Monomio();
@@ -56,6 +63,13 @@ TEST(Monomio, faulty_getters_and_setters)
 	EXPECT_EQ(m.getGrado(), 0);
 }
 
+
+    ///////////////
+  // OPERATORS //
+///////////////
+
+// Equality
+
 TEST(Monomio, operator_equality)
 {
 	ed::Monomio m1 = ed::Monomio(1, 2);
@@ -65,6 +79,14 @@ TEST(Monomio, operator_equality)
 	EXPECT_FALSE(m1 == m3);
 	EXPECT_EQ(m1, m2); // redundant but I like to test it
 	EXPECT_NE(m1, m3);
+
+	ed::Monomio m4 = ed::Monomio(0, 1);
+	EXPECT_TRUE(m4 == 1);
+	EXPECT_FALSE(m4 == 2);
+	EXPECT_FALSE(m1 == 1);
+	EXPECT_TRUE(1 == m4);
+	EXPECT_FALSE(2 == m4);
+	EXPECT_FALSE(1 == m1);
 }
 
 TEST(Monomio, operator_not_equality)
@@ -74,7 +96,17 @@ TEST(Monomio, operator_not_equality)
 	ed::Monomio m3 = ed::Monomio(2, 1);
 	EXPECT_FALSE(m1 != m2);
 	EXPECT_TRUE(m1 != m3);
+
+	ed::Monomio m4 = ed::Monomio(0, 1);
+	EXPECT_FALSE(m4 != 1);
+	EXPECT_TRUE(m4 != 2);
+	EXPECT_TRUE(m1 != 1);
+	EXPECT_FALSE(1 != m4);
+	EXPECT_TRUE(2 != m4);
+	EXPECT_TRUE(1 != m1);
 }
+
+// assignation
 
 TEST(Monomio, operator_assignation)
 {
@@ -86,6 +118,8 @@ TEST(Monomio, operator_assignation)
 	ed::Monomio m3 = ed::Monomio(5, 0);
 	EXPECT_EQ(m3, (m1 = 5));
 }
+
+// copy operators
 
 TEST(Monomio, operator_plus_unary)
 {
@@ -100,6 +134,8 @@ TEST(Monomio, operator_minus_unary)
 	ed::Monomio m2 = ed::Monomio(-1, 2);
 	EXPECT_EQ(m1, -m2);
 }
+
+// basic operators
 
 TEST(Monomio, operator_plus)
 {
@@ -143,19 +179,21 @@ TEST(Monomio, operator_division)
 	EXPECT_EQ(m5, (5 / m1));
 }
 
-// TEST(Monomio, operator_plus_equal)
-// {
-// 	ed::Monomio m1 = ed::Monomio(10, 3);
-// 	ed::Monomio m2 = ed::Monomio(5, 3);
-// 	ed::Monomio m3 = ed::Monomio(15, 3);
-// 	EXPECT_EQ(m3, (m1 += m2));
-// }
-//
+// complex operators
+
+TEST(Monomio, operator_plus_equal)
+{
+	ed::Monomio m1 = ed::Monomio(10, 3);
+	ed::Monomio m2 = ed::Monomio(5, 3);
+	ed::Monomio m3 = ed::Monomio(15, 3);
+	EXPECT_EQ(m3, (m1 += m2));
+}
+// 
 // TEST(Monomio, operator_minus_equal)
 // {
 // 	ed::Monomio m1 = ed::Monomio(10, 3);
 // 	ed::Monomio m2 = ed::Monomio(5, 3);
-// 	ed::Monomio m3 = ed::monomio(5, 3);
+// 	ed::Monomio m3 = ed::Monomio(5, 3);
 // 	EXPECT_EQ(m3, (m1 -= m2));
 // }
 //
@@ -163,10 +201,10 @@ TEST(Monomio, operator_division)
 // {
 // 	ed::Monomio m1 = ed::Monomio(10, 3);
 // 	ed::Monomio m2 = ed::Monomio(5, 3);
-// 	ed::Monomio m3 = ed::monomio(50, 6);
+// 	ed::Monomio m3 = ed::Monomio(50, 6);
 // 	EXPECT_EQ(m3, (m1 *= m2));
 //
-// 	ed::Monomio m4 = ed::monomio(50, 3);
+// 	ed::Monomio m4 = ed::Monomio(50, 3);
 // 	EXPECT_EQ(m4, (m1 *= 5));
 // }
 //
@@ -174,13 +212,13 @@ TEST(Monomio, operator_division)
 // {
 // 	ed::Monomio m1 = ed::Monomio(10, 3);
 // 	ed::Monomio m2 = ed::Monomio(5, 3);
-// 	ed::Monomio m3 = ed::monomio(5, 6);
+// 	ed::Monomio m3 = ed::Monomio(5, 6);
 // 	EXPECT_EQ(m3, (m1 /= m2));
 //
-// 	m4 = ed::monomio(5, 3);
+// 	m4 = ed::Monomio(5, 3);
 // 	EXPECT_EQ(m4, (m1 /= 2));
 // }
-//
+
 // TEST(Monomio, calcularValor)
 // {
 // 	ed::Monomio m = ed::Monomio(2, 3);

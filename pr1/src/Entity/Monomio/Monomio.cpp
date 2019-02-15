@@ -83,9 +83,10 @@ ed::Monomio & ed::Monomio::operator=(double const &x)
 
 ed::Monomio & ed::Monomio::operator+=(ed::Monomio const &m)
 {
-	// COMPLETAR
+	if (this->getGrado() != m.getGrado()) return *this;
 
-
+	this->setCoeficiente(this->getCoeficiente() + m.getCoeficiente());
+	
 	// Se devuelve el objeto actual
 	return *this;
 }
