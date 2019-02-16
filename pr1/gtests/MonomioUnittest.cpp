@@ -80,7 +80,7 @@ TEST(Monomio, operator_equality)
 	EXPECT_EQ(m1, m2); // redundant but I like to test it
 	EXPECT_NE(m1, m3);
 
-	ed::Monomio m4 = ed::Monomio(0, 1);
+	ed::Monomio m4 = ed::Monomio(1, 0);
 	EXPECT_TRUE(m4 == 1);
 	EXPECT_FALSE(m4 == 2);
 	EXPECT_FALSE(m1 == 1);
@@ -97,7 +97,7 @@ TEST(Monomio, operator_not_equality)
 	EXPECT_FALSE(m1 != m2);
 	EXPECT_TRUE(m1 != m3);
 
-	ed::Monomio m4 = ed::Monomio(0, 1);
+	ed::Monomio m4 = ed::Monomio(1, 0);
 	EXPECT_FALSE(m4 != 1);
 	EXPECT_TRUE(m4 != 2);
 	EXPECT_TRUE(m1 != 1);
@@ -188,39 +188,35 @@ TEST(Monomio, operator_plus_equal)
 	ed::Monomio m3 = ed::Monomio(15, 3);
 	EXPECT_EQ(m3, (m1 += m2));
 }
-// 
-// TEST(Monomio, operator_minus_equal)
-// {
-// 	ed::Monomio m1 = ed::Monomio(10, 3);
-// 	ed::Monomio m2 = ed::Monomio(5, 3);
-// 	ed::Monomio m3 = ed::Monomio(5, 3);
-// 	EXPECT_EQ(m3, (m1 -= m2));
-// }
-//
-// TEST(Monomio, operator_multiply_equal)
-// {
-// 	ed::Monomio m1 = ed::Monomio(10, 3);
-// 	ed::Monomio m2 = ed::Monomio(5, 3);
-// 	ed::Monomio m3 = ed::Monomio(50, 6);
-// 	EXPECT_EQ(m3, (m1 *= m2));
-//
-// 	ed::Monomio m4 = ed::Monomio(50, 3);
-// 	EXPECT_EQ(m4, (m1 *= 5));
-// }
-//
-// TEST(Monomio, operator_division_equal)
-// {
-// 	ed::Monomio m1 = ed::Monomio(10, 3);
-// 	ed::Monomio m2 = ed::Monomio(5, 3);
-// 	ed::Monomio m3 = ed::Monomio(5, 6);
-// 	EXPECT_EQ(m3, (m1 /= m2));
-//
-// 	m4 = ed::Monomio(5, 3);
-// 	EXPECT_EQ(m4, (m1 /= 2));
-// }
 
-// TEST(Monomio, calcularValor)
-// {
-// 	ed::Monomio m = ed::Monomio(2, 3);
-// 	EXPECT_NEAR(m.calcularValor(5), 250, FLOAT_PRESICION);
-// }
+TEST(Monomio, operator_minus_equal)
+{
+	ed::Monomio m1 = ed::Monomio(10, 3);
+	ed::Monomio m2 = ed::Monomio(5, 3);
+	ed::Monomio m3 = ed::Monomio(5, 3);
+	EXPECT_EQ(m3, (m1 -= m2));
+}
+
+TEST(Monomio, operator_multiply_equal)
+{
+	ed::Monomio m1 = ed::Monomio(10, 3);
+	ed::Monomio m2 = ed::Monomio(5, 3);
+	ed::Monomio m3 = ed::Monomio(50, 6);
+	EXPECT_EQ(m3, (m1 *= m2));
+
+	ed::Monomio m4 = ed::Monomio(10, 3);
+	ed::Monomio m5 = ed::Monomio(20, 3);
+	EXPECT_EQ(m5, (m4 *= 2));
+}
+
+TEST(Monomio, operator_division_equal)
+{
+	ed::Monomio m1 = ed::Monomio(10, 3);
+	ed::Monomio m2 = ed::Monomio(5, 3);
+	ed::Monomio m3 = ed::Monomio(5, 6);
+	EXPECT_EQ(m3, (m1 /= m2));
+
+	ed::Monomio m4 = ed::Monomio(10, 3);
+	ed::Monomio m5 = ed::Monomio(5, 3);
+	EXPECT_EQ(m5, (m4 /= 2));
+}

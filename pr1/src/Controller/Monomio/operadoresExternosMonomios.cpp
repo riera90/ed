@@ -24,7 +24,19 @@ namespace ed
 		else return false;
 	}
 
-	// COMPLETAR LOS OTROS OPERADORES DE IGUALDAD
+	bool operator==(const float &lhs, const ed::Monomio &rhs)
+	{
+		if ( (rhs.getGrado() == 0 ) && ed::near(lhs, rhs.getCoeficiente()))
+		return true;
+		else return false;
+	}
+
+	bool operator==(const ed::Monomio &lhs, const float &rhs)
+	{
+		if ( (lhs.getGrado() == 0 ) && ed::near(lhs.getCoeficiente(), rhs))
+		return true;
+		else return false;
+	}
 
 
 
@@ -35,7 +47,15 @@ namespace ed
 		return m1 == m2 ? false:true;
 	}
 
-	// COMPLETAR LOS OTROS OPERADORES DE DESIGUALDAD
+	bool operator!=(const float &lhs, const ed::Monomio &rhs)
+	{
+		return lhs == rhs ? false:true;
+	}
+
+	bool operator!=(const ed::Monomio &lhs, const float &rhs)
+	{
+		return lhs == rhs ? false:true;
+	}
 
 
 	////////////////////////////////////////////////////////////
@@ -110,7 +130,7 @@ namespace ed
 		return *monomio;
 	}
 
-	ed::Monomio &operator* (const ed::Monomio &lhs, const int &rhs)
+	ed::Monomio &operator* (const ed::Monomio &lhs, const float &rhs)
 	{
 		ed::Monomio *monomio = new ed::Monomio();
 
@@ -121,7 +141,7 @@ namespace ed
 	}
 
 
-	ed::Monomio &operator* (const int &lhs, const ed::Monomio &rhs)
+	ed::Monomio &operator* (const float &lhs, const ed::Monomio &rhs)
 	{
 		ed::Monomio *monomio = new ed::Monomio();
 
@@ -149,7 +169,7 @@ namespace ed
 	}
 
 
-	ed::Monomio &operator/ (const ed::Monomio &lhs, const int &rhs)
+	ed::Monomio &operator/ (const ed::Monomio &lhs, const float &rhs)
 	{
 		ed::Monomio *monomio = new ed::Monomio();
 
@@ -162,7 +182,7 @@ namespace ed
 	}
 
 
-	ed::Monomio &operator/ (const int &lhs, const ed::Monomio &rhs)
+	ed::Monomio &operator/ (const float &lhs, const ed::Monomio &rhs)
 	{
 		ed::Monomio *monomio = new ed::Monomio();
 

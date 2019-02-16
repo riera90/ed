@@ -58,20 +58,25 @@ class Monomio
 
 	// Operadores de asignación
 
-		// COMPLETAR LOS COMENTARIOS DE DOXYGEN
-		Monomio & operator=(Monomio const &m);
+	Monomio & operator=(Monomio const &m);
 
-		// COMPLETAR LOS COMENTARIOS DE DOXYGEN
-		Monomio & operator=(double const &x);
+	Monomio & operator=(double const &x);
 
 
 	// Operadores aritméticos y asignación
 
-		// COMPLETAR LOS COMENTARIOS DE DOXYGEN
-		Monomio & operator+=(Monomio const &m);
+	Monomio & operator+=(const Monomio &m);
 
+	Monomio & operator-=(const Monomio &rhs);
 
-		// COMPLETAR EL RESTO DE OPERADORES
+	Monomio & operator*=(const Monomio &rhs);
+	
+	Monomio & operator*=(const float &rhs);
+
+	Monomio & operator/=(const Monomio &rhs);
+
+	Monomio & operator/=(const float &rhs);
+
 
 
 	/////////////////////////////////////////////////////////////////////////////////////

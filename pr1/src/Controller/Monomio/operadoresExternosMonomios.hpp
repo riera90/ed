@@ -29,22 +29,25 @@ namespace ed
 	// COMPLETAR LOS COMENTARIOS DE DOXYGEN
 	bool operator==(const ed::Monomio &lhs, const ed::Monomio &rhs);
 
+	bool operator==(const float &lhs, const ed::Monomio &rhs);
 
-	// COMPLETAR LOS OTROS OPERADORES DE IGUALDAD
+	bool operator==(const ed::Monomio &lhs, const float &rhs);
+
+
 
 
 	//! \name Operadores de desigualdad
 
-	// COMPLETAR LOS COMENTARIOS DE DOXYGEN
 	bool operator!=(ed::Monomio const & m1, ed::Monomio const & m2);
 
-	// COMPLETAR LOS OTROS OPERADORES DE DESIGUALDAD
+	bool operator!=(const float &lhs, const ed::Monomio &rhs);
+
+	bool operator!=(const ed::Monomio &lhs, const float &rhs);
 
 	///////////////////////////////////////////////////
 
 	//! \name Operadores unarios prefijos
 
-	// COMPLETAR LOS COMENTARIOS DE DOXYGEN
 
 	ed::Monomio &operator+(ed::Monomio const & m);
 
@@ -72,9 +75,9 @@ namespace ed
 
 	ed::Monomio &operator* (const ed::Monomio &lhs, const ed::Monomio &rhs);
 
-	ed::Monomio &operator* (const ed::Monomio &lhs, const int &rhs);
+	ed::Monomio &operator* (const ed::Monomio &lhs, const float &rhs);
 
-	ed::Monomio &operator* (const int &lhs, const ed::Monomio &rhs);
+	ed::Monomio &operator* (const float &lhs, const ed::Monomio &rhs);
 
 	///////////////////////////////////////////////////////////////////////////
 
@@ -82,9 +85,9 @@ namespace ed
 
 	ed::Monomio &operator/ (const ed::Monomio &lhs, const ed::Monomio &rhs);
 
-	ed::Monomio &operator/ (const ed::Monomio &lhs, const int &rhs);
+	ed::Monomio &operator/ (const ed::Monomio &lhs, const float &rhs);
 
-	ed::Monomio &operator/ (const int &lhs, const ed::Monomio &rhs);
+	ed::Monomio &operator/ (const float &lhs, const ed::Monomio &rhs);
 
 
 	/////////////////////////////////////////////////////////////////////////////

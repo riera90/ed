@@ -86,14 +86,71 @@ ed::Monomio & ed::Monomio::operator+=(ed::Monomio const &m)
 	if (this->getGrado() != m.getGrado()) return *this;
 
 	this->setCoeficiente(this->getCoeficiente() + m.getCoeficiente());
-	
+
 	// Se devuelve el objeto actual
 	return *this;
 }
 
 
 
-// COMPLETAR EL RESTO DE OPERADORES
+ed::Monomio & ed::Monomio::operator-=(ed::Monomio const &m)
+{
+	if (this->getGrado() != m.getGrado()) return *this;
+
+	this->setCoeficiente(this->getCoeficiente() - m.getCoeficiente());
+
+	// Se devuelve el objeto actual
+	return *this;
+}
+
+
+ed::Monomio & ed::Monomio::operator*=(const ed::Monomio &rhs)
+{
+	if (this->getGrado() < rhs.getGrado()) return *this;
+	if (rhs.getCoeficiente() == 0) return *this;
+
+	this->setCoeficiente(this->getCoeficiente() * rhs.getCoeficiente());
+	this->setGrado(this->getGrado() + rhs.getGrado());
+
+	// Se devuelve el objeto actual
+	return *this;
+}
+
+
+ed::Monomio & ed::Monomio::operator*=(const float &rhs)
+{
+	if (rhs == 0) return *this;
+
+	this->setCoeficiente(this->getCoeficiente() * rhs);
+
+	// Se devuelve el objeto actual
+	return *this;
+}
+
+
+ed::Monomio & ed::Monomio::operator/=(const ed::Monomio &rhs)
+{
+	if (this->getGrado() < rhs.getGrado()) return *this;
+	if (rhs.getCoeficiente() == 0) return *this;
+
+	this->setCoeficiente(this->getCoeficiente() - rhs.getCoeficiente());
+	this->setGrado(this->getGrado() + rhs.getGrado());
+
+	// Se devuelve el objeto actual
+	return *this;
+}
+
+
+ed::Monomio & ed::Monomio::operator/=(const float &rhs)
+{
+	if (rhs == 0) return *this;
+
+	this->setCoeficiente(this->getCoeficiente() / rhs);
+
+	// Se devuelve el objeto actual
+	return *this;
+}
+
 
 
 
