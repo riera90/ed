@@ -198,20 +198,22 @@ namespace ed
 	/////////////////////////////////////////////////////////////////////////////
 
 	//  Sobrecarga del operador de entrada
-	istream &operator>>(istream &stream, ed::Monomio &m)
+	std::istream &operator>>(std::istream &stream, ed::Monomio &m)
 	{
-		// COMPLETAR
-
-   		// Se devuelve el flujo de entrada
+		std::string aux;
+		getline(stream, aux, ' ');
+		m.setCoeficiente(atof(aux.c_str()));
+		getline(stream, aux, '\n');
+		m.setGrado(atoi(aux.c_str()));
 		return stream;
 	}
 
 
 	//  Sobrecarga del operador de salida
-	ostream &operator<<(ostream &stream, ed::Monomio const &m)
+	std::ostream &operator<<(std::ostream &stream, const ed::Monomio &m)
 	{
-		// COMPLETAR
 
+		stream<<"Coeficiente: "<<m.getCoeficiente()<<", Grado: "<<m.getGrado();
 		// Se devuelve el flujo de salida
 		return stream;
 	}

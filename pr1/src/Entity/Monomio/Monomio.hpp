@@ -70,7 +70,7 @@ class Monomio
 	Monomio & operator-=(const Monomio &rhs);
 
 	Monomio & operator*=(const Monomio &rhs);
-	
+
 	Monomio & operator*=(const float &rhs);
 
 	Monomio & operator/=(const Monomio &rhs);
@@ -83,14 +83,15 @@ class Monomio
 
 	//! \name Funciones lectura y escritura de la clase Monomio
 
-	// COMPLETAR
+	void leerMonomio();
+	void escribirMonomio() const;
 
 
 	///////////////////////////////////////////////////////////////////////
 
 	//! \name Funciones auxiliares de la clase Monomio
 
-	// COMPLETAR
+	float calcularValor(float x) const;
 
 
 

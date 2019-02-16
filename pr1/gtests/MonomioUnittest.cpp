@@ -220,3 +220,9 @@ TEST(Monomio, operator_division_equal)
 	ed::Monomio m5 = ed::Monomio(5, 3);
 	EXPECT_EQ(m5, (m4 /= 2));
 }
+
+TEST(Monomio, calcularValor)
+{
+	ed::Monomio m = ed::Monomio(2, 3);
+	EXPECT_NEAR(m.calcularValor(5), 1000, FLOAT_PRESICION);
+}

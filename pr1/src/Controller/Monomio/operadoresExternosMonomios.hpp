@@ -95,10 +95,10 @@ namespace ed
 	//! \name Sobrecarga de los operadores de entrada y salida
 
 	// COMPLETAR LOS COMENTARIOS DE DOXYGEN
-	 istream &operator>>(istream &stream, ed::Monomio &m);
+	istream &operator>>(istream &stream, ed::Monomio &m);
 
 	// COMPLETAR LOS COMENTARIOS DE DOXYGEN
-	 ostream &operator<<(ostream &stream, ed::Monomio const &m);
+	ostream &operator<<(ostream &stream, const ed::Monomio &m);
 
 }  // Fin de namespace ed.
 

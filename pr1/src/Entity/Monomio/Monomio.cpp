@@ -8,6 +8,7 @@
 #include <iostream>
 
 #include "Monomio.hpp"
+#include "auxiliarFunctions.hpp"
 
 
 
@@ -158,11 +159,42 @@ ed::Monomio & ed::Monomio::operator/=(const float &rhs)
 
 // Funciones lectura y escritura de la clase Monomio
 
-// COMPLETAR
+void ed::Monomio::leerMonomio()
+{
+	std::string aux;
+	std::cout << "por favor introduzca el coeficiente del monomio: ";
+	std::cin >> aux;
+	std::cin.ignore();
+	while (!ed::isInt(aux)){
+		std::cout << "introduzca un coeficiente valido:";
+		std::cin.ignore();
+		std::cin >> aux;
+	}
+	this->setCoeficiente(atof(aux.c_str()));
+
+	std::cout << "por favor introduzca el grado del monomio: ";
+	std::cin >> aux;
+	std::cin.ignore();
+	while (!ed::isFloat(aux)){
+		std::cout << "introduzca un coeficiente valido:";
+		std::cin.ignore();
+		std::cin >> aux;
+	}
+	this->setGrado(atoi(aux.c_str()));
+
+}
+
+void ed::Monomio::escribirMonomio() const
+{
+	std::cout<<"Coeficiente: "<<this->getCoeficiente()<<", Grado: "<<this->getGrado()<<'\n';
+}
 
 
 ///////////////////////////////////////////////////////////////////////
 
 // Funciones auxiliares de la clase Monomio
 
-// COMPLETAR
+float ed::Monomio::calcularValor(float x) const
+{
+	return pow(this->getCoeficiente() * x, this->getGrado());
+}
