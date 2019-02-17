@@ -26,7 +26,6 @@ namespace ed
 
 	//! \name Operadores de igualdad
 
-	// COMPLETAR LOS COMENTARIOS DE DOXYGEN
 	bool operator==(const ed::Monomio &lhs, const ed::Monomio &rhs);
 
 	bool operator==(const float &lhs, const ed::Monomio &rhs);
@@ -51,14 +50,12 @@ namespace ed
 
 	ed::Monomio &operator+(ed::Monomio const & m);
 
-	// COMPLETAR EL OTRO OPERADOR UNARIO PREFIJO: resta
 
 
 	//////////////////////////////////////////////////////////
 
 	//! \name Operador binario de la suma
 
-	// COMPLETAR LOS COMENTARIOS DE DOXYGEN
 	 ed::Monomio &operator+ (ed::Monomio const &lhs, ed::Monomio const &rhs);
 
 
@@ -94,10 +91,8 @@ namespace ed
 
 	//! \name Sobrecarga de los operadores de entrada y salida
 
-	// COMPLETAR LOS COMENTARIOS DE DOXYGEN
 	istream &operator>>(istream &stream, ed::Monomio &m);
 
-	// COMPLETAR LOS COMENTARIOS DE DOXYGEN
 	ostream &operator<<(ostream &stream, const ed::Monomio &m);
 
 }  // Fin de namespace ed.

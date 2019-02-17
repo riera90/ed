@@ -54,10 +54,11 @@ bool ed::Monomio::setGrado(int grado)
 
 // Operadores de asignación
 
-// COMPLETAR
-
 ed::Monomio & ed::Monomio::operator=(ed::Monomio const &m)
 {
+	/* The object is in a stable state, so no need to check fot out
+	 * of range values or anything similar.
+	 */
 	this->coeficiente_ = m.getCoeficiente();
 	this->grado_ = m.getGrado();
 
@@ -79,8 +80,6 @@ ed::Monomio & ed::Monomio::operator=(double const &x)
 //////////////////////////////////////////////////////////////
 
 // Operadores aritméticos y asignación
-
-// COMPLETAR
 
 ed::Monomio & ed::Monomio::operator+=(ed::Monomio const &m)
 {
@@ -161,6 +160,8 @@ ed::Monomio & ed::Monomio::operator/=(const float &rhs)
 
 void ed::Monomio::leerMonomio()
 {
+	/* This funciton loops untill the user uses a valid input
+	 */
 	std::string aux;
 	std::cout << "por favor introduzca el coeficiente del monomio: ";
 	std::cin >> aux;

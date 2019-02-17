@@ -15,7 +15,6 @@ namespace ed
 {
 	// Operadores de igualdad
 
-	// COMPLETAR
 
 	bool operator==(const ed::Monomio &lhs, const ed::Monomio &rhs)
 	{
@@ -62,10 +61,8 @@ namespace ed
 
 	// Operadores unarios prefijos
 
-	// COMPLETAR
 	ed::Monomio & operator+(ed::Monomio const & m)
 	{
-		// COMPLETAR Y MODIFICAR
 		// Se crea un nuevo objeto
 		ed::Monomio *nuevo = new ed::Monomio(m);
 
@@ -73,7 +70,6 @@ namespace ed
 		return *nuevo;
 	}
 
-	// COMPLETAR EL OTRO OPERADOR UNARIO PREFIJO: resta
 
 
 	////////////////////////////////////////////////////////////
