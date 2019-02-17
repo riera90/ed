@@ -9,7 +9,7 @@ EXTRACT_PRIVATE        = YES
 GENERATE_LATEX         =  NO
 SOURCE_BROWSER         =  YES
 FILE_PATTERNS          =  *.hpp *.cpp
-INPUT                  =  ./src
+INPUT                  =  ./
 RECURSIVE              =  YES
 OUTPUT_DIRECTORY       =  ./output
 

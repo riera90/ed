@@ -11,6 +11,7 @@
 
 // Para controlar las pre y post condiciones mediante asertos
 #include <cassert>
+#include "auxiliarFunctions.hpp"
 
 
 
