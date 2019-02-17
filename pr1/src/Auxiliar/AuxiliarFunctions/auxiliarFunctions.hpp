@@ -10,7 +10,8 @@
 
 #include <cmath>
 #include <string>
-#include <regex>
+#include <stdlib.h>
+#include <string>
 
 namespace ed
 {
