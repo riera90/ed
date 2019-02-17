@@ -36,6 +36,19 @@ namespace ed
 	 */
 	bool isFloat(std::string s);
 
+	/**
+	 * \brief convierte un string en un entero
+	 * \param string s: string que contiene un entero
+	 * \retval entero
+	 */
+	int stoi(std::string s);
+
+	/**
+	 * \brief convierte un string en un real
+	 * \param string s: string que contiene un real
+	 * \retval real
+	 */
+	float stof(std::string s);
 }
 
 #endif

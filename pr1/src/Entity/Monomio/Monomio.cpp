@@ -165,22 +165,22 @@ void ed::Monomio::leerMonomio()
 	std::cout << "por favor introduzca el coeficiente del monomio: ";
 	std::cin >> aux;
 	std::cin.ignore();
-	while (!ed::isInt(aux)){
-		std::cout << "introduzca un coeficiente valido:";
-		std::cin.ignore();
-		std::cin >> aux;
-	}
-	this->setCoeficiente(atof(aux.c_str()));
-
-	std::cout << "por favor introduzca el grado del monomio: ";
-	std::cin >> aux;
-	std::cin.ignore();
 	while (!ed::isFloat(aux)){
 		std::cout << "introduzca un coeficiente valido:";
 		std::cin.ignore();
 		std::cin >> aux;
 	}
-	this->setGrado(atoi(aux.c_str()));
+	this->setCoeficiente(ed::stof(aux));
+
+	std::cout << "por favor introduzca el grado del monomio: ";
+	std::cin >> aux;
+	std::cin.ignore();
+	while (!ed::isInt(aux)){
+		std::cout << "introduzca un coeficiente valido:";
+		std::cin.ignore();
+		std::cin >> aux;
+	}
+	this->setGrado(ed::stoi(aux));
 
 }
 

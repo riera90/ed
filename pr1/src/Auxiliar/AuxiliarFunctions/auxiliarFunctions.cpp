@@ -28,3 +28,19 @@ bool ed::isFloat(std::string s)
 
 	return true;
 }
+
+
+int ed::stoi(std::string s)
+{
+	int i;
+	sscanf(s.c_str(),"%f", &i);
+	return i;
+}
+
+
+float ed::stof(std::string s)
+{
+	float i;
+	sscanf(s.c_str(),"%i", &i);
+	return i;
+}

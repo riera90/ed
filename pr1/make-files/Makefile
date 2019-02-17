@@ -16,9 +16,9 @@ run : ./output/bin.out
 	@g++ ./src/main.cpp -Wpedantic -DNDEBUG -g -I ./src -I ./src/Entity -I ./src/Entity/Monomio -I ./src/Auxiliar -I ./src/Auxiliar/AuxiliarFunctions -I ./src/Controller -I ./src/Controller/MonomioController  -o ./output/bin.out ./tmp/libproject.a 
 
 
-./tmp/libproject.a : ./tmp/Entity/Monomio/Monomio.o ./tmp/Auxiliar/AuxiliarFunctions/funcionesAuxiliares.o ./tmp/Controller/MonomioController/operadoresExternosMonomios.o ./tmp/Controller/MonomioController/auxiliarFunctions.o 
+./tmp/libproject.a : ./tmp/Entity/Monomio/Monomio.o ./tmp/Auxiliar/AuxiliarFunctions/funcionesAuxiliares.o ./tmp/Auxiliar/AuxiliarFunctions/auxiliarFunctions.o ./tmp/Controller/MonomioController/operadoresExternosMonomios.o 
 	@echo "\tBuilding project library."
-	@ar -rsc ./tmp/libproject.a ./tmp/Entity/Monomio/Monomio.o ./tmp/Auxiliar/AuxiliarFunctions/funcionesAuxiliares.o ./tmp/Controller/MonomioController/operadoresExternosMonomios.o ./tmp/Controller/MonomioController/auxiliarFunctions.o 
+	@ar -rsc ./tmp/libproject.a ./tmp/Entity/Monomio/Monomio.o ./tmp/Auxiliar/AuxiliarFunctions/funcionesAuxiliares.o ./tmp/Auxiliar/AuxiliarFunctions/auxiliarFunctions.o ./tmp/Controller/MonomioController/operadoresExternosMonomios.o 
 
 
 ./tmp/Entity/Monomio/Monomio.o : ./src/Entity/Monomio/Monomio.cpp ./src/Entity/Monomio/Monomio.hpp
@@ -33,16 +33,16 @@ run : ./output/bin.out
 	@g++ -c ./src/Auxiliar/AuxiliarFunctions/funcionesAuxiliares.cpp -I ./src -I ./src/Entity -I ./src/Entity/Monomio -I ./src/Auxiliar -I ./src/Auxiliar/AuxiliarFunctions -I ./src/Controller -I ./src/Controller/MonomioController  -o ./tmp/Auxiliar/AuxiliarFunctions/funcionesAuxiliares.o;
 
 
+./tmp/Auxiliar/AuxiliarFunctions/auxiliarFunctions.o : ./src/Auxiliar/AuxiliarFunctions/auxiliarFunctions.cpp ./src/Auxiliar/AuxiliarFunctions/auxiliarFunctions.hpp
+	@echo "\tPrecompiling object for ./src/Auxiliar/AuxiliarFunctions/auxiliarFunctions.cpp."
+	@mkdir -p ./tmp/Auxiliar/AuxiliarFunctions
+	@g++ -c ./src/Auxiliar/AuxiliarFunctions/auxiliarFunctions.cpp -I ./src -I ./src/Entity -I ./src/Entity/Monomio -I ./src/Auxiliar -I ./src/Auxiliar/AuxiliarFunctions -I ./src/Controller -I ./src/Controller/MonomioController  -o ./tmp/Auxiliar/AuxiliarFunctions/auxiliarFunctions.o;
+
+
 ./tmp/Controller/MonomioController/operadoresExternosMonomios.o : ./src/Controller/MonomioController/operadoresExternosMonomios.cpp ./src/Controller/MonomioController/operadoresExternosMonomios.hpp
 	@echo "\tPrecompiling object for ./src/Controller/MonomioController/operadoresExternosMonomios.cpp."
 	@mkdir -p ./tmp/Controller/MonomioController
 	@g++ -c ./src/Controller/MonomioController/operadoresExternosMonomios.cpp -I ./src -I ./src/Entity -I ./src/Entity/Monomio -I ./src/Auxiliar -I ./src/Auxiliar/AuxiliarFunctions -I ./src/Controller -I ./src/Controller/MonomioController  -o ./tmp/Controller/MonomioController/operadoresExternosMonomios.o;
-
-
-./tmp/Controller/MonomioController/auxiliarFunctions.o : ./src/Controller/MonomioController/auxiliarFunctions.cpp ./src/Controller/MonomioController/auxiliarFunctions.hpp
-	@echo "\tPrecompiling object for ./src/Controller/MonomioController/auxiliarFunctions.cpp."
-	@mkdir -p ./tmp/Controller/MonomioController
-	@g++ -c ./src/Controller/MonomioController/auxiliarFunctions.cpp -I ./src -I ./src/Entity -I ./src/Entity/Monomio -I ./src/Auxiliar -I ./src/Auxiliar/AuxiliarFunctions -I ./src/Controller -I ./src/Controller/MonomioController  -o ./tmp/Controller/MonomioController/auxiliarFunctions.o;
 
 
 .PHONY: gdb
