@@ -1,4 +1,4 @@
-FROM gcc:8.2
+FROM gcc:5.3
 ADD . /app
 WORKDIR /app
 CMD make config & make googletest
