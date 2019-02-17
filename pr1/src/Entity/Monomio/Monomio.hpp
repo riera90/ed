@@ -1,5 +1,5 @@
 /*!
-	\file src/Entity/Monomio.hpp
+	\file Monomio.hpp
 	\brief Definición de la clase Monomio
 */
 

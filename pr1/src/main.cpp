@@ -1,8 +1,8 @@
 /*!
  \mainpage Implementación de un monomio
  \brief		\f$ coeficiente X^{grado}\f$
- \author
- \date
+ \author Diego Rodríguez Riera
+ \date 17/2/19
  \version  1.0
 */
 

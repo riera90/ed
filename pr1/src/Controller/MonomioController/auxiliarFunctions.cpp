@@ -1,3 +1,8 @@
+/*!
+	\file auxiliarFunctions.cpp
+	\brief implementación de las funciones auxiliares para el monomio
+*/
+
 #include "auxiliarFunctions.hpp"
 
 
