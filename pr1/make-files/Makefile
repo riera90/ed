@@ -1,19 +1,19 @@
 # this Makefile was generated automaticly by generic-makefile
 
 .PHONY : target
-target : banner ./output/bin.out
-
-
-./output/bin.out : ./src/main.cpp  ./tmp/libproject.a
-	@echo "\tCompiling binary."
-	@mkdir -p ./output
-	@g++ ./src/main.cpp -Wpedantic -DNDEBUG -g -I ./src -I ./src/Entity -I ./src/Entity/Monomio -I ./src/Auxiliar -I ./src/Auxiliar/AuxiliarFunctions -I ./src/Controller -I ./src/Controller/MonomioController  -o ./output/bin.out ./tmp/libproject.a 
+target : banner run
 
 
 .PHONY : run
 run : ./output/bin.out
 	@echo "\tExecuting binary.\n"
 	@./output/bin.out 
+
+
+./output/bin.out : ./src/main.cpp  ./tmp/libproject.a
+	@echo "\tCompiling binary."
+	@mkdir -p ./output
+	@g++ ./src/main.cpp -Wpedantic -DNDEBUG -g -I ./src -I ./src/Entity -I ./src/Entity/Monomio -I ./src/Auxiliar -I ./src/Auxiliar/AuxiliarFunctions -I ./src/Controller -I ./src/Controller/MonomioController  -o ./output/bin.out ./tmp/libproject.a 
 
 
 ./tmp/libproject.a : ./tmp/Entity/Monomio/Monomio.o ./tmp/Auxiliar/AuxiliarFunctions/funcionesAuxiliares.o ./tmp/Auxiliar/AuxiliarFunctions/auxiliarFunctions.o ./tmp/Controller/MonomioController/operadoresExternosMonomios.o 
@@ -51,9 +51,10 @@ gdb : clean ./output/bin.out
 	@gdb ./output/bin.out
 
 
-.PHONY : googletest banner
+.PHONY : googletest
 googletest : banner ./output/MonomioUnittest.out 
-
+	@echo "\n\tRunning ./output/MonomioUnittest.out"
+	./output/MonomioUnittest.out
 
 ./output/MonomioUnittest.out : ./tmp/libgtest.a ./tmp/libproject.a ./gtests/MonomioUnittest.cpp
 	@mkdir -p ./output
