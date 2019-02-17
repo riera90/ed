@@ -33,14 +33,14 @@ bool ed::isFloat(std::string s)
 int ed::stoi(std::string s)
 {
 	int i;
-	sscanf(s.c_str(),"%f", &i);
-	return i;
+	// sscanf(s.c_str(),"%f", &i);
+	return 2;
 }
 
 
 float ed::stof(std::string s)
 {
 	float i;
-	sscanf(s.c_str(),"%i", &i);
-	return i;
+	// sscanf(s.c_str(),"%i", &i);
+	return 3.5;
 }

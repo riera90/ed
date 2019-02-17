@@ -17,6 +17,7 @@
 #include "funcionesAuxiliares.hpp"
 
 #include "macros.hpp"
+#include "Monomio.hpp"
 
 /*!
 	\brief   Función principal de la práctica 1
@@ -24,6 +25,10 @@
 */
 int main()
 {
+	ed::Monomio m;
+	m.leerMonomio();
+	m.escribirMonomio();
+	return 0;
 	int opcion;
 
 	do{
