@@ -1,7 +1,10 @@
 version: "3"
 services:
-  gcc:
+  staging:
+    build: ./Dockerfiles/5.3 # for testing compilation in the university gcc version
+    volumes:
+      - .:/app
+  testing:
     build: ./Dockerfiles/8.2 # for the gtests
-    # build: ./Dockerfiles/5.3 # for testing compilation in the university gcc version
     volumes:
       - .:/app
