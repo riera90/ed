@@ -230,5 +230,5 @@ TEST(Monomio, operator_division_equal)
 TEST(Monomio, calcularValor)
 {
 	ed::Monomio m = ed::Monomio(2, 3);
-	EXPECT_NEAR(m.calcularValor(5), 1000, FLOAT_PRESICION);
+	EXPECT_NEAR(m.calcularValor(5), 250, FLOAT_PRESICION);
 }
