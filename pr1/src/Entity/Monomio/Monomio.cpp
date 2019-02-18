@@ -196,5 +196,5 @@ void ed::Monomio::escribirMonomio() const
 
 float ed::Monomio::calcularValor(float x) const
 {
-	return pow(this->getCoeficiente() * x, this->getGrado());
+	return this->getCoeficiente() * pow(x, this->getGrado());
 }
