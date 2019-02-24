@@ -8,8 +8,8 @@
 
 /*!
 
-	\file principal.cpp
-	\brief Programa principal de la practica 1 de ED: monomios
+    \file main.cpp
+    \brief Programa principal de la practica 1 de ED: monomios
 */
 
 #include <iostream>
@@ -20,74 +20,92 @@
 #include "Monomio.hpp"
 
 /*!
-	\brief   Función principal de la práctica 1
-	\return  int
+    \brief   Función principal de la práctica 1
+    \return  int
 */
 int main()
 {
-	int opcion;
+    int opcion;
 
-	do{
+    ed::Monomio m(1,1);
 
-		// Se elige la opción del menún
-		opcion = ed::menu();
+    do{
 
-		std::cout << CLEAR_SCREEN;
-		PLACE(3,1);
+    // Se elige la opción del menún
+    opcion = ed::menu();
 
-		// Se ejecuta la opción del menú elegida
-		switch(opcion)
-		{
-			case 0:
-				PLACE(3,1);
-				std::cout << BIYELLOW;
-				std::cout << "[0] Fin del programa" << std::endl << std::endl;
-				std::cout << RESET;
-				break;
+    std::cout << CLEAR_SCREEN;
+    PLACE(3,1);
 
-			case 1:
-			   	std::cout << BIBLUE;
-				std::cout << "[1] Test de la clase Monomio" << std::endl;
-				std::cout << RESET;
+    // Se ejecuta la opción del menú elegida
+    switch(opcion)
+    {
+    case 0:
+    PLACE(3,1);
+    std::cout << BIYELLOW;
+    std::cout << "[0] Fin del programa" << std::endl << std::endl;
+    std::cout << RESET;
+    break;
 
-				ed::testMonomio();
-				break;
+    case 1:
+       	std::cout << BIBLUE;
+    std::cout << "[1] Test de la clase Monomio" << std::endl;
+    std::cout << RESET;
 
-			case 2:
-			   	std::cout << BIBLUE;
-				std::cout << "[2] Operadores externos de la clase Monomio " << std::endl;
-				std::cout << RESET;
+    ed::testMonomio();
+    break;
 
-				ed::operadoresExternosMonomios();
-				break;
+    case 2:
+       	std::cout << BIBLUE;
+    std::cout << "[2] Operadores externos de la clase Monomio " << std::endl;
+    std::cout << RESET;
 
-			default:
-				std::cout << BIRED;
-				std::cout << "Opción incorrecta ";
-				std::cout << RESET;
-				std::cout << "--> ";
-			  	std::cout << ONIRED;
-				std::cout << opcion << std::endl;
-				std::cout << RESET;
+    ed::operadoresExternosMonomios();
+    break;
+
+    case 3:
+       	std::cout << BIBLUE;
+    std::cout << "[3] Introducir datos del Monomio " << std::endl;
+    std::cout << RESET;
+
+    ed::introducirDatos(m);
+    break;
+
+    case 4:
+       	std::cout << BIBLUE;
+    std::cout << "[4] Representar Monomio " << std::endl;
+    std::cout << RESET;
+
+    ed::plotMonomio(m);
+    break;
+
+    default:
+    std::cout << BIRED;
+    std::cout << "Opción incorrecta ";
+    std::cout << RESET;
+    std::cout << "--> ";
+      	std::cout << ONIRED;
+    std::cout << opcion << std::endl;
+    std::cout << RESET;
      }
 
     if (opcion !=0)
     {
-		std::cout << "Para mostrar el ";
-		std::cout << BIGREEN ;
-		std::cout << "menú, ";
-		std::cout << RESET;
-		std::cout << "pulse ";
-		std::cout << INVERSE ;
-		std::cout << "ENTER";
-		std::cout << RESET;
+    std::cout << "Para mostrar el ";
+    std::cout << BIGREEN ;
+    std::cout << "menú, ";
+    std::cout << RESET;
+    std::cout << "pulse ";
+    std::cout << INVERSE ;
+    std::cout << "ENTER";
+    std::cout << RESET;
 
-		// Pausa
-		std::cin.ignore();
+    // Pausa
+    std::cin.ignore();
 
-		std::cout << CLEAR_SCREEN;
+    std::cout << CLEAR_SCREEN;
     }
-	  }while(opcion!=0);
+      }while(opcion!=0);
 
-	return 0;
+    return 0;
 }

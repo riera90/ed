@@ -3,5 +3,6 @@ notpr/**
 **/*.a
 **/*.out
 **/*.exe
+**/*.dat
 **/googletest
 html
