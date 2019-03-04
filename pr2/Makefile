@@ -17,15 +17,15 @@ EXCLUDED_FILES  :=
 # binary file name
 BIN_NAME:=bin.out
 # binary arguments (if executed by the makefile).
-BIN_ARGUMENTS:=
+BIN_ARGUMENTS:= hi!
 # compiler
 CXX:=g++
 # compilation flags
-CXXFLAGS:=-Wpedantic -DNDEBUG
+CXXFLAGS:=-Wpedantic
 
 # [YES/NO]
 EXECUTE_AFTER_COMPILATION:=YES
-ALLOW_FOR_GNU_DEBUGGER:=YES
+ALLOW_FOR_GNU_DEBUGGER:=NO
 
 
 include ./make-files/Makefile
@@ -34,9 +34,7 @@ include ./make-files/Makefile
 config:
 	./make-files/config.sh
 
-.PHONY: doc
-doc: doc
-	@doxygen
+
 
 #    __
 # __( o)>
