@@ -34,7 +34,10 @@ include ./make-files/Makefile
 config:
 	./make-files/config.sh
 
-
+.PHONY: doc
+doc: doc
+	@doxygen
+	@firefox ./output/html/index.html &
 
 #    __
 # __( o)>
