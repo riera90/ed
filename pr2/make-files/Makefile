@@ -1,19 +1,19 @@
 # this Makefile was generated automaticly by generic-makefile
 
 .PHONY : target
-target : banner ./output/bin.out
-	
-	
-./output/bin.out : ./src/main.cpp  ./tmp/libproject.a
-	@echo "\tCompiling binary."
-	@mkdir -p ./output
-	@g++ ./src/main.cpp -Wpedantic -I ./src -I ./src/Entity -I ./src/Entity/Monomio -I ./src/Entity/Polinomio -I ./src/Auxiliar -I ./src/Auxiliar/AuxiliarFunctions -I ./src/Controller -I ./src/Controller/MonomioController -I ./src/Controller/PolinomioController  -o ./output/bin.out ./tmp/libproject.a 
+target : banner run
 	
 	
 .PHONY : run
 run : ./output/bin.out
 	@echo "\tExecuting binary.\n"
 	@time "./output/bin.out" hi!
+	
+	
+./output/bin.out : ./src/main.cpp  ./tmp/libproject.a
+	@echo "\tCompiling binary."
+	@mkdir -p ./output
+	@g++ ./src/main.cpp -Wpedantic -I ./src -I ./src/Entity -I ./src/Entity/Monomio -I ./src/Entity/Polinomio -I ./src/Auxiliar -I ./src/Auxiliar/AuxiliarFunctions -I ./src/Controller -I ./src/Controller/MonomioController -I ./src/Controller/PolinomioController  -o ./output/bin.out ./tmp/libproject.a 
 
 
 ./tmp/libproject.a : ./tmp/Entity/Monomio/Monomio.o ./tmp/Entity/Polinomio/Polinomio.o ./tmp/Auxiliar/AuxiliarFunctions/funcionesAuxiliares.o ./tmp/Auxiliar/AuxiliarFunctions/auxiliarFunctions.o ./tmp/Controller/MonomioController/operadoresExternosMonomios.o ./tmp/Controller/PolinomioController/operadoresExternosPolinomios.o 
@@ -57,9 +57,12 @@ run : ./output/bin.out
 	@g++ -c ./src/Controller/PolinomioController/operadoresExternosPolinomios.cpp -I ./src -I ./src/Entity -I ./src/Entity/Monomio -I ./src/Entity/Polinomio -I ./src/Auxiliar -I ./src/Auxiliar/AuxiliarFunctions -I ./src/Controller -I ./src/Controller/MonomioController -I ./src/Controller/PolinomioController  -o ./tmp/Controller/PolinomioController/operadoresExternosPolinomios.o;
 
 
-.PHONY : googletest banner
-googletest : banner ./output/MonomioUnittest.out ./output/PolinomioUnittest.out  
-
+.PHONY : googletest
+googletest : banner ./output/MonomioUnittest.out ./output/PolinomioUnittest.out 
+	@echo "\n\tRunning ./output/MonomioUnittest.out"
+	./output/MonomioUnittest.out
+	@echo "\n\tRunning ./output/PolinomioUnittest.out"
+	./output/PolinomioUnittest.out
 
 ./output/MonomioUnittest.out : ./tmp/libgtest.a ./tmp/libproject.a ./gtests/MonomioUnittest.cpp
 	@mkdir -p ./output
