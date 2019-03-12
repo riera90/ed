@@ -58,17 +58,9 @@ run : ./output/bin.out
 
 
 .PHONY : googletest
-googletest : banner ./output/MonomioUnittest.out ./output/PolinomioUnittest.out 
-	@echo "\n\tRunning ./output/MonomioUnittest.out"
-	./output/MonomioUnittest.out
+googletest : banner ./output/PolinomioUnittest.out 
 	@echo "\n\tRunning ./output/PolinomioUnittest.out"
 	./output/PolinomioUnittest.out
-
-./output/MonomioUnittest.out : ./tmp/libgtest.a ./tmp/libproject.a ./gtests/MonomioUnittest.cpp
-	@mkdir -p ./output
-	@echo "\tBuilding googletest ./gtests/MonomioUnittest.cpp."
-	@g++ -isystem ./make-files/googletest/googletest/include -pthread -I ./src -I ./src/Entity -I ./src/Entity/Monomio -I ./src/Entity/Polinomio -I ./src/Auxiliar -I ./src/Auxiliar/AuxiliarFunctions -I ./src/Controller -I ./src/Controller/MonomioController -I ./src/Controller/PolinomioController  -Wpedantic ./gtests/MonomioUnittest.cpp ./tmp/libproject.a ./tmp/libgtest.a -o ./output/MonomioUnittest.out
-
 
 ./output/PolinomioUnittest.out : ./tmp/libgtest.a ./tmp/libproject.a ./gtests/PolinomioUnittest.cpp
 	@mkdir -p ./output

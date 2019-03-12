@@ -8,8 +8,7 @@
 #include "Monomio.hpp"
 #include "operadoresExternosMonomios.hpp"
 #include <iostream>
-
-#define FLOAT_PRESICION 0.0003
+#include "macros.hpp"
 
     /////////////////
   // Constructor //

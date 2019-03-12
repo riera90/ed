@@ -51,6 +51,13 @@ bool ed::Monomio::setGrado(int grado)
 }
 
 
+bool ed::Monomio::esNulo() const
+{
+    if ( this->getGrado() != 0) return false;
+    if ( !near(this->getCoeficiente(), 0) ) return false;
+    return true;
+}
+
 // Operadores de asignación
 
 ed::Monomio & ed::Monomio::operator=(ed::Monomio const &m)

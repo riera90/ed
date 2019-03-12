@@ -11,7 +11,7 @@ SRC_CODE_EXT    :=cpp
 SRC_HEADERS_EXT :=hpp
 MAIN_FILE       :=main.cpp
 # excluded files from the project
-EXCLUDED_FILES  :=
+EXCLUDED_FILES  :=MonomioUnittest.cpp
 
 
 # binary file name

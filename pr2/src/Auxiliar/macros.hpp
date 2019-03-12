@@ -12,6 +12,8 @@
 
 #include <stdio.h>
 
+#define FLOAT_PRESICION 0.000003
+
 #define PLACE(x,y)   printf("\033[%d;%dH",x,y) //!< Place
 
 #define CLEAR_SCREEN        "\33[2J" //!< Clear the screen

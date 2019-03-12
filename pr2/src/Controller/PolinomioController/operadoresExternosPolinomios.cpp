@@ -16,26 +16,64 @@
 namespace ed
 {
 
-bool operator==(ed::Polinomio const & p1, ed::Polinomio const & p2)
+bool operator==(ed::Polinomio const & lhs, ed::Polinomio const & rhs)
 {
-	// COMPLETAR Y MODIFICAR
+	for (int i = 0; i < lhs.getGrado() || i < rhs.getGrado(); i++) {
+		if ( lhs.existeMonomio(i) || rhs.existeMonomio(i) ){
+			
+			if ( !lhs.existeMonomio(i) || !rhs.existeMonomio(i) )
+				return false;
+				
+			if ( lhs.getMonomio(i) != lhs.getMonomio(i) )
+				return false;
+		}
+	}
 
-	// MODIFICAR: SE DEVUELVE UN VALOR ARBITRARIO PARA NO GENERAR AVISOS AL COMPILAR
-		return false;
+	return true;
 }
 
-// COMPLETAR LOS OTROS OPERADORES DE IGUALDAD
 
+bool operator==(ed::Polinomio const & lhs, ed::Monomio const & rhs)
+{
+	if ( lhs.getNumeroMonomios() != 1 )
+		return false;
+	
+	if ( lhs.getMonomio(rhs.getGrado()) != rhs )
+		return false;
+
+	return true;
+}
+
+
+bool operator==(ed::Monomio const & lhs, ed::Polinomio const & rhs)
+{
+	return rhs == lhs;
+}
+
+
+bool operator==(ed::Polinomio const & lhs, float const & rhs)
+{
+	if ( lhs.getNumeroMonomios() != 1 )
+		return false;
+	
+	if ( lhs.getMonomio(0) != rhs )
+		return false;
+
+	return true;
+}
+
+
+bool operator==(float const & lhs, ed::Polinomio const & rhs)
+{
+	return rhs == lhs;
+}
 
 
 ////////////////////////////////////////////////////////////////////////////////////
 // Operadores de desigualdad
 bool operator!=(ed::Polinomio const & p1, ed::Polinomio const & p2)
 {
-	// COMPLETAR Y MODIFICAR
-
-	// MODIFICAR: SE DEVUELVE UN VALOR ARBITRARIO PARA NO GENERAR AVISOS AL COMPILAR
-	return true;
+	return !(p1 == p2);
 }
 
 // COMPLETAR LOS OTROS OPERADORES DE DESIGUALDAD
@@ -49,10 +87,10 @@ ed::Polinomio & operator+(ed::Polinomio const & p)
 {
 	// COMPLETAR Y MODIFICAR
 	// Se crea un nuevo objeto
-	ed::Polinomio *nuevo = new ed::Polinomio(p);
+	// ed::Polinomio *nuevo = new ed::Polinomio(p);
 
 	// Se devuelve el resultado
-	return *nuevo;
+	// return *nuevo;
 }
 
 

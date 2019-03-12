@@ -26,7 +26,11 @@ namespace ed
 	//! \name Operadores de igualdad
 
 	// COMPLETAR LOS COMENTARIOS DE DOXYGEN
-	bool operator==(ed::Polinomio const & p1, ed::Polinomio const & p2);
+	bool operator==(ed::Polinomio const & lhs, ed::Polinomio const & rhs);
+	bool operator==(ed::Polinomio const & lhs, ed::Monomio const & rhs);
+	bool operator==(ed::Monomio const & lhs, ed::Polinomio const & rhs);
+	bool operator==(ed::Polinomio const & lhs, float const & rhs);
+	bool operator==(float const & lhs, ed::Polinomio const & rhs);
 
 	// COMPLETAR LOS OTROS OPERADORES DE IGUALDAD
 

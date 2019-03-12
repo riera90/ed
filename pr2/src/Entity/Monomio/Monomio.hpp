@@ -87,6 +87,13 @@ class Monomio
      * \retval booleano: si el monomio ha sido modificado, este retornara verdadero, en otro caso sera falso
      */
     bool setGrado(int grado);
+    
+    
+    /**
+     * \brief Observador de nulizez de la clase Monomio
+     * \retval booleano: si el monomio es grado y coeficinete 0 retornará verdadero si no falso
+     */
+    bool esNulo() const;
 
 
 
