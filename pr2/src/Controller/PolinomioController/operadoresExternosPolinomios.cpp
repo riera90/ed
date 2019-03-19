@@ -81,8 +81,9 @@ namespace ed
     
     
     
-    ////////////////////////////////////////////////////////////////////////////////////
+      //////////////////////////////////////////////////////////////////////////
     // Operadores de desigualdad
+    
     
     bool operator!=(ed::Polinomio const & lhs, ed::Polinomio const & rhs)
     {
@@ -128,16 +129,13 @@ namespace ed
 
 
 
-    //////////////////////////////////////////////////////////////////////////////////////
+      //////////////////////////////////////////////////////////////////////////
     // Operadores unarios
     
 
     Polinomio & operator+(Polinomio const & p)
     {
-        // COMPLETAR Y MODIFICAR
-        // Se crea un nuevo objeto
-        ed::Polinomio *nuevo = new ed::Polinomio(p);	
-        // Se devuelve el resultado
+        ed::Polinomio *nuevo = new ed::Polinomio(p);
         return *nuevo;
     }
     
@@ -145,12 +143,13 @@ namespace ed
 
     Polinomio & operator-(Polinomio const & p)
     {
-        // COMPLETAR Y MODIFICAR
-        // Se crea un nuevo objeto
-        Polinomio *nuevo = new Polinomio(p);
-        // for
-        // nuevo->setGrado(-nuevo->getGrado());
-        // Se devuelve el resultado
+        Polinomio *nuevo = new Polinomio;
+        for (int i = 0, n = 0; n < p.getNumeroMonomios(); i++) {
+            if (p.existeMonomio(i)){
+                nuevo->addMonomio( - p.getMonomio(i) );
+                n++;
+            }
+        }
         return *nuevo;
     }
 
@@ -162,8 +161,8 @@ namespace ed
 
 
 
-    //////////////////////////////////////////////////////////////////////////////////////
-    //! Operadores binarios de la suma
+      //////////////////////////////////////////////////////////////////////////
+    // Operadores binarios de la suma
     
     
     Polinomio & operator+(Polinomio const &lhs, Polinomio const &rhs)
@@ -171,20 +170,12 @@ namespace ed
         // COMPLETAR Y MODIFICAR
         // Se crea un nuevo objeto
         Polinomio *nuevo = new Polinomio;
-
-        for (int i = 0, n = 0; n < lhs.getNumeroMonomios(); i++) {
-            // printf("l iteration %i\n", i);
-            if (lhs.existeMonomio(i)){
-                // printf("\tadding %i\n", i);
-                nuevo->addMonomio(lhs.getMonomio(i));
-                n++;
-            }
-        }
+        (*nuevo) = lhs;
         
         for (int i = 0, n = 0; n < rhs.getNumeroMonomios(); i++) {
             // printf("r iteration %i\n", i);
             if (rhs.existeMonomio(i)){
-                // printf("\tadding %i\n", i);
+                // printf("\tadding %i, grado %i\n", i, n);
                 nuevo->addMonomio(rhs.getMonomio(i));
                 n++;
             }
@@ -216,29 +207,39 @@ namespace ed
     
     
     
+    Polinomio & operator+(Polinomio const &lhs, float const &rhs){
+        ed::Polinomio *nuevo = new ed::Polinomio;
+        (*nuevo) = lhs;
+        nuevo->addMonomio(Monomio(rhs, 0));
+        return *nuevo;
+    }
+    
+    
+    
+    Polinomio & operator+(float const &lhs, Polinomio const &rhs){
+        ed::Polinomio *nuevo = new ed::Polinomio;
+        (*nuevo) = rhs;
+        nuevo->addMonomio(Monomio(lhs, 0));
+        return *nuevo;
+    }
     
     
     
     
     
     
-          ////////////
-        // Resta
+    
+    
+    
+      ////////////
+    // Resta
 
     Polinomio & operator-(Polinomio const &lhs,  Polinomio const &rhs)
     {
         // COMPLETAR Y MODIFICAR
         // Se crea un nuevo objeto
         Polinomio *nuevo = new Polinomio;
-
-        for (int i = 0, n = 0; n < lhs.getNumeroMonomios(); i++) {
-            // printf("l iteration %i\n", i);
-            if (lhs.existeMonomio(i)){
-                // printf("\tadding %i\n", i);
-                nuevo->addMonomio(lhs.getMonomio(i));
-                n++;
-            }
-        }
+        (*nuevo) = lhs;
         
         for (int i = 0, n = 0; n < rhs.getNumeroMonomios(); i++) {
             // printf("r iteration %i\n", i);
@@ -274,6 +275,28 @@ namespace ed
     }
         
 
+    Polinomio & operator-(Polinomio const &lhs, float const &rhs){
+        ed::Polinomio *nuevo = new ed::Polinomio;
+        (*nuevo) = lhs;
+        nuevo->addMonomio(Monomio(-rhs, 0));
+        return *nuevo;
+    }
+    
+    
+    Polinomio & operator-(float const &lhs, Polinomio const &rhs){
+        ed::Polinomio *nuevo = new ed::Polinomio;
+        (*nuevo) = - rhs;
+        nuevo->addMonomio(Monomio(lhs, 0));
+        return *nuevo;
+    }
+
+
+
+
+
+
+      //////////////////
+    // Multiplicación
 
 
 
@@ -281,35 +304,32 @@ namespace ed
 
 
 
-        //////////////////
-        // Multiplicación
-
-        // COMPLETAR
-
-        ////////////
-        // División
-
-        // COMPLETAR
 
 
-    ////////////////////////////////////////////////////////////////////////////
+      ////////////
+    // División
 
-    // Sobrecarga del operador de entrada
+
+
+
+
+
+
+
+
+      //////////////////////////////////////////////////////////////////////////
+    // Sobrecarga de flujos
+    
     istream &operator>>(istream &stream, Polinomio &p)
     {
-        // COMPLETAR
-
         // Se devuelve el flujo de entrada
       return stream;
     }
 
 
 
-    // Sobrecarga del operador de salida
     ostream &operator<<(ostream &stream, Polinomio const &p)
     {
-        // COMPLETAR
-
         // Se devuelve el flujo de salida
       return stream;
     }

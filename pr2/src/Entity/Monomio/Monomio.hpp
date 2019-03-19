@@ -96,10 +96,10 @@ class Monomio
     bool esNulo() const;
 
     /**
-     * \brief Observador de cero de la clase Monomio
+     * \brief Observador de constante de la clase Monomio
      * \retval booleano: si el coeficinete 0 retornará verdadero si no falso
      */
-    bool esCero() const;
+    bool esConstante() const;
 
 
     /////////////////////////////////////////////////

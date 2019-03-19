@@ -16,9 +16,10 @@ ed::Polinomio::Polinomio()
 
 ed::Polinomio::Polinomio(const Polinomio &polinomio)
 {
-	for (int i = 0; i < polinomio.getGrado(); i++) {
-		if ( polinomio.existeMonomio(i) ){
+	for (int i = 0, n = 0; n < polinomio.getNumeroMonomios(); i++) {
+		if (polinomio.existeMonomio(i)){
 			this->monomios_.push_back(polinomio.getMonomio(i));
+			n++;
 		}
 	}
 }
@@ -79,7 +80,7 @@ void ed::Polinomio::addMonomio(ed::Monomio monomio){
 		for (int i = 0; i < this->monomios_.size(); i++) {
 			if ( this->monomios_[i].getGrado() == monomio.getGrado() ){
 				this->monomios_[i] = this->monomios_[i] + monomio;
-				if (this->monomios_[i].esCero()){ // if its null it deletes the nomomio
+				if ( this->monomios_[i].getCoeficiente() == 0 ){ // if its null it deletes the nomomio
 					this->monomios_.erase(monomios_.begin() + i);
 				}
 				return;

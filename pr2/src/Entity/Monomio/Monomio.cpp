@@ -58,7 +58,7 @@ bool ed::Monomio::esNulo() const
     return true;
 }
 
-bool ed::Monomio::esCero() const
+bool ed::Monomio::esConstante() const
 {
     if ( !near(this->getCoeficiente(), 0) ) return false;
     return true;
