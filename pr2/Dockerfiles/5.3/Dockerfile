@@ -1,4 +1,4 @@
 FROM gcc:5.3
-ADD . /app
+COPY . /app
 WORKDIR /app
-CMD make config && make
+CMD make clean && make config && make ./output/bin.out

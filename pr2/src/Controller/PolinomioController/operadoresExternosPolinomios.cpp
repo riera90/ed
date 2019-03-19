@@ -69,12 +69,36 @@ bool operator==(float const & lhs, ed::Polinomio const & rhs)
 }
 
 
+
+
+
 ////////////////////////////////////////////////////////////////////////////////////
 // Operadores de desigualdad
-bool operator!=(ed::Polinomio const & p1, ed::Polinomio const & p2)
+bool operator!=(ed::Polinomio const & lhs, ed::Polinomio const & rhs)
 {
-	return !(p1 == p2);
+	return !(lhs == rhs);
 }
+
+bool operator!=(ed::Polinomio const & lhs, ed::Monomio const & rhs)
+{
+	return !(lhs == rhs);
+}
+
+bool operator!=(ed::Monomio const & lhs, ed::Polinomio const & rhs)
+{
+	return !(lhs == rhs);
+}
+
+bool operator!=(ed::Polinomio const & lhs, float const & rhs)
+{
+	return !(lhs == rhs);
+}
+
+bool operator!=(float const & lhs, ed::Polinomio const & rhs)
+{
+	return !(lhs == rhs);
+}
+
 
 // COMPLETAR LOS OTROS OPERADORES DE DESIGUALDAD
 
