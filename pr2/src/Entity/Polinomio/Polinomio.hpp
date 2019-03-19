@@ -17,6 +17,7 @@
 
 #include "PolinomioInterfaz.hpp"
 #include "Monomio.hpp"
+#include "operadoresExternosMonomios.hpp"
 
 
 // Se incluye la clase Polinomio dentro del espacio de nombre de la asigantura: ed
@@ -49,6 +50,8 @@ class Polinomio: public ed::PolinomioInterfaz
 
 
     //! \name Funciones de modificación de la clase Polinomio
+    
+        void addMonomio(ed::Monomio monomio);
 
     // COMPLETAR
 

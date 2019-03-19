@@ -98,9 +98,9 @@ help:
 .PHONY : clean
 clean:
 	@echo "\tRemoving temporal files"
-	@rm -rf ./tmp
+	@if [ -d "./tmp" ]; then rm -rf ./tmp; fi
 	@echo "\tRemoving binary files"
-	@rm ./output/*.out
+	@if [ -d "./output/*.out" ]; then rm ./output/*.out; fi
 
 #    __
 # __( o)>

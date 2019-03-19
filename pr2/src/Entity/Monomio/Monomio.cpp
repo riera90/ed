@@ -58,6 +58,12 @@ bool ed::Monomio::esNulo() const
     return true;
 }
 
+bool ed::Monomio::esCero() const
+{
+    if ( !near(this->getCoeficiente(), 0) ) return false;
+    return true;
+}
+
 // Operadores de asignación
 
 ed::Monomio & ed::Monomio::operator=(ed::Monomio const &m)

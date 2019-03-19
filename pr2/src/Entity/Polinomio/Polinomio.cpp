@@ -74,7 +74,22 @@ ed::Monomio& ed::Polinomio::getMonomio(int grado) const
 }
 
 
-
+void ed::Polinomio::addMonomio(ed::Monomio monomio){
+	if ( this->existeMonomio(monomio.getGrado()) ){
+		for (int i = 0; i < this->monomios_.size(); i++) {
+			if ( this->monomios_[i].getGrado() == monomio.getGrado() ){
+				this->monomios_[i] = this->monomios_[i] + monomio;
+				if (this->monomios_[i].esCero()){ // if its null it deletes the nomomio
+					this->monomios_.erase(monomios_.begin() + i);
+				}
+				return;
+			}
+		}
+	}
+	else{
+		this->monomios_.push_back(monomio);
+	}
+}
 
 // Operadores de asignación
 
@@ -86,12 +101,13 @@ ed::Monomio& ed::Polinomio::getMonomio(int grado) const
 ed::Polinomio & ed::Polinomio::operator=(ed::Polinomio const &p)
 {
 	this->monomios_.clear();
-	
-	for (int i = 0; i < p.getGrado(); i++) {
-		if ( p.existeMonomio(i) ){
-			this->monomios_.push_back(p.getMonomio(i));
-		}
-	}
+
+	for (int i = 0, n = 0; n < p.getNumeroMonomios(); i++) {
+        if (p.existeMonomio(i)){
+            this->addMonomio(p.getMonomio(i));
+            n++;
+        }
+    }
 	
 	// Se devuelve el objeto actual
 	return *this;

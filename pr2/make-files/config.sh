@@ -441,9 +441,9 @@ help:
 .PHONY : clean
 clean:
 	@echo \"\tRemoving temporal files\"
-	@rm -rf $TMP_DIR
+	@if [ -d \"$TMP_DIR\" ]; then rm -rf $TMP_DIR; fi
 	@echo \"\tRemoving binary files\"
-	@rm $OUTPUT_DIR/*.out
+	@if [ -d \"$OUTPUT_DIR/*.out\" ]; then rm $OUTPUT_DIR/*.out; fi
 " >> ./make-files/Makefile
 	
 	

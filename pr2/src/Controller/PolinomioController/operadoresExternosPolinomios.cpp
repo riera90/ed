@@ -18,54 +18,54 @@ namespace ed
 
 bool operator==(ed::Polinomio const & lhs, ed::Polinomio const & rhs)
 {
-	for (int i = 0; i < lhs.getGrado() || i < rhs.getGrado(); i++) {
-		if ( lhs.existeMonomio(i) || rhs.existeMonomio(i) ){
-			
-			if ( !lhs.existeMonomio(i) || !rhs.existeMonomio(i) )
-				return false;
-				
-			if ( lhs.getMonomio(i) != lhs.getMonomio(i) )
-				return false;
-		}
-	}
+    for (int i = 0; i < lhs.getGrado() || i < rhs.getGrado(); i++) {
+    if ( lhs.existeMonomio(i) || rhs.existeMonomio(i) ){
+    
+    if ( !lhs.existeMonomio(i) || !rhs.existeMonomio(i) )
+    return false;
+    
+    if ( lhs.getMonomio(i) != lhs.getMonomio(i) )
+    return false;
+    }
+    }
 
-	return true;
+    return true;
 }
 
 
 bool operator==(ed::Polinomio const & lhs, ed::Monomio const & rhs)
 {
-	if ( lhs.getNumeroMonomios() != 1 )
-		return false;
-	
-	if ( lhs.getMonomio(rhs.getGrado()) != rhs )
-		return false;
+    if ( lhs.getNumeroMonomios() != 1 )
+    return false;
+    
+    if ( lhs.getMonomio(rhs.getGrado()) != rhs )
+    return false;
 
-	return true;
+    return true;
 }
 
 
 bool operator==(ed::Monomio const & lhs, ed::Polinomio const & rhs)
 {
-	return rhs == lhs;
+    return rhs == lhs;
 }
 
 
 bool operator==(ed::Polinomio const & lhs, float const & rhs)
 {
-	if ( lhs.getNumeroMonomios() != 1 )
-		return false;
-	
-	if ( lhs.getMonomio(0) != rhs )
-		return false;
+    if ( lhs.getNumeroMonomios() != 1 )
+    return false;
+    
+    if ( lhs.getMonomio(0) != rhs )
+    return false;
 
-	return true;
+    return true;
 }
 
 
 bool operator==(float const & lhs, ed::Polinomio const & rhs)
 {
-	return rhs == lhs;
+    return rhs == lhs;
 }
 
 
@@ -76,27 +76,27 @@ bool operator==(float const & lhs, ed::Polinomio const & rhs)
 // Operadores de desigualdad
 bool operator!=(ed::Polinomio const & lhs, ed::Polinomio const & rhs)
 {
-	return !(lhs == rhs);
+    return !(lhs == rhs);
 }
 
 bool operator!=(ed::Polinomio const & lhs, ed::Monomio const & rhs)
 {
-	return !(lhs == rhs);
+    return !(lhs == rhs);
 }
 
 bool operator!=(ed::Monomio const & lhs, ed::Polinomio const & rhs)
 {
-	return !(lhs == rhs);
+    return !(lhs == rhs);
 }
 
 bool operator!=(ed::Polinomio const & lhs, float const & rhs)
 {
-	return !(lhs == rhs);
+    return !(lhs == rhs);
 }
 
 bool operator!=(float const & lhs, ed::Polinomio const & rhs)
 {
-	return !(lhs == rhs);
+    return !(lhs == rhs);
 }
 
 
@@ -109,48 +109,100 @@ bool operator!=(float const & lhs, ed::Polinomio const & rhs)
 // COMPLETAR
 ed::Polinomio & operator+(ed::Polinomio const & p)
 {
-	// COMPLETAR Y MODIFICAR
-	// Se crea un nuevo objeto
-	// ed::Polinomio *nuevo = new ed::Polinomio(p);
-
-	// Se devuelve el resultado
-	// return *nuevo;
+    // COMPLETAR Y MODIFICAR
+    // Se crea un nuevo objeto
+    ed::Polinomio *nuevo = new ed::Polinomio(p);	
+    // Se devuelve el resultado
+    return *nuevo;
 }
 
 
 // COMPLETAR EL OTRO OPERADOR UNARIO PREFIJO: resta
-
+ed::Polinomio & operator-(ed::Polinomio const & p)
+{
+    // COMPLETAR Y MODIFICAR
+    // Se crea un nuevo objeto
+    ed::Polinomio *nuevo = new ed::Polinomio(p);
+    // for
+    // nuevo->setGrado(-nuevo->getGrado());
+    // Se devuelve el resultado
+    return *nuevo;
+}
 
 //////////////////////////////////////////////////////////////////////////////////////
 
 // Operadores binarios de la suma
-ed::Polinomio & operator+(ed::Polinomio const &p1,  ed::Polinomio const &p2)
+ed::Polinomio & operator+(ed::Polinomio const &lhs,  ed::Polinomio const &rhs)
 {
-	// COMPLETAR Y MODIFICAR
-	// Se crea un nuevo objeto
-	ed::Polinomio *nuevo = new ed::Polinomio;
+    // COMPLETAR Y MODIFICAR
+    // Se crea un nuevo objeto
+    ed::Polinomio *nuevo = new ed::Polinomio;
 
-	// Se devuelve el resultado
-	return *nuevo;
+    for (int i = 0, n = 0; n < lhs.getNumeroMonomios(); i++) {
+        // printf("l iteration %i\n", i);
+        if (lhs.existeMonomio(i)){
+            // printf("\tadding %i\n", i);
+            nuevo->addMonomio(lhs.getMonomio(i));
+            n++;
+        }
+    }
+    
+    for (int i = 0, n = 0; n < rhs.getNumeroMonomios(); i++) {
+        // printf("r iteration %i\n", i);
+        if (rhs.existeMonomio(i)){
+            // printf("\tadding %i\n", i);
+            nuevo->addMonomio(rhs.getMonomio(i));
+            n++;
+        }
+    }
+    
+    // Se devuelve el resultado
+    return *nuevo;
 }
 
-	// COMPLETAR LOS OTROS OPERADORES DE SUMA
+    // COMPLETAR LOS OTROS OPERADORES DE SUMA
 
-	////////////
-	// Resta
+    ////////////
+    // Resta
 
-	// COMPLETAR
+    // COMPLETAR
+    ed::Polinomio & operator-(ed::Polinomio const &lhs,  ed::Polinomio const &rhs)
+    {
+        // COMPLETAR Y MODIFICAR
+        // Se crea un nuevo objeto
+        ed::Polinomio *nuevo = new ed::Polinomio;
 
+        for (int i = 0, n = 0; n < lhs.getNumeroMonomios(); i++) {
+            // printf("l iteration %i\n", i);
+            if (lhs.existeMonomio(i)){
+                // printf("\tadding %i\n", i);
+                nuevo->addMonomio(lhs.getMonomio(i));
+                n++;
+            }
+        }
+        
+        for (int i = 0, n = 0; n < rhs.getNumeroMonomios(); i++) {
+            // printf("r iteration %i\n", i);
+            if (rhs.existeMonomio(i)){
+                // printf("\tadding %i\n", i);
+                nuevo->addMonomio(-rhs.getMonomio(i));
+                n++;
+            }
+        }
+        
+        // Se devuelve el resultado
+        return *nuevo;
+    }
 
-	//////////////////
-	// Multiplicación
+    //////////////////
+    // Multiplicación
 
-	// COMPLETAR
+    // COMPLETAR
 
-	////////////
-	// División
+    ////////////
+    // División
 
-	// COMPLETAR
+    // COMPLETAR
 
 
 ////////////////////////////////////////////////////////////////////////////
@@ -158,9 +210,9 @@ ed::Polinomio & operator+(ed::Polinomio const &p1,  ed::Polinomio const &p2)
 // Sobrecarga del operador de entrada
 istream &operator>>(istream &stream, Polinomio &p)
 {
-	// COMPLETAR
+    // COMPLETAR
 
-	// Se devuelve el flujo de entrada
+    // Se devuelve el flujo de entrada
   return stream;
 }
 
@@ -169,9 +221,9 @@ istream &operator>>(istream &stream, Polinomio &p)
 // Sobrecarga del operador de salida
 ostream &operator<<(ostream &stream, Polinomio const &p)
 {
-	// COMPLETAR
+    // COMPLETAR
 
-	// Se devuelve el flujo de salida
+    // Se devuelve el flujo de salida
   return stream;
 }
 

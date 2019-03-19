@@ -1,6 +1,6 @@
 /*!
-	\file operadoresExternosPolinomios.hpp
-	\brief Ficheros con operadores de monomios y polinomios
+    \file operadoresExternosPolinomios.hpp
+    \brief Ficheros con operadores de monomios y polinomios
 */
 
 #ifndef _OperadoresPolinomios_HPP_
@@ -19,73 +19,64 @@ namespace ed
 {
 
 ////////////////////////////////////////////////////////////////////////////
-	// Funciones y operadores que no pertenecen a la clase Polinomio
+    // Funciones y operadores que no pertenecen a la clase Polinomio
 
 
-	////////////////////////////////////////////////////////////
-	//! \name Operadores de igualdad
+    ////////////////////////////////////////////////////////////
+    //! \name Operadores de igualdad
+    bool operator==(ed::Polinomio const & lhs, ed::Polinomio const & rhs);
+    bool operator==(ed::Polinomio const & lhs, ed::Monomio const & rhs);
+    bool operator==(ed::Monomio const & lhs, ed::Polinomio const & rhs);
+    bool operator==(ed::Polinomio const & lhs, float const & rhs);
+    bool operator==(float const & lhs, ed::Polinomio const & rhs);
 
-	// COMPLETAR LOS COMENTARIOS DE DOXYGEN
-	bool operator==(ed::Polinomio const & lhs, ed::Polinomio const & rhs);
-	bool operator==(ed::Polinomio const & lhs, ed::Monomio const & rhs);
-	bool operator==(ed::Monomio const & lhs, ed::Polinomio const & rhs);
-	bool operator==(ed::Polinomio const & lhs, float const & rhs);
-	bool operator==(float const & lhs, ed::Polinomio const & rhs);
-
-	// COMPLETAR LOS OTROS OPERADORES DE IGUALDAD
-
-	////////////////////////////////////////////////////////////////////////////////////
-	//! \name Operadores de desigualdad
-
-	// COMPLETAR LOS COMENTARIOS DE DOXYGEN
-	bool operator!=(ed::Polinomio const & lhs, ed::Polinomio const & rhs);
-	bool operator!=(ed::Polinomio const & lhs, ed::Monomio const & rhs);
-	bool operator!=(ed::Monomio const & lhs, ed::Polinomio const & rhs);
-	bool operator!=(ed::Polinomio const & lhs, float const & rhs);
-	bool operator!=(float const & lhs, ed::Polinomio const & rhs);
-
-	// COMPLETAR LOS OTROS OPERADORES DE DESIGUALDAD
+    ////////////////////////////////////////////////////////////////////////////////////
+    //! \name Operadores de desigualdad
+    bool operator!=(ed::Polinomio const & lhs, ed::Polinomio const & rhs);
+    bool operator!=(ed::Polinomio const & lhs, ed::Monomio const & rhs);
+    bool operator!=(ed::Monomio const & lhs, ed::Polinomio const & rhs);
+    bool operator!=(ed::Polinomio const & lhs, float const & rhs);
+    bool operator!=(float const & lhs, ed::Polinomio const & rhs);
 
 //////////////////////////////////////////////////////////////////////////////////////
 
-	//! \name Operadores unarios
-
-	// COMPLETAR LOS COMENTARIOS DE DOXYGEN
-		ed::Polinomio & operator+(ed::Polinomio const & p);
-
-	// COMPLETAR EL OTRO OPERADOR UNARIO PREFIJO: resta
+    //! \name Operadores unarios
+    ed::Polinomio & operator+(ed::Polinomio const & p);
+    ed::Polinomio & operator-(ed::Polinomio const & p);
 
 
 //////////////////////////////////////////////////////////////////////////////////////
 
-	//! \name Operadores binarios de la suma
+    //! \name Operadores binarios de la suma
 
-	// COMPLETAR LOS COMENTARIOS DE DOXYGEN
-		ed::Polinomio & operator+(ed::Polinomio const &p1,  ed::Polinomio const &p2);
+    // COMPLETAR LOS COMENTARIOS DE DOXYGEN
+    ed::Polinomio & operator+(ed::Polinomio const &lhr,  ed::Polinomio const &rhs);
 
-		// COMPLETAR LOS OTROS OPERADORES DE SUMA
-
-
-		//////////////////////////////////////////////////////////
-		//! \name Operador binario de la resta
-
-		// COMPLETAR
+    // COMPLETAR LOS OTROS OPERADORES DE SUMA
 
 
-		///////////////////////////////////////////////////////////////////////////
-		//! \name Operadores binarios de la multiplicación
+    //////////////////////////////////////////////////////////
+    //! \name Operador binario de la resta
 
-		// COMPLETAR
+    // COMPLETAR
+    ed::Polinomio & operator-(ed::Polinomio const &lhr,  ed::Polinomio const &rhs);
+    
 
-		///////////////////////////////////////////////////////////////////////////
 
-		//! \name Operadores binarios de la división
+    ///////////////////////////////////////////////////////////////////////////
+    //! \name Operadores binarios de la multiplicación
 
-		// COMPLETAR
+    // COMPLETAR
 
-	/////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////
 
-   //! \name Sobrecarga de los operadores de flujo de la clase Polinomio.
+    //! \name Operadores binarios de la división
+
+    // COMPLETAR
+
+    /////////////////////////////////////////////////////////////////////////////
+
+    //! \name Sobrecarga de los operadores de flujo de la clase Polinomio.
 
     // COMPLETAR LOS COMENTARIOS DE DOXYGEN
     ostream &operator<<(ostream &stream, ed::Polinomio const &p);
