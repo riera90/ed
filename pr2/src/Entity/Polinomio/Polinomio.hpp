@@ -18,13 +18,14 @@
 #include "PolinomioInterfaz.hpp"
 #include "Monomio.hpp"
 #include "operadoresExternosMonomios.hpp"
+// #include "operadoresExternosPolinomios.hpp"
 
 
 // Se incluye la clase Polinomio dentro del espacio de nombre de la asigantura: ed
 namespace ed {
 
 //!  Definición de la clase Polinomio que hereda de PolinomioInterfaz
-class Polinomio: public ed::PolinomioInterfaz
+class Polinomio: public PolinomioInterfaz
 {
 
     //! \name Atributos privados de la clase Polinomio
@@ -39,57 +40,32 @@ class Polinomio: public ed::PolinomioInterfaz
         Polinomio(const Polinomio &polinomio);
         
         //! \name Observadores: funciones de consulta de la clase Polinomio
-        
         bool esNulo() const;
         int getGrado() const;
         int getNumeroMonomios() const;
         bool existeMonomio(int grado) const;
         ed::Monomio& getMonomio(int grado) const;
-    
-    // COMPLETAR
 
-
-    //! \name Funciones de modificación de la clase Polinomio
-    
+        //! \name Funciones de modificación de la clase Polinomio
         void addMonomio(ed::Monomio monomio);
 
-    // COMPLETAR
+        //! \name Operadores de la clase Polinomio
+        Polinomio & operator=(Polinomio const &p);
+        Polinomio & operator=(Monomio const &m);
+        Polinomio & operator=(double const &x);
 
+        // Operadores aritméticos y asignación
+        Polinomio & operator+=(Polinomio const &rhs);
+        Polinomio & operator+=(Monomio const &rhs);
+        Polinomio & operator+=(float const &rhs);
+        
+        Polinomio & operator-=(Polinomio const &rhs);
+        Polinomio & operator-=(Monomio const &rhs);
+        Polinomio & operator-=(float const &rhs);
 
-    	////////////////////////////////////////////////////////////////
+        //! \name Funciones lectura y escritura de la clase Polinomio
 
-    //! \name Operadores de la clase Polinomio
-
-    // COMPLETAR LOS COMENTARIOS DE DOXYGEN
-    Polinomio & operator=(Polinomio const &p);
-
-    // COMPLETAR LOS COMENTARIOS DE DOXYGEN
-    Polinomio & operator=(Monomio const &m);
-
-    // COMPLETAR LOS COMENTARIOS DE DOXYGEN
-    Polinomio & operator=(double const &x);
-
-    // Operadores aritméticos y asignación
-
-    	// COMPLETAR LOS COMENTARIOS DE DOXYGEN
-    Polinomio & operator+=(Polinomio const &p);
-
-
-    // COMPLETAR EL RESTO DE OPERADORES
-
-
-    /////////////////////////////////////////////////////////////////////////////////////
-
-    //! \name Funciones lectura y escritura de la clase Polinomio
-
-    // COMPLETAR
-
-
-    ///////////////////////////////////////////////////////////////////////
-
-    //! \name Funciones auxiliares de la clase Polinomio
-
-    // COMPLETAR
+        //! \name Funciones auxiliares de la clase Polinomio
 
 
 }; // Fin de la definición de la clase Polinomio

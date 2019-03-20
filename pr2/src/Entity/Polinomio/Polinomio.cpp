@@ -8,6 +8,8 @@
 #include <iostream>
 
 #include "Polinomio.hpp"
+#include "operadoresExternosPolinomios.hpp"
+
 
 ed::Polinomio::Polinomio()
 {
@@ -93,12 +95,6 @@ void ed::Polinomio::addMonomio(ed::Monomio monomio){
 }
 
 // Operadores de asignación
-
-// COMPLETAR
-
-
-/////////////////////////////////////////////////////////////
-
 ed::Polinomio & ed::Polinomio::operator=(ed::Polinomio const &p)
 {
 	this->monomios_.clear();
@@ -138,29 +134,51 @@ ed::Polinomio & ed::Polinomio::operator=(double const &x)
 	return *this;
 }
 
-//////////////////////////////////////////////////////////////
-
-ed::Polinomio & ed::Polinomio::operator+=(ed::Polinomio const &p)
+ed::Polinomio & ed::Polinomio::operator+=(ed::Polinomio const &rhs)
 {
-	// COMPLETAR
-
-	// Se devuelve el objeto actual
+	(*this) = (*this) + rhs;
 	return *this;
 }
 
-// COMPLETAR EL RESTO DE OPERADORES
+
+ed::Polinomio & ed::Polinomio::operator+=(ed::Monomio const &rhs)
+{
+	(*this) = (*this) + rhs;
+	return *this;
+}
 
 
+ed::Polinomio & ed::Polinomio::operator+=(float const &rhs)
+{
+	(*this) = (*this) + rhs;
+	return *this;
+}
 
-///////////////////////////////////////////////////////////////////////
+
+ed::Polinomio & ed::Polinomio::operator-=(ed::Polinomio const &rhs)
+{
+	(*this) = (*this) - rhs;
+	return *this;
+}
+
+
+ed::Polinomio & ed::Polinomio::operator-=(ed::Monomio const &rhs)
+{
+	(*this) = (*this) - rhs;
+	return *this;
+}
+
+
+ed::Polinomio & ed::Polinomio::operator-=(float const &rhs)
+{
+	(*this) = (*this) - rhs;
+	return *this;
+}
+
+
 
 // Funciones lectura y escritura de la clase Polinomio
 
-// COMPLETAR
-
-
-///////////////////////////////////////////////////////////////////////
 
 // Funciones auxiliares de la clase Polinomio
 
-// COMPLETAR
