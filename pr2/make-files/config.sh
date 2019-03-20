@@ -1,5 +1,13 @@
 #!/bin/bash
 
+if [[ $1 == "reset" ]]; then
+	echo "# this looks empty... try running 'make config' in the main makefile!
+#    __
+# __( o)>
+# \ <_ ) r90" > ./make-files/Makefile
+	exit
+fi
+
 
 
 
@@ -241,7 +249,7 @@ generateMakefile(){
 	
 	
 	
-	echo "# this Makefile was generated automaticly by generic-makefile" >> ./make-files/Makefile
+	echo "# this Makefile was generated automatically by generic-makefile" >> ./make-files/Makefile
 	
 	
 	# if execute after compilation is set, put the run at the start,
@@ -448,7 +456,29 @@ clean:
 	
 	
 	
-	
+	# clone googletest
+	echo "
+.PHONY : init-gest
+init-gest:
+	@echo \"\tClonning googletest to make-files\"
+	@if [ -d \"make-files/googletest\" ]; then \\
+		echo \"googletest is already cloned\"; \\
+	else \\
+		git clone https://github.com/google/googletest.git make-files/googletest; \\
+		rm ./make-files/googletest/googletest/.git -rf; \\
+	fi;
+" >> ./make-files/Makefile
+
+
+	# remove googletest
+	echo "
+.PHONY : rm-gest
+rm-gest:
+	@echo \"\tRemoving googletest repository\"
+	@if [ -d \"make-files/googletest\" ]; then \\
+		rm make-files/googletest -rf; \\
+	fi;
+" >> ./make-files/Makefile
 	
 	
 	# the ducky

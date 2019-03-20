@@ -32,12 +32,15 @@ include ./make-files/Makefile
 
 .PHONY: config
 config:
-	./make-files/config.sh
+	@echo "\tConfiguring makefile"
+	@./make-files/config.sh
 
-.PHONY: doc
-doc: doc
-	@doxygen
-	@firefox ./output/html/index.html &
+.PHONY: reset
+reset:
+	@echo "\tReseting makefile configuration"
+	@./make-files/config.sh reset
+
+
 
 #    __
 # __( o)>
