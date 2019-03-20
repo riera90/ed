@@ -29,7 +29,8 @@ ed::Polinomio::Polinomio(const Polinomio &polinomio)
 
 bool ed::Polinomio::esNulo() const
 {
-	if ( this->monomios_.empty() ) return true;
+	if ( this->monomios_.empty() )
+		return true;
 	
 	for (size_t i = 0; i < this->monomios_.size(); i++) {
 		if ( !this->monomios_[i].esNulo() )

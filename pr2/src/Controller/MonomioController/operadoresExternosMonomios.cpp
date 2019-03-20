@@ -18,23 +18,26 @@ namespace ed
 
     bool operator==(const ed::Monomio &lhs, const ed::Monomio &rhs)
     {
-    if ( (lhs.getGrado() == rhs.getGrado()) && ed::near(lhs.getCoeficiente(), rhs.getCoeficiente()))
-    return true;
-    else return false;
+        if ( (lhs.getGrado() == rhs.getGrado()) && ed::near(lhs.getCoeficiente(), rhs.getCoeficiente()))
+            return true;
+        else
+            return false;
     }
 
     bool operator==(const float &lhs, const ed::Monomio &rhs)
     {
-    if ( (rhs.getGrado() == 0 ) && ed::near(lhs, rhs.getCoeficiente()))
-    return true;
-    else return false;
+        if ( (rhs.getGrado() == 0 ) && ed::near(lhs, rhs.getCoeficiente()))
+            return true;
+        else
+            return false;
     }
 
     bool operator==(const ed::Monomio &lhs, const float &rhs)
     {
-    if ( (lhs.getGrado() == 0 ) && ed::near(lhs.getCoeficiente(), rhs))
-    return true;
-    else return false;
+        if ( (lhs.getGrado() == 0 ) && ed::near(lhs.getCoeficiente(), rhs))
+            return true;
+        else
+            return false;
     }
 
 
@@ -43,17 +46,17 @@ namespace ed
 
     bool operator!=(ed::Monomio const & m1, ed::Monomio const & m2)
     {
-    return m1 == m2 ? false:true;
+        return m1 == m2 ? false:true;
     }
 
     bool operator!=(const float &lhs, const ed::Monomio &rhs)
     {
-    return lhs == rhs ? false:true;
+        return lhs == rhs ? false:true;
     }
 
     bool operator!=(const ed::Monomio &lhs, const float &rhs)
     {
-    return lhs == rhs ? false:true;
+        return lhs == rhs ? false:true;
     }
 
 
@@ -63,11 +66,11 @@ namespace ed
 
     ed::Monomio & operator+(ed::Monomio const & m)
     {
-    // Se crea un nuevo objeto
-    ed::Monomio *nuevo = new ed::Monomio(m);
+        // Se crea un nuevo objeto
+        ed::Monomio *nuevo = new ed::Monomio(m);
 
-    // Se devuelve el resultado
-    return *nuevo;
+        // Se devuelve el resultado
+        return *nuevo;
     }
 
 
@@ -78,15 +81,15 @@ namespace ed
     // Suma
     ed::Monomio & operator+ (ed::Monomio const &lhs, ed::Monomio const &rhs)
     {
-    ed::Monomio *nuevo = new ed::Monomio(lhs);
+        ed::Monomio *nuevo = new ed::Monomio(lhs);
 
-    if (lhs.getGrado() != rhs.getGrado())
-    return *nuevo;
+        if (lhs.getGrado() != rhs.getGrado())
+            return *nuevo;
 
-    nuevo->setCoeficiente(lhs.getCoeficiente() + rhs.getCoeficiente());
-    nuevo->setGrado(lhs.getGrado());
+        nuevo->setCoeficiente(lhs.getCoeficiente() + rhs.getCoeficiente());
+        nuevo->setGrado(lhs.getGrado());
 
-    return *nuevo;
+        return *nuevo;
     }
 
 
@@ -95,22 +98,22 @@ namespace ed
 
     ed::Monomio &operator- (const ed::Monomio &rhs)
     {
-    ed::Monomio *nuevo = new ed::Monomio(rhs);
-    nuevo->setCoeficiente(-nuevo->getCoeficiente());
-    return *nuevo;
+        ed::Monomio *nuevo = new ed::Monomio(rhs);
+        nuevo->setCoeficiente(-nuevo->getCoeficiente());
+        return *nuevo;
     }
 
     ed::Monomio & operator- (ed::Monomio const &lhs, ed::Monomio const &rhs)
     {
-    ed::Monomio *nuevo = new ed::Monomio(lhs);
+        ed::Monomio *nuevo = new ed::Monomio(lhs);
 
-    if (lhs.getGrado() != rhs.getGrado())
-    return *nuevo;
+        if (lhs.getGrado() != rhs.getGrado())
+            return *nuevo;
 
-    nuevo->setCoeficiente(lhs.getCoeficiente() - rhs.getCoeficiente());
-    nuevo->setGrado(lhs.getGrado());
+        nuevo->setCoeficiente(lhs.getCoeficiente() - rhs.getCoeficiente());
+        nuevo->setGrado(lhs.getGrado());
 
-    return *nuevo;
+        return *nuevo;
     }
 
     //////////////////
@@ -118,33 +121,33 @@ namespace ed
 
     ed::Monomio &operator* (const ed::Monomio &lhs, const ed::Monomio &rhs)
     {
-    ed::Monomio *monomio = new ed::Monomio();
+        ed::Monomio *monomio = new ed::Monomio();
 
-    monomio->setGrado(lhs.getGrado() + rhs.getGrado());
-    monomio->setCoeficiente(lhs.getCoeficiente() * rhs.getCoeficiente());
+        monomio->setGrado(lhs.getGrado() + rhs.getGrado());
+        monomio->setCoeficiente(lhs.getCoeficiente() * rhs.getCoeficiente());
 
-    return *monomio;
+        return *monomio;
     }
 
     ed::Monomio &operator* (const ed::Monomio &lhs, const float &rhs)
     {
-    ed::Monomio *monomio = new ed::Monomio();
+        ed::Monomio *monomio = new ed::Monomio();
 
-    monomio->setGrado(lhs.getGrado());
-    monomio->setCoeficiente(lhs.getCoeficiente() * rhs);
+        monomio->setGrado(lhs.getGrado());
+        monomio->setCoeficiente(lhs.getCoeficiente() * rhs);
 
-    return *monomio;
+        return *monomio;
     }
 
 
     ed::Monomio &operator* (const float &lhs, const ed::Monomio &rhs)
     {
-    ed::Monomio *monomio = new ed::Monomio();
+        ed::Monomio *monomio = new ed::Monomio();
 
-    monomio->setGrado(rhs.getGrado());
-    monomio->setCoeficiente(lhs * rhs.getCoeficiente());
+        monomio->setGrado(rhs.getGrado());
+        monomio->setCoeficiente(lhs * rhs.getCoeficiente());
 
-    return *monomio;
+        return *monomio;
     }
 
 
@@ -153,41 +156,46 @@ namespace ed
 
     ed::Monomio &operator/ (const ed::Monomio &lhs, const ed::Monomio &rhs)
     {
-    ed::Monomio *monomio = new ed::Monomio();
+        ed::Monomio *monomio = new ed::Monomio();
 
-    if (lhs.getGrado() < rhs.getGrado()) return *monomio;
-    if ( 0 == rhs.getGrado()) return *monomio;
+        if (lhs.getGrado() < rhs.getGrado())
+            return *monomio;
+            
+        if ( 0 == rhs.getGrado())
+            return *monomio;
 
-    monomio->setGrado(lhs.getGrado() - rhs.getGrado());
-    monomio->setCoeficiente(lhs.getCoeficiente() / rhs.getCoeficiente());
+        monomio->setGrado(lhs.getGrado() - rhs.getGrado());
+        monomio->setCoeficiente(lhs.getCoeficiente() / rhs.getCoeficiente());
 
-    return *monomio;
+        return *monomio;
     }
 
 
     ed::Monomio &operator/ (const ed::Monomio &lhs, const float &rhs)
     {
-    ed::Monomio *monomio = new ed::Monomio();
+        ed::Monomio *monomio = new ed::Monomio();
 
-    if ( rhs == 0 ) return *monomio;
+        if ( rhs == 0 )
+            return *monomio;
 
-    monomio->setGrado(lhs.getGrado());
-    monomio->setCoeficiente(lhs.getCoeficiente() / rhs);
-
-    return *monomio;
+        monomio->setGrado(lhs.getGrado());
+        monomio->setCoeficiente(lhs.getCoeficiente() / rhs);
+        
+        return *monomio;
     }
 
 
     ed::Monomio &operator/ (const float &lhs, const ed::Monomio &rhs)
     {
-    ed::Monomio *monomio = new ed::Monomio();
+        ed::Monomio *monomio = new ed::Monomio();
 
-    if ( rhs.getCoeficiente() == 0 ) return *monomio;
+        if ( rhs.getCoeficiente() == 0 )
+            return *monomio;
 
-    monomio->setGrado(0);
-    monomio->setCoeficiente(lhs / rhs.getCoeficiente());
+        monomio->setGrado(0);
+        monomio->setCoeficiente(lhs / rhs.getCoeficiente());
 
-    return *monomio;
+        return *monomio;
     }
 
 
@@ -196,22 +204,24 @@ namespace ed
     //  Sobrecarga del operador de entrada
     std::istream &operator>>(std::istream &stream, ed::Monomio &m)
     {
-    std::string aux;
-    getline(stream, aux, ' ');
-    m.setCoeficiente(atof(aux.c_str()));
-    getline(stream, aux, '\n');
-    m.setGrado(atoi(aux.c_str()));
-    return stream;
+        std::string aux;
+        
+        getline(stream, aux, ' ');
+        m.setCoeficiente(atof(aux.c_str()));
+        
+        getline(stream, aux, '\n');
+        m.setGrado(atoi(aux.c_str()));
+        
+        return stream;
     }
 
 
     //  Sobrecarga del operador de salida
     std::ostream &operator<<(std::ostream &stream, const ed::Monomio &m)
     {
-
-    stream<<m.getCoeficiente()<<"x^"<<m.getGrado();
-    // Se devuelve el flujo de salida
-    return stream;
+        stream<<m.getCoeficiente()<<"x^"<<m.getGrado();
+        // Se devuelve el flujo de salida
+        return stream;
     }
 
 

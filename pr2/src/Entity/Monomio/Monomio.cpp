@@ -13,8 +13,10 @@
 
 ed::Monomio::Monomio(float coeficiente, int grado)
 {
-    if (grado < 0) this->grado_ = 0;
-    else this->grado_ = grado;
+    if (grado < 0)
+        this->grado_ = 0;
+    else
+        this->grado_ = grado;
 
     this->coeficiente_ = coeficiente;
 }
@@ -44,7 +46,8 @@ bool ed::Monomio::setCoeficiente(float coeficiente)
 
 bool ed::Monomio::setGrado(int grado)
 {
-    if (grado < 0) return false;
+    if (grado < 0)
+        return false;
 
     this->grado_ = grado;
     return true;
@@ -53,14 +56,20 @@ bool ed::Monomio::setGrado(int grado)
 
 bool ed::Monomio::esNulo() const
 {
-    if ( this->getGrado() != 0) return false;
-    if ( !near(this->getCoeficiente(), 0) ) return false;
+    if ( this->getGrado() != 0)
+        return false;
+        
+    if ( !near(this->getCoeficiente(), 0) )
+        return false;
+        
     return true;
 }
 
 bool ed::Monomio::esConstante() const
 {
-    if ( !near(this->getCoeficiente(), 0) ) return false;
+    if ( !near(this->getCoeficiente(), 0) )
+        return false;
+        
     return true;
 }
 
@@ -95,7 +104,8 @@ ed::Monomio & ed::Monomio::operator=(double const &x)
 
 ed::Monomio & ed::Monomio::operator+=(ed::Monomio const &m)
 {
-    if (this->getGrado() != m.getGrado()) return *this;
+    if (this->getGrado() != m.getGrado())
+        return *this;
 
     this->setCoeficiente(this->getCoeficiente() + m.getCoeficiente());
 
@@ -107,7 +117,8 @@ ed::Monomio & ed::Monomio::operator+=(ed::Monomio const &m)
 
 ed::Monomio & ed::Monomio::operator-=(ed::Monomio const &m)
 {
-    if (this->getGrado() != m.getGrado()) return *this;
+    if (this->getGrado() != m.getGrado())
+        return *this;
 
     this->setCoeficiente(this->getCoeficiente() - m.getCoeficiente());
 
@@ -118,8 +129,11 @@ ed::Monomio & ed::Monomio::operator-=(ed::Monomio const &m)
 
 ed::Monomio & ed::Monomio::operator*=(const ed::Monomio &rhs)
 {
-    if (this->getGrado() < rhs.getGrado()) return *this;
-    if (rhs.getCoeficiente() == 0) return *this;
+    if (this->getGrado() < rhs.getGrado())
+        return *this;
+        
+    if (rhs.getCoeficiente() == 0)
+        return *this;
 
     this->setCoeficiente(this->getCoeficiente() * rhs.getCoeficiente());
     this->setGrado(this->getGrado() + rhs.getGrado());
@@ -131,7 +145,8 @@ ed::Monomio & ed::Monomio::operator*=(const ed::Monomio &rhs)
 
 ed::Monomio & ed::Monomio::operator*=(const float &rhs)
 {
-    if (rhs == 0) return *this;
+    if (rhs == 0)
+        return *this;
 
     this->setCoeficiente(this->getCoeficiente() * rhs);
 
@@ -142,8 +157,11 @@ ed::Monomio & ed::Monomio::operator*=(const float &rhs)
 
 ed::Monomio & ed::Monomio::operator/=(const ed::Monomio &rhs)
 {
-    if (this->getGrado() < rhs.getGrado()) return *this;
-    if (rhs.getCoeficiente() == 0) return *this;
+    if (this->getGrado() < rhs.getGrado())
+        return *this;
+        
+    if (rhs.getCoeficiente() == 0)
+        return *this;
 
     this->setCoeficiente(this->getCoeficiente() - rhs.getCoeficiente());
     this->setGrado(this->getGrado() + rhs.getGrado());
@@ -155,7 +173,8 @@ ed::Monomio & ed::Monomio::operator/=(const ed::Monomio &rhs)
 
 ed::Monomio & ed::Monomio::operator/=(const float &rhs)
 {
-    if (rhs == 0) return *this;
+    if (rhs == 0)
+        return *this;
 
     this->setCoeficiente(this->getCoeficiente() / rhs);
 
@@ -179,9 +198,9 @@ void ed::Monomio::leerMonomio()
     std::cin >> aux;
     std::cin.ignore();
     while (!ed::isFloat(aux)){
-    std::cout << "introduzca un coeficiente valido:";
-    std::cin.ignore();
-    std::cin >> aux;
+        std::cout << "introduzca un coeficiente valido:";
+        std::cin.ignore();
+        std::cin >> aux;
     }
     this->setCoeficiente(ed::stof(aux));
 
@@ -189,9 +208,9 @@ void ed::Monomio::leerMonomio()
     std::cin >> aux;
     std::cin.ignore();
     while (!ed::isInt(aux)){
-    std::cout << "introduzca un coeficiente valido:";
-    std::cin.ignore();
-    std::cin >> aux;
+        std::cout << "introduzca un coeficiente valido:";
+        std::cin.ignore();
+        std::cin >> aux;
     }
     this->setGrado(ed::stoi(aux));
 
@@ -216,7 +235,9 @@ float ed::Monomio::calcularValor(float x) const
 
 void ed::Monomio::plot(int min_x, int max_x) const
 {
-    if (max_x <= min_x) return;
+    if (max_x <= min_x)
+        return;
+        
     float divisions = ((float)max_x - (float)min_x) / 500;
     std::ofstream plot;
     plot.open("./output/plot.dat");
