@@ -324,3 +324,235 @@ TEST(Polinomio, operator_minus_real_polinomio)
 	EXPECT_EQ(p2.getMonomio(0), m3);
 	EXPECT_EQ(p2.getMonomio(2), m4);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+TEST(Polinomio, operator_multiplication_polinomio_polinomio)
+{
+	ed::Polinomio p1;
+	ed::Polinomio p2;
+	ed::Polinomio p3;
+	ed::Polinomio paux1;
+	ed::Polinomio paux2;
+	ed::Monomio m1(1, 2);
+	ed::Monomio m2(1, 3);
+	ed::Monomio m3(1, 4);
+	ed::Monomio m4(1, 5);
+
+	paux1 = m1;
+	paux2 = m2;
+	p1 = paux1 + paux2;
+	paux1 = m3;
+	paux2 = m4;
+	p2 = paux1 + paux2;
+	
+	EXPECT_EQ(p1.getNumeroMonomios(), 2);
+	EXPECT_FALSE(p1.existeMonomio(1));
+	EXPECT_TRUE(p1.existeMonomio(2));
+	EXPECT_TRUE(p1.existeMonomio(3));
+	EXPECT_FALSE(p1.existeMonomio(4));
+	EXPECT_FALSE(p1.existeMonomio(5));
+	
+	EXPECT_EQ(p2.getNumeroMonomios(), 2);
+	EXPECT_FALSE(p2.existeMonomio(1));
+	EXPECT_FALSE(p2.existeMonomio(2));
+	EXPECT_FALSE(p2.existeMonomio(3));
+	EXPECT_TRUE(p2.existeMonomio(4));
+	EXPECT_TRUE(p2.existeMonomio(5));
+
+	p3 = p1 * p2;
+
+	EXPECT_EQ(p3.getNumeroMonomios(), 3);
+	EXPECT_FALSE(p3.existeMonomio(1));
+	EXPECT_FALSE(p3.existeMonomio(2));
+	EXPECT_FALSE(p3.existeMonomio(3));
+	EXPECT_FALSE(p3.existeMonomio(4));
+	EXPECT_FALSE(p3.existeMonomio(5));
+	EXPECT_TRUE(p3.existeMonomio(6));
+	EXPECT_TRUE(p3.existeMonomio(7));
+	EXPECT_TRUE(p3.existeMonomio(8));
+	EXPECT_FALSE(p3.existeMonomio(9));
+	EXPECT_FALSE(p3.existeMonomio(10));
+	
+	EXPECT_EQ(p3.getMonomio(6), ed::Monomio(1,6));
+	EXPECT_EQ(p3.getMonomio(7), ed::Monomio(2,7));
+	EXPECT_EQ(p3.getMonomio(8), ed::Monomio(1,8));
+}
+
+
+TEST(Polinomio, operator_multiplication_polinomio_monomio)
+{
+	ed::Polinomio p1;
+	ed::Polinomio p2;
+	ed::Polinomio paux1;
+	ed::Polinomio paux2;
+	ed::Monomio m1(1, 2);
+	ed::Monomio m2(1, 3);
+	ed::Monomio m3(1, 4);
+
+	paux1 = m1;
+	paux2 = m2;
+	p1 = paux1 + paux2;
+		
+	p2 = p1 * m3;
+
+	EXPECT_EQ(p2.getNumeroMonomios(), 2);
+	EXPECT_FALSE(p2.existeMonomio(1));
+	EXPECT_FALSE(p2.existeMonomio(2));
+	EXPECT_FALSE(p2.existeMonomio(3));
+	EXPECT_FALSE(p2.existeMonomio(4));
+	EXPECT_FALSE(p2.existeMonomio(5));
+	EXPECT_TRUE(p2.existeMonomio(6));
+	EXPECT_TRUE(p2.existeMonomio(7));
+	EXPECT_FALSE(p2.existeMonomio(8));
+	EXPECT_FALSE(p2.existeMonomio(9));
+	EXPECT_FALSE(p2.existeMonomio(10));
+	
+	EXPECT_EQ(p2.getMonomio(6), ed::Monomio(1,6));
+	EXPECT_EQ(p2.getMonomio(7), ed::Monomio(1,7));
+}
+
+
+TEST(Polinomio, operator_multiplication_monomio_polinomio)
+{
+	ed::Polinomio p1;
+	ed::Polinomio p2;
+	ed::Polinomio paux1;
+	ed::Polinomio paux2;
+	ed::Monomio m1(1, 2);
+	ed::Monomio m2(1, 3);
+	ed::Monomio m3(1, 4);
+
+	paux1 = m1;
+	paux2 = m2;
+	p1 = paux1 + paux2;
+		
+	p2 = m3 * p1;
+
+	EXPECT_EQ(p2.getNumeroMonomios(), 2);
+	EXPECT_FALSE(p2.existeMonomio(1));
+	EXPECT_FALSE(p2.existeMonomio(2));
+	EXPECT_FALSE(p2.existeMonomio(3));
+	EXPECT_FALSE(p2.existeMonomio(4));
+	EXPECT_FALSE(p2.existeMonomio(5));
+	EXPECT_TRUE(p2.existeMonomio(6));
+	EXPECT_TRUE(p2.existeMonomio(7));
+	EXPECT_FALSE(p2.existeMonomio(8));
+	EXPECT_FALSE(p2.existeMonomio(9));
+	EXPECT_FALSE(p2.existeMonomio(10));
+	
+	EXPECT_EQ(p2.getMonomio(6), ed::Monomio(1,6));
+	EXPECT_EQ(p2.getMonomio(7), ed::Monomio(1,7));
+}
+
+
+
+TEST(Polinomio, operator_multiplication_polinomio_real)
+{
+	ed::Polinomio p1;
+	ed::Polinomio p2;
+	ed::Polinomio paux1;
+	ed::Polinomio paux2;
+	ed::Monomio m1(1, 2);
+	ed::Monomio m2(1, 3);
+	ed::Monomio m3(1, 4);
+
+	paux1 = m1;
+	paux2 = m2;
+	p1 = paux1 + paux2;
+		
+	p2 = p1 * 5;
+
+	EXPECT_EQ(p2.getNumeroMonomios(), 2);
+	EXPECT_FALSE(p2.existeMonomio(1));
+	EXPECT_TRUE(p2.existeMonomio(2));
+	EXPECT_TRUE(p2.existeMonomio(3));
+	EXPECT_FALSE(p2.existeMonomio(4));
+	EXPECT_FALSE(p2.existeMonomio(5));
+	EXPECT_FALSE(p2.existeMonomio(6));
+	EXPECT_FALSE(p2.existeMonomio(7));
+	EXPECT_FALSE(p2.existeMonomio(8));
+	EXPECT_FALSE(p2.existeMonomio(9));
+	EXPECT_FALSE(p2.existeMonomio(10));
+	
+	EXPECT_EQ(p2.getMonomio(2), ed::Monomio(5,2));
+	EXPECT_EQ(p2.getMonomio(3), ed::Monomio(5,3));
+}
+
+
+TEST(Polinomio, operator_multiplication_real_polinomio)
+{
+	ed::Polinomio p1;
+	ed::Polinomio p2;
+	ed::Polinomio paux1;
+	ed::Polinomio paux2;
+	ed::Monomio m1(1, 2);
+	ed::Monomio m2(1, 3);
+	ed::Monomio m3(1, 4);
+
+	paux1 = m1;
+	paux2 = m2;
+	p1 = paux1 + paux2;
+		
+	p2 = 5 * p1;
+
+	EXPECT_EQ(p2.getNumeroMonomios(), 2);
+	EXPECT_FALSE(p2.existeMonomio(1));
+	EXPECT_TRUE(p2.existeMonomio(2));
+	EXPECT_TRUE(p2.existeMonomio(3));
+	EXPECT_FALSE(p2.existeMonomio(4));
+	EXPECT_FALSE(p2.existeMonomio(5));
+	EXPECT_FALSE(p2.existeMonomio(6));
+	EXPECT_FALSE(p2.existeMonomio(7));
+	EXPECT_FALSE(p2.existeMonomio(8));
+	EXPECT_FALSE(p2.existeMonomio(9));
+	EXPECT_FALSE(p2.existeMonomio(10));
+	
+	EXPECT_EQ(p2.getMonomio(2), ed::Monomio(5,2));
+	EXPECT_EQ(p2.getMonomio(3), ed::Monomio(5,3));
+}
+
+
+
+
+
+
+TEST(Polinomio, operator_division_polinomio_polinomio)
+{
+	ed::Polinomio p1;
+	ed::Polinomio p2;
+	ed::Polinomio p3;
+	ed::Polinomio paux1;
+	ed::Polinomio paux2;
+	ed::Monomio m1(1, 2);
+	ed::Monomio m2(1, 3);
+	ed::Monomio m3(1, 4);
+	ed::Monomio m4(1, 5);
+
+	paux1 = m1;
+	paux2 = m2;
+	p1 = paux1 + paux2;
+	paux1 = m3;
+	paux2 = m4;
+	p2 = paux1 + paux2;
+	
+
+	p3 = p2 / p1;
+
+	EXPECT_EQ(p3.getNumeroMonomios(), 1);
+	EXPECT_TRUE(p3.existeMonomio(2));
+	EXPECT_EQ(p3.getMonomio(2), ed::Monomio(1,2));
+	
+	p3 = p1 / p2;
+
+	EXPECT_EQ(p3.getNumeroMonomios(), 0);
+}

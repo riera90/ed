@@ -43,7 +43,7 @@ namespace ed
       //////////////////////////////////////////////////////////////////////////
     //! \name Operadores binarios de la suma
 
-    Polinomio & operator+(Polinomio const &lhr, Polinomio const &rhs);
+    Polinomio & operator+(Polinomio const &lhs, Polinomio const &rhs);
     Polinomio & operator+(Polinomio const &lhs, Monomio const &rhs);
     Polinomio & operator+(Monomio const &lhs, Polinomio const &rhs);
     Polinomio & operator+(Polinomio const &lhs, float const &rhs);
@@ -52,7 +52,7 @@ namespace ed
 
       //////////////////////////////////////////////////////////
     //! \name Operador binario de la resta
-    Polinomio & operator-(Polinomio const &lhr, Polinomio const &rhs);
+    Polinomio & operator-(Polinomio const &lhs, Polinomio const &rhs);
     Polinomio & operator-(Polinomio const &lhs, Monomio const &rhs);
     Polinomio & operator-(Monomio const &lhs, Polinomio const &rhs);
     Polinomio & operator-(Polinomio const &lhs, float const &rhs);
@@ -62,11 +62,19 @@ namespace ed
 
       //////////////////////////////////////////////////////////////////////////
     //! \name Operadores binarios de la multiplicación
-
+    Polinomio & operator*(Polinomio const &lhs, Polinomio const &rhs);
+    Polinomio & operator*(Polinomio const &lhs, Monomio const &rhs);
+    Polinomio & operator*(Monomio const &lhs, Polinomio const &rhs);
+    Polinomio & operator*(Polinomio const &lhs, float const &rhs);
+    Polinomio & operator*(float const &lhs, Polinomio const &rhs);
 
       //////////////////////////////////////////////////////////////////////////
     //! \name Operadores binarios de la división
-
+    Polinomio & operator/(Polinomio const &lhs, Polinomio const &rhs);
+    Polinomio & operator/(Polinomio const &lhs, Monomio const &rhs);
+    Polinomio & operator/(Monomio const &lhs, Polinomio const &rhs);
+    Polinomio & operator/(Polinomio const &lhs, float const &rhs);
+    Polinomio & operator/(float const &lhs, Polinomio const &rhs);
 
       //////////////////////////////////////////////////////////////////////////
     //! \name Sobrecarga de los operadores de flujo de la clase Polinomio.

@@ -298,6 +298,71 @@ namespace ed
       //////////////////
     // Multiplicación
 
+    Polinomio & operator*(Polinomio const &lhs, Polinomio const &rhs){
+        ed::Polinomio *nuevo = new ed::Polinomio;
+        
+        for (int li = 0, ln = 0; ln < lhs.getNumeroMonomios(); li++) {
+            // printf("li %i\n", li);
+            if (lhs.existeMonomio(li)){
+                // printf("\tL in %i\n", li);
+                
+                
+                for (int ri = 0, rn = 0; rn < rhs.getNumeroMonomios(); ri++) {
+                    // printf("ri %i\n", ri);
+                    if (rhs.existeMonomio(ri)){
+                        // printf("\tR in %i\n", ri);
+                        
+                        nuevo->addMonomio(lhs.getMonomio(li) * rhs.getMonomio(ri));
+                        rn++;
+                    }
+                }
+                
+                ln++;
+            }
+        }
+        
+        return *nuevo;
+    }
+    
+    
+    Polinomio & operator*(Polinomio const &lhs, Monomio const &rhs){
+        ed::Polinomio *nuevo = new ed::Polinomio;
+        
+        for (int i = 0, n = 0; n < lhs.getNumeroMonomios(); i++) {
+            // printf("li %i\n", li);
+            if (lhs.existeMonomio(i)){
+                // printf("\tL in %i\n", li);
+                nuevo->addMonomio(lhs.getMonomio(i) * rhs);
+                n++;
+            }
+        }
+        
+        return *nuevo;
+    }
+    
+    Polinomio & operator*(Monomio const &lhs, Polinomio const &rhs){
+        return rhs * lhs;
+    }
+    
+    
+    Polinomio & operator*(Polinomio const &lhs, float const &rhs){
+        ed::Polinomio *nuevo = new ed::Polinomio;
+        
+        for (int i = 0, n = 0; n < lhs.getNumeroMonomios(); i++) {
+            // printf("li %i\n", li);
+            if (lhs.existeMonomio(i)){
+                // printf("\tL in %i\n", li);
+                nuevo->addMonomio(lhs.getMonomio(i) * rhs);
+                n++;
+            }
+        }
+        
+        return *nuevo;
+    }
+    
+    Polinomio & operator*(float const &lhs, Polinomio const &rhs){
+        return rhs * lhs;
+    }
 
 
 
@@ -308,7 +373,48 @@ namespace ed
 
       ////////////
     // División
-
+    
+    Polinomio & operator/(Polinomio const &lhs, Polinomio const &rhs){
+        ed::Polinomio *retpol = new ed::Polinomio;
+        
+        if (lhs.getGrado() > rhs.getGrado())
+            return *retpol;
+        
+        *retpol = rhs;
+        
+        while ( lhs.getGrado() <= retpol->getGrado() ){
+            *retpol = *retpol - rhs;
+        }
+        
+        return *retpol;
+    }
+    
+    
+    Polinomio & operator/(Polinomio const &lhs, Monomio const &rhs){
+        ed::Polinomio *nuevo = new ed::Polinomio;
+        
+        
+        return *nuevo;
+    }
+    
+    Polinomio & operator/(Monomio const &lhs, Polinomio const &rhs){
+        return rhs * lhs;
+    }
+    
+    
+    Polinomio & operator/(Polinomio const &lhs, float const &rhs){
+        ed::Polinomio *nuevo = new ed::Polinomio;
+        
+        
+        return *nuevo;
+    }
+    
+    Polinomio & operator/(float const &lhs, Polinomio const &rhs){
+        ed::Polinomio *nuevo = new ed::Polinomio;
+        
+        
+        return *nuevo;
+    }
 
 
 
