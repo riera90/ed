@@ -13,7 +13,7 @@
 
 ed::Polinomio::Polinomio()
 {
-	
+	// nothing to do beocuse the vector is already empty on creation.
 }
 
 ed::Polinomio::Polinomio(const Polinomio &polinomio)
@@ -24,6 +24,11 @@ ed::Polinomio::Polinomio(const Polinomio &polinomio)
 			n++;
 		}
 	}
+}
+
+ed::Polinomio::Polinomio(const Monomio &monomio)
+{
+	this->addMonomio(monomio);
 }
 
 

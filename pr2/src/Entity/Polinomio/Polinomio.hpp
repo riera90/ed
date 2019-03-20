@@ -38,6 +38,7 @@ class Polinomio: public PolinomioInterfaz
         //! \name Constructores de la clase Polinomio
         Polinomio();
         Polinomio(const Polinomio &polinomio);
+        Polinomio(const Monomio &monomio);
         
         //! \name Observadores: funciones de consulta de la clase Polinomio
         bool esNulo() const;
