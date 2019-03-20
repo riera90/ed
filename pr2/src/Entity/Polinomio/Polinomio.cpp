@@ -177,6 +177,26 @@ ed::Polinomio & ed::Polinomio::operator-=(float const &rhs)
 }
 
 
+ed::Polinomio & ed::Polinomio::operator*=(ed::Polinomio const &rhs)
+{
+	(*this) = (*this) * rhs;
+	return *this;
+}
+
+
+ed::Polinomio & ed::Polinomio::operator*=(ed::Monomio const &rhs)
+{
+	(*this) = (*this) * rhs;
+	return *this;
+}
+
+
+ed::Polinomio & ed::Polinomio::operator*=(float const &rhs)
+{
+	(*this) = (*this) * rhs;
+	return *this;
+}
+
 
 // Funciones lectura y escritura de la clase Polinomio
 

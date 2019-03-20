@@ -62,6 +62,10 @@ class Polinomio: public PolinomioInterfaz
         Polinomio & operator-=(Polinomio const &rhs);
         Polinomio & operator-=(Monomio const &rhs);
         Polinomio & operator-=(float const &rhs);
+        
+        Polinomio & operator*=(Polinomio const &rhs);
+        Polinomio & operator*=(Monomio const &rhs);
+        Polinomio & operator*=(float const &rhs);
 
         //! \name Funciones lectura y escritura de la clase Polinomio
 
