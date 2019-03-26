@@ -20,7 +20,7 @@ para compilar usa
 
 Para compilar las pruebas, clona googletest en make-files
 
-    git clone git@github.com:google/googletest.git ./make-files
+    make init-gtest
 
 y ejecuta
 
