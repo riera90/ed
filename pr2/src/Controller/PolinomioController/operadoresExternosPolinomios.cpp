@@ -391,19 +391,21 @@ namespace ed
         // internal varialbe
         Polinomio lhs_(lhs);
         Polinomio rhs_(rhs);
-        Monomio aux;
-        Polinomio rem;
-        
+        Monomio res; // ressult of the division of 2 monomios
+                
         if (lhs_.getGrado() < rhs_.getGrado())
             return *nuevo; 
         
-        while (lhs_.getGrado() > rhs_.getGrado()){         
-            aux = lhs_.getMonomio(lhs_.getGrado()) / rhs_.getMonomio(rhs_.getGrado());
-            rem = rhs_ * aux;
-            lhs_ -= rem;            
-            (*nuevo) += aux;
+        while (lhs_.getGrado() > rhs_.getGrado()){
+            // division betwen the bigest monomio of lhs and the biggest of rhs
+            res = lhs_.getMonomio(lhs_.getGrado()) / rhs_.getMonomio(rhs_.getGrado());
+            // this is the difference betwen what it's left and what we have now
+            // in 'lhs', so we must substract it from lhs
+            // 'res' times 'rhs'
+            lhs_ -= rhs_ * res;
+            // we add this difference to the returned value
+            (*nuevo) += res;
         }
-        // (*nuevo) = rhs * i;
         
         return *nuevo;
     }
@@ -411,31 +413,23 @@ namespace ed
     
     Polinomio & operator/(Polinomio const &lhs, Monomio const &rhs)
     {
-        ed::Polinomio *nuevo = new ed::Polinomio;       
-        
-        return *nuevo;
+        return lhs / Polinomio(rhs);
     }
     
     Polinomio & operator/(Monomio const &lhs, Polinomio const &rhs)
     {
-        return rhs * lhs;
+        return Polinomio(rhs) / lhs;
     }
     
     
     Polinomio & operator/(Polinomio const &lhs, float const &rhs)
     {
-        ed::Polinomio *nuevo = new ed::Polinomio;
-        
-        
-        return *nuevo;
+        return lhs / Polinomio(Monomio(rhs));
     }
     
     Polinomio & operator/(float const &lhs, Polinomio const &rhs)
     {
-        ed::Polinomio *nuevo = new ed::Polinomio;
-        
-        
-        return *nuevo;
+        return Polinomio(Monomio(lhs)) / rhs;
     }
 
 
@@ -450,16 +444,36 @@ namespace ed
     
     istream &operator>>(istream &stream, Polinomio &p)
     {
-        // Se devuelve el flujo de entrada
-      return stream;
+        std::string aux;
+        int grado;
+        float coeficiente;
+        Monomio m;
+        
+        while (getline(stream, aux, '+')){
+            std::cout<<"coeficiente: "<<aux.substr(0, aux.find(' '))<<"\n";
+            aux = aux.substr(aux.find(' ') + 1 , aux.length());
+            std::cout<<"grado: "<<aux<<"\n";
+            // aux = substr(aux.find('+') + 1 , aux.lenght());
+        }
+        
+        m.setCoeficiente(atof(aux.c_str()));
+        
+        getline(stream, aux, '\n');
+        m.setGrado(atoi(aux.c_str()));
+        
+        return stream;
     }
 
 
 
     ostream &operator<<(ostream &stream, Polinomio const &p)
     {
-        // Se devuelve el flujo de salida
-      return stream;
+        for (size_t i = 0; i < p.getGrado(); i--) {
+            if (p.existeMonomio(i)) {
+                std::cout <<p.getMonomio(i)<<" + ";
+            }
+        }
+        return stream;
     }
 
 

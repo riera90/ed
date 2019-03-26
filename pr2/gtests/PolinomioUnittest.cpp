@@ -551,13 +551,6 @@ TEST(Polinomio, operator_division_polinomio_polinomio)
 	EXPECT_EQ(p3.getNumeroMonomios(), 1);
 	EXPECT_TRUE(p3.existeMonomio(2));
 	EXPECT_EQ(p3.getMonomio(2), ed::Monomio(1,2));
-	
-	for (int i = 0, n = 0; n < p3.getNumeroMonomios(); i++) {
-		if (p3.existeMonomio(i)){
-			std::cout <<p3.getMonomio(i)<<" "<< '\n';
-			n++;
-		}
-	}
 
 	p3 = p1 / p2;
 
@@ -566,30 +559,35 @@ TEST(Polinomio, operator_division_polinomio_polinomio)
 
 
 
+TEST(Polinomio, operator_division_polinomio_monomio)
+{
+	ed::Polinomio p1;
+	ed::Polinomio p2;
+	ed::Polinomio p3;
+	ed::Polinomio paux1;
+	ed::Polinomio paux2;
+	ed::Monomio m1(1, 2);
+	ed::Monomio m2(1, 3);
+	ed::Monomio m3(1, 4);
+	ed::Monomio m4(1, 5);
+
+	paux1 = m3;
+	paux2 = m4;
+	p2 = paux1 + paux2;
 
 
+	p3 = p2 / m2;
 
+	EXPECT_EQ(p3.getNumeroMonomios(), 2);
+	EXPECT_TRUE(p3.existeMonomio(1));
+	EXPECT_TRUE(p3.existeMonomio(2));
+	EXPECT_EQ(p3.getMonomio(1), ed::Monomio(1,1));
+	EXPECT_EQ(p3.getMonomio(2), ed::Monomio(1,2));
 
+	p3 = p1 / m3;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	EXPECT_EQ(p3.getNumeroMonomios(), 0);
+}
 
 
 

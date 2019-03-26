@@ -18,6 +18,7 @@
 #include "PolinomioInterfaz.hpp"
 #include "Monomio.hpp"
 #include "operadoresExternosMonomios.hpp"
+#include "auxiliarFunctions.hpp"
 // #include "operadoresExternosPolinomios.hpp"
 
 
@@ -68,10 +69,18 @@ class Polinomio: public PolinomioInterfaz
         Polinomio & operator*=(Monomio const &rhs);
         Polinomio & operator*=(float const &rhs);
 
+        Polinomio & operator/=(Polinomio const &rhs);
+        Polinomio & operator/=(Monomio const &rhs);
+        Polinomio & operator/=(float const &rhs);
+        
         //! \name Funciones lectura y escritura de la clase Polinomio
+        
+        void leerPolinomio();
+        void escribirPolinomio();
 
         //! \name Funciones auxiliares de la clase Polinomio
-
+        
+        float calcularValor(float x);
 
 }; // Fin de la definición de la clase Polinomio
 

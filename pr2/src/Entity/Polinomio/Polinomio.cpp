@@ -203,8 +203,78 @@ ed::Polinomio & ed::Polinomio::operator*=(float const &rhs)
 }
 
 
-// Funciones lectura y escritura de la clase Polinomio
+ed::Polinomio & ed::Polinomio::operator/=(ed::Polinomio const &rhs)
+{
+	(*this) = (*this) / rhs;
+	return *this;
+}
 
 
-// Funciones auxiliares de la clase Polinomio
+ed::Polinomio & ed::Polinomio::operator/=(ed::Monomio const &rhs)
+{
+	(*this) = (*this) / rhs;
+	return *this;
+}
+
+
+ed::Polinomio & ed::Polinomio::operator/=(float const &rhs)
+{
+	(*this) = (*this) / rhs;
+	return *this;
+}
+
+
+
+void ed::Polinomio::leerPolinomio()
+{
+	std::cout << "de que grado es el polinomio? : ";
+	std::string grado_max;
+	std::cin >> grado_max;
+	while ( !ed::isInt(grado_max) ){
+		std::cout << "introduzca un grado válido" << '\n';
+		std::cout << "de que grado es el polinomio? : ";
+		std::cin >> grado_max;
+	}
+	
+	std::string coeficiente;
+	
+	for (size_t i = 1; i < ed::stoi(grado_max); i++) {
+		std::cout << "introduzca el coeficiente polinomio de grado " << i << " : ";
+		std::cin >> coeficiente;
+		while ( !ed::isFloat(coeficiente) ){
+			std::cout << "introduzca un coeficiente válido" << '\n';
+			std::cout << "introduzca el coeficiente polinomio de grado " << i << " : ";
+			std::cin >> coeficiente;
+		}
+	}
+	
+	std::cout << "polinomio creado : ";
+	this->escribirPolinomio();
+	std::cout << '\n';
+}
+
+
+void ed::Polinomio::escribirPolinomio()
+{
+	for (int i = 0; i < this->getGrado(); i--) {
+		if (this->existeMonomio(i)) {
+			std::cout <<this->getMonomio(i)<<" + ";
+		}
+	}
+}
+
+
+float ed::Polinomio::calcularValor(float x)
+{
+	float retval = 0;
+	
+	for (int i = this->getGrado(); i > 0; i--) {
+		if (this->existeMonomio(i))
+			retval += this->calcularValor(x);
+	}
+	
+	return retval;
+}
+
+
 
