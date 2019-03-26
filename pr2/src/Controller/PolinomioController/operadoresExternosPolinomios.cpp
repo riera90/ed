@@ -383,25 +383,35 @@ namespace ed
     
     Polinomio & operator/(Polinomio const &lhs, Polinomio const &rhs)
     {
-        ed::Polinomio *retpol = new ed::Polinomio;
+        Polinomio *nuevo = new ed::Polinomio;
+        float coeficiente;
+        int grado;
         
-        if (lhs.getGrado() > rhs.getGrado())
-            return *retpol;
+        // to be able to modify the parapeters, we copy them into another
+        // internal varialbe
+        Polinomio lhs_(lhs);
+        Polinomio rhs_(rhs);
+        Monomio aux;
+        Polinomio rem;
         
-        *retpol = rhs;
+        if (lhs_.getGrado() < rhs_.getGrado())
+            return *nuevo; 
         
-        while ( lhs.getGrado() <= retpol->getGrado() ){
-            *retpol = *retpol - rhs;
+        while (lhs_.getGrado() > rhs_.getGrado()){         
+            aux = lhs_.getMonomio(lhs_.getGrado()) / rhs_.getMonomio(rhs_.getGrado());
+            rem = rhs_ * aux;
+            lhs_ -= rem;            
+            (*nuevo) += aux;
         }
+        // (*nuevo) = rhs * i;
         
-        return *retpol;
+        return *nuevo;
     }
     
     
     Polinomio & operator/(Polinomio const &lhs, Monomio const &rhs)
     {
-        ed::Polinomio *nuevo = new ed::Polinomio;
-        
+        ed::Polinomio *nuevo = new ed::Polinomio;       
         
         return *nuevo;
     }
