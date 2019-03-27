@@ -18,7 +18,7 @@ para compilar usa
 
 
 
-Para compilar las pruebas, clona googletest en make-files
+Para compilar las pruebas, clona googletest en make-files utilizando 'init-gtest'
 
     make init-gtest
 
