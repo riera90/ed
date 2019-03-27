@@ -76,11 +76,18 @@ class Polinomio: public PolinomioInterfaz
         //! \name Funciones lectura y escritura de la clase Polinomio
         
         void leerPolinomio();
-        void escribirPolinomio();
+        void escribirPolinomio() const;
 
         //! \name Funciones auxiliares de la clase Polinomio
         
-        float calcularValor(float x);
+        float calcularValor(float x) const;
+        
+        /**
+         * \brief representa una gráfica del polinomio
+         * \param real min_x: valor mínimo de x
+         * \param real max_x: valor máximo de x
+         */
+        void plot(int min_x, int max_x) const;
 
 }; // Fin de la definición de la clase Polinomio
 

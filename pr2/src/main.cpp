@@ -15,6 +15,7 @@
 #include <iostream>
 
 #include "funcionesAuxiliares.hpp"
+#include "Polinomio.hpp"
 
 #include "macros.hpp"
 
@@ -24,7 +25,9 @@
 */
 int main()
 {
+	ed::Polinomio polinomio;
 	int opcion;
+	int min, max;
 
 	do{
 
@@ -58,6 +61,36 @@ int main()
 				std::cout << RESET;
 
 				ed::operadoresExternosPolinomios();
+				break;
+				
+			case 3: 
+			   	std::cout << BIBLUE;
+				std::cout << "[3] introducir polinomio " << std::endl;
+				std::cout << RESET;
+
+				polinomio.leerPolinomio();
+				break;
+				
+			case 4: 
+				std::cout << BIBLUE;
+				std::cout << "[4] plot polinomio " << std::endl;
+				std::cout << RESET;
+				std::cout << "introduce la x minima: ";
+				std::cin >> min;
+				std::cout << "introduce la x maxima: ";
+				std::cin >> max;
+				std::cout << '\n';
+				
+				polinomio.plot(min, max);
+				
+				break;
+				
+			case 5: 
+				std::cout << BIBLUE;
+				std::cout << "[5] print polinomio " << std::endl;
+				std::cout << RESET;
+				std::cout << '\n';
+				polinomio.escribirPolinomio();
 				break;
 
 			default:

@@ -38,6 +38,15 @@ int ed::menu()
 
 	PLACE(posicion++,10);
 	std::cout << "[2] Operadores externos de la clase Polinomio " << std::endl;
+    
+    PLACE(posicion++,10);
+	std::cout << "[3] Introducir Polinomio" << std::endl;
+
+	PLACE(posicion++,10);
+	std::cout << "[4] plot Polinomio " << std::endl;
+    
+    PLACE(posicion++,10);
+	std::cout << "[5] print Polinomio " << std::endl;
 
 	posicion++;
 	PLACE(posicion++,10);

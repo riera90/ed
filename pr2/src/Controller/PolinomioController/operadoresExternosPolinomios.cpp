@@ -468,9 +468,15 @@ namespace ed
 
     ostream &operator<<(ostream &stream, Polinomio const &p)
     {
-        for (size_t i = 0; i < p.getGrado(); i--) {
+        bool first = true;
+        for (size_t i = 0; i < p.getGrado(); i++) {
             if (p.existeMonomio(i)) {
-                std::cout <<p.getMonomio(i)<<" + ";
+                if (!first)
+                    stream<<" + "<<p.getMonomio(i);
+                else{
+                    stream<<p.getMonomio(i);
+                    first = false;                    
+                }
             }
         }
         return stream;

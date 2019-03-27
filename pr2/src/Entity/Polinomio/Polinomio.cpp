@@ -238,7 +238,7 @@ void ed::Polinomio::leerPolinomio()
 	
 	std::string coeficiente;
 	
-	for (size_t i = 1; i < ed::stoi(grado_max); i++) {
+	for (size_t i = 0; i <= ed::stoi(grado_max); i++) {
 		std::cout << "introduzca el coeficiente polinomio de grado " << i << " : ";
 		std::cin >> coeficiente;
 		while ( !ed::isFloat(coeficiente) ){
@@ -246,35 +246,60 @@ void ed::Polinomio::leerPolinomio()
 			std::cout << "introduzca el coeficiente polinomio de grado " << i << " : ";
 			std::cin >> coeficiente;
 		}
+		this->addMonomio(Monomio(ed::stoi(coeficiente), i));
+		std::cout << "polinomio actual : "<< *this<< "\n";
 	}
 	
-	std::cout << "polinomio creado : ";
+	std::cout << "\n\tpolinomio creado : ";
 	this->escribirPolinomio();
 	std::cout << '\n';
 }
 
 
-void ed::Polinomio::escribirPolinomio()
+void ed::Polinomio::escribirPolinomio() const
 {
-	for (int i = 0; i < this->getGrado(); i--) {
+	bool first = true;
+	for (int i = 0; i <= this->getGrado(); i++) {
 		if (this->existeMonomio(i)) {
-			std::cout <<this->getMonomio(i)<<" + ";
+			if (!first)
+				std::cout << " + " << this->getMonomio(i);
+			else{
+				first = false;
+				std::cout <<this->getMonomio(i);
+			}
 		}
 	}
 }
 
 
-float ed::Polinomio::calcularValor(float x)
+float ed::Polinomio::calcularValor(float x) const
 {
 	float retval = 0;
-	
-	for (int i = this->getGrado(); i > 0; i--) {
+	for (int i = this->getGrado(); i >= 0; i--) {
 		if (this->existeMonomio(i))
-			retval += this->calcularValor(x);
+			retval += this->getMonomio(i).calcularValor(x);
 	}
 	
 	return retval;
 }
+
+
+void ed::Polinomio::plot(int min_x, int max_x) const
+{
+    if (max_x <= min_x)
+        return;
+        
+    float divisions = ((float)max_x - (float)min_x) / 500;
+    std::ofstream plot;
+    plot.open("./output/plot.dat");
+    for (float x = min_x; x < max_x; x += divisions) {
+        plot<<x<<" "<<this->calcularValor(x)<<"\n";
+    }
+    plot.close();
+
+    system("gnuplot -e \"set xlabel 'x'; set ylabel 'y'; set title 'Polinomio'; plot 'output/plot.dat' with lines;\" -p");
+}
+
 
 
 
