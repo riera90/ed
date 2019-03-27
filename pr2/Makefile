@@ -9,9 +9,9 @@ EXTRA_LIB_DIR   :=
 TMP_DIR         :=./tmp
 SRC_CODE_EXT    :=cpp
 SRC_HEADERS_EXT :=hpp
-MAIN_FILE       :=main2.cpp
+MAIN_FILE       :=main.cpp
 # excluded files from the project
-EXCLUDED_FILES  :=main.cpp#MonomioUnittest.cpp
+EXCLUDED_FILES  :=#MonomioUnittest.cpp
 
 
 # binary file name

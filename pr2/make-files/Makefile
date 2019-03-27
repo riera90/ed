@@ -10,15 +10,15 @@ run : ./output/bin.out
 	@time "./output/bin.out" hi!
 	
 	
-./output/bin.out : ./src/main2.cpp  ./tmp/libproject.a
+./output/bin.out : ./src/main.cpp  ./tmp/libproject.a
 	@echo "\tCompiling binary."
 	@mkdir -p ./output
-	@g++ ./src/main2.cpp -Wpedantic -I ./src -I ./src/Entity -I ./src/Entity/Monomio -I ./src/Entity/Polinomio -I ./src/Auxiliar -I ./src/Auxiliar/AuxiliarFunctions -I ./src/Controller -I ./src/Controller/MonomioController -I ./src/Controller/PolinomioController  -o ./output/bin.out ./tmp/libproject.a 
+	@g++ ./src/main.cpp -Wpedantic -I ./src -I ./src/Entity -I ./src/Entity/Monomio -I ./src/Entity/Polinomio -I ./src/Auxiliar -I ./src/Auxiliar/AuxiliarFunctions -I ./src/Controller -I ./src/Controller/MonomioController -I ./src/Controller/PolinomioController  -o ./output/bin.out ./tmp/libproject.a 
 
 
-./tmp/libproject.a : ./tmp/Entity/Monomio/Monomio.o ./tmp/Entity/Polinomio/Polinomio.o ./tmp/Auxiliar/AuxiliarFunctions/funcionesAuxiliares.o ./tmp/Auxiliar/AuxiliarFunctions/auxiliarFunctions.o ./tmp/Controller/MonomioController/operadoresExternosMonomios.o ./tmp/Controller/PolinomioController/operadoresExternosPolinomios.o ./tmp/main.o 
+./tmp/libproject.a : ./tmp/Entity/Monomio/Monomio.o ./tmp/Entity/Polinomio/Polinomio.o ./tmp/Auxiliar/AuxiliarFunctions/funcionesAuxiliares.o ./tmp/Auxiliar/AuxiliarFunctions/auxiliarFunctions.o ./tmp/Controller/MonomioController/operadoresExternosMonomios.o ./tmp/Controller/PolinomioController/operadoresExternosPolinomios.o 
 	@echo "\tBuilding project library."
-	@ar -rsc ./tmp/libproject.a ./tmp/Entity/Monomio/Monomio.o ./tmp/Entity/Polinomio/Polinomio.o ./tmp/Auxiliar/AuxiliarFunctions/funcionesAuxiliares.o ./tmp/Auxiliar/AuxiliarFunctions/auxiliarFunctions.o ./tmp/Controller/MonomioController/operadoresExternosMonomios.o ./tmp/Controller/PolinomioController/operadoresExternosPolinomios.o ./tmp/main.o 
+	@ar -rsc ./tmp/libproject.a ./tmp/Entity/Monomio/Monomio.o ./tmp/Entity/Polinomio/Polinomio.o ./tmp/Auxiliar/AuxiliarFunctions/funcionesAuxiliares.o ./tmp/Auxiliar/AuxiliarFunctions/auxiliarFunctions.o ./tmp/Controller/MonomioController/operadoresExternosMonomios.o ./tmp/Controller/PolinomioController/operadoresExternosPolinomios.o 
 
 
 ./tmp/Entity/Monomio/Monomio.o : ./src/Entity/Monomio/Monomio.cpp ./src/Entity/Monomio/Monomio.hpp
@@ -55,12 +55,6 @@ run : ./output/bin.out
 	@echo "\tPrecompiling object for ./src/Controller/PolinomioController/operadoresExternosPolinomios.cpp."
 	@mkdir -p ./tmp/Controller/PolinomioController
 	@g++ -c ./src/Controller/PolinomioController/operadoresExternosPolinomios.cpp -I ./src -I ./src/Entity -I ./src/Entity/Monomio -I ./src/Entity/Polinomio -I ./src/Auxiliar -I ./src/Auxiliar/AuxiliarFunctions -I ./src/Controller -I ./src/Controller/MonomioController -I ./src/Controller/PolinomioController  -o ./tmp/Controller/PolinomioController/operadoresExternosPolinomios.o;
-
-
-./tmp/main.o : ./src/main.cpp 
-	@echo "\tPrecompiling object for ./src/main.cpp."
-	@mkdir -p ./tmp
-	@g++ -c ./src/main.cpp -I ./src -I ./src/Entity -I ./src/Entity/Monomio -I ./src/Entity/Polinomio -I ./src/Auxiliar -I ./src/Auxiliar/AuxiliarFunctions -I ./src/Controller -I ./src/Controller/MonomioController -I ./src/Controller/PolinomioController  -o ./tmp/main.o;
 
 
 .PHONY : googletest
