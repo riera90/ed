@@ -11,7 +11,7 @@ SRC_CODE_EXT    :=cpp
 SRC_HEADERS_EXT :=hpp
 MAIN_FILE       :=main.cpp
 # excluded files from the project
-EXCLUDED_FILES  :=#MonomioUnittest.cpp
+EXCLUDED_FILES  :=MonomioUnittest.cpp PolinomioUnittest.cpp
 
 
 # binary file name
@@ -40,6 +40,9 @@ reset:
 	@echo "\tReseting makefile configuration"
 	@./make-files/config.sh reset
 
+.PHONY: doc
+doc:
+	@doxygen
 
 
 #    __

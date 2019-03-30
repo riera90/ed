@@ -83,7 +83,7 @@ ed::Monomio& ed::Polinomio::getMonomio(int grado) const
 }
 
 
-void ed::Polinomio::addMonomio(ed::Monomio monomio){
+void ed::Polinomio::addMonomio(ed::Monomio const &monomio){
 	if ( this->existeMonomio(monomio.getGrado()) ){
 		for (int i = 0; i < this->monomios_.size(); i++) {
 			if ( this->monomios_[i].getGrado() == monomio.getGrado() ){
@@ -96,7 +96,7 @@ void ed::Polinomio::addMonomio(ed::Monomio monomio){
 		}
 	}
 	else{
-		this->monomios_.push_back(monomio);
+		this->monomios_.push_back(*new ed::Monomio(monomio));
 	}
 }
 

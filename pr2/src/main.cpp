@@ -1,8 +1,8 @@
 /*!
  \mainpage Implementación de un Polinomio
  \brief		\f$ P(X) = a_n X^n + a_{n-1} X^n-1} \cdots + a_2 X^2 + a_1 X + a_0 \f$
- \author   
- \date     
+ \author   Diego Rodríguez Riera
+ \date     30/3/19
  \version  1.0
 */
 

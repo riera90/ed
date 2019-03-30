@@ -393,7 +393,7 @@ namespace ed
         Polinomio rhs_(rhs);
         Monomio res; // ressult of the division of 2 monomios
                 
-        if (lhs_.getGrado() < rhs_.getGrado())
+        if (lhs_.getGrado() <= rhs_.getGrado())
             return *nuevo; 
         
         while (lhs_.getGrado() > rhs_.getGrado()){
@@ -424,12 +424,16 @@ namespace ed
     
     Polinomio & operator/(Polinomio const &lhs, float const &rhs)
     {
+        if ( rhs == 0 )
+            return *new Polinomio();
         return lhs / Polinomio(Monomio(rhs));
     }
     
     Polinomio & operator/(float const &lhs, Polinomio const &rhs)
     {
-        return Polinomio(Monomio(lhs)) / rhs;
+        if ( rhs.getGrado() == 0 && rhs.getMonomio(0).getCoeficiente() == 0 )
+            return Polinomio(Monomio(lhs)) / rhs;
+        return *new Polinomio();
     }
 
 
