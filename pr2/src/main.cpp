@@ -16,6 +16,7 @@
 
 #include "funcionesAuxiliares.hpp"
 #include "Polinomio.hpp"
+#include "operadoresExternosPolinomios.hpp"
 
 #include "macros.hpp"
 
@@ -25,6 +26,17 @@
 */
 int main()
 {
+	// // begin debug
+	// 
+	// 
+	// ed::Polinomio p;
+	// std::cin >> p;
+	// 
+	// return 0;
+	// 
+	// //end debug
+	
+	
 	ed::Polinomio polinomio;
 	int opcion;
 	int min, max;

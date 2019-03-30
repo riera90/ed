@@ -495,7 +495,7 @@ void ed::operadoresExternosPolinomios()
   std::cout << RESET;
   std::cout << "Quitar el comentario de bloque cuando se haya codificado la clase Polinomio y los operadores externos de dicha clase" << std::endl << std::endl;
 
-/*
+
 	double x;
 
 	// Constructor por defecto
@@ -823,6 +823,6 @@ void ed::operadoresExternosPolinomios()
 
 
 	std::cout << std::endl;
-*/
+
 	return;
 }

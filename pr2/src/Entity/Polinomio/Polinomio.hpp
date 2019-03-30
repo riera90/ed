@@ -19,7 +19,6 @@
 #include "Monomio.hpp"
 #include "operadoresExternosMonomios.hpp"
 #include "auxiliarFunctions.hpp"
-// #include "operadoresExternosPolinomios.hpp"
 
 
 // Se incluye la clase Polinomio dentro del espacio de nombre de la asigantura: ed

@@ -444,22 +444,52 @@ namespace ed
     
     istream &operator>>(istream &stream, Polinomio &p)
     {
+        std::cout << "begin procedure" << '\n';
         std::string aux;
-        int grado;
-        float coeficiente;
-        Monomio m;
+        int coeficiente, grado;
+        getline(stream, aux, '\n');
         
-        while (getline(stream, aux, '+')){
-            std::cout<<"coeficiente: "<<aux.substr(0, aux.find(' '))<<"\n";
-            aux = aux.substr(aux.find(' ') + 1 , aux.length());
-            std::cout<<"grado: "<<aux<<"\n";
-            // aux = substr(aux.find('+') + 1 , aux.lenght());
+        /* all the line is read and is splits into sections
+         * this sections are, the coeficient and the degree
+         * this is parto of other divisions, each monomio is one division
+         * 
+         * each mon omio division is delimited by '+' and the last one by '\n'
+         * 
+         * each coeficient and degree are delimited by a "x^" and the plus of
+         * the monomio
+         * 
+         * each cicle of the wile, a monomio is treated and deleted from the
+         * string
+         * 
+         * the monomios are treated from the begin of the string to the back of
+         * it
+         * 
+         * when there are no monomios left, the procedure is finished
+         * 
+         * 
+         * VALID INPUT EXAMPLES:
+         * 
+         * 1x^2
+         * 1x^2+3x^4+5x^0
+         * 5x^0
+         */
+         
+        while ( aux.find('+') != std::string::npos ){
+            // in between monomios delimited by '+'
+            coeficiente = ed::stof( aux.substr(0, aux.find('x')) );
+            grado = ed::stof( aux.substr(aux.find('^')+1, aux.find('+')) );
+            p.addMonomio(*new ed::Monomio(coeficiente, grado));
+            
+            aux = aux.substr(aux.find('+')+1 , aux.length());
+            
         }
         
-        m.setCoeficiente(atof(aux.c_str()));
         
-        getline(stream, aux, '\n');
-        m.setGrado(atoi(aux.c_str()));
+        // adds the last monomio
+        coeficiente = ed::stof( aux.substr(0, aux.find('x')) );
+        // last charracter is \n
+        grado = ed::stof( aux.substr(aux.find('^')+1, aux.length()) );
+        p.addMonomio(*new ed::Monomio(coeficiente, grado));
         
         return stream;
     }
@@ -469,10 +499,10 @@ namespace ed
     ostream &operator<<(ostream &stream, Polinomio const &p)
     {
         bool first = true;
-        for (size_t i = 0; i < p.getGrado(); i++) {
+        for (size_t i = 0; i <= p.getGrado(); i++) {
             if (p.existeMonomio(i)) {
                 if (!first)
-                    stream<<" + "<<p.getMonomio(i);
+                    stream<<"+"<<p.getMonomio(i);
                 else{
                     stream<<p.getMonomio(i);
                     first = false;                    

@@ -1,8 +1,8 @@
 /*!
   \file   funcionesAuxiliares.hpp
   \brief  Funciones auxiliares para el programa principal de la práctica 2
-  \author
-  \date
+  \author Diego Rodriguez Riera
+  \date   39/3/19
 */
 
 #ifndef _FUNCIONESAUXILIARES_HPP_
@@ -17,11 +17,15 @@ namespace ed
 	*/
 	int menu();
 
-	// COMPLETAR LOS COMENTARIOS DE DOXYGEN
+	/*!
+		\brief   funcion de prueba de polinomio
+	*/
 	void testPolinomio();
 
 
-	// COMPLETAR LOS COMENTARIOS DE DOXYGEN
+	/*!
+		\brief   funcion de prueba de operadores externos polinomio
+	*/
 	void operadoresExternosPolinomios();
 
 } // Fin del espacio de nombre de la asignatura: ed
