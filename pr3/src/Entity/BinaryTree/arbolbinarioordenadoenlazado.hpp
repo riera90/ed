@@ -35,70 +35,102 @@ namespace ed
 		public:
 			NodoArbolBinario (const G &info)
 			{
-				// TODO
+				this->_info = info;
 			}
 
 			NodoArbolBinario (const NodoArbolBinario &n)
 			{
-				// TODO
+				this->_info = n._info;
+				this->_derecho = n._derecho;
+				this->_izquierdo = n._izquierdo;
 			}
 
 			/*!\brief Observadores.*/
 			const G & getInfo() const
 			{
-				// TODO
+                return this->_info;
 			}
 
 			NodoArbolBinario *getIzquierdo() const
 			{
-				// TODO
+				return this->_izquierdo;
 			}
 
 			NodoArbolBinario *getDerecho() const
 			{
-				// TODO
+                return this->_derecho;
 			}
 
 			bool esHoja() const
 			{
-				// TODO
-				return false;
+				if (this->_izquierdo == NULL && this->_derecho == NULL)
+					return true;
+
+				return true;
 			}
 
 			void recorridoPreOrden (OperadorNodo<G> &operador) const
 			{
-				// TODO
+				if (this->esHoja()) {
+					operador.aplicar(this->_info);
+					return;
+				}
+
+				operador.aplicar(this->_info);
+				this->_izquierdo->recorridoPreOrden(operador);
+				this->_derecho->recorridoPreOrden(operador);
 			}
 
 			void recorridoPostOrden (OperadorNodo<G> &operador) const
 			{
-				// TODO
+				if (this->esHoja()) {
+					operador.aplicar(this->_info);
+					return;
+				}
+
+				this->_izquierdo->recorridoInOrden(operador);
+				operador.aplicar(this->_info);
+				this->_derecho->recorridoInOrden(operador);
 			}
 
 			void recorridoInOrden (OperadorNodo<G> &operador) const
 			{
-				// TODO
+				if (this->esHoja()) {
+					operador.aplicar(this->_info);
+					return;
+				}
+
+				operador.aplicar(this->_info);
+				this->_izquierdo->recorridoPostOrden(operador);
+				this->_derecho->recorridoPostOrden(operador);
 			}
 
 			/*!\brief Modificadores. */
 			void setInfo(const G &info)
 			{
-				// TODO
+				this->_info = info;
 			}
 
 			void setIzquierdo(NodoArbolBinario *n)
 			{
-				// TODO
+				this->_izquierdo = n;
 			}
 
 			void setDerecho(NodoArbolBinario *n)
 			{
-				// TODO
+				this->_derecho = n;
 			}
 
 			NodoArbolBinario & operator=(const NodoArbolBinario &n)
 			{
-				// TODO
+			    if (this == &n)
+			        return * new NodoArbolBinario();
+
+				this->_info = n._info;
+				this->_derecho = n._derecho;
+				this->_izquierdo = n._izquierdo;
+
+				return *this;
 			}
 
 		}; //Fin clase NodoArbolBinario
@@ -108,16 +140,23 @@ namespace ed
 		NodoArbolBinario * _actual; /*!<Cursor al nodo actual*/
 		NodoArbolBinario * _padre; /*!<Cursor al nodo actual*/
 
+
+
+
 	public:
 
 		ArbolBinarioOrdenadoEnlazado ()
 		{
-			// TODO
+			this->_raiz = NULL;
+			this->_actual = NULL;
+			this->_padre = NULL;
 		}
 
 		ArbolBinarioOrdenadoEnlazado (const ArbolBinarioOrdenadoEnlazado<G>& a)
 		{
-			// TODO
+			this->_padre = a._padre;
+			this->_actual = a._actual;
+			this->_raiz = a._raiz;
 		}
 
 		~ArbolBinarioOrdenadoEnlazado ()
@@ -129,67 +168,121 @@ namespace ed
 
 		ArbolBinarioOrdenadoEnlazado &operator=(const ArbolBinarioOrdenadoEnlazado& a)
 		{
-			// TODO
+			if (this == &a)
+				return * new NodoArbolBinario();
+
+			this->_raiz = a._raiz;
+			this->_actual = a._actual;
+			this->_padre = a._padre;
 		}
 
 		bool insertar(const G &x)
 		{
-			// TODO
-			return false;
+			if (this->buscar(x))
+				return false;
+
+			this->_actual = this->_raiz;
+			this->_padre = this->_raiz;
+
+			while (this->existeActual())
+			{
+				if (this->actual() == x)
+					return false;
+
+				this->_padre = this->_actual;
+
+				if (this->_actual->getIzquierdo()->getInfo() < x) {
+					this->_actual = this->_actual->getIzquierdo();
+				} else {
+					this->_actual = this->_actual->getDerecho();
+				}
+			}
+
+
+			this->_actual = new NodoArbolBinario(x);
+			if (this->_padre->getInfo() > x)
+				this->_padre->setIzquierdo(this->_actual);
+			else
+				this->_padre->setDerecho(this->_actual);
+
+			return true;
 		}
 
 		void borrarArbol()
 		{
-			// TODO
+			this->_raiz = NULL;
+			this->_actual = NULL;
+			this->_padre = NULL;
 		}
 
 		bool borrar()
 		{
-			// TODO
-			return false;
+			if (!this->existeActual())
+				return false;
+
+			this->_actual == NULL;
+			return true;
 		}
 
 		void recorridoPreOrden (OperadorNodo<G> &operador) const
 		{
-			// TODO
+			this->_raiz->recorridoPreOrden(operador);
 		}
 
 		void recorridoPostOrden (OperadorNodo<G> &operador) const
 		{
-			// TODO
+			this->_raiz->recorridoPostOrden(operador);
 		}
 
 		void recorridoInOrden (OperadorNodo<G> &operador) const
 		{
-			// TODO
+			this->_raiz->recorridoInOrden(operador);
 		}
 
-		bool buscar(const G& x) const
+		bool buscar(const G& x)
 		{
-			// TODO
+			this->_actual = this->_raiz;
+			this->_padre = this->_raiz;
+
+			while (this->existeActual())
+			{
+				if (this->actual() == x)
+					return true;
+
+				this->_padre = this->_actual;
+
+				if (this->_actual->getIzquierdo()->getInfo() < x) {
+					this->_actual = this->_actual->getIzquierdo();
+				} else {
+					this->_actual = this->_actual->getDerecho();
+				}
+			}
+
 			return false;
 		}
 
 		bool estaVacio() const
 		{
-			// TODO
+			if (this->_raiz == NULL)
+				return true;
 			return false;
 		}
 
 		G raiz() const
 		{
-			// TODO
+			return this->_raiz->getInfo();
 		}
 
 		bool existeActual() const
 		{
-			// TODO
-			return false;
+			if (this->_actual == NULL)
+				return false;
+			return true;
 		}
 
 		G actual() const
 		{
-			// TODO
+			return this->_actual->getInfo();
 		}
 
 		/*!@}*/
