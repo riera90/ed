@@ -33,11 +33,19 @@ namespace ed
 			NodoArbolBinario * _derecho;  //Puntero al hijo derecho
 
 		public:
+		    /**
+		     * information builder
+		     * @param info : new node information
+		     */
 			NodoArbolBinario (const G &info)
 			{
 				this->_info = info;
 			}
 
+			/**
+			 * copy node builder
+			 * @param n : node to copy from
+			 */
 			NodoArbolBinario (const NodoArbolBinario &n)
 			{
 				this->_info = n._info;
@@ -61,14 +69,22 @@ namespace ed
                 return this->_derecho;
 			}
 
+            /**
+             * leaf logical observator
+             * the node is leaf if both children are null
+             */
 			bool esHoja() const
 			{
 				if (this->_izquierdo == NULL && this->_derecho == NULL)
 					return true;
 
-				return false; // fuck this return 5 hours wasted here
+				return false; // fuck this return several hours wasted here
 			}
 
+
+            /**
+             * preorder operation on all children nodes (including this)
+             */
 			void recorridoPreOrden (OperadorNodo<G> &operador) const
 			{
 				operador.aplicar(this->_info);
@@ -83,6 +99,9 @@ namespace ed
 					this->_derecho->recorridoInOrden(operador);
 			}
 
+            /**
+             * postorder operation on all children nodes (including this)
+             */
 			void recorridoPostOrden (OperadorNodo<G> &operador) const
 			{
 				if (this->esHoja()) {
@@ -99,6 +118,9 @@ namespace ed
 				operador.aplicar(this->_info);
 			}
 
+            /**
+             * inorder operation on all children nodes (including this)
+             */
 			void recorridoInOrden (OperadorNodo<G> &operador) const {
 				if (this->esHoja()) {
 					operador.aplicar(this->_info);
@@ -131,6 +153,9 @@ namespace ed
 				this->_derecho = n;
 			}
 
+            /**
+             * assignation operator of NodoArbolBinario class
+             */
 			NodoArbolBinario & operator=(const NodoArbolBinario &n)
 			{
 			    if (this == &n)
@@ -155,7 +180,11 @@ namespace ed
 
 
 	public:
-
+	    /**
+	     * binary tree builders
+	     *      normal builder
+	     *      copy builder
+	     */
 		ArbolBinarioOrdenadoEnlazado ()
 		{
 			this->_raiz = NULL;
@@ -169,7 +198,9 @@ namespace ed
 			this->_actual = a._actual;
 			this->_raiz = a._raiz;
 		}
-
+        /**
+         * binary tree destructor
+         */
 		~ArbolBinarioOrdenadoEnlazado ()
 		{
 			if (not estaVacio())
@@ -185,7 +216,12 @@ namespace ed
 			this->_actual = a._actual;
 			this->_padre = a._padre;
 		}
-
+        /**
+         * insertion function for the tree
+         * does not balance!
+         * @param x
+         * @return logical: has been inserted
+         */
 		bool insertar(const G &x)
 		{
 			if (this->_raiz == NULL) {
@@ -209,6 +245,10 @@ namespace ed
 			return true;
 		}
 
+
+		/**
+		 * deletes all the tree
+		 */
 		void borrarArbol()
 		{
 			this->_raiz = NULL;
@@ -216,6 +256,10 @@ namespace ed
 			this->_padre = NULL;
 		}
 
+		/**
+		 * detetes the current node
+		 * @return logical has been deleted
+		 */
 		bool borrar()
 		{
 			// TODO finish this function
@@ -242,6 +286,10 @@ namespace ed
 			return true;
 		}
 
+		/**
+		 * inorder treatment of the nodes from the root
+		 * @param operador
+		 */
 		void recorridoPreOrden (OperadorNodo<G> &operador) const
 		{
 			if (this->_raiz == NULL)
@@ -250,6 +298,10 @@ namespace ed
 			this->_raiz->recorridoPreOrden(operador);
 		}
 
+		/**
+		 * postorder treatment of the nodes from the root
+		 * @param operador
+		 */
 		void recorridoPostOrden (OperadorNodo<G> &operador) const
 		{
 			if (this->_raiz == NULL)
@@ -258,6 +310,10 @@ namespace ed
 			this->_raiz->recorridoPostOrden(operador);
 		}
 
+		/**
+		 * inorder treatment of the nodes from the root
+		 * @param operador
+		 */
 		void recorridoInOrden (OperadorNodo<G> &operador) const
 		{
 			if (this->_raiz == NULL)
@@ -266,6 +322,11 @@ namespace ed
 			this->_raiz->recorridoInOrden(operador);
 		}
 
+		/**
+		 * search of node in the tree
+		 * @param x
+		 * @return logical has been found
+		 */
 		bool buscar(const G& x)
 		{
 			if (this->_raiz == NULL)
@@ -291,6 +352,9 @@ namespace ed
 
 		}
 
+		/**
+		 * @return logical tree is empty
+		 */
 		bool estaVacio() const
 		{
 			if (this->_raiz == NULL)
@@ -298,11 +362,17 @@ namespace ed
 			return false;
 		}
 
+		/**
+		 * @return current root information
+		 */
 		G raiz() const
 		{
 			return this->_raiz->getInfo();
 		}
 
+		/**
+		 * @return logical current node exists
+		 */
 		bool existeActual() const
 		{
 			if (this->_actual == NULL)
@@ -310,6 +380,9 @@ namespace ed
 			return true;
 		}
 
+		/**
+		 * @return actual node information
+		 */
 		G actual() const
 		{
 			return this->_actual->getInfo();
