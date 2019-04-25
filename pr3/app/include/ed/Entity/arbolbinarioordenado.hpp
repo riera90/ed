@@ -1,7 +1,7 @@
 #ifndef __ARBOLBINARIOORDENADO_HPP__
 #define __ARBOLBINARIOORDENADO_HPP__
 
-#include "operadornodo.hpp"
+#include <ed/Entity/operadornodo.hpp>
 
 /*!
 \brief Espacio de nombres para la asignatura Estructura de datos.

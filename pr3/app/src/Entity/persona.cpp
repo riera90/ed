@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cstring>
-#include "persona.hpp"
+#include <ed/Entity/persona.hpp>
 
 ///////////////////////////////////////////////////////////////
 // --------------------------------------------- Constructores

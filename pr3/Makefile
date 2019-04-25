@@ -1,6 +1,6 @@
 # DIRECTORIES
 # src directory
-SRC_DIR         :=./src
+SRC_DIR         :=./app
 GTEST_DIR       :=./gtests
 OUTPUT_DIR      :=./output
 # aditional project libs directory
@@ -21,11 +21,13 @@ BIN_ARGUMENTS:= hi!
 # compiler
 CXX:=g++
 # compilation flags
-CXXFLAGS:=-Wpedantic -g -ansi
+CXXFLAGS:=-Wpedantic -g -ansi -I ./app/include
 
 # [YES/NO]
 EXECUTE_AFTER_COMPILATION:=YES
-ALLOW_FOR_GNU_DEBUGGER:=YES
+ALLOW_FOR_GNU_DEBUGGER:=NO
+# automatic linking from all files under the app directory
+AUTOMATIC_LINKING:=YES
 
 
 include ./make-files/Makefile

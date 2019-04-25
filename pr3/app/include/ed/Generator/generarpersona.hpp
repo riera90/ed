@@ -1,7 +1,7 @@
 #ifndef GENERAR_PERSONA_HPP
 #define GENERAR_PERSONA_HPP
 
-#include "persona.hpp"
+#include <ed/Entity/persona.hpp>
 
 Persona generarDatosPersonales();
 

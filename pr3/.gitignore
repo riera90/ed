@@ -2,3 +2,5 @@
 **/*.o
 **/*.a
 **/googletest
+build
+build_clion

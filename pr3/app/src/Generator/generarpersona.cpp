@@ -1,8 +1,9 @@
 #include <cstdlib>
 #include <cstdio>
 #include <cstring> //Para manejar funciones de cadenas de c
-#include "generarpersona.hpp"
-#include "persona.hpp"
+
+#include <ed/Generator/generarpersona.hpp>
+#include <ed/Entity/persona.hpp>
 
 static const char * _apellidos[] = {
   "GARCIA",

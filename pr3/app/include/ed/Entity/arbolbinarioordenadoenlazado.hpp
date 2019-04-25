@@ -3,8 +3,8 @@
 
 #include <iostream>
 #include <cassert>
-#include "arbolbinarioordenado.hpp"
-#include "operadornodo.hpp"
+#include <ed/Entity/arbolbinarioordenado.hpp>
+#include <ed/Entity/operadornodo.hpp>
 
 using namespace std;
 /*!
@@ -66,19 +66,21 @@ namespace ed
 				if (this->_izquierdo == NULL && this->_derecho == NULL)
 					return true;
 
-				return true;
+				return false; // fuck this return 5 hours wasted here
 			}
 
 			void recorridoPreOrden (OperadorNodo<G> &operador) const
 			{
-				if (this->esHoja()) {
-					operador.aplicar(this->_info);
-					return;
-				}
-
 				operador.aplicar(this->_info);
-				this->_izquierdo->recorridoPreOrden(operador);
-				this->_derecho->recorridoPreOrden(operador);
+
+				if (this->esHoja())
+					return;
+
+				if (this->_izquierdo->getIzquierdo() != NULL)
+					this->_izquierdo->recorridoInOrden(operador);
+
+				if (this->_izquierdo->getDerecho() != NULL)
+					this->_derecho->recorridoInOrden(operador);
 			}
 
 			void recorridoPostOrden (OperadorNodo<G> &operador) const
@@ -88,21 +90,29 @@ namespace ed
 					return;
 				}
 
-				this->_izquierdo->recorridoInOrden(operador);
+				if (this->_izquierdo->getIzquierdo() != NULL)
+					this->_izquierdo->recorridoInOrden(operador);
+
+				if (this->_izquierdo->getDerecho() != NULL)
+					this->_derecho->recorridoInOrden(operador);
+
 				operador.aplicar(this->_info);
-				this->_derecho->recorridoInOrden(operador);
 			}
 
-			void recorridoInOrden (OperadorNodo<G> &operador) const
-			{
+			void recorridoInOrden (OperadorNodo<G> &operador) const {
 				if (this->esHoja()) {
 					operador.aplicar(this->_info);
 					return;
 				}
 
+				if (this->getIzquierdo() != NULL)
+					this->_izquierdo->recorridoInOrden(operador);
+
 				operador.aplicar(this->_info);
-				this->_izquierdo->recorridoPostOrden(operador);
-				this->_derecho->recorridoPostOrden(operador);
+
+				if (this->getDerecho() != NULL)
+					this->_derecho->recorridoInOrden(operador);
+
 			}
 
 			/*!\brief Modificadores. */
@@ -139,6 +149,8 @@ namespace ed
 		NodoArbolBinario * _raiz; /*!<La raiz del árbol*/
 		NodoArbolBinario * _actual; /*!<Cursor al nodo actual*/
 		NodoArbolBinario * _padre; /*!<Cursor al nodo actual*/
+
+		// TODO: cuando insertas, enlazar el padre con el hijo
 
 
 
@@ -178,32 +190,32 @@ namespace ed
 
 		bool insertar(const G &x)
 		{
+			if (this->_raiz == NULL) {
+				this->_raiz = new NodoArbolBinario(x);
+				std::cout << "null is root\n";
+				return true;
+			}
+
+			std::cout << "pre search\n";
+
 			if (this->buscar(x))
 				return false;
 
-			this->_actual = this->_raiz;
-			this->_padre = this->_raiz;
+			std::cout << "post search\n";
 
-			while (this->existeActual())
-			{
-				if (this->actual() == x)
-					return false;
+			std::cout << "pre adding\n";
 
-				this->_padre = this->_actual;
+			auto* nodo = new NodoArbolBinario(x);
 
-				if (this->_actual->getIzquierdo()->getInfo() < x) {
-					this->_actual = this->_actual->getIzquierdo();
-				} else {
-					this->_actual = this->_actual->getDerecho();
-				}
+			if (this->_padre->getInfo() > x) {
+				std::cout << "adding izquierdo\n";
+
+				this->_padre->setIzquierdo(nodo);
 			}
-
-
-			this->_actual = new NodoArbolBinario(x);
-			if (this->_padre->getInfo() > x)
-				this->_padre->setIzquierdo(this->_actual);
-			else
-				this->_padre->setDerecho(this->_actual);
+			else {
+				std::cout << "adding derecho\n";
+				this->_padre->setDerecho(nodo);
+			}
 
 			return true;
 		}
@@ -217,48 +229,73 @@ namespace ed
 
 		bool borrar()
 		{
+			// TODO finish this function
+
 			if (!this->existeActual())
 				return false;
 
 			this->_actual == NULL;
+
 			return true;
 		}
 
 		void recorridoPreOrden (OperadorNodo<G> &operador) const
 		{
+			if (this->_raiz == NULL)
+				return;
+
 			this->_raiz->recorridoPreOrden(operador);
 		}
 
 		void recorridoPostOrden (OperadorNodo<G> &operador) const
 		{
+			if (this->_raiz == NULL)
+				return;
+
 			this->_raiz->recorridoPostOrden(operador);
 		}
 
 		void recorridoInOrden (OperadorNodo<G> &operador) const
 		{
+			if (this->_raiz == NULL)
+				return;
+
 			this->_raiz->recorridoInOrden(operador);
 		}
 
 		bool buscar(const G& x)
 		{
-			this->_actual = this->_raiz;
-			this->_padre = this->_raiz;
-
-			while (this->existeActual())
-			{
-				if (this->actual() == x)
-					return true;
-
-				this->_padre = this->_actual;
-
-				if (this->_actual->getIzquierdo()->getInfo() < x) {
-					this->_actual = this->_actual->getIzquierdo();
-				} else {
-					this->_actual = this->_actual->getDerecho();
-				}
+			if (this->_raiz == NULL) {
+				std::cout << "\ts root is null\n";
+				return false;
 			}
 
-			return false;
+			std::cout << "\ts reset\n";
+
+			this->_actual = this->_raiz;
+			this->_padre = NULL;
+
+			std::cout << "\ts pre loop\n";
+
+			while (this->_actual != NULL && this->actual() != x)
+			{
+				if (this->_actual->getInfo() > x) {
+					std::cout << "\ts going l\n";
+					this->_padre = this->_actual;
+					this->_actual = this->_padre->getIzquierdo();
+				} else {
+					std::cout << "\ts going r\n";
+					this->_padre = this->_actual;
+					this->_actual = this->_padre->getDerecho();
+				}
+			}
+			if (this->_actual == NULL) {
+				std::cout << "\ts not found, clear\n";
+				return false;
+			}
+			std::cout << "\ts found, warning\n";
+			return true;
+
 		}
 
 		bool estaVacio() const

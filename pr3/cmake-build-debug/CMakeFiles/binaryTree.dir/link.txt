@@ -1,0 +1,1 @@
+/usr/bin/c++  -g  -rdynamic CMakeFiles/binaryTree.dir/app/src/Entity/persona.cpp.o CMakeFiles/binaryTree.dir/app/src/Generator/generarpersona.cpp.o CMakeFiles/binaryTree.dir/app/src/main.cpp.o  -o binaryTree 
