@@ -150,7 +150,6 @@ namespace ed
 		NodoArbolBinario * _actual; /*!<Cursor al nodo actual*/
 		NodoArbolBinario * _padre; /*!<Cursor al nodo actual*/
 
-		// TODO: cuando insertas, enlazar el padre con el hijo
 
 
 
@@ -174,8 +173,7 @@ namespace ed
 		~ArbolBinarioOrdenadoEnlazado ()
 		{
 			if (not estaVacio())
-			borrarArbol();
-			cout << "Destructor Usado \n";
+			    borrarArbol();
 		}
 
 		ArbolBinarioOrdenadoEnlazado &operator=(const ArbolBinarioOrdenadoEnlazado& a)
@@ -192,28 +190,19 @@ namespace ed
 		{
 			if (this->_raiz == NULL) {
 				this->_raiz = new NodoArbolBinario(x);
-				std::cout << "null is root\n";
 				return true;
 			}
-
-			std::cout << "pre search\n";
 
 			if (this->buscar(x))
 				return false;
 
-			std::cout << "post search\n";
-
-			std::cout << "pre adding\n";
-
 			auto* nodo = new NodoArbolBinario(x);
 
 			if (this->_padre->getInfo() > x) {
-				std::cout << "adding izquierdo\n";
 
 				this->_padre->setIzquierdo(nodo);
 			}
 			else {
-				std::cout << "adding derecho\n";
 				this->_padre->setDerecho(nodo);
 			}
 
@@ -234,7 +223,21 @@ namespace ed
 			if (!this->existeActual())
 				return false;
 
-			this->_actual == NULL;
+			AlmacenarNodo<G> almacenador;
+
+			this->_actual->recorridoPostOrden(almacenador);
+
+			if (this->_padre->getInfo() > this->_actual->getInfo())
+			    this->_padre->setIzquierdo(NULL);
+
+            else
+                this->_padre->setDerecho(NULL);
+
+			std::vector<G> nodes = almacenador.vectorNodos();
+
+            for (int i = 1; i < nodes.size(); ++i) {
+                this->insertar(nodes[i]);
+            }
 
 			return true;
 		}
@@ -265,35 +268,25 @@ namespace ed
 
 		bool buscar(const G& x)
 		{
-			if (this->_raiz == NULL) {
-				std::cout << "\ts root is null\n";
+			if (this->_raiz == NULL)
 				return false;
-			}
-
-			std::cout << "\ts reset\n";
 
 			this->_actual = this->_raiz;
 			this->_padre = NULL;
 
-			std::cout << "\ts pre loop\n";
-
 			while (this->_actual != NULL && this->actual() != x)
 			{
 				if (this->_actual->getInfo() > x) {
-					std::cout << "\ts going l\n";
 					this->_padre = this->_actual;
 					this->_actual = this->_padre->getIzquierdo();
 				} else {
-					std::cout << "\ts going r\n";
 					this->_padre = this->_actual;
 					this->_actual = this->_padre->getDerecho();
 				}
 			}
 			if (this->_actual == NULL) {
-				std::cout << "\ts not found, clear\n";
 				return false;
 			}
-			std::cout << "\ts found, warning\n";
 			return true;
 
 		}
