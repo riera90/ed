@@ -5,7 +5,7 @@ project (binaryTree.out)
 set(SOURCES
     app/src/Entity/persona.cpp
     app/src/Generator/generarpersona.cpp
-    app/src/main.cpp
+    app/src/main_integers.cpp
 )
 
 add_executable(${PROJECT_NAME} ${SOURCES})

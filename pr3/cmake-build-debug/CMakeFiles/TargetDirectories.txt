@@ -1,3 +1,0 @@
-/mnt/data_1/code/ed/pr3/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/mnt/data_1/code/ed/pr3/cmake-build-debug/CMakeFiles/binaryTree.dir
-/mnt/data_1/code/ed/pr3/cmake-build-debug/CMakeFiles/edit_cache.dir

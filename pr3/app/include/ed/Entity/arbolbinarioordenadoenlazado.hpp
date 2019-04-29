@@ -92,11 +92,11 @@ namespace ed
 				if (this->esHoja())
 					return;
 
-				if (this->_izquierdo->getIzquierdo() != NULL)
-					this->_izquierdo->recorridoInOrden(operador);
+				if (this->getIzquierdo() != NULL)
+					this->_izquierdo->recorridoPreOrden(operador);
 
-				if (this->_izquierdo->getDerecho() != NULL)
-					this->_derecho->recorridoInOrden(operador);
+				if (this->getDerecho() != NULL)
+					this->_derecho->recorridoPreOrden(operador);
 			}
 
             /**
@@ -109,11 +109,11 @@ namespace ed
 					return;
 				}
 
-				if (this->_izquierdo->getIzquierdo() != NULL)
-					this->_izquierdo->recorridoInOrden(operador);
+				if (this->getIzquierdo() != NULL)
+					this->_izquierdo->recorridoPostOrden(operador);
 
-				if (this->_izquierdo->getDerecho() != NULL)
-					this->_derecho->recorridoInOrden(operador);
+				if (this->getDerecho() != NULL)
+					this->_derecho->recorridoPostOrden(operador);
 
 				operador.aplicar(this->_info);
 			}
@@ -262,22 +262,26 @@ namespace ed
 		 */
 		bool borrar()
 		{
-			// TODO finish this function
+            if (!this->existeActual())
+                return false;
 
-			if (!this->existeActual())
-				return false;
 
 			AlmacenarNodo<G> almacenador;
 
 			this->_actual->recorridoPostOrden(almacenador);
 
-			if (this->_padre->getInfo() > this->_actual->getInfo())
-			    this->_padre->setIzquierdo(NULL);
+            std::vector<G> nodes = almacenador.vectorNodos();
 
-            else
-                this->_padre->setDerecho(NULL);
+            if (this->_actual == this->_raiz) {
+                std::cout<<"deleting root\n";
+                this->_raiz = NULL;
+            } else {
+                if (this->_padre->getInfo() > this->_actual->getInfo())
+                    this->_padre->setIzquierdo(NULL);
 
-			std::vector<G> nodes = almacenador.vectorNodos();
+                else
+                    this->_padre->setDerecho(NULL);
+            }
 
             for (int i = 1; i < nodes.size(); ++i) {
                 this->insertar(nodes[i]);
