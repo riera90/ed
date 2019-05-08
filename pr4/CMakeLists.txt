@@ -3,7 +3,6 @@ cmake_minimum_required (VERSION 2.8.11)
 project (graph.out)
 
 set(SOURCES
-    app/src/Entity/Graph.cpp
     app/src/main.cpp
 )
 
