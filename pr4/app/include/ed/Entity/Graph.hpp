@@ -50,14 +50,17 @@ public:
 
     bool LoadFromFile(const std::string &nodes_path, const std::string &edges_path)
     {
-        std::ifstream nodes, edges;
-        edges.open(edges_path.c_str());
-        nodes.open(nodes_path.c_str());
+        std::ifstream nodes(nodes_path.c_str());
+        std::ifstream edges(edges_path.c_str());
         char buffer[1024];
+        std::string string_buffer;
 
-        while (nodes.getline(buffer, 255, '\n')){
-            this->nodes_.push_back(buffer);
+        while ( std::getline(nodes, string_buffer) ){
+            // pushes the buffer (minus the \n) into the nodes
+            this->nodes_.push_back(string_buffer.substr(0,string_buffer.size()-1));
         }
+        // the last one does not has a \n
+        this->nodes_[this->nodes_.size()-1] = string_buffer;
 
         int pos, i = 0;
         std::vector<T_EDGE> row;
@@ -65,16 +68,16 @@ public:
         std::string buf;
 
         while (edges.getline(buffer, 1024, '\n')){
-            std::cout <<"reading line!\n";
+            //std::cout <<"reading line!\n";
             row.clear();
             buf = buffer;
             while (buf.find(' ')!=std::string::npos) {
-                std::cout <<"\treading field!\n";
+                //std::cout <<"\treading field!\n";
                 value =  atoi(buf.substr(0, buf.find(' ')).c_str()); // that atoi is a little dirty, I know..., but hey, it works ¯\_(ツ)_/¯
                 buf =buf.substr(buf.find(' ') + 1, buf.size());
                 row.push_back(value);
             }
-            std::cout <<"\treading field!\n";
+            //std::cout <<"\treading field!\n";
             value =  atoi(buf.substr(0, buf.find('\n')).c_str());
             row.push_back(value);
             this->edges_.push_back(row);
@@ -99,9 +102,10 @@ public:
     }
 
 
-    void print() {
+    void print() const
+    {
         for (auto &node : this->nodes_){
-            std::cout << node << '\n';
+            std::cout << "<" << node << ">\n";
         }
 
 
@@ -111,6 +115,39 @@ public:
             }
             std::cout << std::endl;
         }
+    }
+
+
+    int getEdgeIndex(T_NODE _node) const
+    {
+        for (int i = 0; i < this->nodes_.size(); ++i) {
+            if (_node == this->nodes_[i])
+                return i;
+        }
+        std::cout << "error, node does not exists\n";
+        return -1;
+    }
+
+
+    bool contains(T_NODE _node) const
+    {
+        for (int i = 0; i < this->nodes_.size(); ++i) {
+            if (_node == this->nodes_[i])
+                return true;
+        }
+        return false;
+    }
+
+
+    T_NODE getNodeFromIndex(int index) const
+    {
+        return this->nodes_[index];
+    }
+
+
+    bool existsPath(T_NODE origin, T_NODE target, std::vector<std::vector<T_EDGE>> = *new std::vector<std::vector<T_EDGE>>) const
+    {
+        return true;
     }
 };
 
