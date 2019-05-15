@@ -6,6 +6,16 @@
 #include <iostream>
 #include <fstream>
 
+/**
+ * Graph class
+ *
+ * Full header definition
+ *
+ * Implemented with two vectors of the std library, one for nodes and a double vector for the edges
+ *
+ * @tparam T_NODE
+ * @tparam T_EDGE
+ */
 template<class T_NODE, class T_EDGE>
 class Graph
 {
@@ -14,82 +24,120 @@ private:
     std::vector<std::vector<T_EDGE>> edges_;
 
 public:
-    Graph()
-    {
-        /*this->nodes_ = {"Almeria","Cadiz","Cordoba","Granada","Huelva","Jaen","Malaga","Sevilla"};
-        this->edges_ =
-        {
-            {32000, 32000, 32000, 166, 32000, 228, 219, 32000},
-            {32000 ,32000 ,32000 ,32000 ,219 ,32000 ,265 ,125},
-            {32000 ,32000 ,32000 ,166 ,32000 ,104 ,187 ,138},
-            {166 ,32000 ,166 ,32000 ,32000 ,99 ,129 ,256},
-            {32000 ,219 ,32000 ,32000 ,32000 ,32000 ,32000 ,94},
-            {228 ,32000 ,104 ,99 ,32000 ,32000 ,209 ,32000},
-            {219 ,265 ,187 ,129 ,32000 ,209 ,32000 ,219},
-            {32000 ,125 ,138 ,256 ,94 ,32000 ,219 ,320}
-        };*/
-    }
+    /**
+     * Default builder, creates a empty graph
+     */
+    Graph() {};
+
+    /**
+     * Copy contructor
+     * @param g: Graph to copy from
+     */
     Graph(const Graph<T_NODE, T_EDGE> &g)
     {
         this->edges_=g.edges_;
         this->nodes_=g.nodes_;
     }
 
-
+    /**
+     * Contructor from graph files
+     * @param nodes_path: path to nodes file
+     * @param edges_path: path to edges file
+     */
     Graph(const std::string &nodes_path, const std::string &edges_path)
     {
         this->LoadFromFile(nodes_path, edges_path);
     }
 
-    ~Graph(){}
+    /**
+     * Destructor
+     */
+    ~Graph(){};
 
+    /**
+     * Clears the Graph (Both  edges and nodes)
+     */
     void clear(){this->edges_.clear();this->nodes_.clear();};
 
+    /**
+     * gets the nodes of the graph
+     * @return vector of T_NODE (vector of std)
+     */
     std::vector<T_NODE> getNodes() const {return this->nodes_;};
+
+    /**
+     * Gets the edges of the Graph (dense matrix)
+     * @return matrix of T_EDGE (vectors of std)
+     */
     std::vector<std::vector<T_EDGE>> getEdges() const {return this->edges_;};
 
+    /**
+     * Loader of Graph from files
+     * @param nodes_path: string containing the path to the nodes file
+     * @param edges_path: string containing the path to the edges file
+     * @return Boolean: true if the load was successful
+     */
     bool LoadFromFile(const std::string &nodes_path, const std::string &edges_path)
     {
+        // opens both files into streams
         std::ifstream nodes(nodes_path.c_str());
         std::ifstream edges(edges_path.c_str());
-        char buffer[1024];
-        std::string string_buffer;
 
-        while ( std::getline(nodes, string_buffer) ){
+        // checks if the files are open
+        if ( !nodes.is_open() )
+            return false;
+
+        if ( !edges.is_open() )
+            return false;
+
+        // creates a, auxiliary buffer to read each line
+        std::string buffer;
+
+        // reads the nodes
+        while ( std::getline(nodes, buffer) ){
             // pushes the buffer (minus the \n) into the nodes
-            this->nodes_.push_back(string_buffer.substr(0,string_buffer.size()-1));
+            this->nodes_.push_back(buffer.substr(0,buffer.size()-1));
         }
-        // the last one does not has a \n
-        this->nodes_[this->nodes_.size()-1] = string_buffer;
+        // the last one does not has a \n, so overwrite it with the correct value
+        this->nodes_[this->nodes_.size()-1] = buffer;
 
-        int pos, i = 0;
+        // lets read the edges
+        // creates the auxiliary variables (position in the buffer, row of edges for inserting into matrix and value to insert into row)
+        int pos;
         std::vector<T_EDGE> row;
         T_EDGE value;
-        std::string buf;
 
-        while (edges.getline(buffer, 1024, '\n')){
-            //std::cout <<"reading line!\n";
+        // while there are lines, read
+        while ( std::getline(edges, buffer) ){
+            // clears the row from the previous iteration
             row.clear();
-            buf = buffer;
-            while (buf.find(' ')!=std::string::npos) {
-                //std::cout <<"\treading field!\n";
-                value =  atoi(buf.substr(0, buf.find(' ')).c_str()); // that atoi is a little dirty, I know..., but hey, it works ¯\_(ツ)_/¯
-                buf =buf.substr(buf.find(' ') + 1, buf.size());
+            // cuts the individual values of the line and pushes it into the row
+            while (buffer.find(' ')!=std::string::npos) {
+                value = atoi(buffer.substr(0, buffer.find(' ')).c_str()); // that atoi is a little spaghetti, I know..., but hey, it works ¯\_(ツ)_/¯
+                buffer =buffer.substr(buffer.find(' ') + 1, buffer.size());
                 row.push_back(value);
             }
-            //std::cout <<"\treading field!\n";
-            value =  atoi(buf.substr(0, buf.find('\n')).c_str());
+            // push the last value into the row
+            value = atoi(buffer.substr(0, buffer.find('\n')).c_str());
             row.push_back(value);
+
+            // push the row into the matrix
             this->edges_.push_back(row);
-            i++;
         }
 
+        // closes the streams
         edges.close();
         nodes.close();
+
+        // return true as the process was successful
         return true;
     }
 
-
+    /**
+     * assignation operator
+     * @param rhs : Graph to copy from
+     * @return actualized Graph
+     */
     const Graph& operator=(const Graph<T_NODE, T_EDGE> &rhs)
     {
         if (this == &rhs)
@@ -101,8 +149,12 @@ public:
         return *this;
     }
 
-
-    void print() const
+    /**
+     * debug function
+     *
+     * dumps the memory of the Graph
+     */
+    void dump() const
     {
         for (auto &node : this->nodes_){
             std::cout << "<" << node << ">\n";
@@ -117,18 +169,25 @@ public:
         }
     }
 
-
+    /**
+     * get the edge from its value
+     * @param _node: T_NODE
+     * @return index of given node
+     */
     int getEdgeIndex(T_NODE _node) const
     {
         for (int i = 0; i < this->nodes_.size(); ++i) {
             if (_node == this->nodes_[i])
                 return i;
         }
-        std::cout << "error, node does not exists\n";
         return -1;
     }
 
-
+    /**
+     * logical observator for node existance
+     * @param _node : T_NODE to check for in the Graph
+     * @return Logical: true if it is found in the Graph, false elseways
+     */
     bool contains(T_NODE _node) const
     {
         for (int i = 0; i < this->nodes_.size(); ++i) {
@@ -138,13 +197,26 @@ public:
         return false;
     }
 
-
+    /**
+     * Observator of node by its index
+     * @param index : index of node
+     * @return T_NODE: node with given index
+     */
     T_NODE getNodeFromIndex(int index) const
     {
+        if ( index >= this->nodes_.size() )
+            return * new T_NODE;
+
         return this->nodes_[index];
     }
 
-
+    // TODO: finish this function.
+    /**
+     * Logical observator for path existance in the Graph betwen two nodes
+     * @param origin : T_NODE node of origin
+     * @param target : T_NODE target node
+     * @return Logica: true if some path exists, false elseway
+     */
     bool existsPath(T_NODE origin, T_NODE target, std::vector<std::vector<T_EDGE>> = *new std::vector<std::vector<T_EDGE>>) const
     {
         return true;

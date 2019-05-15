@@ -13,7 +13,9 @@ int menu()
 
     system("clear");
     cout << "  1. Cargar grafo desde fichero\n";
-    cout << "  2. Algoritmo de Floyd\n";
+    cout << "  2. camino entre nodos\n";
+    cout << "  3. Algoritmo de Floyd\n";
+    cout << "  4. Algoritmo de Floyd-Warshall\n";
     cout << "  0. Salir\n";
 
     cout << "Introduzca opcion...:";
@@ -25,21 +27,10 @@ int menu()
 
 int main()
 {
-   /* Graph<string, int> g2;
-    g2.LoadFromFile("Andalucia.txt", "matrizAndalucia.txt");
-    g2.print();
-
-    cout<<"index of cordoba: "<<g2.getEdgeIndex("Cordoba")<<"\n";
-    //cout << "size of path: " << getPathFromFloyd(g2,"Córdoba", "Sevilla").size()<<"\n";
-
-    return 0;*/
-
-
 
     Graph<string, int> g;
-    g.LoadFromFile("Andalucia.txt", "matrizAndalucia.txt");
     int opcion;
-    bool grafoIntroducido = true;
+    bool grafoIntroducido = false;
 
     do {
         opcion = menu();
@@ -64,7 +55,7 @@ int main()
                         Graph<string, int> g1 = g;
                     }
                 } else
-                    cout << "Grafo no cargado \n";
+                    cout << "error al cargar el grafo, asegurese de introducir un fichero valido.\n";
 
                 getchar();
                 getchar();
@@ -75,49 +66,39 @@ int main()
             {
                 if ( grafoIntroducido )
                 {
-                    g.print();
                     std::string origin;
                     std::string target;
                     do {
-                        cout << "introdizca el origen: ";
+                        cout << "introduzca el origen: ";
                         cin >> origin;
                         cout << "origen introducido: <"<<origin<<">\n";
-                        if (!g.contains(origin))
+                        if (!g.contains(origin)) {
                             cout << "la provincia no existe, introduzcala de nuevo\n";
+                            cout << "posibles provincias:\n";
+                            for (auto &privince : g.getNodes())
+                                cout << privince << ", ";
+                            cout << "\n";
+                        }
                     } while (!g.contains(origin));
                     do {
                         cout << "introduzca el destino: ";
                         cin >> target;
-                        if (!g.contains(target))
+                        cout << "destino introducido: <"<<target<<">\n";
+                        if (!g.contains(target)) {
                             cout << "la provincia no existe, introduzcala de nuevo\n";
+                            cout << "posibles provincias:\n";
+                            for (auto &privince : g.getNodes())
+                                cout << privince << ", ";
+                            cout << "\n";
+                        }
                     } while (!g.contains(target));
 
-                    cout << "\nmatriz de floyd\n\n";
-                    std::vector<std::vector<int>> floyd_matrix = floyd(g);
 
-                    for (auto & row : floyd_matrix) {
-                        for (auto & item : row) {
-                            cout << item << " ";
-                        }
-                        cout << endl;
-                    }
-
-                    cout << "\nmatriz de floyd_warshall\n\n";
-                    std::vector<std::vector<int>> floyd_warshall_matrix = floyd_warshall(g);
-
-                    for (auto & row : floyd_warshall_matrix) {
-                        for (auto & item : row) {
-                            cout << "\t" << item;
-                        }
-                        cout << endl;
-                    }
-                    cout << endl;
-                    if (g.existsPath(origin, target, floyd_matrix)) {
+                    if (g.existsPath(origin, target, floyd(g))) {
                         cout << "camino a seguir\n";
                         std::vector<std::string> path = getPathFromFloyd(g, origin, target);
-
-                        cout << "size:" << path.size() << "\n";
                         cout << endl;
+                        cout << "finish" << " <- ";
                         for (auto & item : path){
                             cout << item << " <- ";
                         }
@@ -131,6 +112,61 @@ int main()
                 else {
                     cout << "Primero tiene que introducir un grafo\n";
                 }
+                getchar();
+                getchar();
+                break;
+            }
+
+
+            case 3:{
+                if (!grafoIntroducido){
+                    cout << "primero ha de introducir un grafo\n";
+                    getchar();
+                    getchar();
+                    break;
+                }
+
+                cout << "\nmatriz de floyd\n\n";
+                std::vector<std::vector<int>> floyd_matrix = floyd(g);
+                int i = 0;
+                for (auto & row : floyd_matrix) {
+                    for (auto & item : row) {
+                        cout << "\t" << item;
+                    }
+                    cout << "\t" << g.getNodes()[i];
+                    i++;
+                    cout << endl;
+                }
+
+                getchar();
+                getchar();
+                break;
+            }
+
+            case 4:{
+                if (!grafoIntroducido){
+                    cout << "primero ha de introducir un grafo\n";
+                    getchar();
+                    getchar();
+                    break;
+                }
+
+                cout << "\nmatriz de floyd_warshall\n\n";
+                std::vector<std::vector<int>> floyd_warshall_matrix = floyd_warshall(g);
+                int i = 0;
+                for (auto & row : floyd_warshall_matrix) {
+                    for (auto & item : row) {
+                        cout << "\t";
+                        if ( item != -1 )
+                            cout << " ";
+                        cout << item;
+                    }
+                    cout << "\t" << g.getNodes()[i];
+                    i++;
+                    cout << endl;
+                }
+                cout << endl;
+
                 getchar();
                 getchar();
                 break;
